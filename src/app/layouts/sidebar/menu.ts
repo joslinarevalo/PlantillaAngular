@@ -1,32 +1,157 @@
 import { MenuItem } from './menu.model';
 
 export const MENU: MenuItem[] = [
-    {
-        id: 1,
-        label: 'MENUITEMS.MENU.TEXT',
-        isTitle: true
-    },
+ 
     {
         id: 2,
-        label: 'MENUITEMS.DASHBOARDS.TEXT',
+        label: 'Inicio',
         icon: 'bx-home-circle',
-        badge: {
-            variant: 'info',
-            text: 'MENUITEMS.DASHBOARDS.BADGE',
-        },
+        link: '/dashboard',
+
+    },
+ 
+    {
+        id: 5,
+        label: 'Plantas',
+        icon: 'bx-share-alt',
+        link: ''
+    },
+    {
+        id: 6,
+        label: "Enfermedades",
+        icon: "bx-user-circle",
         subItems: [
             {
-                id: 3,
-                label: 'MENUITEMS.DASHBOARDS.LIST.DEFAULT',
-                link: '/dashboard',
-                parentId: 2
+                id: 7,
+                label: "Lista",
+                link: "",
+                parentId: 6,
             },
-        
-        ]
+            {
+                id: 8,
+                label: "",
+                link: "",
+                parentId: 6,
+            },
+            {
+                id: 9,
+                label: "",
+                link: "",
+                parentId: 6,
+            },
+        ],
     },
     {
         id: 7,
-        isLayout: true
+        label: "Tratamiento",
+        icon: "bx-user-circle",
+        subItems: [
+            {
+                id: 8,
+                label: "Lista",
+                link: "",
+                parentId: 6,
+            },
+         
+        ],
+    },
+    {
+        id: 8,
+        label: "Sintomas",
+        icon: "bx-user-circle",
+        subItems: [
+            {
+                id: 9,
+                label: "Lista",
+                link: "",
+                parentId: 6,
+            },
+         
+        ],
+    },
+    {
+        id: 9,
+        label: "Causa",
+        icon: "bx-user-circle",
+        subItems: [
+            {
+                id: 9,
+                label: "Lista",
+                link: "",
+                parentId: 6,
+            },
+         
+        ],
+    },
+    {
+        id: 10,
+        label: "Detalle Planta",
+        icon: "bx-user-circle",
+        subItems: [
+            {
+                id: 9,
+                label: "Lista",
+                link: "",
+                parentId: 6,
+            },
+         
+        ],
+    },
+    {
+        id: 11,
+        label: "Detalle Causa",
+        icon: "bx-user-circle",
+        subItems: [
+            {
+                id: 9,
+                label: "Lista",
+                link: "",
+                parentId: 6,
+            },
+         
+        ],
+    },
+    {
+        id: 13,
+        label: "Consultas",
+        icon: "bx-user-circle",
+        subItems: [
+            {
+                id: 9,
+                label: "Lista",
+                link: "",
+                parentId: 6,
+            },
+         
+        ],
+    },
+    {
+        id: 10,
+        label: "Informes",
+        icon: "bx-user-circle",
+        subItems: [
+            {
+                id: 9,
+                label: "Lista",
+                link: "",
+                parentId: 6,
+            },
+         
+        ],
+    },
+    {
+        id: 10,
+        label: "Seguridad",
+        icon: "bx-user-circle",
+        subItems: [
+            {
+                id: 9,
+                label: "Lista",
+                link: "",
+                parentId: 6,
+            },
+         
+        ],
     },
 ];
 

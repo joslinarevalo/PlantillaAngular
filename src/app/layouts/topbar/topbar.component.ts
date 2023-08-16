@@ -24,7 +24,7 @@ export class TopbarComponent implements OnInit {
   flagvalue;
   countryName;
   valueset;
-
+  icono: string = 'fa fa-fw fa-bars';
   constructor(@Inject(DOCUMENT) private document: any, private router: Router, private authService: AuthenticationService,
               private authFackservice: AuthfakeauthenticationService,
               public languageService: LanguageService,
