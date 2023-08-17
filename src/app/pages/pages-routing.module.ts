@@ -8,6 +8,7 @@ const routes: Routes = [
   { path: 'dashboard', component: DefaultComponent },
   { path: 'dashboards', loadChildren: () => import('./dashboards/dashboards.module').then(m => m.DashboardsModule) },
   { path: 'icons', loadChildren: () => import('./icons/icons.module').then(m => m.IconsModule) },
+  { path: 'detallecausa', loadChildren: () => import('./detalle-causa/detalle-causa.module').then(m => m.DetalleCausaModule) },
 ];
 
 @NgModule({
