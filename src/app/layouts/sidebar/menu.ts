@@ -62,8 +62,8 @@ export const MENU: MenuItem[] = [
         subItems: [
             {
                 id: 9,
-                label: "Lista",
-                link: "",
+                label: "Sintomas",
+                link: "/sintomas/sintomas",
                 parentId: 6,
             },
          

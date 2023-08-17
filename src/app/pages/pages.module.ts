@@ -35,14 +35,15 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     DashboardsModule,
     HttpClientModule,
     UIModule,
-    IconsModule,
+    //IconsModule,
     WidgetModule,
     FullCalendarModule,
     NgbNavModule,
     NgbTooltipModule,
     NgbCollapseModule,
     SimplebarAngularModule,
-    LightboxModule
+    LightboxModule,
+    FormsModule,
   ],
 })
 export class PagesModule { }
