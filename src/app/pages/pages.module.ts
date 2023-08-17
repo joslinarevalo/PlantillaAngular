@@ -17,6 +17,7 @@ import { DashboardsModule } from './dashboards/dashboards.module';
 import { IconsModule } from './icons/icons.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
+
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
   interactionPlugin,
@@ -43,7 +44,11 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     NgbCollapseModule,
     SimplebarAngularModule,
     LightboxModule,
+<<<<<<< HEAD
     FormsModule,
+=======
+ 
+>>>>>>> main
   ],
 })
 export class PagesModule { }

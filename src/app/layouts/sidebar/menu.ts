@@ -100,12 +100,12 @@ export const MENU: MenuItem[] = [
     {
         id: 11,
         label: "Detalle Causa",
-        icon: "bx-user-circle",
+        icon: "bx bx-border-all",
         subItems: [
             {
                 id: 9,
                 label: "Lista",
-                link: "",
+                link: "/detallecausa/mostrar",
                 parentId: 6,
             },
          
