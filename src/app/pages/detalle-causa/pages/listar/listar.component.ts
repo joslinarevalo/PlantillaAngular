@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./listar.component.scss']
 })
 export class ListarComponent implements OnInit {
-
+  detalleCausa:string='';
   constructor() { }
 
   ngOnInit() {

@@ -1,0 +1,26 @@
+<div class="table-responsive mb-0 mt-2">
+  <table class="table table-centered table-nowrap">
+    <thead class="table-light">
+      <tr>
+       
+        <th class="align-middle">Enfermedad</th>
+        <th class="align-middle">Tipo de Causa</th>
+        <th class="align-middle">Descripcion de Causa</th>
+        <th class="align-middle">Acción</th>
+      </tr>
+    </thead>
+    <tbody>
+     
+      <tr *ngFor="let detalleC of detalleCausa | filter:queryString | paginate:{itemsPerPage: 10, currentPage: p}" >
+        <td>{{detalleC.enfermedad}}</td>
+        <td>{{detalleC.tipoCausa}}</td>
+        <td>{{detalleC.descripcionCausa}}</td>
+        <td>
+          <!-- Button trigger modal -->
+          <button type="button" class="btn btn-primary btn-sm btn-rounded" >Editar</button>
+
+          <button type="button" class="btn btn-danger btn-sm btn-rounded">Eliminar</button>
+    
+        </td>
+      </tr>
+    </tbody>
