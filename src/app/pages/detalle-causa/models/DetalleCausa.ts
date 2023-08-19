@@ -7,9 +7,19 @@ export class DetalleCausa{
 
 export class Enfermedad {
     idenfermedad?:number;
-    nombre_enfermedad?:string;
+    nombreEnfermedad?:string;
+    tipoEnfermedad?:string;
+    descripcionEnfermedad?:string;
 }
 export class TipoCausa {
-    id_tipo_causa?:number;
-    nombre_comun_tc?:string;
+    idTipoCausa?:number;
+    nombreComunTC?:string;
+    nombreCientificoTC?:string;
+    tipoTC?:string;
 }
+
+export interface IConsulta{
+    enfermedad: Enfermedad,
+    tipoCausa: TipoCausa,
+    descripcionCausa?:string;
+  }

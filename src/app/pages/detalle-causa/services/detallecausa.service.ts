@@ -1,6 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { DetalleCausa, Enfermedad, TipoCausa } from '../models/DetalleCausa';
+import { DetalleCausa, Enfermedad, IConsulta, TipoCausa } from '../models/DetalleCausa';
 import { Observable } from 'rxjs';
 const urlEndPoint: string = 'http://localhost:8080/api/DetalleCausa';
 @Injectable({
@@ -20,6 +20,8 @@ listatipocausa(): Observable<TipoCausa[]> {
 getdetalleCausa(): Observable<DetalleCausa[]> {
   return this.http.get<DetalleCausa[]>(urlEndPoint);
 }
-
+getConsultas(){
+  return this.http.get<IConsulta[]>(urlEndPoint +`/all`);
+}
 }
 

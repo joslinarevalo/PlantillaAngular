@@ -3,24 +3,26 @@
     <thead class="table-light">
       <tr>
        
-        <th class="align-middle">Enfermedad</th>
-        <th class="align-middle">Tipo de Causa</th>
-        <th class="align-middle">Descripcion de Causa</th>
-        <th class="align-middle">Acción</th>
+        <th class="align-middle "style="width: 30%;">Enfermedad</th>
+        <th class="align-middle"style="width: 30%;">Tipo de Causa</th>
+        <th class="align-middle"style="width: 30%;">Descripcion de Causa</th>
+        <th class="align-middle"style="width: 10%;">Acción</th>
       </tr>
     </thead>
     <tbody>
      
-      <tr *ngFor="let detalleC of detalleCausa | filter:queryString | paginate:{itemsPerPage: 10, currentPage: p}" >
-        <td>{{detalleC.enfermedad}}</td>
-        <td>{{detalleC.tipoCausa}}</td>
-        <td>{{detalleC.descripcionCausa}}</td>
+      <tr *ngFor="let detalleC of allConsultas | filter:queryString | paginate:{itemsPerPage: 10, currentPage: p}" >
+        <td class="align-middle" style="width: 30%;">{{detalleC.enfermedad}}</td>
+        <td class="align-middle" style="width: 30%;">{{detalleC.tipoCausa}}</td>
+        <td class="align-middle" style="width: 10%;">{{detalleC.descripcionCausa}}</td>
         <td>
           <!-- Button trigger modal -->
-          <button type="button" class="btn btn-primary btn-sm btn-rounded" >Editar</button>
+          <button type="button" class="btn btn-info btn-sm btn-rounded" ><i class="fas fa-file-signature"></i>Editar</button>
 
-          <button type="button" class="btn btn-danger btn-sm btn-rounded">Eliminar</button>
+          <button type="button" class="btn btn-primary btn-sm btn-rounded" ><i class="fas fa-trash-alt"></i>Eliminar</button>
     
         </td>
       </tr>
     </tbody>
+  </table>
+</div>

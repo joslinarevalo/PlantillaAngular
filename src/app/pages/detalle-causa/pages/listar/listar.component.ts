@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListarComponent implements OnInit {
   detalleCausa:string='';
+  term: string = '';
   constructor() { }
 
   ngOnInit() {
