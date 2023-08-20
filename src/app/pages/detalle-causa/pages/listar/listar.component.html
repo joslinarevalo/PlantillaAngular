@@ -15,14 +15,15 @@
             </div>
             <!-- end col -->
             <div class="col-sm-8">
-                <div class="text-sm-end">
-                    <app-nuevo [leyenda]="'Guardar'" [titulo]="'Nuevo Detalle '"></app-nuevo> 
+                <div class="text-sm-end  ">
+                     
+                  <app-nuevo [leyenda]="'Guardar'" [titulo]="'Nuevo Detalle '"></app-nuevo>
                 </div>
             </div>
             
         </div>
            <!-- contenido scroll infinito  <app-tabla [libros]="libros" [queryString]="libr"></app-tabla> -->
-           <app-tabla  [queryString]="detalleCausa"></app-tabla>
+           <app-tabla  [allConsultas]="dtcausa" [queryString]="term"></app-tabla>
         
        </div>
      </div>

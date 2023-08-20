@@ -1,5 +1,5 @@
 export class DetalleCausa{
-    id?:number;
+    iddetalleCausa?:number;
     descripcionCausa?:string;
     enfermedad?: Enfermedad;
     tipoCausa?:TipoCausa;
@@ -18,8 +18,3 @@ export class TipoCausa {
     tipoTC?:string;
 }
 
-export interface IConsulta{
-    enfermedad: Enfermedad,
-    tipoCausa: TipoCausa,
-    descripcionCausa?:string;
-  }

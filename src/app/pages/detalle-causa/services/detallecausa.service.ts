@@ -1,6 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { DetalleCausa, Enfermedad, IConsulta, TipoCausa } from '../models/DetalleCausa';
+import { DetalleCausa, Enfermedad, TipoCausa } from '../models/DetalleCausa';
 import { Observable } from 'rxjs';
 const urlEndPoint: string = 'http://localhost:8080/api/DetalleCausa';
 @Injectable({
@@ -21,7 +21,18 @@ getdetalleCausa(): Observable<DetalleCausa[]> {
   return this.http.get<DetalleCausa[]>(urlEndPoint);
 }
 getConsultas(){
-  return this.http.get<IConsulta[]>(urlEndPoint +`/all`);
+  return this.http.get<DetalleCausa[]>(urlEndPoint +`/all`);
+}
+eliminar(iddetalleCausa: number): Observable<Object> {
+
+  return this.http.delete(`${urlEndPoint}/${iddetalleCausa}`);
+}
+actualizar(dtcausa: DetalleCausa): Observable<DetalleCausa> {
+  const url = `${urlEndPoint}/${dtcausa.iddetalleCausa}`;
+  return this.http.put<DetalleCausa>(url, dtcausa);
+}
+registrar(data: DetalleCausa): Observable<DetalleCausa> {
+  return this.http.post(urlEndPoint, data);
 }
 }
 
