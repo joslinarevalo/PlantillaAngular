@@ -71,13 +71,13 @@ export const MENU: MenuItem[] = [
     },
     {
         id: 9,
-        label: "Causa",
-        icon: "bx-user-circle",
+        label: "Causa Enfermedad",
+        icon: "fbx bx-layer",
         subItems: [
             {
                 id: 9,
                 label: "Lista",
-                link: "",
+                link: "/causaEnfermedad/mostrar",
                 parentId: 6,
             },
          

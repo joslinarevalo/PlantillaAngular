@@ -12,7 +12,7 @@ export class Enfermedad {
     descripcionEnfermedad?:string;
 }
 export class TipoCausa {
-    idTipoCausa?:number;
+    idtipoCausa?:number;
     nombreComunTC?:string;
     nombreCientificoTC?:string;
     tipoTC?:string;
