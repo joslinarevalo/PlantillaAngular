@@ -1,0 +1,26 @@
+<div class="table-responsive mb-0 mt-2">
+    <table class="table table-centered table-nowrap">
+      <thead class="table-light">
+        <tr>
+          <th class="align-middle">Nombre del tratamiento</th>
+          <th class="align-middle">Descripción del tratamiento</th>
+          <th class="align-middle">Aplicación del tratamiento</th>
+          <th class="align-middle">Imagen</th>
+          <th class="align-middle">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let tratamiento of tratamientoList | paginate: { itemsPerPage: 5, currentPage: p }">
+         
+          <td>{{tratamiento.nombreTratamiento}}</td>
+          <td>{{tratamiento.descripcion}}</td>
+          <td>{{tratamiento.aplicacion}}</td>
+          <td><img width="100px" height="100px" class="img-fluid" [src]="imagen"></td>
+          <td>
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-danger" style="border: 0;" >Eliminar</button>
+            <button type="button" class="btn btn-secondary" style="border: 0;" >Modificar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
