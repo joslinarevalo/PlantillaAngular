@@ -1,14 +1,18 @@
 export interface ITratamientoMostrar{
-    nombreTratamiento:string,
-    descripcion:string,
-    aplicacion:string,
-    url:string,
+    idTratamiento?:number,
+    detallePlanta?:number,
+    nombrePesticidaTratamiento:string,
+    descripcionTratamiento:string,
+    aplicacionTratamiento:string,
+    indicacionesTratamiento:string,
+    tipoTratamiento:string,
+    urlTratamiento:string
     imagen?:any
 }
 export interface ITratamientoDTOValid{
-    idtratamiento?:number,
+    idTratamiento?:number,
     detallePlanta:number,
-    nombrepesticidaTratamiento:string,
+    nombrePesticidaTratamiento:string,
     descripcionTratamiento:string,
     aplicacionTratamiento:string,
     indicacionesTratamiento:string,

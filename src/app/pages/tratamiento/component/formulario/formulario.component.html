@@ -10,7 +10,7 @@
   ></button>
 </div>
 <div class="modal-body">
-  <form [formControl]="formulario">
+  <form [formGroup]="formularioTratamiento">
     <div class="row">
       <div class="mt-1 col-xl-8 col-lg-8 col-md-12 col-sm-12 col-12">
         <label class="control-label">Seleccionar Imagen Tratamiento</label>
@@ -20,7 +20,14 @@
           id="urlTratamiento"
           formControlName="urlTratamiento"
           (change)="SeleccionarImagen($event)"
+          [ngClass]="esCampoValido('urlTratamiento')"
         />
+        <div class="invalid-feedback">
+          <span
+            *ngIf="formularioTratamiento.get('urlTratamiento')?.errors?.['required']"
+            >Requiere una imagen de Pesticida ó Tratamiento</span
+          >
+        </div>
       </div>
       <div class="mt-1 col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
         <img
@@ -37,6 +44,7 @@
           class="form-control"
           id="detallePlanta"
           formControlName="detallePlanta"
+
         >
           <option>Seleccione</option>
         </select>
@@ -46,9 +54,16 @@
         <input
           class="form-control"
           type="text"
-          id="nombrepesticidaTratamiento"
-          formControlName="nombrepesticidaTratamiento"
+          id="nombrePesticidaTratamiento"
+          formControlName="nombrePesticidaTratamiento"
+          [ngClass]="esCampoValido('nombrePesticidaTratamiento')"
         />
+        <div class="invalid-feedback">
+          <span
+            *ngIf="formularioTratamiento.get('nombrePesticidaTratamiento')?.errors?.['required']"
+            >Requiere una nombre de Pesticida ó Tratamiento</span
+          >
+        </div>
       </div>
       <div class="mt-1 col-12">
         <label class="control-label">Descripción del Tratamiento</label>
@@ -57,7 +72,14 @@
           type="text"
           id="descripcionTratamiento"
           formControlName="descripcionTratamiento"
+          [ngClass]="esCampoValido('descripcionTratamiento')"
         ></textarea>
+        <div class="invalid-feedback">
+          <span
+            *ngIf="formularioTratamiento.get('descripcionTratamiento')?.errors?.['required']"
+            >Requiere una descripcion del Tratamiento</span
+          >
+        </div>
       </div>
       <div class="mt-1 col-6">
         <label class="control-label">Aplicación del Tratamiento</label>
@@ -66,7 +88,14 @@
           type="text"
           id="aplicacionTratamiento"
           formControlName="aplicacionTratamiento"
+          [ngClass]="esCampoValido('aplicacionTratamiento')"
         ></textarea>
+        <div class="invalid-feedback">
+          <span
+            *ngIf="formularioTratamiento.get('aplicacionTratamiento')?.errors?.['required']"
+            >Requiere de aplicación de Tratamiento</span
+          >
+        </div>
       </div>
       <div class="mt-1 col-6">
         <label class="control-label">Indicaciones del Tratamiento</label>
@@ -75,7 +104,14 @@
           type="text"
           id="indicacionesTratamiento"
           formControlName="indicacionesTratamiento"
+          [ngClass]="esCampoValido('indicacionesTratamiento')"
         ></textarea>
+        <div class="invalid-feedback">
+          <span
+            *ngIf="formularioTratamiento.get('indicacionesTratamiento')?.errors?.['required']"
+            >Requiere de indicaciones de Tratamiento</span
+          >
+        </div>
       </div>
       <div class="mt-1 col-6">
         <label class="control-label">Tipo de Tratamiento</label>
@@ -84,7 +120,14 @@
           type="text"
           id="tipoTratamiento"
           formControlName="tipoTratamiento"
+          [ngClass]="esCampoValido('tipoTratamiento')"
         />
+        <div class="invalid-feedback">
+          <span
+            *ngIf="formularioTratamiento.get('tipoTratamiento')?.errors?.['required']"
+            >Requiere de un tipo de Tratamiento</span
+          >
+        </div>
       </div>
     </div>
     <div class="row mt-3">

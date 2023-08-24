@@ -12,15 +12,16 @@
       <tbody>
         <tr *ngFor="let tratamiento of tratamientoList | paginate: { itemsPerPage: 5, currentPage: p }">
          
-          <td>{{tratamiento.nombreTratamiento}}</td>
-          <td>{{tratamiento.descripcion}}</td>
-          <td>{{tratamiento.aplicacion}}</td>
-          <td><img width="100px" height="100px" class="img-fluid" [src]="imagen"></td>
+          <td>{{tratamiento.nombrePesticidaTratamiento}}</td>
+          <td>{{tratamiento.descripcionTratamiento}}</td>
+          <td>{{tratamiento.aplicacionTratamiento}}</td>
+          <td><img width="100px" height="100px" class="img-fluid" [src]="tratamiento.imagen"></td>
           <td>
             <!-- Button trigger modal -->
-            <button type="button" class="btn btn-danger" style="border: 0;" >Eliminar</button>
-            <button type="button" class="btn btn-secondary" style="border: 0;" >Modificar</button>
+            <button type="button" class="btn btn-danger" style="border: 0;" (click)="ObtenerTratamientoEliminar(tratamiento)">Eliminar</button>
+            <button type="button" class="btn btn-secondary" style="border: 0;" (click)="ObtenerTratamientoModificar(tratamiento)">Modificar</button>
           </td>
         </tr>
       </tbody>
     </table>
+</div>

@@ -26,10 +26,10 @@ export class TratamientoService {
   GuardarTratamiento(tratamiento:FormData):Observable<any>{
     return this.http.post<any>(this.url_tratamiento+"guardar",tratamiento);
   }
-  ModificarTratamiento(tratamiento:ITratamientoDTOValid):Observable<ITratamientoDTOValid>{
+  ModificarTratamiento(tratamiento:FormData):Observable<any>{
     return this.http.put<ITratamientoDTOValid>(this.url_tratamiento+"modificar",tratamiento);
   }
   EliminarTratamiento(tratamiento:ITratamientoDTOValid):Observable<any>{
-    return this.http.delete<any>(this.url_tratamiento+"eliminar/"+tratamiento.idtratamiento);
+    return this.http.delete<any>(this.url_tratamiento+"eliminar/"+tratamiento.idTratamiento);
   }
 }

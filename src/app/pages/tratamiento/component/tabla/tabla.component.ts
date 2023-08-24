@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ITratamientoMostrar } from '../../interface/tratamiento.interface';
 import { TratamientoService } from '../../service/service.service';
 import { DomSanitizer } from '@angular/platform-browser';
-import { NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
+
 
 @Component({
   selector: 'app-tabla',
@@ -25,11 +25,13 @@ export class TablaComponent implements OnInit {
       this.tratamientoList=resp;
       console.log(resp);
       this.tratamientoList.forEach(element => {
-        //console.log(element.url);
-        this.ObtenerImagen(element.url);
-        //console.log(this.imagen);
-        //element.imagen=this.imagen;
-        //console.log(element.imagen);
+        this.serviceTratamiento.getImagen(element.urlTratamiento).subscribe((resp)=>{
+          //console.log(resp);
+          let url=URL.createObjectURL(resp);
+          this.imagen=this.dm.bypassSecurityTrustUrl(url);
+          //console.log(this.imagen);
+          element.imagen=this.imagen;
+        });
       });
       
     })
@@ -41,6 +43,11 @@ export class TablaComponent implements OnInit {
       this.imagen=this.dm.bypassSecurityTrustUrl(url);
       console.log(this.imagen);
     });
-    
+  }
+  ObtenerTratamientoEliminar(tratamiento:ITratamientoMostrar){
+    console.log(tratamiento);
+  }
+  ObtenerTratamientoModificar(tratamiento:ITratamientoMostrar){
+    console.log(tratamiento);
   }
 }
