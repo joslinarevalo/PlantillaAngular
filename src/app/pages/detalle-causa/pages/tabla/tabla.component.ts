@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, TemplateRef, ViewChild } from '@angular/core';
-import { DetalleCausa} from '../../models/DetalleCausa';
+import { DTOdetalle, DetalleCausa} from '../../models/DetalleCausa';
 import { DetallecausaService } from '../../services/detallecausa.service';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
@@ -11,9 +11,10 @@ import { Router } from '@angular/router';
 })
 export class TablaComponent implements OnInit {
   detalleCausa: DetalleCausa[] = [];
-  @Input() ldetalleC!: DetalleCausa[];
+  
   @Input() queryString: string;
-  @Input()allConsultas!:DetalleCausa[];
+  @Input()allConsultas!:DTOdetalle[];
+
   iddetallito: string = "";
   p: any;
   constructor(private detallecausaservice:DetallecausaService,private router: Router) { }
@@ -24,9 +25,9 @@ export class TablaComponent implements OnInit {
   }
 
   obtenerconsulta(){
-    this.detallecausaservice.getConsultas()
+    this.detallecausaservice.getdetalleCausa()
     .subscribe(data => {
-      this.allConsultas = data;
+      this.detalleCausa = data;
       console.log(data);
     });
   }
