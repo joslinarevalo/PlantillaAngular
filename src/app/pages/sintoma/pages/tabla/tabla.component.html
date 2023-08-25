@@ -17,23 +17,24 @@
         <tr *ngFor="let data of sintomaOd |  filter:queryString | paginate: { itemsPerPage: 5, currentPage: p }">
           <td>
             <div class="form-check font-size-16">
-              <input class="form-check-input" type="checkbox" id="transactionCheck{{data.id}}">
-              <label class="form-check-label" for="transactionCheck{{data.id}}"></label>
+              <input class="form-check-input" type="checkbox" id="transactionCheck{{data.idsintoma}}">
+              <label class="form-check-label" for="transactionCheck{{data.idsintoma}}"></label>
             </div>
           </td>
           <td>
-            <a href="javascript: void(0);" class="text-body fw-bold">{{data.id}}</a>
+            <a href="javascript: void(0);" class="text-body fw-bold">{{data.idsintoma}}</a>
           </td>
-          <td>{{data.nombre_sintoma}}</td>
+          <td>{{data.nombreSintoma}}</td>
           <td>
-            <!-- Button trigger modal -->
-            <button type="button" class="btn btn-danger" style="border: 0;" (click)="eliminar(data.id)">Eliminar</button>
-           
-            <button style="border: 0; background-color: transparent;">
-              <!-- <app-nuevo [leyenda]="'Editar'" [titulo]="'Editar'" [sintomaOd]="data"></app-nuevo> -->
+            <button class="editar">
+              <app-nuevo [leyenda]="'Editar'" [titulo]="'Editar'" [sintomaOd]="data"></app-nuevo>
             </button>
-            <!-- <button style="border: 0; background-color: transparent;"><app-nuevo [leyenda]="'Editar'" [titulo]="'Editar'" [productoOd]="data"></app-nuevo></button>
-             <button type="button" class="btn btn-primary btn-sm btn-rounded" (click)="Eliminar(data.id)">Editar</button> -->
+            
+            <!-- Button trigger modal -->
+            <button class="eliminar" (click)="eliminar(data.idsintoma)">Eliminar</button>
+           
+           
+            
           </td>
         </tr>
       </tbody>

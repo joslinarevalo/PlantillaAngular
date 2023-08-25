@@ -1,4 +1,4 @@
 export interface ISintoma{
     idsintoma: number;
-    nombre_sintoma: string;
+    nombreSintoma: string;//nombre igual que el backend
 }
