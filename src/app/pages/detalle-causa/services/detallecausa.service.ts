@@ -28,7 +28,7 @@ eliminar(iddetalleCausa: number): Observable<Object> {
   return this.http.delete(`${urlEndPoint}/${iddetalleCausa}`);
 }
 actualizar(dtcausa: DetalleCausa): Observable<DetalleCausa> {
-  const url = `${urlEndPoint}/${dtcausa.iddetalleCausa}`;
+  const url = `${urlEndPoint}}`;
   return this.http.put<DetalleCausa>(url, dtcausa);
 }
 registrar(data: DetalleCausa): Observable<DetalleCausa> {

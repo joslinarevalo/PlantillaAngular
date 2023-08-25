@@ -10,6 +10,7 @@ const routes: Routes = [
   { path: 'icons', loadChildren: () => import('./icons/icons.module').then(m => m.IconsModule) },
   { path: 'sintomas', loadChildren: () => import('./sintoma/sintoma.module').then(m => m.SintomaModule) },
   { path: 'detallecausa', loadChildren: () => import('./detalle-causa/detalle-causa.module').then(m => m.DetalleCausaModule) },
+  { path: 'causaEnfermedad', loadChildren: () => import('./causa-enfermedad/causa-enfermedad.module').then(m => m.CausaEnfermedadModule) },
 ];
 
 @NgModule({

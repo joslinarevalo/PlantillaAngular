@@ -19,16 +19,10 @@ export class TablaComponent implements OnInit {
   constructor(private detallecausaservice:DetallecausaService,private router: Router) { }
 
   ngOnInit() {
-    //this.obtener();
+
     this.obtenerconsulta();
   }
-  obtener() {
-    this.detallecausaservice.getdetalleCausa()
-      .subscribe(data => {
-        this.detalleCausa = data;//
-        console.log(data);
-      });
-  }
+
   obtenerconsulta(){
     this.detallecausaservice.getConsultas()
     .subscribe(data => {

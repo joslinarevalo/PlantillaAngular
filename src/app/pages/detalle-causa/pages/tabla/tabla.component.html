@@ -14,12 +14,13 @@
         <td class="align-middle" style="width: 30%;">{{detalleC.enfermedad}}</td>
         <td class="align-middle" style="width: 30%;">{{detalleC.tipoCausa}}</td>
         <td class="align-middle" style="width: 10%;">{{detalleC.descripcionCausa}}</td>
-        <td>
+        <td class="text-sm-end">
+          
+            <button type="button" class="btn btn-sm btn-rounded" ><app-nuevo [leyenda]="'Editar '" [detalleCt]="detalleC"[titulo]="'Editar'" [modo]="'Editar'"></app-nuevo></button>
+            <button type="button" class="btn btn-primary btn-sm  btn-rounded" (click)="eliminar(detalleC.iddetalleCausa)"><i class="fas fa-trash-alt"></i>Eliminar</button>
+     
           <!-- Button trigger modal -->
-          <button type="button" class="btn btn-sm btn-rounded" ><app-nuevo [leyenda]="'Editar '" [detalleCt]="detalleC"[titulo]="'Editar'"></app-nuevo></button>
-         
-          <button type="button" class="btn btn-primary btn-sm  btn-rounded" (click)="eliminar(detalleC.iddetalleCausa)"><i class="fas fa-trash-alt"></i>Eliminar</button>
-    
+          
         </td>
       </tr>
     </tbody>
