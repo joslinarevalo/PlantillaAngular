@@ -7,29 +7,29 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class TratamientoService {
-  url_tratamiento:string="http://localhost:8080/tratamiento/";
+  urlTratamiento:string="http://localhost:8080/tratamiento/";
   constructor(private http:HttpClient) { }
-  ListaDeTratamiento():Observable<ITratamientoMostrar[]>{
-    return this.http.get<ITratamientoMostrar[]>(this.url_tratamiento+"listar");
+  listaDeTratamiento():Observable<ITratamientoMostrar[]>{
+    return this.http.get<ITratamientoMostrar[]>(this.urlTratamiento+"listar");
   }
-  RetornarImagen(urlImagen:string):Observable<Blob>{
-    return this.http.get<Blob>(this.url_tratamiento+"imagen/"+urlImagen);
+  retornarImagen(urlImagen:string):Observable<Blob>{
+    return this.http.get<Blob>(this.urlTratamiento+"imagen/"+urlImagen);
   }
   getImagen(idimagen:any):Observable<Blob>{
     const headers= new HttpHeaders().set("Content-Type",'Aplication/json');
-     return this.http.get<Blob>(`${this.url_tratamiento}imagen/${idimagen}`,{
+     return this.http.get<Blob>(`${this.urlTratamiento}imagen/${idimagen}`,{
       headers,
       responseType:'blob' as 'json'
      });
   }
   
-  GuardarTratamiento(tratamiento:FormData):Observable<any>{
-    return this.http.post<any>(this.url_tratamiento+"guardar",tratamiento);
+  guardarTratamiento(tratamiento:FormData):Observable<any>{
+    return this.http.post<any>(this.urlTratamiento+"guardar",tratamiento);
   }
-  ModificarTratamiento(tratamiento:FormData):Observable<any>{
-    return this.http.put<ITratamientoDTOValid>(this.url_tratamiento+"modificar",tratamiento);
+  modificarTratamiento(tratamiento:FormData):Observable<any>{
+    return this.http.put<any>(this.urlTratamiento+"modificar",tratamiento);
   }
-  EliminarTratamiento(tratamiento:ITratamientoDTOValid):Observable<any>{
-    return this.http.delete<any>(this.url_tratamiento+"eliminar/"+tratamiento.idTratamiento);
+  eliminarTratamiento(tratamiento:ITratamientoMostrar):Observable<any>{
+    return this.http.delete<any>(this.urlTratamiento+"eliminar/"+tratamiento.idTratamiento);
   }
 }

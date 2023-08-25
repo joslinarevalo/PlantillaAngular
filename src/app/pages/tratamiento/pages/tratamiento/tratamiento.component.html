@@ -34,7 +34,9 @@
                     </div>
 
                         <!-- Contenido del Scroll data -->
-                       <app-tabla></app-tabla>
+                       <app-tabla [ListaDeTratamiento]="tratamientoList" 
+                       (ObjetoTratamientoEliminar)="eliminarTratamiento($event)"
+                       (ObjetoTratamientoModificar)="modificarTratamiento($event,content)"></app-tabla>
                         
                     </div>
                 </div>
@@ -42,5 +44,9 @@
         </div>
     </div>
     <ng-template #content role="document" let-modal>
-        <app-formulario [ModalService]="modalService"></app-formulario>
+        <app-formulario [ModalService]="modalService" 
+        [formularioTratamiento]="formularioTratamiento"
+        (ObjetoGuardar)="guardarTratamiento($event)" 
+        [leyenda]="leyenda"
+        (ObjetoModificar)="modificarTratamientoFormulario($event)" [imagen]="imagen"></app-formulario>
     </ng-template>

@@ -10,7 +10,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let tratamiento of tratamientoList | paginate: { itemsPerPage: 5, currentPage: p }">
+        <tr *ngFor="let tratamiento of ListaDeTratamiento | paginate: { itemsPerPage: 5, currentPage: p }">
          
           <td>{{tratamiento.nombrePesticidaTratamiento}}</td>
           <td>{{tratamiento.descripcionTratamiento}}</td>

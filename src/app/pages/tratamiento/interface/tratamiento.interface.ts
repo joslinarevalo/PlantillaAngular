@@ -10,7 +10,7 @@ export interface ITratamientoMostrar{
     imagen?:any
 }
 export interface ITratamientoDTOValid{
-    idTratamiento?:number,
+    idtratamiento?:number,
     detallePlanta:number,
     nombrePesticidaTratamiento:string,
     descripcionTratamiento:string,

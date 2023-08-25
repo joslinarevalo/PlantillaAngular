@@ -1,7 +1,7 @@
 <!-- Modal -->
 
 <div class="modal-header">
-  <h5 class="modal-title mt-0">Tratamiento</h5>
+  <h5 class="modal-title mt-0">{{leyenda}} Tratamiento</h5>
   <button
     type="button"
     class="btn-close"
@@ -137,9 +137,19 @@
           class="verdeOscuro"
           id="btn-save-event"
           (click)="guardar()"
+          *ngIf="leyenda=='Registrar'"
         >
           Guardar
         </button>
+        <button
+        type="button"
+        class="btn btn-warning"
+        id="btn-warning-event"
+        (click)="modificar()"
+        *ngIf="leyenda=='Modificar'"
+      >
+        Guardar
+      </button>
       </div>
       <div class="mt-1 col-6">
         <button

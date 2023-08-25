@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ITratamientoDTOValid } from '../../interface/tratamiento.interface';
@@ -16,30 +16,24 @@ export class FormularioComponent implements OnInit {
   //recibe un parametro del padre
   @Input() ModalService!:NgbModal;
   tratamiento!:ITratamientoDTOValid; 
-  formularioTratamiento!:FormGroup;
+  @Input()formularioTratamiento!:FormGroup;
   imagenMostrar!:any;
   formularioSerealizable= new FormData();
+  @Output()ObjetoGuardar= new EventEmitter<FormData>();
+  @Output()ObjetoModificar= new EventEmitter<FormData>();
+  @Input()leyenda:string;
+  @Input()imagen:any;
   constructor( private fb: FormBuilder, private serviceTratamiento:TratamientoService, private dm:DomSanitizer) { }
 
   ngOnInit(): void {
-    this.formularioTratamiento=this.inicializarFormulario();
-    //console.log(this.formularioTratamiento);
+    if(this.leyenda=="Modificar"){
+      this.imagenMostrar=this.imagen;
+    }
   }
   cerrarModal(){
     this.ModalService.dismissAll();
   }
-  inicializarFormulario(): FormGroup {
-    return this.fb.group({
-      idTratamiento: [''],
-      detallePlanta: [''],
-      nombrePesticidaTratamiento: ['', [Validators.required]],
-      descripcionTratamiento: ['', [Validators.required]],
-      aplicacionTratamiento: ['', [Validators.required]],
-      indicacionesTratamiento: ['', [Validators.required]],
-      tipoTratamiento: ['', [Validators.required]],
-      urlTratamiento: ['', [Validators.required]]
-    });
-  }
+  
   
   guardar() {
     if (this.formulario_valido()) {
@@ -57,19 +51,7 @@ export class FormularioComponent implements OnInit {
       //this.presentacion=this.formulario.value;
       console.log(this.tratamiento);
       this.formularioSerealizable.set("tratamiento",JSON.stringify(this.tratamiento));
-      this.serviceTratamiento
-        .GuardarTratamiento(this.formularioSerealizable)
-        .subscribe((resp: any) => {
-          console.log(resp);
-          Swal.fire({
-            position: 'center',
-            icon: 'success',
-            title: 'Exito',
-            showConfirmButton: false,
-            timer: 1500,
-          });
-          
-        });
+      this.ObjetoGuardar.emit(this.formularioSerealizable);
       }else {
         Swal.fire({
           position: 'center',
@@ -84,8 +66,9 @@ export class FormularioComponent implements OnInit {
   }
   modificar() {
     if (this.formulario_valido()) {
+      this.formularioTratamiento.controls['detallePlanta'].setValue(1);
       this.tratamiento = {
-        idTratamiento:this.formularioTratamiento.controls['idtratamiento'].value,
+        idtratamiento:this.formularioTratamiento.controls['idTratamiento'].value,
         detallePlanta: this.formularioTratamiento.controls['detallePlanta'].value,
         nombrePesticidaTratamiento: this.formularioTratamiento.controls['nombrePesticidaTratamiento'].value,
         descripcionTratamiento:this.formularioTratamiento.controls['descripcionTratamiento'].value,
@@ -96,19 +79,7 @@ export class FormularioComponent implements OnInit {
       };
       console.log(this.tratamiento);
       this.formularioSerealizable.set("tratamiento",JSON.stringify(this.tratamiento));
-      this.serviceTratamiento
-        .ModificarTratamiento(this.formularioSerealizable)
-        .subscribe((resp: any) => {
-          console.log(resp);
-          Swal.fire({
-            position: 'center',
-            icon: 'success',
-            title: 'Exito',
-            showConfirmButton: false,
-            timer: 1500,
-          });
-          this.cerrarModal();
-        });
+      this.ObjetoModificar.emit(this.formularioSerealizable);
     } else {
       Swal.fire({
         position: 'center',
