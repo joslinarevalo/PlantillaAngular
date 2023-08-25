@@ -6,6 +6,14 @@ import { TablaComponent } from './pages/tabla/tabla.component';
 import { NuevoComponent } from './pages/nuevo/nuevo.component';
 import { MostrarComponent } from './pages/mostrar/mostrar.component';
 import { BuscarComponent } from './pages/buscar/buscar.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { UIModule } from 'src/app/shared/ui/ui.module';
+import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { EnfermedadService } from './services/enfermedad.service';
+import { DataTablesModule } from 'angular-datatables';
 
 
 @NgModule({
@@ -17,7 +25,19 @@ import { BuscarComponent } from './pages/buscar/buscar.component';
   ],
   imports: [
     CommonModule,
-    EnfermedadRoutingModule
-  ]
+    EnfermedadRoutingModule,
+    ReactiveFormsModule,
+    HttpClientModule,//para las peticiones       
+    //InfiniteScrollModule,//para scroll infinito
+    UIModule,//para la modal
+    FormsModule,//
+    NgbModalModule,
+    NgxPaginationModule,//PARA LA PAGINACION
+    Ng2SearchPipeModule,//PIPE PARA FILTRAR
+    DataTablesModule
+],
+providers:[
+  EnfermedadService
+]
 })
 export class EnfermedadModule { }
