@@ -11,6 +11,7 @@ const routes: Routes = [
   { path: 'sintomas', loadChildren: () => import('./sintoma/sintoma.module').then(m => m.SintomaModule) },
   { path: 'detallecausa', loadChildren: () => import('./detalle-causa/detalle-causa.module').then(m => m.DetalleCausaModule) },
   { path: 'causaEnfermedad', loadChildren: () => import('./causa-enfermedad/causa-enfermedad.module').then(m => m.CausaEnfermedadModule) },
+  { path: 'tipoplanta', loadChildren: () => import('./tipoplanta/tipoplanta.module').then(m => m.TipoplantaModule)},
 ];
 
 @NgModule({

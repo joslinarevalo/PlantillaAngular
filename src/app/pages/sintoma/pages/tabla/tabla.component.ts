@@ -16,9 +16,9 @@ export class TablaComponent implements OnInit {
   card: ISintoma;
   idproducto: string = '';
   producto: ISintoma[] = []; //array de productos
-  
+
   constructor(
-    private modalService: NgbModal, 
+    private modalService: NgbModal,
     private sintomaService: SintomaService) { }
 
   ngOnInit(): void {
@@ -62,7 +62,7 @@ export class TablaComponent implements OnInit {
         }
       });
 */
-  } 
+  }
 
   private obtenerProductos() {
     this.sintomaService.listaSintomas.subscribe((resp: ISintoma[]) => {

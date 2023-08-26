@@ -1,10 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
-import Swal from 'sweetalert2';
-import { ISintoma } from '../../interfaces/ISintoma';
+import { ITipoPlanta } from '../../interfaces/ITipoPlanta';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { SintomaService } from '../../services/sintoma.service';
+import { TipoplantaService } from '../../services/tipoplanta.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-nuevo',
@@ -13,22 +13,21 @@ import { Router } from '@angular/router';
 })
 export class NuevoComponent implements OnInit {
 
-  @Input() sintomaOd!: ISintoma;
+  @Input() tipoPlantaOd!: ITipoPlanta;
   @Input() leyenda!: string;
   @Input() titulo!: string;
   @Input() queryString: string;
 
   formBuilder!: FormGroup;
   p: any;
-  card: ISintoma;
+  card: ITipoPlanta;
   idSintoma: string = '';
 
   constructor(
-    private sintomaService : SintomaService,
+    private tipoPlantaService : TipoplantaService,
     private modalService: NgbModal,
     private fb: FormBuilder, private router: Router
-    ) { }
-
+  ) { }
 
   ngOnInit(): void {
     this.formBuilder = this.iniciarFormulario();
@@ -36,7 +35,7 @@ export class NuevoComponent implements OnInit {
 
   private iniciarFormulario(): FormGroup{
     return this.fb.group({
-      sintoma: ['',[Validators.required]]
+      tipoPlanta: ['',[Validators.required]]
     })
   }
 
@@ -44,9 +43,16 @@ export class NuevoComponent implements OnInit {
     this.modalService.open(content);
   }
 
+  recargar() {
+    let currentUrl = this.router.url;
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+    this.router.onSameUrlNavigation = "reload";
+    this.router.navigate([currentUrl]);
+  }
+
   guardar() {
     if (this.formBuilder.valid) {
-      if (this.sintomaOd != null) {
+      if (this.tipoPlantaOd != null) {
         this.editando();
       } else {
         this.registrando();
@@ -62,8 +68,8 @@ export class NuevoComponent implements OnInit {
   }
 
   registrando() {
-    const sintoma = this.formBuilder.value;
-    this.sintomaService.nuevoSintoma(sintoma).subscribe((resp: any) => {
+    const tipoPlanta = this.formBuilder.value;
+    this.tipoPlantaService.guardarTipoPlanta(tipoPlanta).subscribe((resp: any) => {
       if (resp) {
         Swal.fire({
           position: 'center',
@@ -86,9 +92,9 @@ export class NuevoComponent implements OnInit {
 
   editando() {
 
-    this.sintomaOd.nombre_sintoma = this.formBuilder.controls['sintoma'].value;
+    this.tipoPlantaOd.tipoPlanta = this.formBuilder.controls['tipoPlanta'].value;
 
-    this.sintomaService.editarSintoma(this.sintomaOd).subscribe((resp: any) => {
+    this.tipoPlantaService.editarTipoPlanta(this.tipoPlantaOd).subscribe((resp: any) => {
       if (resp) {
         //console.log(resp);
         Swal.fire({
@@ -109,13 +115,6 @@ export class NuevoComponent implements OnInit {
         text: 'Algo paso, hable con el administrador',
       });
     })
-  }
-
-  recargar() {
-    let currentUrl = this.router.url;
-    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
-    this.router.onSameUrlNavigation = "reload";
-    this.router.navigate([currentUrl]);
   }
 
 }

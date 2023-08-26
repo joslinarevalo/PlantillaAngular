@@ -1,7 +1,7 @@
 import { MenuItem } from './menu.model';
 
 export const MENU: MenuItem[] = [
- 
+
     {
         id: 2,
         label: 'Inicio',
@@ -9,7 +9,7 @@ export const MENU: MenuItem[] = [
         link: '/dashboard',
 
     },
- 
+
     {
         id: 5,
         label: 'Plantas',
@@ -42,21 +42,21 @@ export const MENU: MenuItem[] = [
         ],
     },
     {
-        id: 7,
+        id: 10,
         label: "Tratamiento",
         icon: "bx-user-circle",
         subItems: [
             {
-                id: 8,
+                id: 11,
                 label: "Lista",
                 link: "",
-                parentId: 6,
+                parentId: 10,
             },
-         
+
         ],
     },
     {
-        id: 8,
+        id: 12,
         label: "Sintomas",
         icon: "bx-user-circle",
         subItems: [
@@ -66,7 +66,7 @@ export const MENU: MenuItem[] = [
                 link: "/sintomas/sintomas",
                 parentId: 6,
             },
-         
+
         ],
     },
     {
@@ -75,83 +75,97 @@ export const MENU: MenuItem[] = [
         icon: "fbx bx-layer",
         subItems: [
             {
-                id: 9,
+                id: 15,
                 label: "Lista",
                 link: "/causaEnfermedad/mostrar",
                 parentId: 6,
             },
-         
+
         ],
     },
     {
-        id: 10,
+        id: 16,
         label: "Detalle Planta",
         icon: "bx-user-circle",
         subItems: [
             {
-                id: 9,
+                id: 17,
                 label: "Lista",
                 link: "",
-                parentId: 6,
+                parentId: 16,
             },
-         
+
         ],
     },
     {
-        id: 11,
+        id: 18,
         label: "Detalle Causa",
         icon: "bx bx-border-all",
         subItems: [
             {
-                id: 9,
+                id: 19,
                 label: "Lista",
                 link: "/detallecausa/mostrar",
                 parentId: 6,
             },
-         
+
         ],
     },
     {
-        id: 13,
+        id: 20,
         label: "Consultas",
         icon: "bx-user-circle",
         subItems: [
             {
-                id: 9,
+                id: 21,
                 label: "Lista",
                 link: "",
-                parentId: 6,
+                parentId: 20,
             },
-         
+
         ],
     },
     {
-        id: 10,
+        id: 22,
         label: "Informes",
         icon: "bx-user-circle",
         subItems: [
             {
-                id: 9,
+                id: 23,
                 label: "Lista",
                 link: "",
-                parentId: 6,
+                parentId: 22,
             },
-         
+
         ],
     },
     {
-        id: 10,
+        id: 24,
         label: "Seguridad",
         icon: "bx-user-circle",
         subItems: [
             {
-                id: 9,
+                id: 25,
                 label: "Lista",
                 link: "",
-                parentId: 6,
+                parentId: 24,
             },
-         
+
         ],
     },
+    {
+      id: 26,
+      label: "Tipo Planta",
+      icon: "bx-user-circle",
+      subItems: [
+          {
+              id: 27,
+              label: "Lista",
+              link: "/tipoplanta/mostrar",
+              parentId: 26,
+          },
+
+      ],
+  },
 ];
 
