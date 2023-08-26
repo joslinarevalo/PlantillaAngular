@@ -2,7 +2,7 @@
   <table datatable
   [dtOptions]="dtOptions"
   class="row-border hover">
-  <thead class="bg-dark text-white">
+  <thead class="tabla">
     <tr>
       <th>ID</th>
       <th>2</th>
@@ -24,21 +24,23 @@
       </td>
       <td>{{data.nombreComunEnfermedad}}</td>
       <td>{{data.nombreCientificoEnfermedad}}</td>
-      <td>{{data.descripcionEnfermedad}}</td>
+      <td class="truncate-text">{{data.descripcionEnfermedad}}</td>
       <td>{{data.etapaEnfermedad}}</td>
       <td>{{data.tipoEnfermedad}}</td>
       <td>{{data.sintomasEnfermedad}}</td>
       <td>{{data.condicionFavorableEnfermedad}}</td>
       <td>{{data.partesAfectadasEnfermedad}}</td>
-      <td>
-        <button class="editar btn btn-success xs-sm">
-          Modificar
-          <!-- <app-nuevo [leyenda]="'Editar'" [titulo]="'Editar'" [sintomaOd]="data"></app-nuevo> -->
-        </button>
-        <button class="eliminar btn btn-danger xs-sm"> Eliminar</button>
-        
-        <!-- Button trigger modal -->
-        <!-- <button class="eliminar" (click)="eliminar(data.idsintoma)">Eliminar</button> -->        
+      <td class="text-sm-end">
+        <div class="d-flex">
+          <div class="col-sm-6"><button class="editar btnModificar fas fa-edit">Modificar </button> </div>
+          <div class="col-sm-6"><button class="eliminar btnEliminar fas fa-trash-alt"> Eliminar</button></div>
+        </div>
+        <!-- <div class="row">
+          <div class="col-sm-12">
+            
+          </div>
+        </div> -->
+              
       </td>
     </tr>
   </tbody>
