@@ -36,7 +36,7 @@ export class NuevoComponent implements OnInit {
 
   private iniciarFormulario(): FormGroup{
     return this.fb.group({
-      sintoma: ['',[Validators.required]]
+      nombreSintoma: ['',[Validators.required]]
     })
   }
 
@@ -86,8 +86,8 @@ export class NuevoComponent implements OnInit {
 
   editando() {
 
-    this.sintomaOd.nombre_sintoma = this.formBuilder.controls['sintoma'].value;
-
+    this.sintomaOd.nombreSintoma = this.formBuilder.controls['nombreSintoma'].value;
+    
     this.sintomaService.editarSintoma(this.sintomaOd).subscribe((resp: any) => {
       if (resp) {
         //console.log(resp);

@@ -14,9 +14,9 @@ export class TablaComponent implements OnInit {
   @Input() queryString: string;
   p: any;
   card: ISintoma;
-  idproducto: string = '';
-  producto: ISintoma[] = []; //array de productos
-
+  idsintoma: string = '';
+  sintoma: ISintoma[] = []; //array
+  
   constructor(
     private modalService: NgbModal,
     private sintomaService: SintomaService) { }
@@ -24,8 +24,8 @@ export class TablaComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  eliminar(idProducto: string) {
-   /* Swal.fire({
+  eliminar(idSintoma: string) {
+   Swal.fire({
       title: "Eliminacion",
       text: "¿Desea eliminar el Sintoma?",
       icon: 'warning',
@@ -37,10 +37,10 @@ export class TablaComponent implements OnInit {
     })
       .then(resultado => {
         if (resultado.value) {
-          this.idproducto = idProducto;
-          this.sintomaService.deleteProducto(idProducto)
-            .subscribe(resp => this.sintomaService.listaProductos.subscribe(
-              respn => this.producto = respn
+          this.idsintoma = idSintoma;
+          this.sintomaService.deleteSintoma(idSintoma)
+            .subscribe(resp => this.sintomaService.listaSintomas.subscribe(
+              respn => this.sintoma = respn
             )
             );
           const Toast = Swal.mixin({
@@ -56,15 +56,15 @@ export class TablaComponent implements OnInit {
           });
           Toast.fire({
             icon: 'success',
-            title: 'Se elimino el producto',
+            title: 'Se elimino el Sintoma',
           });
-          this.obtenerProductos();
+          this.obtenerSintomas();
         }
       });
-*/
-  }
 
-  private obtenerProductos() {
+  } 
+
+  private obtenerSintomas() {
     this.sintomaService.listaSintomas.subscribe((resp: ISintoma[]) => {
       this.sintomaOd = resp;
       console.log(resp);

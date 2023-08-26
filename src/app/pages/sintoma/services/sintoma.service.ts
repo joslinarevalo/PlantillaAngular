@@ -23,7 +23,7 @@ export class SintomaService {
   }
 
    editarSintoma(obj: ISintoma): any {
-    return this.httpClient.put(`${this.apiURL}/editar/${obj.idsintoma}` ,obj);
+    return this.httpClient.put(`${this.apiURL}/editar` ,obj);
   }
 
 
