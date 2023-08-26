@@ -1,8 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { TipoCausa } from 'src/app/pages/detalle-causa/models/DetalleCausa';
 import { CausaenfermedadService } from '../../services/causaenfermedad.service';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { DataTableDirective } from 'angular-datatables';
 
 @Component({
   selector: 'app-tablaCausa',
@@ -12,6 +13,8 @@ import Swal from 'sweetalert2';
 export class TablaCausaComponent implements OnInit {
   constructor(private causaenfermedad:CausaenfermedadService,private router: Router) { }
   //@Input()allcausa!:TipoCausa[];
+  @ViewChild(DataTableDirective, { static: false} ) dtElement: DataTableDirective;
+  dtOptions: DataTables.Settings = {};
   cusaT: TipoCausa[];
   @Input() queryString: string;
   @Input()alltipocausa!:TipoCausa[];
