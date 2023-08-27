@@ -1,21 +1,23 @@
 <div class="table-responsive mb-0 mt-2">
-  <table class="table table-centered table-nowrap">
+  <table datatable
+  [dtOptions]="dtOptions" class="table table-centered table-nowrap">
     <thead class="table-light">
       <tr>
         <th class="align-middle" style="width: 10%;">id </th>
-        <th class="align-middle" style="width: 30%;">Nombre Común </th>
-        <th class="align-middle" style="width: 30%;">Nombre Científico</th>
-        <th class="align-middle" style="width: 30%;">Tipo de Causa</th>
+        <th class="align-middle" style="width: 30%;">Tipo de Causa </th>
+        <th class="align-middle" style="width: 30%;">Definición</th>
+        <th class="align-middle" style="width: 30%;">Imagen</th>
         <th class="align-middle" style="width: 10%;">Acción</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let aux of cusaT">
+      <tr *ngFor="let aux of cusaT ">
      
-        <td>{{ aux.idtipoCausa }}</td>
-        <td>{{ aux.nombreComunTC }}</td>
-        <td>{{ aux.nombreCientificoTC }}</td>
+        <td>{{ aux.idTipoCausa }}</td>
         <td>{{ aux.tipoTC }}</td>
+        <td>{{ aux.definicionTipoTC }}</td>
+        <td> <img src="{{aux. urlTC}}" alt> </td>
+        <td>{{ aux.urlTC }}</td>
         <td>
           <!-- Button trigger modal -->
           <button type="button" class="btn btn-sm btn-rounded" ><app-nuevo [leyenda]="'Editar '" [causaT]="aux"[titulo]="'Editar'" [modo]="'Editar'"></app-nuevo></button>
