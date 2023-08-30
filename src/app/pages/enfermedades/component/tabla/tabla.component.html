@@ -2,18 +2,19 @@
     <table 
     datatable
   [dtOptions]="dtOptions"
+  [dtTrigger]="dtTrigger"
   class="row-border hover truncate-text"
   id="grid"
     class="table table-centered table-nowrap">
       <thead class="table-light">
         <tr>
-            <th>ID</th>
+            <th style="visibility:collapse; display:none;">ID</th>
             <th>nombreComun</th>
             <th>nombreCientifico</th>
-            <th>descripcion</th>
+            <th style="visibility:collapse; display:none;">descripcion</th>
             <th>etapa</th>
             <th>tipo</th>
-            <th>sintomas</th>
+            <th style="visibility:collapse; display:none;">sintomas</th>
             <th>condicionFavorable</th>
             <th>partesAfectadas</th>
             <th>imagen</th>
@@ -22,22 +23,24 @@
       </thead>
       <tbody>
         <tr *ngFor="let data of listaEnfermedades">
-            <td>
+              <td style="visibility:collapse; display:none;">
                 <a href="javascript: void(0);" class="text-body fw-bold">{{data.idEnfermedad}}</a>
               </td>
-              <td>{{data.nombreComunEnfermedad}}</td>
-              <td>{{data.nombreCientificoEnfermedad}}</td>
-              <td class="truncate-text">{{data.descripcionEnfermedad}}</td>
-              <td>{{data.etapaEnfermedad}}</td>
-              <td>{{data.tipoEnfermedad}}</td>
-              <td>{{data.sintomasEnfermedad}}</td>
-              <td>{{data.condicionFavorableEnfermedad}}</td>
-              <td>{{data.partesAfectadasEnfermedad}}</td>
+              <td class="truncate-text">{{data.nombreComunEnfermedad}}</td>
+              <td class="truncate-text">{{data.nombreCientificoEnfermedad}}</td>
+              <td class="truncate-text" style="visibility:collapse; display:none;">{{data.descripcionEnfermedad}}</td>
+              <td class="truncate-text">{{data.etapaEnfermedad}}</td>
+              <td class="truncate-text">{{data.tipoEnfermedad}}</td>
+              <td class="truncate-text" style="visibility:collapse; display:none;">{{data.sintomasEnfermedad}}</td>
+              <td class="truncate-text">{{data.condicionFavorableEnfermedad}}</td>
+              <td class="truncate-text">{{data.partesAfectadasEnfermedad}}</td>
           <td><img width="100px" height="100px" class="img-fluid" [src]="data.imagen"></td>
+         
           <td>
-            <!-- Button trigger modal -->
-            <button type="button" class="btn btn-danger" style="border: 0;" (click)="obtenerEnfermedadEliminar(data)">Eliminar</button>
-            <button type="button" class="btn btn-secondary" style="border: 0;" (click)="obtenerEnfermedadModificar(data)">Modificar</button>
+            <div class="d-flex botones"  >
+              <div class="col-sm-6"><button type="button" class="btn btn-sm btn-rounded btnModificar" (click)="obtenerEnfermedadModificar(data)"><i class="fas fa-pencil"> </i> Modificar </button> </div>
+              <div class="col-sm-6 mt-1"><button type="button" class="btn btnEliminar btn-sm mb-2 mr-2 btn-rounded" (click)="obtenerEnfermedadEliminar(data)"><i class="fas fa-trash-alt" > </i> Eliminar</button></div>
+            </div>            
           </td>
         </tr>
       </tbody>
