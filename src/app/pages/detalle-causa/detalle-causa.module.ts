@@ -8,12 +8,16 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { TablaComponent } from './pages/tabla/tabla.component';
+import { NuevoComponent } from './pages/nuevo/nuevo.component';
 
 
 @NgModule({
   declarations: [
     BuscarComponent,
-    ListarComponent
+    ListarComponent,
+    TablaComponent,
+    NuevoComponent
   ],
   imports: [
     CommonModule,

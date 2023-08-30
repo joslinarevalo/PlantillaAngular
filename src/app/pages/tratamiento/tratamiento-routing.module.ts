@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { TratamientoComponent } from './pages/tratamiento/tratamiento.component';
 
 const routes: Routes = [
-  {path:"tratamiento",component:TratamientoComponent}
+  {path:'tratamiento',component:TratamientoComponent}
 ];
 
 @NgModule({

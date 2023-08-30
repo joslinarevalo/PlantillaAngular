@@ -1,0 +1,29 @@
+<div div class="table-responsive mb-0 mt-2">
+    <table class="table table-centered table-nowrap"
+    class="row-border hover">
+    <thead class="table-light">
+      <tr>
+        <th>ID</th>
+        <th>Tratamiento</th>
+        <th>Detalle Causa</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of listaDetalleTratamiento">
+        
+        <td>
+          <a href="javascript: void(0);" class="text-body fw-bold">{{data.idDetalleTratamiento}}</a>
+        </td>
+        <td>{{data.nombreTratamiento}}</td>
+        <td>{{data.descripcionDetalleCausa}}</td>
+        <td class="text-sm-end">
+          <div class="d-flex">
+            <div class="col-sm-6"><button class="editar btnModificar fas fa-edit" (click)="ObtenerDetalleTratamientoModificar(data)">Modificar </button> </div>
+            <div class="col-sm-6"><button class="eliminar btnEliminar fas fa-trash-alt" (click)="ObtenerDetalleTratamientoEliminar(data)"> Eliminar</button></div>
+          </div>   
+        </td>
+      </tr>
+    </tbody>
+    </table>
+</div>

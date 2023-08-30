@@ -23,11 +23,13 @@ export class FormularioComponent implements OnInit {
   @Output()ObjetoModificar= new EventEmitter<FormData>();
   @Input()leyenda:string;
   @Input()imagen:any;
+  @Input()archivo:File;
   constructor( private fb: FormBuilder, private serviceTratamiento:TratamientoService, private dm:DomSanitizer) { }
 
   ngOnInit(): void {
     if(this.leyenda=="Modificar"){
       this.imagenMostrar=this.imagen;
+      this.formularioSerealizable.set('imagen',this.archivo);
     }
   }
   cerrarModal(){
@@ -38,9 +40,7 @@ export class FormularioComponent implements OnInit {
   guardar() {
     if (this.formulario_valido()) {
       console.log(this.formularioTratamiento); 
-      this.formularioTratamiento.controls['detallePlanta'].setValue(1);
       this.tratamiento = {
-        detallePlanta: this.formularioTratamiento.controls['detallePlanta'].value,
         nombrePesticidaTratamiento: this.formularioTratamiento.controls['nombrePesticidaTratamiento'].value,
         descripcionTratamiento:this.formularioTratamiento.controls['descripcionTratamiento'].value,
         aplicacionTratamiento:this.formularioTratamiento.controls['aplicacionTratamiento'].value,
@@ -66,10 +66,8 @@ export class FormularioComponent implements OnInit {
   }
   modificar() {
     if (this.formulario_valido()) {
-      this.formularioTratamiento.controls['detallePlanta'].setValue(1);
       this.tratamiento = {
-        idtratamiento:this.formularioTratamiento.controls['idTratamiento'].value,
-        detallePlanta: this.formularioTratamiento.controls['detallePlanta'].value,
+        idTratamiento:this.formularioTratamiento.controls['idTratamiento'].value,
         nombrePesticidaTratamiento: this.formularioTratamiento.controls['nombrePesticidaTratamiento'].value,
         descripcionTratamiento:this.formularioTratamiento.controls['descripcionTratamiento'].value,
         aplicacionTratamiento:this.formularioTratamiento.controls['aplicacionTratamiento'].value,

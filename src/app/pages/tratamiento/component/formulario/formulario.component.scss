@@ -14,3 +14,18 @@
     border:none;
     padding: 10px;
 }
+.caja {
+    text-align: center;
+    color: #000;
+    height: 35px;
+    font-size: 20px;
+  }
+  @media screen and (max-width: 440px) {
+    .caja {
+        text-align: center;
+        color: #000;
+        background-color: #E9ECEF;
+        height: 40px;
+        font-size: 12px;
+      }
+  }

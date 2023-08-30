@@ -17,15 +17,15 @@ export class NuevoComponent implements OnInit {
   @Input() leyenda!: string;
   @Input() titulo!: string;
   @Input() queryString: string;
-  
+
   formBuilder!: FormGroup;
   p: any;
   card: ISintoma;
   idSintoma: string = '';
 
   constructor(
-    private sintomaService : SintomaService, 
-    private modalService: NgbModal, 
+    private sintomaService : SintomaService,
+    private modalService: NgbModal,
     private fb: FormBuilder, private router: Router
     ) { }
 
@@ -36,7 +36,7 @@ export class NuevoComponent implements OnInit {
 
   private iniciarFormulario(): FormGroup{
     return this.fb.group({
-      sintoma: ['',[Validators.required]]
+      nombreSintoma: ['',[Validators.required]]
     })
   }
 
@@ -86,7 +86,7 @@ export class NuevoComponent implements OnInit {
 
   editando() {
 
-    this.sintomaOd.nombre_sintoma = this.formBuilder.controls['sintoma'].value;
+    this.sintomaOd.nombreSintoma = this.formBuilder.controls['nombreSintoma'].value;
     
     this.sintomaService.editarSintoma(this.sintomaOd).subscribe((resp: any) => {
       if (resp) {

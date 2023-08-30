@@ -1,9 +1,9 @@
 <div class="container-fluid">
-    
+
     <div class="row">
         <div class="col-12">
             <div class="card">
-               
+
 
                 <div class="card-body">
                     <div class="titulo">SINTOMA</div>
@@ -19,15 +19,16 @@
                         <!-- end col -->
                         <div class="col-sm-8">
                             <div class="text-sm-end">
-                                <app-nuevo [leyenda]="'Guardar'" [titulo]="'Nuevo Sintoma'"></app-nuevo> 
+                                <app-nuevo [leyenda]="'Guardar'" [titulo]="'Nuevo Sintoma'"></app-nuevo>
+                                
                             </div>
                         </div>
-                        
+
                     </div>
 
                         <!-- Contenido del Scroll data -->
                         <app-tabla [sintomaOd]="sintomas" [queryString]="term"></app-tabla>
-                        
+
                     </div>
                 </div>
             </div>

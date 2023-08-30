@@ -18,8 +18,8 @@
           <td><img width="100px" height="100px" class="img-fluid" [src]="tratamiento.imagen"></td>
           <td>
             <!-- Button trigger modal -->
-            <button type="button" class="btn btn-danger" style="border: 0;" (click)="ObtenerTratamientoEliminar(tratamiento)">Eliminar</button>
-            <button type="button" class="btn btn-secondary" style="border: 0;" (click)="ObtenerTratamientoModificar(tratamiento)">Modificar</button>
+            <button type="button" class="btn_stilo btn-primario btn-sm btn-rounded mx-1" style="border: 0;" (click)="ObtenerTratamientoModificar(tratamiento)"><i class="bi bi-pencil-square mx-1"></i>Modificar</button>
+            <button type="button" class="btn btn-primary btn-sm btn-rounded" (click)="ObtenerTratamientoEliminar(tratamiento)"><i class="fas fa-trash-alt mx-1"></i>Eliminar</button>
           </td>
         </tr>
       </tbody>

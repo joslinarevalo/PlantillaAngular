@@ -22,6 +22,7 @@ export class TratamientoComponent implements OnInit {
   imagen:any;
   formularioTratamiento!:FormGroup;
   leyenda:string="";
+  archivo:File;
   constructor(public modalService:NgbModal,private serviceTratamiento:TratamientoService, 
     private dm:DomSanitizer, private fb: FormBuilder) { }
 
@@ -37,7 +38,6 @@ export class TratamientoComponent implements OnInit {
   inicializarFormulario(): FormGroup {
     return this.fb.group({
       idTratamiento: [''],
-      detallePlanta: [''],
       nombrePesticidaTratamiento: ['', [Validators.required]],
       descripcionTratamiento: ['', [Validators.required]],
       aplicacionTratamiento: ['', [Validators.required]],
@@ -57,6 +57,8 @@ export class TratamientoComponent implements OnInit {
           this.imagen=this.dm.bypassSecurityTrustUrl(url);
           //console.log(this.imagen);
           element.imagen=this.imagen;
+          element.archivo=this.convertirArchivo(resp,element.urlTratamiento);
+          console.log(element.archivo);
         });
       });
       
@@ -94,6 +96,7 @@ export class TratamientoComponent implements OnInit {
       });
   }
   modificarTratamientoFormulario(tratamientoModificar:FormData){
+   
     this.serviceTratamiento
         .modificarTratamiento(tratamientoModificar)
         .subscribe({
@@ -117,6 +120,7 @@ export class TratamientoComponent implements OnInit {
     this.imagen=objetoModificar.imagen; 
     this.formularioTratamiento.patchValue(objetoModificar);
     this.leyenda="Modificar";
+    this.archivo=objetoModificar.archivo;
      this.modalService.open(content, this.modalOptions);
   }
   guardarTratamiento(tratamientoGuardar:FormData){
@@ -136,6 +140,19 @@ export class TratamientoComponent implements OnInit {
           }
         });
         
+  }
+  convertirArchivo(blob: Blob | undefined, url:string): File {
+    let miArchivo!: File;
+    let nombre=url.substring(36);
+    console.log("nombre del archivo a modificar: "+nombre);
+    if (blob != undefined) {
+      miArchivo = new File([blob], nombre, {
+        type: blob.type,
+      });
+      return miArchivo;
+    } else {
+      return miArchivo;
+    }
   }
   
 }

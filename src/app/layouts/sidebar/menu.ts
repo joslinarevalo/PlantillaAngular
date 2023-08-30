@@ -85,13 +85,13 @@ export const MENU: MenuItem[] = [
     },
     {
         id: 10,
-        label: "Detalle Planta",
+        label: "Detalle Tratamiento",
         icon: "bx-user-circle",
         subItems: [
             {
                 id: 9,
                 label: "Lista",
-                link: "",
+                link: "detalleTratamiento/detalleTratamiento",
                 parentId: 6,
             },
          

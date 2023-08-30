@@ -1,23 +1,16 @@
 <!-- Modal -->
 
-<div class="modal-header">
-  <h5 class="modal-title mt-0">{{leyenda}} Tratamiento</h5>
-  <button
-    type="button"
-    class="btn-close"
-    aria-hidden="true"
-    (click)="cerrarModal()"
-  ></button>
-</div>
+  <h5 class="caja text-center mt-4">{{leyenda}} Tratamiento</h5>
 <div class="modal-body">
   <form [formGroup]="formularioTratamiento">
     <div class="row">
-      <div class="mt-1 col-xl-8 col-lg-8 col-md-12 col-sm-12 col-12">
+      <div class="mt-1 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
         <label class="control-label">Seleccionar Imagen Tratamiento</label>
         <input
           class="form-control"
           type="file"
           id="urlTratamiento"
+          accept="image/*"
           formControlName="urlTratamiento"
           (change)="SeleccionarImagen($event)"
           [ngClass]="esCampoValido('urlTratamiento')"
@@ -29,7 +22,7 @@
           >
         </div>
       </div>
-      <div class="mt-1 col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
+      <div class="mt-1 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
         <img
           width="100px"
           height="100px"
@@ -38,18 +31,7 @@
           *ngIf="imagenMostrar != undefined"
         />
       </div>
-      <div class="mt-1 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
-        <label class="control-label">Detalle Planta</label>
-        <select
-          class="form-control"
-          id="detallePlanta"
-          formControlName="detallePlanta"
-
-        >
-          <option>Seleccione</option>
-        </select>
-      </div>
-      <div class="mt-1 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+      <div class="mt-1 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
         <label class="control-label">Nombre Pesticida/Tratamiento</label>
         <input
           class="form-control"
@@ -65,7 +47,7 @@
           >
         </div>
       </div>
-      <div class="mt-1 col-12">
+      <div class="mt-1 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
         <label class="control-label">Descripción del Tratamiento</label>
         <textarea
           class="form-control"
@@ -81,7 +63,7 @@
           >
         </div>
       </div>
-      <div class="mt-1 col-6">
+      <div class="mt-1 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
         <label class="control-label">Aplicación del Tratamiento</label>
         <textarea
           class="form-control"
@@ -97,7 +79,7 @@
           >
         </div>
       </div>
-      <div class="mt-1 col-6">
+      <div class="mt-1 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
         <label class="control-label">Indicaciones del Tratamiento</label>
         <textarea
           class="form-control"
@@ -113,7 +95,7 @@
           >
         </div>
       </div>
-      <div class="mt-1 col-6">
+      <div class="mt-1 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
         <label class="control-label">Tipo de Tratamiento</label>
         <input
           class="form-control"
@@ -130,7 +112,7 @@
         </div>
       </div>
     </div>
-    <div class="row mt-3">
+    <!-- <div class="row mt-3">
       <div class="mt-1 col-6">
         <button
           type="button"
@@ -148,7 +130,7 @@
         (click)="modificar()"
         *ngIf="leyenda=='Modificar'"
       >
-        Guardar
+        Modificar
       </button>
       </div>
       <div class="mt-1 col-6">
@@ -161,8 +143,15 @@
           Cerrar
         </button>
       </div>
+   
     </div>
+   -->
+   <div class="text-center mb-3 mt-2"> <!-- Centrar los botones y agregar espacio inferior -->
+    <button type="button" class="btn btn-success " (click)="guardar()" *ngIf="leyenda=='Registrar'"><i class="fas fa-check"></i>Guardar</button>
+    <button type="button" class="btn btn-success " *ngIf="leyenda=='Modificar'" (click)="modificar()"><i class="fas fa-check" ></i>{{leyenda}}</button>
+    <span class="mx-2"></span> <!-- Agregar un espacio horizontal entre los botones -->
+    <button type="button" class="btn btn-primary " aria-hidden="true"(click)="cerrarModal()"><i class="fas fa-long-arrow-alt-right"></i>cerrar</button>
+</div>
   </form>
 </div>
-
 <!-- Modal -->

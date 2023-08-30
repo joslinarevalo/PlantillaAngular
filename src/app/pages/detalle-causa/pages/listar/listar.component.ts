@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { DetalleCausa } from '../../models/DetalleCausa';
 
 @Component({
   selector: 'app-listar',
@@ -6,7 +7,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./listar.component.scss']
 })
 export class ListarComponent implements OnInit {
-
+  detalleCausa:string='';
+  term: string = '';
+  @Input() dtcausa: DetalleCausa[] = [];
+  
   constructor() { }
 
   ngOnInit() {
