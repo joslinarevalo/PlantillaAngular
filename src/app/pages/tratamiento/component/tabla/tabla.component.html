@@ -1,6 +1,6 @@
-<div class="table-responsive mb-0 mt-2">
-    <table class="table table-centered table-nowrap">
-      <thead class="table-light">
+<div >
+    <table datatable [dtOptions]="dtOptions" class="display" style="width:100%">
+      <thead class="table-light" >
         <tr>
           <th class="align-middle">Nombre del tratamiento</th>
           <th class="align-middle">Descripción del tratamiento</th>
@@ -11,15 +11,15 @@
       </thead>
       <tbody>
         <tr *ngFor="let tratamiento of ListaDeTratamiento | paginate: { itemsPerPage: 5, currentPage: p }">
-         
+
           <td>{{tratamiento.nombrePesticidaTratamiento}}</td>
           <td>{{tratamiento.descripcionTratamiento}}</td>
           <td>{{tratamiento.aplicacionTratamiento}}</td>
           <td><img width="100px" height="100px" class="img-fluid" [src]="tratamiento.imagen"></td>
-          <td>
+          <td >
             <!-- Button trigger modal -->
-            <button type="button" class="btn_stilo btn-primario btn-sm btn-rounded mx-1" style="border: 0;" (click)="ObtenerTratamientoModificar(tratamiento)"><i class="bi bi-pencil-square mx-1"></i>Modificar</button>
-            <button type="button" class="btn btn-primary btn-sm btn-rounded" (click)="ObtenerTratamientoEliminar(tratamiento)"><i class="fas fa-trash-alt mx-1"></i>Eliminar</button>
+            <button type="button" class="editar btnModificar fas fa-edit mx-1 col-lx-6 col-md-6 col-sm-12 col-12 mx-auto" (click)="ObtenerTratamientoModificar(tratamiento)">Modificar</button>
+            <button type="button"class="eliminar btnEliminar fas fa-trash-alt col-lx-6 col-md-6 col-sm-12 col-12 mx-auto" (click)="ObtenerTratamientoEliminar(tratamiento)">Eliminar</button>
           </td>
         </tr>
       </tbody>

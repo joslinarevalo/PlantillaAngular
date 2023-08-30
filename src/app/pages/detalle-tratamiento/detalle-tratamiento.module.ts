@@ -24,10 +24,6 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     FormsModule,
     ReactiveFormsModule,
     NgxPaginationModule, //PARA LA PAGINACION
-    Ng2SearchPipeModule
-  ],
-  providers:[
-    DetalleTratamientoService
   ]
 })
 export class DetalleTratamientoModule { }

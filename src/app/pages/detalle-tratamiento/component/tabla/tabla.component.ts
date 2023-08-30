@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { IDetalleTratamientoDTOMostrar } from '../../interface/detalleTratamiento.interface';
 import { Subject } from 'rxjs';
-import { DataTableDirective } from 'angular-datatables';  
+import { DataTableDirective } from 'angular-datatables';
 import { DetalleTratamientoService } from '../../service/detalle-tratamiento.service';
 
 
@@ -16,12 +16,12 @@ export class TablaComponent implements OnInit {
   @Output()ObjetoTratamientoEliminar= new EventEmitter<IDetalleTratamientoDTOMostrar>();
   @Output()ObjetoTratamientoModificar= new EventEmitter<IDetalleTratamientoDTOMostrar>();
   @ViewChild(DataTableDirective, { static: false} ) dtElement: DataTableDirective;
- // dtOptions: DataTables.Settings = {};
-  //dtTrigger: Subject<IDetalleTratamientoDTOMostrar> = new Subject<IDetalleTratamientoDTOMostrar>();
-  constructor() { }
+  dtOptions: DataTables.Settings = {};
+  dtTrigger: Subject<IDetalleTratamientoDTOMostrar> = new Subject<IDetalleTratamientoDTOMostrar>();
+  constructor(private detalleTratamientoService:DetalleTratamientoService) { }
 
   ngOnInit(): void {
-    /*this.dtOptions={
+    this.dtOptions={
       lengthMenu: [5,10,15,20,50],
       destroy: true,
       language:{
@@ -30,10 +30,9 @@ export class TablaComponent implements OnInit {
         zeroRecords: "Ninguna enfermedad encontrada",
       },
       pagingType: 'full_numbers',
-      responsive: true,
+      responsive: true
     };
-    */
-    
+    this.listDetalleTratamiento();
   }
   ObtenerDetalleTratamientoEliminar(detalleTratamiento:IDetalleTratamientoDTOMostrar){
     console.log(detalleTratamiento);
@@ -43,5 +42,12 @@ export class TablaComponent implements OnInit {
     console.log(detalleTratamiento);
     this.ObjetoTratamientoModificar.emit(detalleTratamiento);
   }
+  listDetalleTratamiento(){
+    this.detalleTratamientoService.listaDetalleTratamiento().subscribe((resp)=>{
+      this.listaDetalleTratamiento=resp;
+      this.dtTrigger.next(null);
+    });
+  }
+
 
 }

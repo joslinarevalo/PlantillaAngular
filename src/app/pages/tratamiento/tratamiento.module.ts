@@ -8,6 +8,7 @@ import { TratamientoComponent } from './pages/tratamiento/tratamiento.component'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { DataTablesModule } from 'angular-datatables';
 
 
 @NgModule({
@@ -22,9 +23,9 @@ import { NgxPaginationModule } from 'ngx-pagination';
     FormsModule,
     ReactiveFormsModule,
     NgxPaginationModule, //PARA LA PAGINACION
-    Ng2SearchPipeModule
-    
-   
+    DataTablesModule
+
+
   ]
 })
 export class TratamientoModule { }
