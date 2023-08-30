@@ -1,0 +1,45 @@
+<div class="table-responsive mb-0 mt-2">
+    <table 
+    datatable
+  [dtOptions]="dtOptions"
+  class="row-border hover truncate-text"
+  id="grid"
+    class="table table-centered table-nowrap">
+      <thead class="table-light">
+        <tr>
+            <th>ID</th>
+            <th>nombreComun</th>
+            <th>nombreCientifico</th>
+            <th>descripcion</th>
+            <th>etapa</th>
+            <th>tipo</th>
+            <th>sintomas</th>
+            <th>condicionFavorable</th>
+            <th>partesAfectadas</th>
+            <th>imagen</th>
+            <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of listaEnfermedades">
+            <td>
+                <a href="javascript: void(0);" class="text-body fw-bold">{{data.idEnfermedad}}</a>
+              </td>
+              <td>{{data.nombreComunEnfermedad}}</td>
+              <td>{{data.nombreCientificoEnfermedad}}</td>
+              <td class="truncate-text">{{data.descripcionEnfermedad}}</td>
+              <td>{{data.etapaEnfermedad}}</td>
+              <td>{{data.tipoEnfermedad}}</td>
+              <td>{{data.sintomasEnfermedad}}</td>
+              <td>{{data.condicionFavorableEnfermedad}}</td>
+              <td>{{data.partesAfectadasEnfermedad}}</td>
+          <td><img width="100px" height="100px" class="img-fluid" [src]="data.imagen"></td>
+          <td>
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-danger" style="border: 0;" (click)="obtenerEnfermedadEliminar(data)">Eliminar</button>
+            <button type="button" class="btn btn-secondary" style="border: 0;" (click)="obtenerEnfermedadModificar(data)">Modificar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+</div>

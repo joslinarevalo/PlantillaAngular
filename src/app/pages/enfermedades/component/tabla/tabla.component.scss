@@ -1,0 +1,23 @@
+table {
+    overflow-x: auto;
+    table-layout: fixed;
+  }
+  
+  table td {
+    word-wrap: break-word;
+    max-width: 400px;
+    vertical-align: top; /* Esto alinea el texto en la parte superior de la celda */
+  }
+  
+  #grid td {
+    white-space: inherit;
+  }
+  
+  .truncate-text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 200px; /* Puedes ajustar este valor según tus necesidades */
+    display: block; /* Esto hace que el texto largo se mueva hacia abajo */
+  }
+  

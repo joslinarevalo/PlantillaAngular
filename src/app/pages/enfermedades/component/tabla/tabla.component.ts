@@ -1,10 +1,6 @@
-import { Component, Input, OnInit, ViewChild, ViewChildren } from '@angular/core';
-import { IEnfermedad } from '../../interfaces/IEnfermedad';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { EnfermedadService } from '../../services/enfermedad.service';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { IEnfermedadMostrar } from '../../interfaces/IEnfermedad';
 import { DataTableDirective } from 'angular-datatables';  
-//import { DataTables } from 'angular-datatables';
-import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-tabla',
@@ -12,26 +8,20 @@ import { Subject } from 'rxjs';
   styleUrls: ['./tabla.component.scss']
 })
 export class TablaComponent implements OnInit {
-
   breadCrumbItems: Array<{}>;
 
   @ViewChild(DataTableDirective, { static: false} ) dtElement: DataTableDirective;
   dtOptions: DataTables.Settings = {};
-  dtTrigger: Subject<IEnfermedad> = new Subject<IEnfermedad>();
+  //dtTrigger: Subject<IEnfermedad> = new Subject<IEnfermedad>();
 
-
-
-
-  @Input() enfermedadOd!: IEnfermedad[];
-  @Input() queryString: string;
   p: any;
-  card: IEnfermedad;
-  idsintoma: string = '';
-  enfermedades: IEnfermedad[] = []; //array
+  imagen:any;
+  //tratamientoList:ITratamientoMostrar[]=[];
+  @Input()listaEnfermedades:IEnfermedadMostrar[]=[];
+  @Output()ObjetoTratamientoEliminar= new EventEmitter<IEnfermedadMostrar>();
+  @Output()ObjetoTratamientoModificar= new EventEmitter<IEnfermedadMostrar>();
   
-  constructor(
-    private modalService: NgbModal, 
-    private enfermedadService: EnfermedadService) { }
+  constructor() { }
 
   ngOnInit(): void {
     this.dtOptions={
@@ -53,14 +43,15 @@ export class TablaComponent implements OnInit {
       pagingType: 'full_numbers',
       responsive: true,
     };
-    this.obtenerEnfermedades();
-
   }
-
-  private obtenerEnfermedades() {
-    this.enfermedadService.listaEnfermedades.subscribe((resp: IEnfermedad[]) => {
-      this.enfermedadOd = resp;
-      console.log(resp);
-    });
+  
+  obtenerEnfermedadEliminar(tratamiento:IEnfermedadMostrar){
+    console.log(tratamiento);
+    this.ObjetoTratamientoEliminar.emit(tratamiento);//para emitar el evento de objeto a la vista del padre
+  }
+  
+  obtenerEnfermedadModificar(tratamiento:IEnfermedadMostrar){
+    console.log(tratamiento);
+    this.ObjetoTratamientoModificar.emit(tratamiento);
   }
 }
