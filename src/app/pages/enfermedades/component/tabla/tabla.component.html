@@ -1,48 +1,45 @@
 <div class="table-responsive mb-0 mt-2">
-    <table 
-    datatable
-  [dtOptions]="dtOptions"
-  [dtTrigger]="dtTrigger"
-  class="row-border hover truncate-text"
-  id="grid"
+  <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover truncate-text" id="grid"
     class="table table-centered table-nowrap">
-      <thead class="table-light">
-        <tr>
-            <th style="visibility:collapse; display:none;">ID</th>
-            <th>nombreComun</th>
-            <th>nombreCientifico</th>
-            <th style="visibility:collapse; display:none;">descripcion</th>
-            <th>etapa</th>
-            <th>tipo</th>
-            <th style="visibility:collapse; display:none;">sintomas</th>
-            <th>condicionFavorable</th>
-            <th>partesAfectadas</th>
-            <th>imagen</th>
-            <th>Acciones</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let data of listaEnfermedades">
-              <td style="visibility:collapse; display:none;">
-                <a href="javascript: void(0);" class="text-body fw-bold">{{data.idEnfermedad}}</a>
-              </td>
-              <td class="truncate-text">{{data.nombreComunEnfermedad}}</td>
-              <td class="truncate-text">{{data.nombreCientificoEnfermedad}}</td>
-              <td class="truncate-text" style="visibility:collapse; display:none;">{{data.descripcionEnfermedad}}</td>
-              <td class="truncate-text">{{data.etapaEnfermedad}}</td>
-              <td class="truncate-text">{{data.tipoEnfermedad}}</td>
-              <td class="truncate-text" style="visibility:collapse; display:none;">{{data.sintomasEnfermedad}}</td>
-              <td class="truncate-text">{{data.condicionFavorableEnfermedad}}</td>
-              <td class="truncate-text">{{data.partesAfectadasEnfermedad}}</td>
-          <td><img width="100px" height="100px" class="img-fluid" [src]="data.imagen"></td>
-         
-          <td>
-            <div class="d-flex botones"  >
-              <div class="col-sm-6"><button type="button" class="btn btn-sm btn-rounded btnModificar" (click)="obtenerEnfermedadModificar(data)"><i class="fas fa-pencil"> </i> Modificar </button> </div>
-              <div class="col-sm-6 mt-1"><button type="button" class="btn btnEliminar btn-sm mb-2 mr-2 btn-rounded" (click)="obtenerEnfermedadEliminar(data)"><i class="fas fa-trash-alt" > </i> Eliminar</button></div>
-            </div>            
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <thead class="table-light">
+      <tr>
+        <th style="visibility:collapse; display:none;">ID</th>
+        <th>Nombre común</th>
+        <th>Nombre científico</th>
+        <th style="visibility:collapse; display:none;">Descripción</th>
+        <th>Etapa</th>
+        <th>Tipo</th>
+        <th style="visibility:collapse; display:none;">Sintomas</th>
+        <th>Condicion favorable</th>
+        <th>Partes afectadas</th>
+        <th>Imagen</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of listaEnfermedades">
+        <td style="visibility:collapse; display:none;">
+          <a href="javascript: void(0);" class="text-body fw-bold">{{data.idEnfermedad}}</a>
+        </td>
+        <td class="truncate-text">{{data.nombreComunEnfermedad}}</td>
+        <td class="truncate-text">{{data.nombreCientificoEnfermedad}}</td>
+        <td class="truncate-text" style="visibility:collapse; display:none;">{{data.descripcionEnfermedad}}</td>
+        <td class="truncate-text">{{data.etapaEnfermedad}}</td>
+        <td class="truncate-text">{{data.tipoEnfermedad}}</td>
+        <td class="truncate-text" style="visibility:collapse; display:none;">{{data.sintomasEnfermedad}}</td>
+        <td class="truncate-text">{{data.condicionFavorableEnfermedad}}</td>
+        <td class="truncate-text">{{data.partesAfectadasEnfermedad}}</td>
+        <td><img width="100px" height="100px" class="img-fluid" [src]="data.imagen"></td>
+
+        <td>
+          <div class="d-flex botones">
+            <div class="col-sm-6"><button type="button" class="btn btn-sm btn-rounded btnModificar"
+                (click)="obtenerEnfermedadModificar(data)"><i class="fas fa-pencil"> </i> Modificar </button> </div>
+            <div class="col-sm-6 mt-1"><button type="button" class="btn btnEliminar btn-sm mb-2 mr-2 btn-rounded"
+                (click)="obtenerEnfermedadEliminar(data)"><i class="fas fa-trash-alt"> </i> Eliminar</button></div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>

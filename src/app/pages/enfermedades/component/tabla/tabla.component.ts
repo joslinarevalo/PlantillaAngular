@@ -21,8 +21,8 @@ export class TablaComponent implements OnInit {
   imagen:any;
 
   @Input()listaEnfermedades:IEnfermedadMostrar[]=[];
-  @Output()ObjetoTratamientoEliminar= new EventEmitter<IEnfermedadMostrar>();
-  @Output()ObjetoTratamientoModificar= new EventEmitter<IEnfermedadMostrar>();
+  @Output()ObjetoEnfermedadEliminar= new EventEmitter<IEnfermedadMostrar>();
+  @Output()ObjetoEnfermedadModificar= new EventEmitter<IEnfermedadMostrar>();
   
   constructor(
     private enfService: EnfermedadService,
@@ -52,14 +52,14 @@ export class TablaComponent implements OnInit {
     this.lista();
   }
   
-  obtenerEnfermedadEliminar(tratamiento:IEnfermedadMostrar){
-    console.log(tratamiento);
-    this.ObjetoTratamientoEliminar.emit(tratamiento);//para emitar el evento de objeto a la vista del padre
+  obtenerEnfermedadEliminar(enfermedad:IEnfermedadMostrar){
+    console.log(enfermedad);
+    this.ObjetoEnfermedadEliminar.emit(enfermedad);//para emitar el evento de objeto a la vista del padre
   }
   
-  obtenerEnfermedadModificar(tratamiento:IEnfermedadMostrar){
-    console.log(tratamiento);
-    this.ObjetoTratamientoModificar.emit(tratamiento);
+  obtenerEnfermedadModificar(enfermedad:IEnfermedadMostrar){
+    //console.log(enfermedad);
+    this.ObjetoEnfermedadModificar.emit(enfermedad);
   }
 
   lista() {

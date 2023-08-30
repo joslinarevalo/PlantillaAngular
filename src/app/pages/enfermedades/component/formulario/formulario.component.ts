@@ -64,21 +64,23 @@ guardar() {
       });
     }
 }
-/* modificar() {
+
+modificar() {
   if (this.formulario_valido()) {
-    this.formularioEnfermedad.controls['detallePlanta'].setValue(1);
+    //this.formularioEnfermedad.controls['detallePlanta'].setValue(1);
     this.enfermedad = {
-      idtratamiento:this.formularioEnfermedad.controls['idTratamiento'].value,
-      detallePlanta: this.formularioEnfermedad.controls['detallePlanta'].value,
-      nombrePesticidaTratamiento: this.formularioEnfermedad.controls['nombrePesticidaTratamiento'].value,
-      descripcionTratamiento:this.formularioEnfermedad.controls['descripcionTratamiento'].value,
-      aplicacionTratamiento:this.formularioEnfermedad.controls['aplicacionTratamiento'].value,
-      indicacionesTratamiento:this.formularioEnfermedad.controls['indicacionesTratamiento'].value,
-      tipoTratamiento:this.formularioEnfermedad.controls['tipoTratamiento'].value,
-      urlTratamiento:this.formularioEnfermedad.controls['urlTratamiento'].value,
+      nombreComunEnfermedad: this.formularioEnfermedad.controls['nombreComunEnfermedad'].value,
+      nombreCientificoEnfermedad: this.formularioEnfermedad.controls['nombreCientificoEnfermedad'].value,
+      descripcionEnfermedad:this.formularioEnfermedad.controls['descripcionEnfermedad'].value,
+      etapaEnfermedad:this.formularioEnfermedad.controls['etapaEnfermedad'].value,
+      tipoEnfermedad:this.formularioEnfermedad.controls['tipoEnfermedad'].value,
+      sintomasEnfermedad:this.formularioEnfermedad.controls['sintomasEnfermedad'].value,
+      condicionFavorableEnfermedad:this.formularioEnfermedad.controls['condicionFavorableEnfermedad'].value,
+      partesAfectadasEnfermedad:this.formularioEnfermedad.controls['partesAfectadasEnfermedad'].value,
+      urlEnfermedad:this.formularioEnfermedad.controls['urlEnfermedad'].value,
     };
-    console.log(this.enfermedad);
-    this.formularioSerealizable.set("tratamiento",JSON.stringify(this.enfermedad));
+    //console.log(this.enfermedad);
+    this.formularioSerealizable.set("enfermedad",JSON.stringify(this.enfermedad));
     this.ObjetoModificar.emit(this.formularioSerealizable);
   } else {
     Swal.fire({
@@ -89,7 +91,8 @@ guardar() {
       timer: 1500,
     });
   }
-} */
+}
+
 formulario_valido(): boolean {
   let estado: boolean = false;
   if (this.formularioEnfermedad.valid) {
@@ -102,6 +105,7 @@ formulario_valido(): boolean {
   }
   return estado;
 }
+
 SeleccionarImagen(event:any){
   let lector=new FileReader();
   lector.readAsDataURL(event.target.files[0]);
@@ -109,6 +113,7 @@ SeleccionarImagen(event:any){
   let file:File=event.target.files[0];
   this.formularioSerealizable.set("imagen",file);
 }
+
 esCampoValido(campo: string) {
   const validarCampo = this.formularioEnfermedad.get(campo);
   return !validarCampo?.valid && validarCampo?.touched
