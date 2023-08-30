@@ -31,14 +31,14 @@ export class TablaComponent implements OnInit {
 
   ngOnInit(): void {
     this.dtOptions={
-      columnDefs:[
+     /*  columnDefs:[ */
        /*  {className: "center", targets: [0,1,2,3]},
        // {orderable: false, targets: [3]},
        //{searchable: false, targets: [0,3]},
         {width: "15%", targets: [0]},
         {width: "50%", targets: [1,3]},
         {width: "20%", targets: [2]}, */
-      ], 
+      /* ],  */
       lengthMenu: [5,10,15,20,50],
       destroy: true,
       language:{

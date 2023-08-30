@@ -10,6 +10,7 @@ export interface IEnfermedadMostrar{
     partesAfectadasEnfermedad?:string,
     urlEnfermedad?:string
     imagen?:any
+    archivo?:File
 }
 
 export interface IEnfermedad{

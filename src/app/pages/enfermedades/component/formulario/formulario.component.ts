@@ -22,11 +22,13 @@ formularioSerealizable= new FormData();
 @Output()ObjetoModificar= new EventEmitter<FormData>();
 @Input()leyenda:string;
 @Input()imagen:any;
+@Input()archivo:File;
 constructor( private fb: FormBuilder, private serviceEnfermedad:EnfermedadService, private dm:DomSanitizer) { }
 
 ngOnInit(): void {
   if(this.leyenda=="Modificar"){
     this.imagenMostrar=this.imagen;
+    this.formularioSerealizable.set('imagen',this.archivo);
   }
 }
 
@@ -69,6 +71,7 @@ modificar() {
   if (this.formulario_valido()) {
     //this.formularioEnfermedad.controls['detallePlanta'].setValue(1);
     this.enfermedad = {
+      idEnfermedad:this.formularioEnfermedad.controls['idEnfermedad'].value,
       nombreComunEnfermedad: this.formularioEnfermedad.controls['nombreComunEnfermedad'].value,
       nombreCientificoEnfermedad: this.formularioEnfermedad.controls['nombreCientificoEnfermedad'].value,
       descripcionEnfermedad:this.formularioEnfermedad.controls['descripcionEnfermedad'].value,

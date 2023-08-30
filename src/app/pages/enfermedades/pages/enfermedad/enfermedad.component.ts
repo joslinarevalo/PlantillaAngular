@@ -22,6 +22,7 @@ export class EnfermedadComponent implements OnInit {
   imagen:any;
   formularioEnfermedad!:FormGroup;
   leyenda:string="";
+  archivo:File;
   constructor(public modalService:NgbModal,private serviceEnfermedad:EnfermedadService, 
     private dm:DomSanitizer, private fb: FormBuilder) { }
 
@@ -58,6 +59,8 @@ export class EnfermedadComponent implements OnInit {
           this.imagen=this.dm.bypassSecurityTrustUrl(url);
           //console.log(this.imagen);
           element.imagen=this.imagen;
+          element.archivo=this.convertirArchivo(resp,element.urlEnfermedad);
+          console.log(element.archivo);
         });
       });
     })
@@ -95,6 +98,7 @@ export class EnfermedadComponent implements OnInit {
       });
   }
   modificarEnfermedadFormulario(enfermedadModificar:FormData){
+    console.log(enfermedadModificar);
     this.serviceEnfermedad
         .modificar(enfermedadModificar)
         .subscribe({
@@ -118,7 +122,8 @@ export class EnfermedadComponent implements OnInit {
     this.imagen=objetoModificar.imagen; 
     this.formularioEnfermedad.patchValue(objetoModificar);
     this.leyenda="Modificar";
-     this.modalService.open(content, this.modalOptions);
+    this.archivo=objetoModificar.archivo;
+    this.modalService.open(content, this.modalOptions);
   }
   guardarEnfermedad(enfermedadGuardar:FormData){
     this.serviceEnfermedad
@@ -138,5 +143,18 @@ export class EnfermedadComponent implements OnInit {
         });
         
   }
-  
+
+  convertirArchivo(blob: Blob | undefined, url:string): File {
+    let miArchivo!: File;
+    let nombre=url.substring(36);
+    console.log("nombre del archivo a modificar: "+nombre);
+    if (blob != undefined) {
+      miArchivo = new File([blob], nombre, {
+        type: blob.type,
+      });
+      return miArchivo;
+    } else {
+      return miArchivo;
+    }
+  }
 }
