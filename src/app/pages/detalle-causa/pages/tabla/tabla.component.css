@@ -4,26 +4,4 @@
     color: #152536;
 }
 
-.btnEliminar{
-    background-color: #903B28;
-    color: white;
-    width: 100px;
-   
-}
-@media screen and (max-width: 440px) {
-  
-    .btnEliminar{
-        background-color: #903B28;
-        color: white;
-        width: 50px;
-       
-    }
-  }
 /* Estilo para truncar texto */
-.truncate-text {
-    max-width: 200px; /* Define el ancho máximo para la celda */
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-

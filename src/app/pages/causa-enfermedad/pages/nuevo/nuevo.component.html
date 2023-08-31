@@ -1,7 +1,15 @@
 <div *ngIf="leyenda !== titulo">
-  <button type="button" class="btn btn-{{modo === 'Editar' ? 'info' : 'success'}} btn-sm mb-2 mr-2 btn-rounded"
+  <button
+  type="button"
+  [ngClass]="{
+    btn: true,
+    btnModificar: modo === 'Editar',
+    btnguardar: modo !== 'Editar'
+  }"
+  class="btn-sm mb-2 mr-2 btn-rounded"
   (click)="openModal(content)">
-  <i class="{{modo === 'Editar' ? 'fas fa-edit' : 'fas fa-user-plus'}}"></i> {{titulo}}
+  <i [class]="modo === 'Editar' ? 'fas fa-edit' : 'fas fa-user-plus'"></i>
+  {{ titulo }}
 </button>
 </div> 
 <div *ngIf="leyenda === titulo">
@@ -55,12 +63,24 @@
                 [src]="imagenMostrar"*ngIf="imagenMostrar != undefined"/>
               </div>
             </div>
-            <div class="text-center mb-3 mt-2"> <!-- Centrar los botones y agregar espacio inferior -->
-              <button type="submit" class="btn btn-success "><i class="fas fa-check"></i>Guardar</button>
-              <span class="mx-2"></span> <!-- Agregar un espacio horizontal entre los botones -->
-              <button type="button" class="btn btn-primary " aria-hidden="true"(click)="closeModal()"><i class="fas fa-long-arrow-alt-right"></i>cerrar</button>
-              
-          </div>
+            <div class="text-center mb-3 mt-2">
+            
+              <div *ngIf="leyenda === titulo">
+                 <!-- Centrar los botones y agregar espacio inferior -->
+              <button type="submit" class="btn btnguardarModal" >
+                <i class="fas fa-check">  </i> {{titulo}}
+              </button>
+                </div>
+              <span class="mx-2"></span>
+              <!-- Agregar un espacio horizontal entre los botones -->
+              <button
+                type="button"
+                class="btn btnCerrar"
+                aria-hidden="true"
+                (click)="modal.dismiss('Cross click')">
+                <i class=" dripicons-cross" > </i>  Cerrar
+              </button>
+            </div>
          </form>
     </div>
 </ng-template>

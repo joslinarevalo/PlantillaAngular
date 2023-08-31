@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { TipoCausa } from 'src/app/pages/detalle-causa/models/DetalleCausa';
+import { TipoCausa } from '../../models/TipoCausa';
 
 @Component({
   selector: 'app-mostrarCausa',
@@ -9,6 +9,7 @@ import { TipoCausa } from 'src/app/pages/detalle-causa/models/DetalleCausa';
 export class MostrarCausaComponent implements OnInit {
   ctipo:string='';
   @Input() tpcausa: TipoCausa[] = [];
+  
   constructor() { }
 
   ngOnInit() {
