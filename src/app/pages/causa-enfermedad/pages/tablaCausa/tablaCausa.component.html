@@ -12,17 +12,18 @@
     <tbody>
       <tr *ngFor="let aux of alltipocausa ">
         <td>{{ aux.tipoTC }}</td>
-        <td >{{ truncateText(aux.definicionTipoTC, 80) }}</td>
+        <td >{{ truncateText(aux.definicionTipoTC, 90) }}</td>
         <td><img width="100px" height="100px" class="img-fluid" [src]="aux.imagen" ></td>
         <td class="text-sm-end" >
           <div class="d-flex">
             <div class="col-sm-6"><button type="button" class="btn btn-sm btn-rounded"><app-nuevo [leyenda]="'Editar '" [causaT]="aux" [modo]="'Editar'" ></app-nuevo> </button> </div>
             <div class="col-sm-6 mt-1"><button type="button" class="btn btnEliminar btn-sm mb-2 mr-2 btn-rounded" (click)=" eliminarCausita(aux)"><i class="fas fa-trash-alt" ></i></button></div>
+            
           </div>
           
       </td>
       </tr>
-    </tbody>
+    </tbody> 
   </table>
 </div>
 
