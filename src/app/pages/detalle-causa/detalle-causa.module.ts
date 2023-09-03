@@ -10,7 +10,8 @@ import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { TablaComponent } from './pages/tabla/tabla.component';
 import { NuevoComponent } from './pages/nuevo/nuevo.component';
-
+import { DataTablesModule } from 'angular-datatables';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,10 @@ import { NuevoComponent } from './pages/nuevo/nuevo.component';
     FormsModule,
     NgxPaginationModule,
     NgbModalModule ,// para el modal 
-    DetalleCausaRoutingModule
+    DetalleCausaRoutingModule,
+    DataTablesModule,
+    NgSelectModule,
+    
   ]
 })
 export class DetalleCausaModule { }
