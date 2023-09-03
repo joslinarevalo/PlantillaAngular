@@ -32,7 +32,7 @@
               "src/favicon.ico",
               "src/assets"
             ],
-            "styles": [
+           "styles": [
               "src/styles.scss",
               "src/assets/scss/bootstrap.scss",
               "src/assets/scss/app.scss",

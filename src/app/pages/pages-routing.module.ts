@@ -9,6 +9,7 @@ const routes: Routes = [
   { path: 'dashboards', loadChildren: () => import('./dashboards/dashboards.module').then(m => m.DashboardsModule) },
   { path: 'icons', loadChildren: () => import('./icons/icons.module').then(m => m.IconsModule) },
   { path: 'sintomas', loadChildren: () => import('./sintoma/sintoma.module').then(m => m.SintomaModule) },
+  { path: 'enfermedades', loadChildren: () => import('./enfermedades/enfermedades.module').then(m => m.EnfermedadesModule) },
   { path: 'detallecausa', loadChildren: () => import('./detalle-causa/detalle-causa.module').then(m => m.DetalleCausaModule) },
   { path: 'causaEnfermedad', loadChildren: () => import('./causa-enfermedad/causa-enfermedad.module').then(m => m.CausaEnfermedadModule) },
   { path: 'tipoplanta', loadChildren: () => import('./tipoplanta/tipoplanta.module').then(m => m.TipoplantaModule)},

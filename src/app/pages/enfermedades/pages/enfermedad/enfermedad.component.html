@@ -1,0 +1,43 @@
+<div class="container-fluid">
+    
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+               
+
+                <div class="card-body">
+                    <div class="caja">ENFERMEDAD</div>
+                    <div class="row mt-4">
+                        <!-- end col -->
+                        <div class="col-sm-12">
+                            <div class="text-sm-end">
+                                <div >
+                                    <div class="text-sm-end">
+                                        <button type="button" class="btn btn-success btn-rounded mb-2 mr-2 btnguardar"
+                                            (click)="openModal(content)">
+                                            <i class="fas fa-user-plus"> </i> Nueva enfermedad
+                                        </button>
+                                    </div>
+                                </div> 
+                            </div>
+                        </div>
+                    </div>
+                        <!-- Contenido del Scroll data -->
+                       <app-tabla [listaEnfermedades]="enfermedadList" 
+                       (ObjetoEnfermedadEliminar)="eliminarEnfermedad($event)"
+                       (ObjetoEnfermedadModificar)="modificarEnfermedad($event,content)"></app-tabla>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <ng-template #content role="document" let-modal>
+        <app-formulario [ModalService]="modalService" 
+        [formularioEnfermedad]="formularioEnfermedad"
+        (ObjetoGuardar)="guardarEnfermedad($event)" 
+        [leyenda]="leyenda"
+        (ObjetoModificar)="modificarEnfermedadFormulario($event)"
+        [imagen]="imagen"
+        [archivo]="archivo"></app-formulario>
+    </ng-template>
