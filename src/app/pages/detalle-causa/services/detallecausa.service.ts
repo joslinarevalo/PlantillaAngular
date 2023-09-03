@@ -4,15 +4,20 @@ import { Observable, Subject, throwError } from "rxjs";
 import { DetalleCausa, Enfermedad, Planta } from "../models/DetalleCausa";
 import { TipoCausa } from "../../causa-enfermedad/models/TipoCausa";
 import { catchError, map } from "rxjs/operators";
+import swal from 'sweetalert2';
+import Swal from "sweetalert2";
 const urlEndPoint: string = "http://localhost:8080/api/DetalleCausa";
 @Injectable({
   providedIn: "root",
 })
 export class DetallecausaService {
+  private urlEndPoints: string = 'http://localhost:8080/detalleApi/detalle';
 
   private httpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' });
   constructor(private http: HttpClient) {}
  
+
+
   listaenfermedad(): Observable<Enfermedad[]> {
     return this.http.get<Enfermedad[]>(urlEndPoint + "/enfermedad");
   }
@@ -43,7 +48,7 @@ export class DetallecausaService {
           }
 
           console.error(e.error.mensaje);
-         // Swal(e.error.mensaje, e.error.error, 'error');
+         Swal.fire(e.error.mensaje, e.error.error, 'error');
        
           return throwError(e);
         })
@@ -52,4 +57,20 @@ export class DetallecausaService {
 
   modificar(detalle: DetalleCausa): Observable<any> {
     return this.http.put<any>(`${urlEndPoint + "/modificar"}`, detalle)}
+
+    update(detalle: DetalleCausa): Observable<any> {
+      return this.http.put<any>(`${this.urlEndPoints}/${detalle.idDetalleCausa}`, detalle, { headers: this.httpHeaders }).pipe(
+        catchError(e => {
+  
+          if (e.status == 400) {
+            return throwError(e);
+          }
+  
+          console.error(e.error.mensaje);
+          Swal.fire(e.error.mensaje, e.error.error, 'error');
+          return throwError(e);
+        })
+      );
+    }
+    
 }

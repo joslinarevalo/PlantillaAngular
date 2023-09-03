@@ -12,6 +12,7 @@ const routes: Routes = [
   { path: 'tipoplanta', loadChildren: () => import('./tipoplanta/tipoplanta.module').then(m => m.TipoplantaModule)},
   { path: 'tratamiento', loadChildren: () => import('./tratamiento/tratamiento.module').then(m => m.TratamientoModule) },
   { path: 'detalleTratamiento', loadChildren: () => import('./detalle-tratamiento/detalle-tratamiento.module').then(m => m.DetalleTratamientoModule) }
+
 ];
 
 @NgModule({
