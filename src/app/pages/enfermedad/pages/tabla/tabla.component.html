@@ -1,0 +1,74 @@
+<div>
+  <table datatable
+  [dtOptions]="dtOptions"
+  class="row-border hover">
+  <thead class="tabla">
+    <tr>
+      <th>ID</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+      <th>5</th>
+      <th>6</th>
+      <th>7</th>
+      <th>8</th>
+      <th>9</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of enfermedadOd">
+      
+      <td>
+        <a href="javascript: void(0);" class="text-body fw-bold">{{data.idEnfermedad}}</a>
+      </td>
+      <td>{{data.nombreComunEnfermedad}}</td>
+      <td>{{data.nombreCientificoEnfermedad}}</td>
+      <td class="truncate-text">{{data.descripcionEnfermedad}}</td>
+      <td>{{data.etapaEnfermedad}}</td>
+      <td>{{data.tipoEnfermedad}}</td>
+      <td>{{data.sintomasEnfermedad}}</td>
+      <td>{{data.condicionFavorableEnfermedad}}</td>
+      <td>{{data.partesAfectadasEnfermedad}}</td>
+      <td class="text-sm-end">
+        <div class="d-flex">
+          <div class="col-sm-6"><button class="editar btnModificar fas fa-edit">Modificar </button> </div>
+          <div class="col-sm-6"><button class="eliminar btnEliminar fas fa-trash-alt"> Eliminar</button></div>
+        </div>
+        <!-- <div class="row">
+          <div class="col-sm-12">
+            
+          </div>
+        </div> -->
+              
+      </td>
+    </tr>
+  </tbody>
+  </table>
+  
+
+   
+    <ng-template #content role="document" let-modal>
+      <div class="modal-header">
+        <h5 class="modal-title mt-0">Card</h5>
+        <button type="button" class="btn-close" aria-hidden="true" (click)="modal.dismiss('Cross click')"></button>
+      </div>
+      <div class="modal-body">
+        <p class="mb-2">
+          Sintoma id:
+          <span class="text-primary">{{card.idEnfermedad}}</span>
+        </p>
+        <p class="mb-4">
+          Billing Name:
+          <span class="text-primary">Neal Matthews</span>
+        </p>
+     <!--    <div>
+          <app-card [card]="card"></app-card>
+        </div> -->
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" (click)="modal.close('Close click')">Close</button>
+      </div>
+    </ng-template>
+  </div>
+  <!-- end table -->
