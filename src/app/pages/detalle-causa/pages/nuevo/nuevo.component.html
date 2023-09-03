@@ -1,168 +1,153 @@
 <div *ngIf="leyenda !== titulo">
-    <button type="button" class="btn btn-{{modo === 'Editar' ? 'info' : 'success'}} btn-sm mb-2 mr-2 btn-rounded"
-    (click)="openModal(content)">
-    <i class="{{modo === 'Editar' ? 'fas fa-edit' : 'fas fa-user-plus'}}"></i> {{titulo}}
-</button>
-
-</div> 
+  <button
+    type="button"
+    [ngClass]="{
+      btn: true,
+      btnModificar: modo === 'Editar',
+      btnguardar: modo !== 'Editar'
+    }"
+    class="btn-sm mb-2 mr-2 btn-rounded"
+    (click)="openModal(content)"
+  >
+    <i [class]="modo === 'Editar' ? 'fas fa-edit' : 'fas fa-user-plus'"></i>
+    {{ titulo }}
+  </button>
+</div>
 <div *ngIf="leyenda === titulo">
-  <button type="button" class="btn btn-primary btn-sm  btn-rounded" (click)="openModal(content)">{{titulo}}</button>
+  <button
+    type="button"
+    class="btn btn-primary btn-sm btn-rounded"
+    (click)="openModal(content)"
+  >
+    {{ titulo }}
+  </button>
 </div>
 <!-- Modal -->
-<div class="modal modal-fullscreen-xl-down fade" id="modalDetalleCausa" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div
+  class="modal fade bd-example-modal-lg"
+  id="modalDetalleCausa"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
   <ng-template #content role="document" let-modal>
-      <h5 class="caja text-center mt-4">{{leyenda}} Detalle de Causa</h5>
-      <div class="modal-body">
-          
-          <form (ngSubmit)="guardar()" [formGroup]="formularioDetalleCausa">
-            <div class="row ">
-              <div class="form-group ">
-                <label for="enfermedad">Enfermedad</label>
-                <div class="input-group">
-                    <input type="text" class="form-control" name="enfermedadCausa" placeholder="Enfermedad" formControlName="enfermedadCausa"  
-                    [value]="enfermedadSeleccionadaNombre"  [class]="esCampoValido('enfermedadCausa')"
-                    [ngModel]="detalledto != null ? detalledto.enfermedad.nombreEnfermedad : ''">
-                    <div class="form-check mr-sm-2 ">
-                      <a  class="btn btn-success" (click)="extraLarge(exlargeModal)"><i class="fas fa-plus"></i> buscar</a>
-                  </div>
-                    <div class="invalid-feedback"> <!-- aqui la validación-->
-                      <span *ngIf="formularioDetalleCausa.get('enfermedadCausa')?.errors?.['required']">
-                        Requiere un nombre</span>
-                </div>
+    <h5 class="cajaModal text-center mt-4">{{ leyenda }} Detalle de Causa</h5>
+    <div class="modal-body">
+      <form (ngSubmit)="guardar()" [formGroup]="formularioDetalleCausa">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group mt-2">
+              <label for="descripcausa">Planta</label>
+              <ng-select
+                [items]="listaPlanta"
+                bindLabel="nombreComunPlanta"
+                placeholder="Seleccione"
+                formControlName="planta"
+                [class]="esCampoValido('planta')"
+                [ngModel]=" detalledto != null ? detalledto.planta.nombreComunPlanta : ''"
+                (ngModelChange)="SeleccionadaSelectId($event, 'planta')"
+              ></ng-select>
+              <div class="invalid-feedback">
+                <!-- aqui la validación-->
+                <span
+                  *ngIf="formularioDetalleCausa.get('planta')?.errors?.['required']"
+                >
+                  Debes seleccionar un nombre de Planta válido</span
+                >
+              </div>
+            </div>
+            <div class="form-group mt-2">
+              <label for="descripcausa">Enfermedad</label>
+              <ng-select
+                [items]="listEnfermedad"
+                bindLabel="nombreComunEnfermedad"
+                placeholder="Seleccione"
+                formControlName="enfermedad"
+                [class]="esCampoValido('enfermedad')"
+                [ngModel]="
+                  detalledto != null
+                    ? detalledto.enfermedad.nombreComunEnfermedad
+                    : ''
+                "
+                (ngModelChange)="SeleccionadaSelectId($event, 'enfermedad')"
+              ></ng-select>
+              <div class="invalid-feedback">
+                <!-- aqui la validación-->
+                <span
+                  *ngIf="formularioDetalleCausa.get('enfermedad')?.errors?.['required']"
+                >
+                  Debes seleccionar una enfermedad válido</span
+                >
+              </div>
+            </div>
+
+            <div class="form-group mt-2">
+              <label for="descripcausa">Tipo Causa</label>
+              <ng-select
+                [items]="listTipoCausa"
+                bindLabel="tipoTC"
+                placeholder="Seleccione"
+                formControlName="tipoCausa"
+                [class]="esCampoValido('tipoCausa')"
+                [ngModel]="
+                  detalledto != null ? detalledto.tipoCausa.tipoTC : ''
+                "
+                (ngModelChange)="SeleccionadaSelectId($event, 'tipoCausa')"
+              ></ng-select>
+              <div class="invalid-feedback">
+                <!-- aqui la validación-->
+                <span
+                  *ngIf="formularioDetalleCausa.get('tipoCausa')?.errors?.['required']"
+                >
+                  Debes seleccionar un tipo de causa válido.</span
+                >
+              </div>
             </div>
           </div>
+          <div class="col-md-6">
             <div class="form-group mt-2">
-                <label for="tipoCausa ">Tipo de Causa</label>
-                <div class="input-group">
-                    <input type="text" class="form-control" name="tipocausaD" placeholder="tipoCausa" formControlName="tipocausaD" 
-                    [value]="tipoCSeleccionadaNombre" [class]="esCampoValido('tipocausaD')"
-                    [ngModel]="detalledto != null ? detalledto.tipoCausa.nombreComunTC : ''"/>
-                    <div class="form-check mr-sm-2">
-                      <a  class="btn btn-success" (click)="extraLarge(exlargeTipo)"><i class="fas fa-plus"></i> buscar</a>
-                  </div>
-                    <div class="invalid-feedback">
-                      <!-- aqui la validación-->
-                      <span
-                        *ngIf="formularioDetalleCausa.get('tipocausaD')?.errors?.['required']">
-                        Requiere un nombre</span>
-                      </div>
-                </div>
-             </div>
-            <div class="form-group mt-2">
-                  <label for="descripcausa">Descripción de la causa</label>
-                  <textarea class="form-control" id="descripcausa" rows="10" name="descripcionD" formControlName="descripcionD" [class]="esCampoValido('descripcionD')"
-                  [ngModel]="detalledto != null ? detalledto.descripcionCausa : ''"></textarea>
-                  <div class="invalid-feedback">
-                    <!-- aqui la validación-->
-                    <span
-                      *ngIf="formularioDetalleCausa.get('descripcionD')?.errors?.['required']">
-                      Requiere un nombre</span>
-                    <span *ngIf="formularioDetalleCausa.get('descripcionD')?.errors?.['pattern']">
-                      Nombre no válido</span>
-                    </div>
-                </div>
-                
-             
-              <div class="text-center mb-3 mt-2"> <!-- Centrar los botones y agregar espacio inferior -->
-                <button type="submit" class="btn btn-success "><i class="fas fa-check"></i>Guardar</button>
-                <span class="mx-2"></span> <!-- Agregar un espacio horizontal entre los botones -->
-                <button type="button" class="btn btn-primary " aria-hidden="true"(click)="modal.dismiss('Cross click')"><i class="fas fa-long-arrow-alt-right"></i>cerrar</button>
+              <label for="descripcausa">Descripción de la causa</label>
+              <textarea
+                class="form-control"
+                id="descripcausa"
+                rows="8.8"
+                name="descripcionD"
+                formControlName="descripcionD"
+                [ngModel]="
+                  detalledto != null ? detalledto.descripcionCausa : ''
+                "
+                [class]="esCampoValido('descripcionD')"
+              ></textarea>
+              <div class="invalid-feedback">
+                <!-- aqui la validación-->
+                <span
+                  *ngIf="formularioDetalleCausa.get('descripcionD')?.errors?.['required']"
+                >
+                  Debes escribir una descrripcón válido.</span
+                >
+              </div>
             </div>
-            </div>
-           </form>
-      </div>
-  </ng-template>
-</div>
-  <!-- Modal -->
-  <!-- Modal para la tabla enfermedad -->
-<div class="modal modal-fullscreen-xl-down fade" id="modalenfermedad" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="row mt-4">
-  <ng-template #exlargeModal let-modal>
-  
-    <h5 class="caja text-center mt-4">Enfermedad</h5>
-   
-    <div class="modal-body">
-      <div class="col-sm-4">
-        <div class="search-box me-2 mb-2 d-inline-block">
-            <div class="position-relative">
-                <input type="text" class="form-control" placeholder="Search..." >
-                <i class="bx bx-search-alt search-icon"></i>
-            </div>
-        </div>
-    </div>
-      <div class="table-responsive mb-0 mt-2">
-        <table class="table table-centered table-nowrap">
-          <thead class="table-light">
-            <tr>
-              <th class="align-middle" style="width: 30%;">ID</th>
-              <th class="align-middle" style="width: 30%;">Nombre de Enfermedad</th>
-              <th class="align-middle" style="width: 20%;">Tipo de Enfermedad</th>
-              <th class="align-middle" style="width: 40%;">Descripcion de Enfermedad</th>
-              <th class="align-middle" style="width: 10%;">Acción</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let aux of listEnfermedad">
-              <td>{{ aux.idenfermedad }}</td>
-              <td>{{ aux.nombreEnfermedad }}</td>
-              <td>{{ aux.tipoEnfermedad }}</td>
-              <td>{{ aux.descripcionEnfermedad }}</td>
-              <td>
-                <!-- Button trigger modal -->
-                <button type="button" class="btn btn-info btn-sm btn-rounded" (click)="enviarDato(aux.idenfermedad)">Seleccionar</button>
-                
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </ng-template>
-  
-</div>
-  <!-- Modal -->
-    <!-- Modal para la tabla tipoCausa -->
+          </div>
 
-<div class="modal modal-fullscreen-xl-down fade" id="modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <ng-template #exlargeTipo let-modal>
-    <h5 class="caja text-center mt-4">Tipo de Causa</h5>
-    <div class="modal-body">
-      <div class="col-sm-4">
-        <div class="search-box me-2 mb-2 d-inline-block">
-            <div class="position-relative">
-                <input type="text" class="form-control" placeholder="Search..." >
-                <i class="bx bx-search-alt search-icon"></i>
-            </div>
+          <div class="text-center mb-3 mt-2">
+            <!-- Centrar los botones y agregar espacio inferior -->
+            <button type="submit" class="btn btnguardarModal" >
+              <i class="fas fa-check">  </i>  Guardar
+            </button>
+            
+            <span class="mx-2"></span>
+            <!-- Agregar un espacio horizontal entre los botones -->
+            <button
+              type="button"
+              class="btn btnCerrar"
+              aria-hidden="true"
+              (click)="modal.dismiss('Cross click')"
+             >
+              <i class=" dripicons-cross" > </i>  Cerrar
+            </button>
+          </div>
         </div>
-    </div>
-      <div class="table-responsive mb-0 mt-2">
-        <table class="table table-centered table-nowrap">
-          <thead class="table-light">
-            <tr>
-              <th class="align-middle" style="width: 30%;">id </th>
-              <th class="align-middle" style="width: 30%;">Nombre Común </th>
-              <th class="align-middle" style="width: 20%;">Nombre Científico</th>
-              <th class="align-middle" style="width: 40%;">Tipo de Causa</th>
-              <th class="align-middle" style="width: 10%;">Acción</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let aux of listTipoCausa">
-           
-              <td>{{ aux.idtipoCausa }}</td>
-              <td>{{ aux.nombreComunTC }}</td>
-              <td>{{ aux.nombreCientificoTC }}</td>
-              <td>{{ aux.tipoTC }}</td>
-              <td>
-                <!-- Button trigger modal -->
-                <button type="button" class="btn btn-info btn-sm btn-rounded"(click)="enviarTipoCausa(aux.idtipoCausa)">Seleccionar</button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+      </form>
     </div>
   </ng-template>
-  
 </div>
-  <!-- Modal -->

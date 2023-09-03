@@ -1,38 +1,55 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { DTOdetalle, DetalleCausa, Enfermedad, TipoCausa } from '../models/DetalleCausa';
-import { Observable } from 'rxjs';
-const urlEndPoint: string = 'http://localhost:8080/api/DetalleCausa';
+import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
+import { Injectable } from "@angular/core";
+import { Observable, Subject, throwError } from "rxjs";
+import { DetalleCausa, Enfermedad, Planta } from "../models/DetalleCausa";
+import { TipoCausa } from "../../causa-enfermedad/models/TipoCausa";
+import { catchError, map } from "rxjs/operators";
+const urlEndPoint: string = "http://localhost:8080/api/DetalleCausa";
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class DetallecausaService {
 
-constructor(private http: HttpClient) { }
+  private httpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' });
+  constructor(private http: HttpClient) {}
+ 
+  listaenfermedad(): Observable<Enfermedad[]> {
+    return this.http.get<Enfermedad[]>(urlEndPoint + "/enfermedad");
+  }
 
-listaenfermedad(): Observable<Enfermedad[]> {
-  return this.http.get<Enfermedad[]>(urlEndPoint + "/enfermedad");
-}
+  listatipocausa(): Observable<TipoCausa[]> {
+    return this.http.get<TipoCausa[]>(urlEndPoint + "/tipoCausa");
+  }
+  getPlantas(): Observable<Planta[]> {
+    return this.http.get<Planta[]>(urlEndPoint + "/plantas");
+  }
 
-listatipocausa(): Observable<TipoCausa[]> {
-  return this.http.get<TipoCausa[]>(urlEndPoint + "/tipoCausa");
-}
-getdetalleCausa(): Observable<DetalleCausa[]> {
-  return this.http.get<DetalleCausa[]>(urlEndPoint);
-}
-getConsultas(){
-  return this.http.get<DTOdetalle[]>(urlEndPoint +`/all`);
-}
-eliminar(iddetalleCausa: number): Observable<Object> {
+  getDetalle(): Observable<DetalleCausa[]> {
+    return this.http.get<DetalleCausa[]>(urlEndPoint + "/listar");
+  }
+ 
+  eliminar(id: String): Observable<DetalleCausa> {
+    return this.http.delete<DetalleCausa>(`${urlEndPoint + "/eliminar"}/${id}`);
+  }
 
-  return this.http.delete(`${urlEndPoint}/${iddetalleCausa}`);
-}
-actualizar(dtcausa: DetalleCausa): Observable<DetalleCausa> {
-  const url = `${urlEndPoint}`;
-  return this.http.put<DetalleCausa>(url, dtcausa);
-}
-registrar(data: DetalleCausa): Observable<DetalleCausa> {
-  return this.http.post(urlEndPoint, data);
-}
-}
+  registrarDetalleCausa(detalle: DetalleCausa): Observable<DetalleCausa> {
+    return this.http.post(urlEndPoint + "/guardar", detalle, { headers: this.httpHeaders })
+      .pipe(
+        map((response: any) => response.detalle as DetalleCausa),
+        catchError(e => {
 
+          if (e.status == 400) {
+            return throwError(e);
+          }
+
+          console.error(e.error.mensaje);
+         // Swal(e.error.mensaje, e.error.error, 'error');
+       
+          return throwError(e);
+        })
+      );
+  }
+
+  modificar(detalle: DetalleCausa): Observable<any> {
+    return this.http.put<any>(`${urlEndPoint + "/modificar"}`, detalle)}
+}
