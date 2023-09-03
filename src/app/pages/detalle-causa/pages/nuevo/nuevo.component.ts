@@ -10,7 +10,6 @@ import {
   mensajeExito,
 } from "src/app/pages/models/funciones.global";
 
-
 @Component({
   selector: "app-nuevo",
   templateUrl: "./nuevo.component.html",
@@ -44,7 +43,6 @@ export class NuevoComponent implements OnInit {
 
   private iniciarFormulario(): FormGroup {
     this.dtCausa = new DetalleCausa(); // Inicializar dtCausa aquí
-
     return this.fb.group({
       planta: [this.detalledto?.planta || null, Validators.required],
       enfermedad: [this.detalledto?.enfermedad || null, Validators.required],
@@ -52,7 +50,6 @@ export class NuevoComponent implements OnInit {
       descripcionD: ["", [Validators.required, Validators.maxLength(3000)]],
     });
   }
-
   openModal(content: any) {
     this.modalService.open(content, {
       size: "xl",
@@ -77,6 +74,7 @@ export class NuevoComponent implements OnInit {
       this.listTipoCausa = data;
     });
   }
+
   esCampoValido(campo: string) {
     const validarCampo = this.formularioDetalleCausa.get(campo);
     return !validarCampo?.valid && validarCampo?.touched
@@ -87,7 +85,6 @@ export class NuevoComponent implements OnInit {
   }
   SeleccionadaSelectId(event: any, controlName: string) {
     const seleccion = event;
-
     // Actualizar el formulario y asignar al objeto dtCausa según el control seleccionado
     if (controlName === "planta") {
       this.formularioDetalleCausa.patchValue({ idPlanta: seleccion.idPlanta });
@@ -124,6 +121,7 @@ export class NuevoComponent implements OnInit {
     }
   }
 
+
   registrando() {
     const detalle: any = {
       descripcionCausa: this.formularioDetalleCausa.get("descripcionD").value,
@@ -131,9 +129,7 @@ export class NuevoComponent implements OnInit {
       idTipoCausa: this.dtCausa.tipoCausa.idTipoCausa,
       idPlanta: this.dtCausa.planta.idPlanta,
     };
-
     console.log(detalle);
-
     this.detallecausaservice.registrarDetalleCausa(detalle).subscribe({
       next: (resp) => {
         mensajeExito("Detalle de Causa guardado con exito");
@@ -168,7 +164,6 @@ export class NuevoComponent implements OnInit {
       this.detalledto && this.detalledto.planta
         ? this.detalledto.planta.idPlanta
         : null;
-
     const detalle: any = {
       idDetalleCausa: idDetalleCausa,
       descripcionCausa: descripcionCausa,
@@ -259,7 +254,6 @@ export class NuevoComponent implements OnInit {
       },
     });
   }
-
   recargar() {
     let currentUrl = this.router.url;
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;

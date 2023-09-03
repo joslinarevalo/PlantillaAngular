@@ -71,10 +71,6 @@ export class TablaComponent implements OnInit {
       this.dtTrigger.next();
     });
   }
- 
- 
-  
-  
   eliminarDetalle(detalle: DetalleCausa) {
     const alert = Swal.mixin({
       customClass: {

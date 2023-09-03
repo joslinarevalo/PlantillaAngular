@@ -1,0 +1,29 @@
+<div class="table-responsive">
+    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="display" style="width:100%">
+      <thead class="table-light" >
+        <tr>
+          <th class="align-middle">Nombre del tratamiento</th>
+          <th class="align-middle">Descripción del tratamiento</th>
+          <th class="align-middle">Aplicación del tratamiento</th>
+          <th class="align-middle">Imagen</th>
+          <th class="align-middle">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let tratamiento of ListaDeTratamiento | paginate: { itemsPerPage: 5, currentPage: p }">
+
+          <td>{{tratamiento.nombrePesticidaTratamiento}}</td>
+          <td>{{tratamiento.descripcionTratamiento}}</td>
+          <td>{{tratamiento.aplicacionTratamiento}}</td>
+          <td><img width="100px" height="100px" class="img-fluid" [src]="tratamiento.imagen"></td>
+          <td >
+            <!-- Button trigger modal -->
+            <div class="d-flex">
+            <div class="col-sm-6 mt-1"><button type="button" class="btn btnModificar btn-sm btn-rounded fas fa-edit" (click)="ObtenerTratamientoModificar(tratamiento)"></button> </div>
+            <div class="col-sm-6"><button type="button" class="btn btnEliminar btn-sm mb-2 mr-2 btn-rounded" (click)="ObtenerTratamientoEliminar(tratamiento)"><i class="fas fa-trash-alt" ></i></button></div>
+         </div> 
+        </td>
+        </tr>
+      </tbody>
+    </table>
+</div>

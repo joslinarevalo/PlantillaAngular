@@ -1,3 +1,4 @@
+
 import { Component, Input, OnDestroy, OnInit, ViewChild } from "@angular/core";
 import { CausaenfermedadService } from "../../services/causaenfermedad.service";
 import { Router } from "@angular/router";
@@ -54,13 +55,13 @@ export class TablaCausaComponent implements OnInit , OnDestroy {
     this.dtTrigger.unsubscribe();
    // this.dtTrigger.complete();
   }
-
   public reloadTable(): void {
     this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
       this.alltipocausa = [];
       dtInstance.destroy();
     });
   }
+
   listatipo() {
     this.causaenfermedad.listaDeTipoCausa().subscribe((resp) => {
       this.alltipocausa = resp;
@@ -124,4 +125,5 @@ export class TablaCausaComponent implements OnInit , OnDestroy {
         }
       });
   }
+
 }

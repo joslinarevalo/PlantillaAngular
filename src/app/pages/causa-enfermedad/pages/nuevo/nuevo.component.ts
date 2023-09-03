@@ -25,7 +25,6 @@ export class NuevoComponent implements OnInit {
   modalRef: NgbModalRef | undefined;
   constructor(
     private modalService: NgbModal,
-
     private fb: FormBuilder,
     private router: Router,
     private causaenfermedadservice: CausaenfermedadService,
@@ -46,7 +45,8 @@ export class NuevoComponent implements OnInit {
   this.imagenMostrar = this.dm.bypassSecurityTrustUrl(this.causaT.imagen);
 }
   }
-  openModal(content: any,) {
+
+  openModal(content: any) {
     this.modalRef = this.modalService.open(content, {
       backdrop: "static",
       keyboard: false,
@@ -64,7 +64,6 @@ export class NuevoComponent implements OnInit {
       tipoTC: ["", [Validators.required]],
     });
   }
-
   esCampoValido(campo: string) {
     const validarCampo = this.formularioCausa.get(campo);
     return !validarCampo?.valid && validarCampo?.touched
@@ -77,6 +76,7 @@ export class NuevoComponent implements OnInit {
     if (this.formularioCausa.valid) {
       if (this.causaT != null) {
          this.editando();
+        // this.editar();
       } else {
         this.registrando();
       }
@@ -134,6 +134,7 @@ export class NuevoComponent implements OnInit {
       });
     
   }
+
 
   recargar() {
     let currentUrl = this.router.url;

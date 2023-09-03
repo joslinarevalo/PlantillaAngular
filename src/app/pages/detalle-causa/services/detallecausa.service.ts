@@ -15,7 +15,6 @@ export class DetallecausaService {
 
   private httpHeaders = new HttpHeaders({ "Content-Type": "application/json" });
   constructor(private http: HttpClient) {}
-
   listaenfermedad(): Observable<Enfermedad[]> {
     return this.http.get<Enfermedad[]>(urlEndPoint + "/enfermedad");
   }
@@ -41,13 +40,12 @@ export class DetallecausaService {
       .pipe(
         map((response: any) => response.detalle as DetalleCausa),
         catchError((e) => {
+
           if (e.status == 400) {
             return throwError(e);
           }
-
           console.error(e.error.mensaje);
           Swal.fire(e.error.mensaje, e.error.error, "error");
-
           return throwError(e);
         })
       );
@@ -74,4 +72,5 @@ export class DetallecausaService {
         })
       );
   }
+
 }

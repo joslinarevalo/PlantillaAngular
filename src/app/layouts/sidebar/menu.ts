@@ -49,8 +49,8 @@ export const MENU: MenuItem[] = [
             {
                 id: 11,
                 label: "Lista",
-                link: "",
-                parentId: 10,
+                link: "/tratamiento/tratamiento",
+                parentId: 6,
             },
 
         ],
@@ -84,15 +84,15 @@ export const MENU: MenuItem[] = [
         ],
     },
     {
-        id: 16,
-        label: "Detalle Planta",
+        id: 10,
+        label: "Detalle Tratamiento",
         icon: "bx-user-circle",
         subItems: [
             {
                 id: 17,
                 label: "Lista",
-                link: "",
-                parentId: 16,
+                link: "detalleTratamiento/detalleTratamiento",
+                parentId: 6,
             },
 
         ],
