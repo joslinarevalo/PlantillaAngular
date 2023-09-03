@@ -6,7 +6,7 @@ import { DetalleCausa } from '../../models/DetalleCausa';
   styleUrls: ['./listar.component.scss']
 })
 export class ListarComponent implements OnInit {
-
+  @Input() dtcausa: DetalleCausa[] = [];
   constructor() { }
 
   ngOnInit() {

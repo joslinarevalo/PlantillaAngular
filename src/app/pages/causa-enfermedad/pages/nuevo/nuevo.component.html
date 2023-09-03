@@ -1,62 +1,128 @@
 <div *ngIf="leyenda !== titulo">
-  <button type="button" class="btn btn-{{modo === 'Editar' ? 'info' : 'success'}} btn-sm mb-2 mr-2 btn-rounded"
-  (click)="openModal(content)">
-  <i class="{{modo === 'Editar' ? 'fas fa-edit' : 'fas fa-user-plus'}}"></i> {{titulo}}
-</button>
-</div> 
+  <button
+    type="button"
+    [ngClass]="{
+      btn: true,
+      btnModificar: modo === 'Editar',
+      btnguardar: modo !== 'Editar'
+    }"
+    class="btn-sm mb-2 mr-2 btn-rounded"
+    (click)="openModal(content)"
+  >
+    <i [class]="modo === 'Editar' ? 'fas fa-edit' : 'fas fa-user-plus'"></i>
+    {{ titulo }}
+  </button>
+</div>
 <div *ngIf="leyenda === titulo">
-<button type="button" class="btn btn-primary btn-sm  btn-rounded" (click)="openModal(content)">{{titulo}}</button>
+  <button
+    type="button"
+    class="btn btn-primary btn-sm btn-rounded"
+    (click)="openModal(content)"
+  >
+    {{ titulo }}
+  </button>
 </div>
 <!-- Modal -->
-<div class="modal modal-fullscreen-xl-down fade" id="modalDetalleCausa" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-<ng-template #content role="document" let-modal>
-    <h5 class="caja text-center mt-4">{{leyenda}}Tipo de Causa</h5>
+<div
+  class="modal modal-fullscreen-xl-down fade"
+  id="modalDetalleCausa"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <ng-template #content role="document" let-modal>
+    <h5 class="cajaModal text-center mt-4 texto-mayusculas">{{ leyenda }} Tipo de Causa</h5>
     <div class="modal-body">
-        
-        <form (ngSubmit)="guardar()" [formGroup]="formularioCausa">
-            <div class="row">
-              <div class="form-group ">
-                <label for="nombre">Nombre Común:</label>
-                <input type="text" class="form-control " placeholder="Nombre" formControlName="nombreComunTC"
-                  [class]="esCampoValido('nombreComunTC')" />
-                <div class="invalid-feedback">
-                  <!--aqui validacion-->
-                  <span *ngIf="formularioCausa.get('nombreComunTC')?.errors?.['required']">Requiere un
-                    nombre</span>
-                 
-                </div>
-              </div>
-              <div class="form-group ">
-                <label for="nombre">Nombre Científico:</label>
-                <input type="text" class="form-control " placeholder="Nombre" formControlName="nombreCientificoTC"
-                  [class]="esCampoValido('nombreCientificoTC')" />
-                <div class="invalid-feedback">
-                  <!--aqui validacion-->
-                  <span *ngIf="formularioCausa.get('nombreCientificoTC')?.errors?.['required']">Requiere un
-                    nombre</span>
-                  
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="tipoTC">Tipo de Causa</label>
-                <select id="tipoTC" name="tipoTC" class="form-control"   formControlName="tipoTC">
-                  <option value="-1">Seleccione</option>
-                  <option value="Condiciones Ambientales">Condiciones Ambientales</option>
-                  <option value="Patogeno">Patogeno</option>
-                  <option value="Plagas">Plagas</option>
-                  <option value="Problemas de nutrición">Problemas de nutrición</option>
-                  <option value="Practica Agricolas Inadecuadas">Practica Agricolas Inadecuadas</option>
-                </select>
-               </div>
-            
+      <form (ngSubmit)="guardar()" [formGroup]="formularioCausa">
+        <div class="row">
+          <div class="form-group">
+            <label for="tipoTC">Tipo de causa</label>
+            <input
+              id="tipoTC"
+              name="tipoTC"
+              class="form-control"
+              formControlName="tipoTC"
+              [ngModel]="causaT != null ? causaT.tipoTC : ''"
+              required
+            />
+            <div class="invalid-feedback">
+              <!--aqui validacion-->
+              <span *ngIf="formularioCausa.get('tipoTC')?.errors?.['required']"
+                >Requiere un nombre</span
+              >
             </div>
-            <div class="text-center mb-3 mt-2"> <!-- Centrar los botones y agregar espacio inferior -->
-              <button type="submit" class="btn btn-success "><i class="fas fa-check"></i>Guardar</button>
-              <span class="mx-2"></span> <!-- Agregar un espacio horizontal entre los botones -->
-              <button type="button" class="btn btn-primary " aria-hidden="true"(click)="modal.dismiss('Cross click')"><i class="fas fa-long-arrow-alt-right"></i>cerrar</button>
-              
           </div>
-         </form>
+
+          <div class="form-group">
+            <label for="nombre">Definición:</label>
+
+            <textarea
+              type="text"
+              rows="10"
+              class="form-control"
+              placeholder="Nombre"
+              formControlName="definicion"
+              [class]="esCampoValido('definicion')"
+              [ngModel]="causaT != null ? causaT.definicionTipoTC : ''"
+              required
+            ></textarea>
+            <div class="invalid-feedback">
+              <!--aqui validacion-->
+              <span
+                *ngIf="formularioCausa.get('definicion')?.errors?.['required']"
+                >Requiere un nombre</span
+              >
+            </div>
+          </div>
+
+          <div class="form-group mb-3">
+            <label class="control-label" for="file">Imagen: </label>
+            <input
+              class="form-control"
+              type="file"
+              accept="image/*"
+              id="urlTipo"
+              formControlName="urlTipo"
+              (change)="SeleccionarImagen($event)"
+              [ngClass]="esCampoValido('urlTipo')"
+              required
+            />
+            <div class="invalid-feedback">
+              <span *ngIf="formularioCausa.get('urlTipo')?.errors?.['required']"
+                >Requiere una imagen
+              </span>
+            </div>
+           
+          </div>
+          <div class="text-center mb-4">
+            <img
+              width="150px"
+              height="150px"
+              class="img-fluid"
+              [src]="imagenMostrar "
+              [src]="causaT.imagen "
+              *ngIf="imagenMostrar  "
+            />
+            
+          </div>
+        </div>
+        <div class="text-center mb-3 mt-2">
+          <!-- Centrar los botones y agregar espacio inferior -->
+          <button type="submit" class="btn btnguardarModal">
+            <i class="fas fa-check"> </i> Guardar
+          </button>
+          <span class="mx-2"></span>
+          <!-- Agregar un espacio horizontal entre los botones -->
+          <button
+            type="button"
+            class="btn btnCerrar"
+            aria-hidden="true"
+            (click)="modal.dismiss('Cross click')"
+          >
+            <i class="dripicons-cross"> </i> Cerrar
+          </button>
+        </div>
+      </form>
     </div>
-</ng-template>
+  </ng-template>
 </div>

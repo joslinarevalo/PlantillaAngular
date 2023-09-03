@@ -10,6 +10,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+import { DataTablesModule } from 'angular-datatables';
 
 
 
@@ -28,7 +29,9 @@ import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
     FormsModule,
     NgxPaginationModule,
     NgbModalModule ,
-    CausaEnfermedadRoutingModule
+    DataTablesModule,
+    CausaEnfermedadRoutingModule,
+ 
   ]
 })
 export class CausaEnfermedadModule { }
