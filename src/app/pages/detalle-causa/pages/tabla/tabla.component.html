@@ -1,27 +1,32 @@
-<div class="table-responsive mb-0 mt-2">
-  <table class="table table-centered table-nowrap " height="50%">
-    <thead class="table-light">
+<div class="table-responsive">
+  <table datatable
+  [dtOptions]="dtOptions"  [dtTrigger]="dtTrigger" class="table  row-border hover " width="100%" >
+    <thead class="tabla">
       <tr>
-        <th class="align-middle" style="max-width: 100px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Enfermedad</th>
-        <th class="align-middle" style="max-width: 100px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Tipo de Causa</th>
-        <th class="align-middle " >Descripcion de Causa</th>
-        <th class="align-middle" style="max-width: 100px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Acción</th>
+        <th >Planta</th>
+        <th >Enfermedad</th>
+        <th >Tipo de Causa</th>
+        <th >Descripcion de Causa</th>
+        <th >Acción</th>
       </tr>
     </thead>
     <tbody>
      
-      <tr *ngFor="let detalleC of detalleCausa | filter:queryString | paginate:{itemsPerPage: 10, currentPage: p}" >
-        <td class="align-middle" style="max-width: 100px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{{detalleC.enfermedad.nombreEnfermedad}}</td>
-        <td class="align-middle" style="max-width: 100px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{{detalleC.tipoCausa.nombreComunTC}}</td>
-        <td class="align-middle " >{{detalleC.descripcionCausa}}</td>
-        <td class="text-sm-end">
+      <tr *ngFor="let detalleC of listaDetalle" >
+        <td  >{{detalleC.planta.nombreComunPlanta}}</td>
+        <td   >{{detalleC.enfermedad.nombreComunEnfermedad}}</td>
+        <td  >{{detalleC.tipoCausa.tipoTC}}</td>
+        <td >{{ truncateText(detalleC.descripcionCausa, 80) }}</td>
+        <td class="text-sm-end" >
           
-            <button type="button" class="btn btn-sm btn-rounded" ><app-nuevo [leyenda]="'Editar '" [detalledto]="detalleC"[titulo]="'Editar'" [modo]="'Editar'" [selectedEnfermedadId]="detalleC.enfermedad.idenfermedad" [selectedTipoCausaId]="detalleC.tipoCausa.idtipoCausa"></app-nuevo></button>
-            <button type="button" class="btn btn-primary btn-sm  btn-rounded" (click)="eliminar(detalleC.iddetalleCausa)"><i class="fas fa-trash-alt"></i>Eliminar</button>
-         }
-          
+            <div class="d-flex">
+              <div class="col-sm-6"><button type="button" class="btn btn-sm btn-rounded"><app-nuevo [leyenda]="'Editar '" [detalledto]="detalleC"[titulo]="''" [modo]="'Editar'" ></app-nuevo> </button> </div>
+              <div class="col-sm-6 mt-1"><button type="button" class="btn btnEliminar btn-sm mb-2 mr-2 btn-rounded" (click)=" eliminarDetalle(detalleC)"><i class="fas fa-trash-alt" ></i></button></div>
+            </div>
+            
         </td>
       </tr>
     </tbody>
   </table>
 </div>
+

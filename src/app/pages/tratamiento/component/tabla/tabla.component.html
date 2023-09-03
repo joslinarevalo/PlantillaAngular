@@ -1,5 +1,5 @@
-<div >
-    <table datatable [dtOptions]="dtOptions" class="display" style="width:100%">
+<div class="table-responsive">
+    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="display" style="width:100%">
       <thead class="table-light" >
         <tr>
           <th class="align-middle">Nombre del tratamiento</th>
@@ -18,9 +18,11 @@
           <td><img width="100px" height="100px" class="img-fluid" [src]="tratamiento.imagen"></td>
           <td >
             <!-- Button trigger modal -->
-            <button type="button" class="editar btnModificar fas fa-edit mx-1 col-lx-6 col-md-6 col-sm-12 col-12 mx-auto" (click)="ObtenerTratamientoModificar(tratamiento)">Modificar</button>
-            <button type="button"class="eliminar btnEliminar fas fa-trash-alt col-lx-6 col-md-6 col-sm-12 col-12 mx-auto" (click)="ObtenerTratamientoEliminar(tratamiento)">Eliminar</button>
-          </td>
+            <div class="d-flex">
+            <div class="col-sm-6 mt-1"><button type="button" class="btn btnModificar btn-sm btn-rounded fas fa-edit" (click)="ObtenerTratamientoModificar(tratamiento)"></button> </div>
+            <div class="col-sm-6"><button type="button" class="btn btnEliminar btn-sm mb-2 mr-2 btn-rounded" (click)="ObtenerTratamientoEliminar(tratamiento)"><i class="fas fa-trash-alt" ></i></button></div>
+         </div> 
+        </td>
         </tr>
       </tbody>
     </table>

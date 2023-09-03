@@ -1,11 +1,11 @@
 
-<div >
-    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"  class="display" style="width:100%">
+<div class="table-responsive">
+    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"  class="table row-border hover display" style="width:100%">
     <thead class="table-ligth" >
       <tr>
         <th>ID</th>
         <th>Tratamiento</th>
-        <th>Detalle Causa</th>
+        <th>Enfermedad</th>
         <th>Acciones</th>
       </tr>
     </thead>
@@ -18,8 +18,10 @@
         <td>{{data.nombreTratamiento}}</td>
         <td class="truncate-text">{{data.descripcionDetalleCausa}}</td>
         <td>
-            <button class="editar btnModificar fas fa-edit mx-1 col-lx-6 col-md-6 col-sm-12 col-12 mx-auto" (click)="ObtenerDetalleTratamientoModificar(data)">Modificar </button>
-            <button class="eliminar btnEliminar fas fa-trash-alt col-lx-6 col-md-6 col-sm-12 col-12 mx-auto" (click)="ObtenerDetalleTratamientoEliminar(data)"> Eliminar</button>
+          <div class="d-flex">
+            <div class="col-sm-6"><button type="button" class="btn btn-sm btn-rounded fas fa-edit" (click)="ObtenerDetalleTratamientoModificar(data)"></button> </div>
+            <div class="col-sm-6 mt-1"><button type="button" class="btn btnEliminar btn-sm mb-2 mr-2 btn-rounded" (click)="ObtenerDetalleTratamientoEliminar(data)"><i class="fas fa-trash-alt" ></i></button></div>
+          </div>
         </td>
       </tr>
     </tbody>

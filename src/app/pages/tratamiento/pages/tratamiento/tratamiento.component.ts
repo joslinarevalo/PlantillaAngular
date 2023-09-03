@@ -6,6 +6,8 @@ import { TratamientoService } from '../../service/service.service';
 import Swal from 'sweetalert2';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { mensajeError, mensajeExito } from 'src/app/pages/models/funciones.global';
+import { HttpErrorResponse} from '@angular/common/http';
+
 
 @Component({
   selector: 'app-tratamiento',
@@ -101,9 +103,11 @@ export class TratamientoComponent implements OnInit {
         .modificarTratamiento(tratamientoModificar)
         .subscribe({
           next:(resp)=>{
-            mensajeExito("Tratamiento modificado con exito");
+            console.log(resp);
+            mensajeExito(resp.mensaje);
           },
-          error:(err)=>{
+          error:(err:HttpErrorResponse)=>{
+            console.log(err.error)
             mensajeError("Error al modificar el tratamiento");
           },
           complete:()=>{
@@ -128,9 +132,10 @@ export class TratamientoComponent implements OnInit {
         .guardarTratamiento(tratamientoGuardar)
         .subscribe({
           next:(resp)=>{
-            mensajeExito("Tratamiento guardado con exito");
+            mensajeExito(resp.mensaje);
           },
-          error:(err)=>{
+          error:(err:HttpErrorResponse)=>{
+            console.log(err);
             mensajeError("Error al guardar el tratamiento");
           },
           complete:()=>{

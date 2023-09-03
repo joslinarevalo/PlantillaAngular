@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ITratamientoDTOValid, ITratamientoMostrar } from '../interface/tratamiento.interface';
 import { Observable } from 'rxjs';

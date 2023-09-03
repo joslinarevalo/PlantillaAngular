@@ -78,7 +78,7 @@ export class DetalleTratamientoComponent implements OnInit {
         .modificarDetalleTratamiento(tratamientoModificar)
         .subscribe({
           next:(resp)=>{
-            mensajeExito("Tratamiento modificado con exito");
+            mensajeExito(resp.mensaje);
           },
           error:(err)=>{
             mensajeError("Error al modificar el tratamiento");
@@ -102,7 +102,7 @@ export class DetalleTratamientoComponent implements OnInit {
         .guardarDetalleTratamiento(tratamientoGuardar)
         .subscribe({
           next:(resp)=>{
-            mensajeExito("Detalle Tratamiento guardado con exito");
+            mensajeExito(resp.mensaje);
           },
           error:(err)=>{
             mensajeError("Detalle Error al guardar el tratamiento");

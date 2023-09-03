@@ -1,26 +1,26 @@
 <div class="table-responsive mb-0 mt-2">
-  <table class="table table-centered table-nowrap">
-    <thead class="table-light">
+  <table datatable
+  [dtOptions]="dtOptions"  [dtTrigger]="dtTrigger" class="table  row-border hover " width="100%" >
+  <thead class="tabla">
       <tr>
-        <th class="align-middle" style="width: 10%;">id </th>
-        <th class="align-middle" style="width: 30%;">Nombre Común </th>
-        <th class="align-middle" style="width: 30%;">Nombre Científico</th>
-        <th class="align-middle" style="width: 30%;">Tipo de Causa</th>
-        <th class="align-middle" style="width: 10%;">Acción</th>
+        <th  >Tipo de Causa </th>
+        <th >Definición</th>
+        <th >Imagen</th>
+        <th >Acción</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let aux of cusaT">
-     
-        <td>{{ aux.idtipoCausa }}</td>
-        <td>{{ aux.nombreComunTC }}</td>
-        <td>{{ aux.nombreCientificoTC }}</td>
+      <tr *ngFor="let aux of alltipocausa ">
         <td>{{ aux.tipoTC }}</td>
-        <td>
-          <!-- Button trigger modal -->
-          <button type="button" class="btn btn-sm btn-rounded" ><app-nuevo [leyenda]="'Editar '" [causaT]="aux"[titulo]="'Editar'" [modo]="'Editar'"></app-nuevo></button>
-          <button type="button" class="btn btn-primary btn-sm  btn-rounded" (click)="eliminarcausa(aux)"><i class="fas fa-trash-alt"></i>Eliminar</button>
-        </td>
+        <td >{{ truncateText(aux.definicionTipoTC, 80) }}</td>
+        <td><img width="100px" height="100px" class="img-fluid" [src]="aux.imagen" ></td>
+        <td class="text-sm-end" >
+          <div class="d-flex">
+            <div class="col-sm-6"><button type="button" class="btn btn-sm btn-rounded"><app-nuevo [leyenda]="'Editar '" [causaT]="aux" [modo]="'Editar'" ></app-nuevo> </button> </div>
+            <div class="col-sm-6 mt-1"><button type="button" class="btn btnEliminar btn-sm mb-2 mr-2 btn-rounded" (click)=" eliminarCausita(aux)"><i class="fas fa-trash-alt" ></i></button></div>
+          </div>
+          
+      </td>
       </tr>
     </tbody>
   </table>

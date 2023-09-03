@@ -22,6 +22,6 @@ export class DetalleTratamientoService {
     return this.http.put<any>(this.urlTratamiento+"modificar",detalleTratamiento);
   }
   eliminarDetalleTratamiento(detalleTratamiento:IDetalleTratamientoDTOMostrar):Observable<any>{
-    return this.http.delete<any>(this.urlTratamiento+"eliminar/"+detalleTratamiento.idTratamiento);
+    return this.http.delete<any>(this.urlTratamiento+"eliminar/"+detalleTratamiento.idDetalleTratamiento);
   }
 }

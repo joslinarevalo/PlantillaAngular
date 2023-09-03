@@ -2,6 +2,8 @@ import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angu
 import { ITratamientoMostrar } from '../../interface/tratamiento.interface';
 import { Subject } from 'rxjs';
 import { DataTableDirective } from 'angular-datatables';
+import { TratamientoService } from '../../service/service.service';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-tabla',
@@ -18,7 +20,8 @@ export class TablaComponent implements OnInit {
   @ViewChild(DataTableDirective, { static: false} ) dtElement: DataTableDirective;
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<ITratamientoMostrar> = new Subject<ITratamientoMostrar>();
-  constructor() { }
+  constructor(private serviceTratamiento:TratamientoService, 
+    private dm:DomSanitizer) { }
 
   ngOnInit(): void {
     this.dtOptions={
@@ -32,7 +35,7 @@ export class TablaComponent implements OnInit {
       pagingType: 'full_numbers',
       responsive: true,
     };
-
+    this.listaTratamiento();
   }
 
   ObtenerTratamientoEliminar(tratamiento:ITratamientoMostrar){
@@ -42,5 +45,37 @@ export class TablaComponent implements OnInit {
   ObtenerTratamientoModificar(tratamiento:ITratamientoMostrar){
     console.log(tratamiento);
     this.ObjetoTratamientoModificar.emit(tratamiento);
+  }
+  listaTratamiento(){
+    this.serviceTratamiento.listaDeTratamiento().subscribe((resp)=>{
+      this.ListaDeTratamiento=resp;
+      console.log(resp);
+      this.ListaDeTratamiento.forEach(element => {
+        this.serviceTratamiento.getImagen(element.urlTratamiento).subscribe((resp)=>{
+          //console.log(resp);
+          let url=URL.createObjectURL(resp);
+          this.imagen=this.dm.bypassSecurityTrustUrl(url);
+          //console.log(this.imagen);
+          element.imagen=this.imagen;
+          element.archivo=this.convertirArchivo(resp,element.urlTratamiento);
+          console.log(element.archivo);
+        });
+      });
+       this.dtTrigger.next(null);
+    });
+   
+  }
+  convertirArchivo(blob: Blob | undefined, url:string): File {
+    let miArchivo!: File;
+    let nombre=url.substring(36);
+    console.log("nombre del archivo a modificar: "+nombre);
+    if (blob != undefined) {
+      miArchivo = new File([blob], nombre, {
+        type: blob.type,
+      });
+      return miArchivo;
+    } else {
+      return miArchivo;
+    }
   }
 }
