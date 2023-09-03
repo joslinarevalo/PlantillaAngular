@@ -86,3 +86,99 @@ button,a {
     }
   }
 }
+.caja {
+  text-align: center;
+  color: #000;
+  background-color: #E9ECEF;
+  height: 35px;
+  font-size: 20px;
+}
+.cajaModal {
+  text-align: center;
+  color: #000;
+  height: 35px;
+  font-size: 20px;
+}
+.btnModificar{
+  background-color: #3388B8;
+  color: white;
+
+}
+.btnguardar{
+  background-color: #146C43;
+  color: white;
+}
+.btnguardarModal{
+  background-color: #146C43;
+  color: white;
+}
+.btnEliminar{
+  background-color: #903B28;
+  color: white;
+}
+.btnCerrar{
+  background-color: #903B28;
+  color: white;
+}
+@media screen and (max-width: 440px) {
+  .caja {
+    text-align: center;
+    color: #000;
+    background-color: #E9ECEF;
+    height: 40px;
+    font-size: 12px;
+  }
+  .cajaModal {
+    text-align: center;
+    color: #000;
+    height: 35px;
+    font-size: 12px;
+  }
+  .btnEliminar{
+      background-color: #903B28;
+      color: white;
+      width: 50px;
+     
+  }
+  .btnModificar{
+    background-color: #3388B8;
+    color: white;
+    width: 50px;
+}
+
+}
+@media screen and (max-width: 320px) {
+  .caja {
+    text-align: center;
+    color: #000;
+    background-color: #E9ECEF;
+    height: 40px;
+    font-size: 12px;
+  }
+  .btnEliminar{
+      background-color: #903B28;
+      color: white;
+      width: 60px;
+  }
+  .btnguardarModal{
+    background-color: #146C43;
+    color: white;
+    font-size: 9px;
+  }
+  .btnCerrar{
+    background-color: #903B28;
+    color: white;
+    font-size: 9px;
+  }
+  .cajaModal {
+    text-align: center;
+    color: #000;
+    height: 35px;
+    font-size: 12px;
+  }
+  .btnModificar{
+    background-color: #3388B8;
+    color: white;
+    width: 70px;
+}
+}

@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class TablaComponent implements OnInit {
   detalleCausa: DetalleCausa[] = [];
-  
+  @Input() listaDetalle!: DetalleCausa[];
   @Input() queryString: string;
   @Input()allConsultas!:DTOdetalle[];
 
