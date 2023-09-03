@@ -18,7 +18,7 @@ export class TablaComponent implements OnInit {
   sintoma: ISintoma[] = []; //array
   
   constructor(
-    private modalService: NgbModal, 
+    private modalService: NgbModal,
     private sintomaService: SintomaService) { }
 
   ngOnInit(): void {
