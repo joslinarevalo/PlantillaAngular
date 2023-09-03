@@ -10,6 +10,7 @@ import {
   mensajeExito,
 } from "src/app/pages/models/funciones.global";
 
+
 @Component({
   selector: "app-nuevo",
   templateUrl: "./nuevo.component.html",
@@ -27,16 +28,18 @@ export class NuevoComponent implements OnInit {
   formularioDetalleCausa!: FormGroup;
   errores: string[];
   constructor(
-  
+    private modalService: NgbModal,
+    private fb: FormBuilder,
+    private router: Router,
+    private detallecausaservice: DetallecausaService
   ) {
-
-    
+    this.formularioDetalleCausa = this.iniciarFormulario();
   }
+
   ngOnInit() {
     this.obtenerenfermedad();
     this.obtenerTipo();
     this.obtenerPlantas();
-    this.formularioDetalleCausa = this.iniciarFormulario();
   }
 
   private iniciarFormulario(): FormGroup {
@@ -256,7 +259,7 @@ export class NuevoComponent implements OnInit {
       },
     });
   }
- 
+
   recargar() {
     let currentUrl = this.router.url;
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
