@@ -14,8 +14,8 @@ export class TablaComponent implements OnInit {
   breadCrumbItems: Array<{}>;
 
   @ViewChild(DataTableDirective, { static: false} ) dtElement: DataTableDirective;
-  dtOptions: DataTables.Settings = {};
-  dtTrigger: Subject<IEnfermedad> = new Subject<IEnfermedad>();
+  dtOptions: any = {};
+  dtTrigger: Subject<IEnfermedadMostrar> = new Subject<IEnfermedadMostrar>();
 
   p: any;
   imagen:any;
@@ -31,14 +31,12 @@ export class TablaComponent implements OnInit {
 
   ngOnInit(): void {
     this.dtOptions={
-     /*  columnDefs:[ */
-       /*  {className: "center", targets: [0,1,2,3]},
-       // {orderable: false, targets: [3]},
-       //{searchable: false, targets: [0,3]},
-        {width: "15%", targets: [0]},
-        {width: "50%", targets: [1,3]},
-        {width: "20%", targets: [2]}, */
-      /* ],  */
+      columnDefs: [
+        { responsivePriority: 2, targets: 1 },
+        { responsivePriority: 10001, targets: 4 },
+        { responsivePriority: 3, targets: 9 },
+        { responsivePriority: 1, targets: -1 }
+    ],
       lengthMenu: [5,10,15,20,50],
       destroy: true,
       language:{
@@ -53,7 +51,7 @@ export class TablaComponent implements OnInit {
   }
   
   obtenerEnfermedadEliminar(enfermedad:IEnfermedadMostrar){
-    console.log(enfermedad);
+    //console.log(enfermedad);
     this.ObjetoEnfermedadEliminar.emit(enfermedad);//para emitar el evento de objeto a la vista del padre
   }
   

@@ -40,14 +40,16 @@
               "node_modules/datatables.net-dt/css/jquery.dataTables.min.css",
               "node_modules/datatables.net-bs4/css/dataTables.bootstrap4.min.css",
               "node_modules/datatables.net-bs5/css/dataTables.bootstrap5.min.css",
-              "node_modules/datatables.net-bs/css/dataTables.bootstrap.min.css"
+              "node_modules/datatables.net-bs/css/dataTables.bootstrap.min.css",
+              "node_modules/datatables.net-responsive-dt/css/responsive.dataTables.css"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
               "node_modules/datatables.net/js/jquery.dataTables.min.js",
               "node_modules/datatables.net-bs4/js/dataTables.bootstrap4.min.js",
               "node_modules/datatables.net-bs5/js/dataTables.bootstrap5.min.js",
-              "node_modules/datatables.net-bs/js/dataTables.bootstrap.min.js"
+              "node_modules/datatables.net-bs/js/dataTables.bootstrap.min.js",
+              "node_modules/datatables.net-responsive/js/dataTables.responsive.js"
             ],
             "vendorChunk": true,
             "extractLicenses": false,

@@ -50,6 +50,8 @@
     "datatables.net-bs4": "^1.11.3",
     "datatables.net-bs5": "^1.11.3",
     "datatables.net-dt": "^1.13.6",
+    "datatables.net-responsive": "^2.5.0",
+    "datatables.net-responsive-dt": "^2.5.0",
     "echarts": "^5.1.2",
     "firebase": "^8.6.8",
     "jquery": "^3.6.0",
