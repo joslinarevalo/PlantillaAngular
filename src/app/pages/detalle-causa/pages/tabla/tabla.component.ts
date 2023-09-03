@@ -29,8 +29,6 @@ export class TablaComponent implements OnInit {
     this.dtOptions = {
       columnDefs: [
         { className: "center", targets: [0, 1, 2, 4] },
-        //{orderable: false, targets: [4]},
-        //{searchable: false, targets: [0,3]},
         { width: "15%", targets: [0] },
         { width: "40%", targets: [1, 3] },
         { width: "20%", targets: [2] },
@@ -57,24 +55,25 @@ export class TablaComponent implements OnInit {
     }
     return text.substr(0, maxLength) + "...";
   }
-
-  obtenerDetalle() {
-    this.detallecausaservice.getDetalle().subscribe((detalle) => {
-      this.listaDetalle = detalle;
-      this.dtTrigger.next(null);
-    });
-  }
   ngOnDestroy():void{
     this.dtTrigger.unsubscribe();
-    this.dtTrigger.complete();
+    //this.dtTrigger.complete();
   }
- 
   public reloadTable(): void {
     this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
       this.listaDetalle = [];
       dtInstance.destroy();
     });
   }
+  obtenerDetalle() {
+    this.detallecausaservice.getDetalle().subscribe((detalle) => {
+      this.listaDetalle = detalle;
+      this.dtTrigger.next();
+    });
+  }
+ 
+ 
+  
   
   eliminarDetalle(detalle: DetalleCausa) {
     const alert = Swal.mixin({

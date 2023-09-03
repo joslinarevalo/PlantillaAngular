@@ -6,6 +6,7 @@ import { CausaenfermedadService } from "../../services/causaenfermedad.service";
 import Swal from "sweetalert2";
 import { ITipoCausa, TipoCausa } from "../../models/TipoCausa";
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { mensajeError, mensajeExito } from "src/app/pages/models/funciones.global";
 @Component({
   selector: "app-nuevo",
   templateUrl: "./nuevo.component.html",
@@ -80,12 +81,8 @@ export class NuevoComponent implements OnInit {
         this.registrando();
       }
     } else {
-      Swal.fire({
-        position: "center",
-        title: "Faltan datos en el formulario",
-        text:
-          "Submit disparado, formulario no válido" + this.formularioCausa.valid,
-        icon: "warning",
+      Object.keys(this.formularioCausa.controls).forEach(controlName => {
+        this.formularioCausa.get(controlName).markAsTouched();
       });
     }
   }
@@ -98,30 +95,20 @@ export class NuevoComponent implements OnInit {
     };
     this.causaenfermedadservice
       .addTipoCausa(causa, this.fotoSeleccionada)
-      .subscribe(
-        (resp: any) => {
-          if (resp) {
-            console.log(resp);
-            Swal.fire({
-              position: "center",
-              title: "Buen trabajo",
-              text: "Datos guardados con exito",
-              icon: "info",
-            });
-            this.formularioCausa.reset();
-            this.recargar();
-            this.modalService.dismissAll();
-          }
+      .subscribe({
+        next: (resp) => {
+          mensajeExito("Tipo de Causa guardado con exito");
         },
-        (err: any) => {
-          console.log(err);
-          Swal.fire({
-            icon: "error",
-            title: "Error",
-            text: "Algo paso, hable con el administrador",
-          });
-        }
-      );
+        error: (err) => {
+          mensajeError("Error al guardar el Tipo de causa");
+        },
+        complete: () => {
+          this.modalService.dismissAll();
+          this.formularioCausa.reset();
+          this.recargar();
+         
+        },
+      });
   }
   editando() {
     const causa: any = {
@@ -131,31 +118,22 @@ export class NuevoComponent implements OnInit {
       urlTC: this.formularioCausa.get("urlTipo").value,
     };
     console.log("editando", causa);
-      this.causaenfermedadservice.editarTipoCausa(causa).subscribe(
-        (resp: any) => {
-          if (resp) {
-            Swal.fire({
-              position: "center",
-              title: "Buen trabajo!",
-              text: `Datos Modificados con exito`,
-              icon: "info",
-            });
-            this.formularioCausa.reset();
-            this.recargar();
-            this.modalService.dismissAll();
-          }
+      this.causaenfermedadservice.editarTipoCausa(causa).subscribe({
+        next: (resp) => {
+          mensajeExito("Tipo de Causa editado con exito");
         },
-        (err: any) => {
-          Swal.fire({
-            icon: "error",
-            title: "Error",
-            text: `Algo pasó hable con el administrador`,
-          });
-        }
-      );
+        error: (err) => {
+          mensajeError("Error al guardar el Tipo de causa");
+        },
+        complete: () => {
+          this.modalService.dismissAll();
+          this.formularioCausa.reset();
+          this.recargar();
+         
+        },
+      });
     
   }
-
 
   recargar() {
     let currentUrl = this.router.url;
