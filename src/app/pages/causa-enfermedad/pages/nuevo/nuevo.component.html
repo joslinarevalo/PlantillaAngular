@@ -31,12 +31,12 @@
   aria-hidden="true"
 >
   <ng-template #content role="document" let-modal>
-    <h5 class="caja text-center mt-4">{{ leyenda }}Tipo de Causa</h5>
+    <h5 class="cajaModal text-center mt-4 texto-mayusculas">{{ leyenda }} Tipo de Causa</h5>
     <div class="modal-body">
       <form (ngSubmit)="guardar()" [formGroup]="formularioCausa">
         <div class="row">
           <div class="form-group">
-            <label for="tipoTC">Tipo de Causa</label>
+            <label for="tipoTC">Tipo de causa</label>
             <input
               id="tipoTC"
               name="tipoTC"

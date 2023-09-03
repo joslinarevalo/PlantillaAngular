@@ -17,7 +17,6 @@ export class TablaCausaComponent implements OnInit , OnDestroy {
   dtElement: DataTableDirective;
   dtOptions: any = {};
   dtTrigger: Subject<TipoCausa> = new Subject<TipoCausa>();
-  @Input() queryString: string;
   @Input() alltipocausa!: ITipoCausa[];
   imagen: any;
   constructor(
