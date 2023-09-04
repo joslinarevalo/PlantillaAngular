@@ -4,33 +4,7 @@
   </h5>
   <form [formGroup]="formularioTratamiento">
     <div class="row">
-      <div class="mt-1 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-        <label class="control-label">Seleccionar Imagen Tratamiento</label>
-        <input
-          class="form-control"
-          type="file"
-          id="urlTratamiento"
-          accept="image/*"
-          formControlName="urlTratamiento"
-          (change)="SeleccionarImagen($event)"
-          [ngClass]="esCampoValido('urlTratamiento')"
-        />
-        <div class="invalid-feedback">
-          <span
-            *ngIf="formularioTratamiento.get('urlTratamiento')?.errors?.['required']"
-            >Requiere una imagen de Pesticida ó Tratamiento</span
-          >
-        </div>
-      </div>
-      <div class="mt-1 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-        <img
-          width="100px"
-          height="100px"
-          class="img-fluid"
-          [src]="imagenMostrar"
-          *ngIf="imagenMostrar != undefined"
-        />
-      </div>
+    
       <div class="mt-1 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
         <label class="control-label">Nombre Pesticida/Tratamiento</label>
         <input
@@ -111,41 +85,34 @@
           >
         </div>
       </div>
-    </div>
-    <!-- <div class="row mt-3">
-      <div class="mt-1 col-6">
-        <button
-          type="button"
-          class="verdeOscuro"
-          id="btn-save-event"
-          (click)="guardar()"
-          *ngIf="leyenda=='Registrar'"
-        >
-          Guardar
-        </button>
-        <button
-        type="button"
-        class="btn btn-warning"
-        id="btn-warning-event"
-        (click)="modificar()"
-        *ngIf="leyenda=='Modificar'"
-      >
-        Modificar
-      </button>
+      <div class="mt-1 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+        <label class="control-label">Seleccionar Imagen Tratamiento</label>
+        <input
+          class="form-control"
+          type="file"
+          id="urlTratamiento"
+          accept="image/*"
+          formControlName="urlTratamiento"
+          (change)="SeleccionarImagen($event)"
+          [ngClass]="esCampoValido('urlTratamiento')"
+        />
+        <div class="invalid-feedback">
+          <span
+            *ngIf="formularioTratamiento.get('urlTratamiento')?.errors?.['required']"
+            >Requiere una imagen de Pesticida ó Tratamiento</span
+          >
+        </div>
       </div>
-      <div class="mt-1 col-6">
-        <button
-          type="button"
-          class="rojoOscuro"
-          id="btn-save-event"
-          (click)="cerrarModal()"
-        >
-          Cerrar
-        </button>
+      <div class="mt-1 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 text-center">
+        <img
+          width="100px"
+          height="100px"
+          class="img-fluid"
+          [src]="imagenMostrar"
+          *ngIf="imagenMostrar != undefined"
+        />
       </div>
-   
     </div>
-   -->
     <div class="text-center mb-3 mt-2">
       <!-- Centrar los botones y agregar espacio inferior -->
       <button
@@ -158,7 +125,7 @@
       </button>
       <button
         type="button"
-        class="btn btn-success"
+        class="btn btnguardarModal"
         *ngIf="leyenda == 'Modificar'"
         (click)="modificar()"
       >

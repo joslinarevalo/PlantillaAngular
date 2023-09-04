@@ -1,5 +1,5 @@
 export interface ITratamientoMostrar{
-    idTratamiento?:number,
+    idTratamiento?:string,
     nombrePesticidaTratamiento:string,
     descripcionTratamiento:string,
     aplicacionTratamiento:string,
@@ -10,7 +10,7 @@ export interface ITratamientoMostrar{
     archivo?:File
 }
 export interface ITratamientoDTOValid{
-    idTratamiento?:number,
+    idTratamiento?:string,
     nombrePesticidaTratamiento:string,
     descripcionTratamiento:string,
     aplicacionTratamiento:string,

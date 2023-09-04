@@ -1,18 +1,17 @@
-<h5 class="caja text-center mt-4">{{leyenda}} Detalle Tratamiento</h5>
+<h5 class="cajaModal text-center mt-4 texto-mayusculas">{{leyenda}} Detalle Tratamiento</h5>
 <div class="modal-body">
   <form [formGroup]="formularioDetalleTratamiento">
     <div class="row">
      
       <div class="mt-1 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
         <label class="control-label">Seleccionar Tratamiento</label>
-        <select
+        <ng-select 
           class="form-control"
           id="idTratamiento"
           formControlName="idTratamiento"
           [ngClass]="esCampoValido('idTratamiento')">
-          <option *ngFor="let tratamiento of listTratamiento" 
-          value="{{tratamiento.idTratamiento}}">{{tratamiento.nombrePesticidaTratamiento}}</option>
-        </select>
+          <ng-option *ngFor="let tratamiento of listTratamiento" [value]="tratamiento.idTratamiento">{{tratamiento.nombrePesticidaTratamiento}}</ng-option>
+        </ng-select >
        
         <div class="invalid-feedback">
           <span
@@ -23,15 +22,13 @@
       </div>
       <div class="mt-1 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
         <label class="control-label">Seleccionar Detalle Causa</label>
-        <select
+        <ng-select 
           class="form-control"
           id="idDetalleCausa"
           formControlName="idDetalleCausa"
           [ngClass]="esCampoValido('idDetalleCausa')">
-          <option *ngFor="let causa of listDetalleCausa" 
-          value="{{causa.idCausa}}">{{causa.descripcionCausa
-          }}</option>
-        </select>
+          <ng-option *ngFor="let causa of listDetalleCausa" [value]="causa.idDetalleCausa">{{causa.descripcionDetalleCausa}}</ng-option>
+        </ng-select >
         
         <div class="invalid-feedback">
           <span
@@ -45,10 +42,10 @@
       
     </div>
     <div class="text-center mb-3 mt-2"> <!-- Centrar los botones y agregar espacio inferior -->
-        <button type="button" class="btn btn-success " (click)="guardar()" *ngIf="leyenda=='Registrar'"><i class="fas fa-check"></i>Guardar</button>
-        <button type="button" class="btn btn-success " *ngIf="leyenda=='Modificar'" (click)="modificar()"><i class="fas fa-check" ></i>{{leyenda}}</button>
+        <button type="button" class="btn btnguardarModal" (click)="guardar()" *ngIf="leyenda=='Registrar'"><i class="fas fa-check"></i>Guardar</button>
+        <button type="button" class="btn btnguardarModal" *ngIf="leyenda=='Modificar'" (click)="modificar()"><i class="fas fa-check" ></i>{{leyenda}}</button>
         <span class="mx-2"></span> <!-- Agregar un espacio horizontal entre los botones -->
-        <button type="button" class="btn btn-primary " aria-hidden="true"(click)="cerrarModal()"><i class="fas fa-long-arrow-alt-right"></i>cerrar</button>
+        <button type="button" class="btn btnCerrar " aria-hidden="true"(click)="cerrarModal()"><i class="dripicons-cross"></i>cerrar</button>
     </div>
       </form>
     </div>
