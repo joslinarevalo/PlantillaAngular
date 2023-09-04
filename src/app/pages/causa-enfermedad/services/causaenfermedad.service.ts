@@ -33,10 +33,13 @@ export class CausaenfermedadService {
   eliminarCausa(tcausa:ITipoCausa):Observable<any>{
     return this.http.delete<any>(urlEndPoint+"/eliminar/"+tcausa.idTipoCausa);
   }
-  editarTipoCausa(tipoCausa: TipoCausa):any {
+  editarTipoCausa(tipoCausa: TipoCausa, file: File):any {
     console.log("entro a editar los tipoCausa: ",tipoCausa);
+    const formData: FormData = new FormData();
+    formData.append('imagen', file);
+    formData.append('tipoCausa', JSON.stringify(tipoCausa));
     const url =`${urlEndPoint}/modificar`;
-    return this.http.put(url, tipoCausa);
+    return this.http.put(url, formData);
   }
   addTipoCausa(tipoCausa: TipoCausa, file: File): Observable<Object> {
     console.log("si entra");

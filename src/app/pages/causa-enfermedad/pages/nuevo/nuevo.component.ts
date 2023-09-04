@@ -111,29 +111,36 @@ export class NuevoComponent implements OnInit {
       });
   }
   editando() {
-    const causa: any = {
+    // Obtener los valores del formulario
+    const tipoTC = this.formularioCausa.get("tipoTC").value;
+    const definicionTipoTC = this.formularioCausa.get("definicion").value;
+    const urlTC = this.formularioCausa.get("urlTipo").value;
+  
+    // Crear un objeto TipoCausa con los valores
+    const tipoCausa: TipoCausa = {
       idTipoCausa: this.causaT.idTipoCausa,
-      tipoTC: this.formularioCausa.get("tipoTC").value,
-      definicionTipoTC: this.formularioCausa.get("definicion").value,
-      urlTC: this.formularioCausa.get("urlTipo").value,
+      tipoTC: tipoTC,
+      definicionTipoTC: definicionTipoTC,
+      urlTC: urlTC,
     };
-    console.log("editando", causa);
-      this.causaenfermedadservice.editarTipoCausa(causa).subscribe({
-        next: (resp) => {
-          mensajeExito("Tipo de Causa editado con exito");
-        },
-        error: (err) => {
-          mensajeError("Error al guardar el Tipo de causa");
-        },
-        complete: () => {
-          this.modalService.dismissAll();
-          this.formularioCausa.reset();
-          this.recargar();
-         
-        },
-      });
-    
+  
+    console.log("editando", tipoCausa);
+  
+    this.causaenfermedadservice.editarTipoCausa(tipoCausa,this.fotoSeleccionada).subscribe({
+      next: (resp) => {
+        mensajeExito("Tipo de Causa editado con éxito");
+      },
+      error: (err) => {
+        mensajeError("Error al guardar el Tipo de causa");
+      },
+      complete: () => {
+        this.modalService.dismissAll();
+        this.formularioCausa.reset();
+        this.recargar();
+      },
+    });
   }
+  
 
   recargar() {
     let currentUrl = this.router.url;
