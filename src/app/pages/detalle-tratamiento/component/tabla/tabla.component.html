@@ -1,26 +1,24 @@
 
-<div >
-    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"  class="display" style="width:100%">
-    <thead class="table-ligth" >
+<div class="table-responsive mb-0 mt-2">
+    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"  class="table  row-border hover " style="width:100%">
+    <thead class="tabla" >
       <tr>
-        <th>ID</th>
         <th>Tratamiento</th>
-        <th>Detalle Causa</th>
+        <th>Enfermedad</th>
         <th>Acciones</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let data of listaDetalleTratamiento">
-
-        <td>
-          <a href="javascript: void(0);" class="text-body fw-bold">{{data.idDetalleTratamiento}}</a>
-        </td>
         <td>{{data.nombreTratamiento}}</td>
         <td class="truncate-text">{{data.descripcionDetalleCausa}}</td>
-        <td>
-            <button class="editar btnModificar fas fa-edit mx-1 col-lx-6 col-md-6 col-sm-12 col-12 mx-auto" (click)="ObtenerDetalleTratamientoModificar(data)">Modificar </button>
-            <button class="eliminar btnEliminar fas fa-trash-alt col-lx-6 col-md-6 col-sm-12 col-12 mx-auto" (click)="ObtenerDetalleTratamientoEliminar(data)"> Eliminar</button>
-        </td>
+        <td class="text-sm-end" >
+          <div class="d-flex">
+            <div class="col-sm-6"><button type="button" class="btn btnModificar btn-sm mb-2 mr-2 btn-rounded" (click)="ObtenerDetalleTratamientoModificar(data)"> <i class="fas fa-edit"> </i></button> </div>
+            <div class="col-sm-6 mt-1"><button type="button" class="btn btnEliminar btn-sm mb-2 mr-2 btn-rounded" (click)="ObtenerDetalleTratamientoEliminar(data)"><i class="fas fa-trash-alt" ></i></button></div>
+          </div>
+          
+      </td>
       </tr>
     </tbody>
     </table>

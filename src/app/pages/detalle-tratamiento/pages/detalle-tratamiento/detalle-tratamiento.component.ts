@@ -28,6 +28,7 @@ export class DetalleTratamientoComponent implements OnInit {
   }
   openModal(content: any) {
     this.leyenda="Registrar";
+    this.formularioDetalleTratamiento.reset();
     this.modalService.open(content, this.modalOptions);
     
   }
@@ -92,6 +93,7 @@ export class DetalleTratamientoComponent implements OnInit {
           
   }
   modificarTratamiento(objetoModificar:IDetalleTratamientoDTOMostrar,content:any){
+    console.log(objetoModificar);
     this.formularioDetalleTratamiento.patchValue(objetoModificar);
     this.leyenda="Modificar";
      this.modalService.open(content, this.modalOptions);

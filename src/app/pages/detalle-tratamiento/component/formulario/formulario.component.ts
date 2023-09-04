@@ -58,13 +58,12 @@ export class FormularioComponent implements OnInit {
   }
   modificar() {
     if (this.formulario_valido()) {
-      console.log(this.formularioDetalleTratamiento); 
-      this. detalleTratamiento = {
+      //console.log(this.formularioDetalleTratamiento); 
+      this.detalleTratamiento = {
         idDetalleCausa: this.formularioDetalleTratamiento.controls['idDetalleCausa'].value,
         idTratamiento: this.formularioDetalleTratamiento.controls['idTratamiento'].value,
         idDetalleTratamiento:this.formularioDetalleTratamiento.controls['idDetalleTratamiento'].value
       };
-      //this.presentacion=this.formulario.value;
       console.log(this.detalleTratamiento);
       this.ObjetoModificar.emit(this.detalleTratamiento);
     } else {
@@ -107,6 +106,7 @@ export class FormularioComponent implements OnInit {
   listaTratamiento(){
     this.serviceTratamiento.listaDeTratamiento().subscribe((resp)=>{
       this.listTratamiento=resp;
+      console.log(resp);
     })
   }
 

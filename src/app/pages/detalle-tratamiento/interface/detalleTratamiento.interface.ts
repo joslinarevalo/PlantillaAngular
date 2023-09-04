@@ -1,17 +1,17 @@
 export interface IDetalleTratamientoDTOMostrar{
         nombreTratamiento: string,
         descripcionDetalleCausa: string,
-        idDetalleTratamiento: number,
-        idDetalleCausa: number,
-        idTratamiento: number
+        idDetalleTratamiento: string,
+        idDetalleCausa: string,
+        idTratamiento: string
 
 }
 export interface IDetalleTratamientoDTOValid{
-    idDetalleTratamiento?: number,
-    idDetalleCausa: number,
-    idTratamiento: number
+    idDetalleTratamiento?: string,
+    idDetalleCausa: string,
+    idTratamiento: string
 }
 export interface IDetalleCausaDTO{
-    idCausa:number,
-    descripcionCausa:string
+    idDetalleCausa:string,
+    descripcionDetalleCausa:string
 }
