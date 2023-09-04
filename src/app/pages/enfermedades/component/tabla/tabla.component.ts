@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
-import { IEnfermedad, IEnfermedadMostrar } from '../../interfaces/IEnfermedad';
+import { IEnfermedadMostrar } from '../../interfaces/IEnfermedad';
 import { DataTableDirective } from 'angular-datatables';  
 import { Subject } from 'rxjs';
 import { EnfermedadService } from '../../service/enfermedad.service';
@@ -12,7 +12,6 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class TablaComponent implements OnInit {
   @ViewChild(DataTableDirective, { static: false} ) 
-  dtElement: DataTableDirective;
   dtOptions: any = {};
   dtTrigger: Subject<IEnfermedadMostrar> = new Subject<IEnfermedadMostrar>();
   p: any;
@@ -29,9 +28,9 @@ export class TablaComponent implements OnInit {
   ngOnInit(): void {
     this.dtOptions={
       columnDefs: [
-        { responsivePriority: 2, targets: 1 },
+        { responsivePriority: 3, targets: 1 },
         { responsivePriority: 10001, targets: 4 },
-        { responsivePriority: 3, targets: 9 },
+        { responsivePriority: 2, targets: 5 },
         { responsivePriority: 1, targets: -1 }
     ],
       lengthMenu: [5,10,15,20,50],
@@ -67,10 +66,27 @@ export class TablaComponent implements OnInit {
           this.imagen=this.dm.bypassSecurityTrustUrl(url);
           //console.log(this.imagen);
           element.imagen=this.imagen;
+          //nuevo
+          element.archivo=this.convertirArchivo(resp,element.urlEnfermedad);
+          console.log(element.archivo);
+          this.dtTrigger.next(null);
         });
       });
-
-      this.dtTrigger.next(null);
     });
   }
+
+  convertirArchivo(blob: Blob | undefined, url:string): File {
+    let miArchivo!: File;
+    let nombre=url.substring(36);
+    console.log("nombre del archivo a modificar: "+nombre);
+    if (blob != undefined) {
+      miArchivo = new File([blob], nombre, {
+        type: blob.type,
+      });
+      return miArchivo;
+    } else {
+      return miArchivo;
+    }
+  }
+  
 }

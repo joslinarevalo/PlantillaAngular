@@ -118,15 +118,15 @@
         </div>
       </div>
       <br>
-      <div class="col-12 text-center mb-4">
+      <div class="mt-1 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 text-center">
         <img width="100px" height="100px" class="img-fluid" [src]="imagenMostrar" *ngIf="imagenMostrar != undefined" />
       </div>
 
     </div>
     <div class="text-center mb-3 mt-2"> <!-- Centrar los botones y agregar espacio inferior -->
-      <button type="button" class="btn btnCerrar" (click)="guardar()" *ngIf="leyenda=='Registrar'"><i
+      <button type="button" class="btn btnguardarModal" (click)="guardar()" *ngIf="leyenda=='Registrar'"><i
           class="fas fa-check"></i>Guardar</button>
-      <button type="button" class="btn btn-success " *ngIf="leyenda=='Modificar'" (click)="modificar()"><i
+      <button type="button" class="btn btnguardarModal " *ngIf="leyenda=='Modificar'" (click)="modificar()"><i
           class="fas fa-check"></i>{{leyenda}}</button>
       <span class="mx-2"></span> <!-- Agregar un espacio horizontal entre los botones -->
       <button type="button" class="btn btnCerrar" aria-hidden="true" (click)="cerrarModal()"><i

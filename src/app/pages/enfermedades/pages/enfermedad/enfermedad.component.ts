@@ -179,7 +179,7 @@ export class EnfermedadComponent implements OnInit {
     };
   }
 
-  validarImagen(control: any) {
+  /* validarImagen(control: any) {
     const archivo = control.value;
     if (!archivo) {
       return null; // No se seleccionó ningún archivo
@@ -196,6 +196,6 @@ export class EnfermedadComponent implements OnInit {
     }
 
     return null; // Archivo válido
-  }
+  } */
 
 }
