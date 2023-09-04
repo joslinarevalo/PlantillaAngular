@@ -9,8 +9,6 @@ import {
   mensajeError,
   mensajeExito,
 } from "src/app/pages/models/funciones.global";
-
-
 @Component({
   selector: "app-nuevo",
   templateUrl: "./nuevo.component.html",

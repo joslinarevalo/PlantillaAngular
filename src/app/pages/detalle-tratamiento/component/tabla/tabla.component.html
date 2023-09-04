@@ -1,0 +1,27 @@
+
+<div >
+    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"  class="display" style="width:100%">
+    <thead class="table-ligth" >
+      <tr>
+        <th>ID</th>
+        <th>Tratamiento</th>
+        <th>Detalle Causa</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of listaDetalleTratamiento">
+
+        <td>
+          <a href="javascript: void(0);" class="text-body fw-bold">{{data.idDetalleTratamiento}}</a>
+        </td>
+        <td>{{data.nombreTratamiento}}</td>
+        <td class="truncate-text">{{data.descripcionDetalleCausa}}</td>
+        <td>
+            <button class="editar btnModificar fas fa-edit mx-1 col-lx-6 col-md-6 col-sm-12 col-12 mx-auto" (click)="ObtenerDetalleTratamientoModificar(data)">Modificar </button>
+            <button class="eliminar btnEliminar fas fa-trash-alt col-lx-6 col-md-6 col-sm-12 col-12 mx-auto" (click)="ObtenerDetalleTratamientoEliminar(data)"> Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+    </table>
+</div>

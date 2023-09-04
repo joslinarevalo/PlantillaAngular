@@ -1,0 +1,137 @@
+<!-- Modal -->
+
+<div class="cajaModal text-center mt-4 texto-mayusculas">
+  <h5 class="cajaModal text-center mt-4 texto-mayusculas">{{enfermedad}} Enfermedad</h5>
+</div>
+<div class="modal-body">
+  <form [formGroup]="formularioEnfermedad">
+    <div class="row">
+
+      <div class="mt-1 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+        <label class="control-label">Nombre común</label>
+        <input class="form-control" type="text" id="nombreComunEnfermedad" formControlName="nombreComunEnfermedad"
+          [ngClass]="esCampoValido('nombreComunEnfermedad')" />
+        <div class="invalid-feedback">
+          <span *ngIf="formularioEnfermedad.get('nombreComunEnfermedad').hasError('required')">
+            Requiere un nombre común de la enfermedad
+          </span>
+          <span *ngIf="formularioEnfermedad.get('nombreComunEnfermedad').hasError('espaciosVacios')">
+            No se permiten espacios en blanco como valor
+          </span>
+        </div>
+      </div>
+      <div class="mt-1 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+        <label class="control-label">Nombre científico de la enfermedad</label>
+        <input class="form-control" type="text" id="nombreCientificoEnfermedad"
+          formControlName="nombreCientificoEnfermedad" [ngClass]="esCampoValido('nombreCientificoEnfermedad')" />
+        <div class="invalid-feedback">
+          <span *ngIf="formularioEnfermedad.get('nombreCientificoEnfermedad')?.errors?.['required']">
+            Requiere un nombre cientifico de la enfermedad</span>
+          <span *ngIf="formularioEnfermedad.get('nombreCientificoEnfermedad').hasError('espaciosVacios')">
+            No se permiten espacios en blanco como valor
+          </span>
+        </div>
+      </div>
+
+      <div class="mt-1 col-6">
+        <label class="control-label">Etapa que afecta</label>
+        <input class="form-control" type="text" id="etapaEnfermedad" formControlName="etapaEnfermedad"
+          [ngClass]="esCampoValido('etapaEnfermedad')" />
+        <div class="invalid-feedback">
+          <span *ngIf="formularioEnfermedad.get('etapaEnfermedad')?.errors?.['required']">
+            Requiere etapa a la que afecta</span>
+          <span *ngIf="formularioEnfermedad.get('etapaEnfermedad').hasError('espaciosVacios')">
+            No se permiten espacios en blanco como valor
+          </span>
+        </div>
+      </div>
+      <div class="mt-1 col-6">
+        <label class="control-label">Tipo de enfermedad</label>
+        <input class="form-control" type="text" id="tipoEnfermedad" formControlName="tipoEnfermedad"
+          [ngClass]="esCampoValido('tipoEnfermedad')" />
+        <div class="invalid-feedback">
+          <span *ngIf="formularioEnfermedad.get('tipoEnfermedad')?.errors?.['required']">
+            Requiere de un tipo enfermedad</span>
+          <span *ngIf="formularioEnfermedad.get('tipoEnfermedad').hasError('espaciosVacios')">
+            No se permiten espacios en blanco como valor
+          </span>
+        </div>
+      </div>
+
+      <div class="mt-1 col-6">
+        <label class="control-label">Condición favorable para la enfermedad</label>
+        <textarea class="form-control" type="text" id="condicionFavorableEnfermedad"
+          formControlName="condicionFavorableEnfermedad"
+          [ngClass]="esCampoValido('condicionFavorableEnfermedad')"></textarea>
+        <div class="invalid-feedback">
+          <span *ngIf="formularioEnfermedad.get('condicionFavorableEnfermedad')?.errors?.['required']">
+            Requiere las condiciones favorables para la enfermedad</span>
+            <span *ngIf="formularioEnfermedad.get('condicionFavorableEnfermedad').hasError('espaciosVacios')">
+              No se permiten espacios en blanco como valor
+            </span>
+        </div>
+      </div>
+      <div class="mt-1 col-6">
+        <label class="control-label">Partes que afecta la enfermedad</label>
+        <textarea class="form-control" type="text" id="partesAfectadasEnfermedad"
+          formControlName="partesAfectadasEnfermedad" [ngClass]="esCampoValido('partesAfectadasEnfermedad')"></textarea>
+        <div class="invalid-feedback">
+          <span *ngIf="formularioEnfermedad.get('partesAfectadasEnfermedad')?.errors?.['required']">
+            Requiere partes que afecta a la planta</span>
+            <span *ngIf="formularioEnfermedad.get('partesAfectadasEnfermedad').hasError('espaciosVacios')">
+              No se permiten espacios en blanco como valor
+            </span>
+        </div>
+      </div>
+      <div class="mt-1 col-12">
+        <label class="control-label">Descripción de la enfermedad</label>
+        <textarea class="form-control" type="text" id="descripcionEnfermedad" formControlName="descripcionEnfermedad"
+          [ngClass]="esCampoValido('descripcionEnfermedad')"></textarea>
+        <div class="invalid-feedback">
+          <span *ngIf="formularioEnfermedad.get('descripcionEnfermedad')?.errors?.['required']">
+            Requiere una descripcion de la enfermedad</span>
+            <span *ngIf="formularioEnfermedad.get('descripcionEnfermedad').hasError('espaciosVacios')">
+              No se permiten espacios en blanco como valor
+            </span>
+        </div>
+      </div>
+      <div class="mt-1 col-12">
+        <label class="control-label">Síntomas de enfermedad</label>
+        <textarea class="form-control" type="text" id="sintomasEnfermedad" formControlName="sintomasEnfermedad"
+          [ngClass]="esCampoValido('sintomasEnfermedad')"></textarea>
+        <div class="invalid-feedback">
+          <span *ngIf="formularioEnfermedad.get('sintomasEnfermedad')?.errors?.['required']">
+            Requiere sintomasEnfermedad</span>
+            <span *ngIf="formularioEnfermedad.get('sintomasEnfermedad').hasError('espaciosVacios')">
+              No se permiten espacios en blanco como valor
+            </span>
+        </div>
+      </div>
+
+      <div class="mt-1 col-xl-8 col-lg-8 col-md-12 col-sm-12 col-12">
+        <label class="control-label">Seleccionar Imagen de la enfermedad</label>
+        <input class="form-control" type="file"  accept="image/*" id="urlEnfermedad" formControlName="urlEnfermedad"
+          (change)="SeleccionarImagen($event)" [ngClass]="esCampoValido('urlEnfermedad')" />
+        <div class="invalid-feedback">
+          <!-- <span *ngIf="formularioEnfermedad.get('urlEnfermedad')?.errors?.['required']">
+            Requiere una imagen de la enfermedad</span> -->
+        </div>
+      </div>
+      <br>
+      <div class="col-12 text-center mb-4">
+        <img width="100px" height="100px" class="img-fluid" [src]="imagenMostrar" *ngIf="imagenMostrar != undefined" />
+      </div>
+
+    </div>
+    <div class="text-center mb-3 mt-2"> <!-- Centrar los botones y agregar espacio inferior -->
+      <button type="button" class="btn btnCerrar" (click)="guardar()" *ngIf="leyenda=='Registrar'"><i
+          class="fas fa-check"></i>Guardar</button>
+      <button type="button" class="btn btn-success " *ngIf="leyenda=='Modificar'" (click)="modificar()"><i
+          class="fas fa-check"></i>{{leyenda}}</button>
+      <span class="mx-2"></span> <!-- Agregar un espacio horizontal entre los botones -->
+      <button type="button" class="btn btnCerrar" aria-hidden="true" (click)="cerrarModal()"><i
+          class="dripicons-cross"></i>Cerrar</button>
+    </div>
+  </form>
+</div>
+<!-- Modal -->

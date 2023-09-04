@@ -1,0 +1,39 @@
+<div class="container-fluid">
+    <div class="row mt-2">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="caja">DETALLE TRATAMIENTO</div>
+                    <div class="row mt-4">
+                        <div class="col-sm-12">
+                            <div class="text-sm-end">
+                                <div >
+                                    <div class="text-sm-end">
+                                        <button type="button" class="btn btnguardar btn-sm mb-2 mr-2 btn-rounded" (click)="openModal(content)">
+                                            <i class="fas fa-seedling"></i>Nuevo
+                                        </button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                        <!-- Contenido del Scroll data -->
+                        <app-tabla [listaDetalleTratamiento]="listaDetalleTratamiento"
+                        (ObjetoTratamientoEliminar)="eliminarTratamiento($event)"
+                        (ObjetoTratamientoModificar)="modificarTratamiento($event,content)"></app-tabla>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <ng-template #content role="document" let-modal>
+        <app-formulario [ModalService]="modalService"
+        [formularioDetalleTratamiento]="formularioDetalleTratamiento"
+        (ObjetoGuardar)="guardarTratamiento($event)"
+        [leyenda]="leyenda"
+        (ObjetoModificar)="modificarTratamientoFormulario($event)"
+        ></app-formulario>
+    </ng-template>
