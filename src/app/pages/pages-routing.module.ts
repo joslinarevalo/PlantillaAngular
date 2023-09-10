@@ -4,21 +4,9 @@ import { Routes, RouterModule } from "@angular/router";
 import { DefaultComponent } from "./dashboards/default/default.component";
 
 const routes: Routes = [
-  { path: "", redirectTo: "dashboard" },
-  { path: "dashboard", component: DefaultComponent },
-  {
-    path: "dashboards",
-    loadChildren: () =>
-      import("./dashboards/dashboards.module").then((m) => m.DashboardsModule),
-  },
-  {
-    path: "icons",
-    loadChildren: () =>
-      import("./icons/icons.module").then((m) => m.IconsModule),
-  },
-  {
-    path: "detallecausa",
-    loadChildren: () =>
+  { path: '', redirectTo: 'dashboard' },
+  { path: 'dashboard', component: DefaultComponent },
+  {path: "detallecausa",loadChildren: () =>
       import("./detalle-causa/detalle-causa.module").then(
         (m) => m.DetalleCausaModule
       ),

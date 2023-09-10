@@ -17,12 +17,12 @@ $sidebar-collapsed-width:  70px;
 $sidebar-width-sm:  160px;
 
 // Vertical Sidebar - Dark $header-bg
-$sidebar-dark-bg: #ffffff; //2c313a
+$sidebar-dark-bg: #E8E5E5; //2c313a
 $sidebar-dark-menu-item-color: #757575;
 $sidebar-dark-menu-sub-item-color: #79829c;
 $sidebar-dark-menu-item-icon-color: #6a7187;
 $sidebar-dark-menu-item-hover-color: #972727;
-$sidebar-dark-menu-item-active-color: #972727;
+$sidebar-dark-menu-item-active-color: #960000;
 
 // Topbar - Deafult Light
 $header-height: 70px;
@@ -1387,8 +1387,6 @@ $spinner-width-sm:        1rem;
 $spinner-height-sm:       $spinner-width-sm;
 $spinner-border-width-sm: .2em;
 
-
-
 // Close
 
 $btn-close-width:            1em;
@@ -1415,7 +1413,6 @@ $kbd-padding-x:                     .4rem;
 $kbd-font-size:                     $code-font-size;
 $kbd-color:                         $white;
 $kbd-bg:                            $gray-900;
-
 $pre-color:                         $gray-900;
 
 
