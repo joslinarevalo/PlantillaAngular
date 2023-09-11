@@ -102,7 +102,7 @@ export class EnfermedadComponent implements OnInit {
   }
 
   modificarEnfermedadFormulario(enfermedadModificar: FormData) {
-    //console.log(enfermedadModificar);
+    console.log(enfermedadModificar);
     this.serviceEnfermedad.modificar(enfermedadModificar)
       .subscribe({
         next: (resp) => {

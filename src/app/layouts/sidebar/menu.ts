@@ -48,6 +48,6 @@ export const MENU: MenuItem[] = [
     id: 13,
     label: "Consultas",
     icon: "bx bx-file",
-    link: "",
+    link: "/reportes/reporte",
   },
 ];

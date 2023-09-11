@@ -1,0 +1,56 @@
+<div class="container-fluid">
+    <div class="row mt-2">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="caja">REPORTES DEL SISTEMA</div>
+                    <div class="table-responsive mb-0 mt-2">
+                        <table datatable [dtOptions]="dtOptions"  class="table  row-border hover " style="width:100%">
+                        <thead class="tabla" >
+                          <tr>
+                            <th>Lista de Reportes</th>
+                            <th>Descargar</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>Enfermedad mas contagiosa</td>
+                            <td class="text-sm-end" >
+                              <div class="d-flex">
+                                <div class="col-sm-6"><button type="button" class="btn btnModificar btn-sm mb-2 mr-2 btn-rounded" (click)="descargarPdf('pdfEnfermedadMasContagiosa')"> <i class="fas fa-edit"> </i></button> </div>
+                              </div>
+                          </td>
+                          </tr>
+                          <tr>
+                            <td>Enfermedades que no tienen cura</td>
+                            <td class="text-sm-end" >
+                              <div class="d-flex">
+                                <div class="col-sm-6"><button type="button" class="btn btnModificar btn-sm mb-2 mr-2 btn-rounded" (click)="descargarPdf('pdfEnfermedadSinCura')"> <i class="fas fa-edit"> </i></button> </div>
+                              </div>
+                          </td>
+                          </tr>
+                          <tr>
+                            <td>Enfermedades menos comunes</td>
+                            <td class="text-sm-end" >
+                              <div class="d-flex">
+                                <div class="col-sm-6"><button type="button" class="btn btnModificar btn-sm mb-2 mr-2 btn-rounded" (click)="descargarPdf('pdfEnfermedadMenosContagiosa')"> <i class="fas fa-edit"> </i></button> </div>
+                              </div>
+                          </td>
+                          </tr>
+                          <tr>
+                            <td>Enfermedades mas comunes</td>
+                            <td class="text-sm-end" >
+                              <div class="d-flex">
+                                <div class="col-sm-6"><button type="button" class="btn btnModificar btn-sm mb-2 mr-2 btn-rounded" (click)="descargarPdf('pdfEnfermedadesComunes')"> <i class="fas fa-edit"> </i></button> </div>
+                              </div>
+                          </td>
+                          </tr>
+                        </tbody>
+                        </table>
+                    </div>
+                    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
