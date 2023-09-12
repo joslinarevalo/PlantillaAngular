@@ -11,15 +11,19 @@ import { DomSanitizer } from '@angular/platform-browser';
   styleUrls: ['./tabla.component.scss']
 })
 export class TablaComponent implements OnInit {
-  @ViewChild(DataTableDirective, { static: false} ) 
-  dtOptions: any = {};
-  dtTrigger: Subject<IEnfermedadMostrar> = new Subject<IEnfermedadMostrar>();
   p: any;
   imagen:any;
+  
   @Input()listaEnfermedades:IEnfermedadMostrar[]=[];
   @Output()ObjetoEnfermedadEliminar= new EventEmitter<IEnfermedadMostrar>();
   @Output()ObjetoEnfermedadModificar= new EventEmitter<IEnfermedadMostrar>();
-  
+  @ViewChild(DataTableDirective, { static: false} ) 
+  dtElement: DataTableDirective;
+
+   dtOptions: any = {};
+  //dtOptions: DataTables.Settings = {};
+  dtTrigger: Subject<IEnfermedadMostrar> = new Subject<IEnfermedadMostrar>();
+
   constructor(
     private enfService: EnfermedadService,
     private dm:DomSanitizer
@@ -68,7 +72,7 @@ export class TablaComponent implements OnInit {
           element.imagen=this.imagen;
           //nuevo
           element.archivo=this.convertirArchivo(resp,element.urlEnfermedad);
-          console.log(element.archivo);
+          //console.log(element.archivo);
           this.dtTrigger.next(null);
         });
       });
