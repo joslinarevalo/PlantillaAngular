@@ -1,0 +1,45 @@
+<div class="container-fluid">
+  
+  <div class="row">
+    <div class="card">
+      <div class="col-lg-12">
+        <div class="row mb-3">
+          <div class="col-lg-12 col-sm-12">
+          
+          </div>
+        </div>
+        <div class="row">
+          <div class="card-body">
+            <h2 class="card-title mb-4 text-center">PATÓGENOS QUE ATACAN A LOS CULTIVOS</h2>
+            <p class="card-title mb-4 text-center">Los fitopatólogos estudian las enfermedades causadas por hongos,
+              bacterias, micoplasmas, plantas superiores parásitos, virus, viroides nematodos y protozoarios</p>
+          </div>
+          <div class="col-xl-4 col-sm-6" *ngFor="let causa of alltipocausa">
+            <div class="card product-card">
+              <div class="card-body">
+                <div class="product-img position-relative">
+                  <div class="mt-4 text-center">
+                    <h5 class="mb-3 text-truncate">{{causa.tipoTC}}</h5>
+                  </div>
+                  <a [routerLink]="['/ecommerce/product-detail',causa.id]" href="javascript: void(0);">
+                    <img [src]="causa.imagen" class="img-fluid mx-auto d-block card-image">
+                  </a>
+                  
+                 </div>
+                <div class="mt-4 text-center">
+        
+                    <div class=""><button type="button" class="btn btnEliminar " (click)="verDetalle(causa.idTipoCausa)" ><i class="fas fa-long-arrow-alt-right" ></i> Ver detalle</button></div>
+                
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- end row -->
+        </div>
+      
+      </div>
+    </div>
+   
+    <!-- end row -->
+  </div>
+</div>

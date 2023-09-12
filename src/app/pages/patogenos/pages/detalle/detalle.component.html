@@ -1,0 +1,28 @@
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="card">
+      <div class="col-lg-12">
+        <div class="row" *ngIf="causa">
+          <div class="card-body">
+            <h2 class="card-title mb-4 text-center">PATÓGENOS QUE ATACAN A LOS CULTIVOS</h2>
+            <p class="card-title mb-4 text-center">{{ causa.definicionTipoTC }}</p>
+          </div>
+
+          <div class="card product-card">
+            <div class="card-body">
+              <div class="product-img position-relative">
+                <div class="mt-4 text-center">
+                  <h5 class="mb-3 text-truncate">{{ causa.tipoTC }}</h5>
+                </div>
+                <img [src]="causa.imagen" class="img-fluid mx-auto d-block card-image">
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- end row -->
+      </div>
+    </div>
+    <!-- end row -->
+  </div>
+</div>
