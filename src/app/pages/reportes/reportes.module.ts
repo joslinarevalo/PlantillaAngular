@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { ReportesRoutingModule } from './reportes-routing.module';
 import { ReporteComponent } from './pages/reporte/reporte.component';
 import { DataTablesModule } from 'angular-datatables';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { DataTablesModule } from 'angular-datatables';
   imports: [
     CommonModule,
     ReportesRoutingModule,
-    DataTablesModule
+    DataTablesModule,
+    FormsModule
   ]
 })
 export class ReportesModule { }

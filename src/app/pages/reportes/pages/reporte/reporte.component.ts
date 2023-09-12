@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
 import { ReporteService } from '../../service/reporte.service';
+import { IPlantaDTO } from '../../interface/IPlantaDTO';
 
 @Component({
   selector: 'app-reporte',
@@ -9,6 +10,8 @@ import { ReporteService } from '../../service/reporte.service';
 })
 export class ReporteComponent implements OnInit {
   dtOptions: DataTables.Settings = {};
+  listPlantas:IPlantaDTO[]=[];
+  idplanta!:string;
   constructor(private reporteService:ReporteService) { }
 
   ngOnInit(): void {
@@ -23,6 +26,7 @@ export class ReporteComponent implements OnInit {
       pagingType: 'full_numbers',
       responsive: true
     };
+    this.listaPlantas();
   }
   descargarPdf(nombre:string){
     this.reporteService.generarConsultaPdf(nombre).subscribe((data:Blob)=>{
@@ -33,5 +37,21 @@ export class ReporteComponent implements OnInit {
       link.click();
     });
   }
+  descargarPdfParametro(nombre:string){
+    console.log(this.idplanta);
+    this.reporteService.generarConsultaEnfermedadesPlantaParamPdf(nombre,this.idplanta).subscribe((data:Blob)=>{
+      const blob= new Blob([data],{type:'application/pdf'});
+      const link=document.createElement('a');
+      link.href=URL.createObjectURL(blob);
+      link.download=nombre+".pdf";
+      link.click();
+    });
+  }
+listaPlantas(){
+  this.reporteService.listaPlantas().subscribe((resp)=>{
+    this.listPlantas=resp;
+    console.log(resp);
+  });
+}
 
 }

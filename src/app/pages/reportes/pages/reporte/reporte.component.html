@@ -9,41 +9,55 @@
                         <thead class="tabla" >
                           <tr>
                             <th>Lista de Reportes</th>
-                            <th>Descargar</th>
+                            <th >Descargar</th>
                           </tr>
                         </thead>
                         <tbody>
                           <tr>
                             <td>Enfermedad mas contagiosa</td>
-                            <td class="text-sm-end" >
+                            <td>
                               <div class="d-flex">
-                                <div class="col-sm-6"><button type="button" class="btn btnModificar btn-sm mb-2 mr-2 btn-rounded" (click)="descargarPdf('pdfEnfermedadMasContagiosa')"> <i class="fas fa-edit"> </i></button> </div>
+                                <div class="col-sm-6"><button type="button" class="btn btn-success btn-sm mb-2 mr-2 btn-rounded" (click)="descargarPdf('pdfEnfermedadMasContagiosa')"> <i class="dripicons-arrow-down"> </i></button> </div>
                               </div>
                           </td>
                           </tr>
                           <tr>
                             <td>Enfermedades que no tienen cura</td>
-                            <td class="text-sm-end" >
+                            <td>
                               <div class="d-flex">
-                                <div class="col-sm-6"><button type="button" class="btn btnModificar btn-sm mb-2 mr-2 btn-rounded" (click)="descargarPdf('pdfEnfermedadSinCura')"> <i class="fas fa-edit"> </i></button> </div>
+                                <div class="col-sm-6"><button type="button" class="btn btn-success btn-sm mb-2 mr-2 btn-rounded" (click)="descargarPdf('pdfEnfermedadSinCura')"> <i class="dripicons-arrow-down"> </i></button> </div>
                               </div>
                           </td>
                           </tr>
                           <tr>
                             <td>Enfermedades menos comunes</td>
-                            <td class="text-sm-end" >
+                            <td>
                               <div class="d-flex">
-                                <div class="col-sm-6"><button type="button" class="btn btnModificar btn-sm mb-2 mr-2 btn-rounded" (click)="descargarPdf('pdfEnfermedadMenosContagiosa')"> <i class="fas fa-edit"> </i></button> </div>
+                                <div class="col-sm-6"><button type="button" class="btn btn-success btn-sm mb-2 mr-2 btn-rounded" (click)="descargarPdf('pdfEnfermedadMenosContagiosa')"> <i class="dripicons-arrow-down"> </i></button> </div>
                               </div>
                           </td>
                           </tr>
                           <tr>
                             <td>Enfermedades mas comunes</td>
-                            <td class="text-sm-end" >
+                            <td>
                               <div class="d-flex">
-                                <div class="col-sm-6"><button type="button" class="btn btnModificar btn-sm mb-2 mr-2 btn-rounded" (click)="descargarPdf('pdfEnfermedadesComunes')"> <i class="fas fa-edit"> </i></button> </div>
+                                <div class="col-sm-6"><button type="button" class="btn btn-success btn-sm mb-2 mr-2 btn-rounded" (click)="descargarPdf('pdfEnfermedadesComunes')"> <i class="dripicons-arrow-down"> </i></button> </div>
                               </div>
                           </td>
+                        </tr>
+                        <tr>
+                          <td>Enfermedades de una planta especifica
+                          </td>
+                          <td>
+                            <div class="d-flex">
+                              <div class="col-sm-6">
+                                <select [(ngClass)]="idplanta">
+                                  <option *ngFor="let planta of listPlantas" [value]="planta.idplanta">{{planta.nombreplantacomun}}</option>
+                                </select>
+                              </div>
+                              <div class="col-sm-6"><button type="button" class="btn btn-success btn-sm mb-2 mr-2 btn-rounded" (click)="descargarPdfParametro('pdfEnfermedadesDeUnaPlanta')"> <i class="dripicons-arrow-down"> </i></button> </div>
+                            </div>
+                        </td>
                           </tr>
                         </tbody>
                         </table>
