@@ -52,6 +52,12 @@ const routes: Routes = [
       ),
   },
   {
+    path: "reportes",
+    loadChildren: () =>
+      import("./reportes/reportes.module").then(
+        (m) => m.ReportesModule
+      ),
+  },
     path: "consultaEnfermedades",
     loadChildren: () =>
       import("./consulta-enfermedad/consulta-enfermedad.module").then(
@@ -94,6 +100,7 @@ const routes: Routes = [
       ),
   },
   
+
 ];
 
 @NgModule({

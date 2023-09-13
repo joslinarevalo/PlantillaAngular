@@ -27,7 +27,6 @@ FullCalendarModule.registerPlugins([
   interactionPlugin,
   bootstrapPlugin,
 ]);
-
 @NgModule({
   declarations: [],
   imports: [

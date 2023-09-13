@@ -19,6 +19,14 @@
             *ngIf="formularioTratamiento.get('nombrePesticidaTratamiento')?.errors?.['required']"
             >Requiere una nombre de Pesticida ó Tratamiento</span
           >
+          <span
+          *ngIf="formularioTratamiento.get('nombrePesticidaTratamiento')?.errors?.['minlength']"
+          >tamaño minimo de nombre de Pesticida ó Tratamiento es de 3 caracteres</span
+        >
+        <span
+          *ngIf="formularioTratamiento.get('nombrePesticidaTratamiento')?.errors?.['maxlength']"
+          >tamaño maximo de nombre de Pesticida ó Tratamiento es de 100 caracteres</span
+        >
         </div>
       </div>
       <div class="mt-1 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
@@ -34,6 +42,14 @@
           <span
             *ngIf="formularioTratamiento.get('descripcionTratamiento')?.errors?.['required']"
             >Requiere una descripcion del Tratamiento</span
+          >
+          <span
+            *ngIf="formularioTratamiento.get('descripcionTratamiento')?.errors?.['minlength']"
+            >tamaño minimo de descripcion del Tratamiento es de 10 caracteres</span
+          >
+          <span
+            *ngIf="formularioTratamiento.get('descripcionTratamiento')?.errors?.['maxlength']"
+            >tamaño maximo de descripcion del Tratamiento es de 250 caracteres</span
           >
         </div>
       </div>
@@ -51,6 +67,14 @@
             *ngIf="formularioTratamiento.get('aplicacionTratamiento')?.errors?.['required']"
             >Requiere de aplicación de Tratamiento</span
           >
+          <span
+            *ngIf="formularioTratamiento.get('aplicacionTratamiento')?.errors?.['minlength']"
+            >tamaño minimo de aplicación de Tratamiento es de 10 caracteres</span
+          >
+          <span
+            *ngIf="formularioTratamiento.get('aplicacionTratamiento')?.errors?.['maxlength']"
+            >tamaño maximo de aplicación de Tratamiento es de 250 caracteres</span
+          >
         </div>
       </div>
       <div class="mt-1 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
@@ -67,6 +91,14 @@
             *ngIf="formularioTratamiento.get('indicacionesTratamiento')?.errors?.['required']"
             >Requiere de indicaciones de Tratamiento</span
           >
+          <span
+            *ngIf="formularioTratamiento.get('indicacionesTratamiento')?.errors?.['minlength']"
+            >tamaño minimo de indicaciones de Tratamiento es de 10 caracteres</span
+          >
+          <span
+            *ngIf="formularioTratamiento.get('indicacionesTratamiento')?.errors?.['maxlength']"
+            >tamaño maximo de indicaciones de Tratamiento es de 250 caracteres</span
+          >
         </div>
       </div>
       <div class="mt-1 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
@@ -82,6 +114,14 @@
           <span
             *ngIf="formularioTratamiento.get('tipoTratamiento')?.errors?.['required']"
             >Requiere de un tipo de Tratamiento</span
+          >
+          <span
+            *ngIf="formularioTratamiento.get('tipoTratamiento')?.errors?.['minlength']"
+            >tamaño minimo de tipo de Tratamiento es de 5 caracteres</span
+          >
+          <span
+            *ngIf="formularioTratamiento.get('tipoTratamiento')?.errors?.['maxlength']"
+            >tamaño maximo de tipo de Tratamiento es de 20 caracteres</span
           >
         </div>
       </div>

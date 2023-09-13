@@ -24,4 +24,5 @@ export class DetalleTratamientoService {
   eliminarDetalleTratamiento(detalleTratamiento:IDetalleTratamientoDTOMostrar):Observable<any>{
     return this.http.delete<any>(this.urlTratamiento+"eliminar/"+detalleTratamiento.idDetalleTratamiento);
   }
+ 
 }

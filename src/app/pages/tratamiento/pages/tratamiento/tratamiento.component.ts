@@ -32,18 +32,19 @@ export class TratamientoComponent implements OnInit {
   }
   openModal(content: any) {
     this.leyenda="Registrar";
+    this.formularioTratamiento.reset();
     this.modalService.open(content, this.modalOptions);
 
   }
   inicializarFormulario(): FormGroup {
     return this.fb.group({
       idTratamiento: [''],
-      nombrePesticidaTratamiento: ['', [Validators.required]],
-      descripcionTratamiento: ['', [Validators.required]],
-      aplicacionTratamiento: ['', [Validators.required]],
-      indicacionesTratamiento: ['', [Validators.required]],
-      tipoTratamiento: ['', [Validators.required]],
-      urlTratamiento: ['', [Validators.required]]
+      nombrePesticidaTratamiento: ['', [Validators.required,Validators.minLength(3),Validators.maxLength(250)]],
+      descripcionTratamiento: ['', [Validators.required,Validators.minLength(10),Validators.maxLength(250)]],
+      aplicacionTratamiento: ['', [Validators.required,Validators.minLength(10),Validators.maxLength(250)]],
+      indicacionesTratamiento: ['', [Validators.required,Validators.minLength(10),Validators.maxLength(250)]],
+      tipoTratamiento: ['', [Validators.required,Validators.minLength(5),Validators.maxLength(20)]],
+      urlTratamiento: ['', [Validators.required,,Validators.minLength(10),Validators.maxLength(200)]]
     });
   }
   listaTratamiento(){
@@ -101,6 +102,7 @@ export class TratamientoComponent implements OnInit {
         .modificarTratamiento(tratamientoModificar)
         .subscribe({
           next:(resp)=>{
+            console.log(resp);
             mensajeExito("Tratamiento modificado con exito");
           },
           error:(err)=>{
@@ -128,10 +130,12 @@ export class TratamientoComponent implements OnInit {
         .guardarTratamiento(tratamientoGuardar)
         .subscribe({
           next:(resp)=>{
+            console.log(resp);
             mensajeExito("Tratamiento guardado con exito");
           },
           error:(err)=>{
-            mensajeError("Error al guardar el tratamiento");
+            console.log(err);
+            mensajeError("Error al guardar el tratamiento: "+err);
           },
           complete:()=>{
           this.modalService.dismissAll();
