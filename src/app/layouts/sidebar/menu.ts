@@ -12,7 +12,7 @@ export const MENU: MenuItem[] = [
     id: 5,
     label: "Plantas",
     icon: "bx bx-images",
-    link: "",
+    link: "/planta/listar",
   },
   {
     id: 6,
@@ -49,5 +49,17 @@ export const MENU: MenuItem[] = [
     label: "Consultas",
     icon: "bx bx-file",
     link: "",
+  },
+  {
+    id: 14,
+    label: "Tipo Planta",
+    icon: "bx bx-file",
+    link: "/tipoplanta/listar",
+  },
+  {
+    id: 15,
+    label: "Familia",
+    icon: "bx bx-file",
+    link: "/familia/listar",
   },
 ];

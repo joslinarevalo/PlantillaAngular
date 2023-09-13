@@ -1,10 +1,10 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
-import { ITratamientoMostrar } from '../../interface/tratamiento.interface';
-import { Subject } from 'rxjs';
 import { DataTableDirective } from 'angular-datatables';
-import { FormBuilder } from '@angular/forms';
-import { TratamientoService } from '../../service/service.service';
+import { IPlantaMostrar } from '../../interface/iplanta';
+import { Subject } from 'rxjs';
+import { PlantaService } from '../../service/planta.service';
 import { DomSanitizer } from '@angular/platform-browser';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-tabla',
@@ -12,21 +12,28 @@ import { DomSanitizer } from '@angular/platform-browser';
   styleUrls: ['./tabla.component.scss']
 })
 export class TablaComponent implements OnInit {
+
   p: any;
   imagen:any;
   //tratamientoList:ITratamientoMostrar[]=[];
-  @Input()ListaDeTratamiento:ITratamientoMostrar[]=[];
-  @Output()ObjetoTratamientoEliminar= new EventEmitter<ITratamientoMostrar>();
-  @Output()ObjetoTratamientoModificar= new EventEmitter<ITratamientoMostrar>();
+  @Input()ListaDePlanta:IPlantaMostrar[]=[];
+  @Output()ObjetoPlantaEliminar= new EventEmitter<IPlantaMostrar>();
+  @Output()ObjetoPlantaModificar= new EventEmitter<IPlantaMostrar>();
   @ViewChild(DataTableDirective, { static: false} ) dtElement: DataTableDirective;
-  dtOptions: DataTables.Settings = {};
-  dtTrigger: Subject<ITratamientoMostrar> = new Subject<ITratamientoMostrar>();
-  constructor(private serviceTratamiento:TratamientoService,
+  dtOptions: any = {};
+  dtTrigger: Subject<IPlantaMostrar> = new Subject<IPlantaMostrar>();
+  constructor(private servicePlanta:PlantaService,
     private dm:DomSanitizer, private fb: FormBuilder) { }
 
   ngOnInit(): void {
     this.dtOptions={
-      lengthMenu: [5,10,15,20,50],
+      columnDefs: [
+        { responsivePriority: 5, targets: 3 },
+        { responsivePriority: 4, targets: 2 },
+        { responsivePriority: 3, targets: 1 },
+        { responsivePriority: 1, targets: [7, -1] },
+    ],
+      lengthMenu: [1,5,10,15,20,50],
       destroy: true,
       language:{
         url: '//cdn.datatables.net/plug-ins/1.13.5/i18n/es-ES.json',
@@ -36,29 +43,29 @@ export class TablaComponent implements OnInit {
       pagingType: 'full_numbers',
       responsive: true,
     };
-    this.listaTratamiento();
+    this.listaPlanta();
   }
 
-  ObtenerTratamientoEliminar(tratamiento:ITratamientoMostrar){
+  ObtenerPlantaEliminar(tratamiento:IPlantaMostrar){
     console.log(tratamiento);
-    this.ObjetoTratamientoEliminar.emit(tratamiento);//para emitar el evento de objeto a la vista del padre
+    this.ObjetoPlantaEliminar.emit(tratamiento);//para emitar el evento de objeto a la vista del padre
   }
-  ObtenerTratamientoModificar(tratamiento:ITratamientoMostrar){
+  ObtenerPlantaModificar(tratamiento:IPlantaMostrar){
     console.log(tratamiento);
-    this.ObjetoTratamientoModificar.emit(tratamiento);
+    this.ObjetoPlantaModificar.emit(tratamiento);
   }
-  listaTratamiento(){
-    this.serviceTratamiento.listaDeTratamiento().subscribe((resp)=>{
-      this.ListaDeTratamiento=resp;
+  listaPlanta(){
+    this.servicePlanta.listaDePlanta().subscribe((resp)=>{
+      this.ListaDePlanta=resp;
       console.log(resp);
-      this.ListaDeTratamiento.forEach(element => {
-        this.serviceTratamiento.getImagen(element.urlTratamiento).subscribe((resp)=>{
+      this.ListaDePlanta.forEach(element => {
+        this.servicePlanta.getImagen(element.urlPlanta).subscribe((resp)=>{
           //console.log(resp);
           let url=URL.createObjectURL(resp);
           this.imagen=this.dm.bypassSecurityTrustUrl(url);
           //console.log(this.imagen);
           element.imagen=this.imagen;
-          element.archivo=this.convertirArchivo(resp,element.urlTratamiento);
+          element.archivo=this.convertirArchivo(resp,element.urlPlanta);
           console.log(element.archivo);
           this.dtTrigger.next(null);
         });
@@ -79,4 +86,5 @@ export class TablaComponent implements OnInit {
       return miArchivo;
     }
   }
+
 }

@@ -23,7 +23,7 @@ export class TratamientoComponent implements OnInit {
   formularioTratamiento!:FormGroup;
   leyenda:string="";
   archivo:File;
-  constructor(public modalService:NgbModal,private serviceTratamiento:TratamientoService, 
+  constructor(public modalService:NgbModal,private serviceTratamiento:TratamientoService,
     private dm:DomSanitizer, private fb: FormBuilder) { }
 
   ngOnInit(): void {
@@ -33,7 +33,7 @@ export class TratamientoComponent implements OnInit {
   openModal(content: any) {
     this.leyenda="Registrar";
     this.modalService.open(content, this.modalOptions);
-    
+
   }
   inicializarFormulario(): FormGroup {
     return this.fb.group({
@@ -61,7 +61,7 @@ export class TratamientoComponent implements OnInit {
           console.log(element.archivo);
         });
       });
-      
+
     })
   }
   eliminarTratamiento(objetoEliminar:ITratamientoMostrar){
@@ -84,19 +84,19 @@ export class TratamientoComponent implements OnInit {
       })
       .then((result) => {
         if (result.isConfirmed) {
-        
+
           this.serviceTratamiento.eliminarTratamiento(objetoEliminar).subscribe((resp)=>{
-            alert.fire('Eliminado', 'El registro ha sido eliminado', 'success'); 
+            alert.fire('Eliminado', 'El registro ha sido eliminado', 'success');
             this.listaTratamiento();
           });
-         
+
         } else if (result.dismiss === Swal.DismissReason.cancel) {
           alert.fire('Canselado', 'El registro no se elimino', 'error');
         }
       });
   }
   modificarTratamientoFormulario(tratamientoModificar:FormData){
-   
+
     this.serviceTratamiento
         .modificarTratamiento(tratamientoModificar)
         .subscribe({
@@ -112,12 +112,12 @@ export class TratamientoComponent implements OnInit {
           this.listaTratamiento();
           }
         });
-          
+
   }
   modificarTratamiento(objetoModificar:ITratamientoMostrar,content:any){
     this.formularioTratamiento.get('urlTratamiento').setValidators([]);
     this.formularioTratamiento.get('urlTratamiento').updateValueAndValidity();
-    this.imagen=objetoModificar.imagen; 
+    this.imagen=objetoModificar.imagen;
     this.formularioTratamiento.patchValue(objetoModificar);
     this.leyenda="Modificar";
     this.archivo=objetoModificar.archivo;
@@ -139,7 +139,7 @@ export class TratamientoComponent implements OnInit {
           this.listaTratamiento();
           }
         });
-        
+
   }
   convertirArchivo(blob: Blob | undefined, url:string): File {
     let miArchivo!: File;
@@ -154,5 +154,5 @@ export class TratamientoComponent implements OnInit {
       return miArchivo;
     }
   }
-  
+
 }

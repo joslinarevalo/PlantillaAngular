@@ -1,0 +1,40 @@
+<div class="modal-header">
+  <h5 class="modal-title mt-0">Familia</h5>
+  <button
+    type="button"
+    class="btn-close"
+    aria-hidden="true"
+    (click)="cerrarModal()"
+  ></button>
+</div>
+<div class="modal-body">
+  <form [formGroup]="formularioFamilia">
+    <div class="row">
+      <div class="mt-1">
+        <label class="control-label">Nombre</label>
+        <input
+          class="form-control"
+          type="text"
+          id="nombreFamilia"
+          formControlName="nombreFamilia"
+          [ngClass]="esCampoValido('nombreFamilia')"
+        />
+        <div class="invalid-feedback">
+          <span
+            *ngIf="formularioFamilia.get('nombreFamilia')?.errors?.['required']"
+            >Requiere un nombre de la familia</span
+          >
+        </div>
+      </div>
+
+    </div>
+
+    <div class="text-center mb-3 mt-2"> <!-- Centrar los botones y agregar espacio inferior -->
+       <button type="button" class="btn btnguardarModal" (click)="guardar()" *ngIf="leyenda=='Registrar'"><i class="fas fa-check"></i>Guardar</button>
+       <button type="button" class="btn btnguardarModal" *ngIf="leyenda=='Modificar'" (click)="modificar()"><i class="fas fa-check" ></i>{{leyenda}}</button>
+      <span class="mx-2"></span> <!-- Agregar un espacio horizontal entre los botones -->
+      <button type="button" class="btn btnCerrar" aria-hidden="true"(click)="cerrarModal()"><i class="dripicons-cross"></i>cerrar</button>
+  </div>
+  </form>
+</div>
+<!-- Modal -->

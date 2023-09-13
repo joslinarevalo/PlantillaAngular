@@ -51,6 +51,27 @@ const routes: Routes = [
         (m) => m.EnfermedadesModule
       ),
   },
+  {
+    path: "tipoplanta",
+    loadChildren: () =>
+      import("./tipoplanta/tipoplanta.module").then(
+        (m) => m.TipoplantaModule
+      ),
+  },
+  {
+    path: "familia",
+    loadChildren: () =>
+      import("./familia/familia.module").then(
+        (m) => m.FamiliaModule
+      ),
+  },
+  {
+    path: "planta",
+    loadChildren: () =>
+      import("./planta/planta.module").then(
+        (m) => m.PlantaModule
+      ),
+  },
 ];
 
 @NgModule({

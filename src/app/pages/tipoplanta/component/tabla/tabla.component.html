@@ -1,0 +1,31 @@
+<div class="table-responsive mb-0 mt-2">
+  <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
+  class="table  row-border hover " style="width:100%">
+    <thead class="tabla">
+      <tr>
+        <!-- <th style="visibility:collapse; display:none;">ID</th> -->
+        <th>N°</th>
+        <th>Nombre</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of listaTipoPlantas let i = index">
+        <!-- <td style="visibility:collapse; display:none;"> <a href="javascript: void(0);" class="text-body fw-bold">{{data.idPlanta}}</a> </td> -->
+        <td >{{i+1}}</td>
+        <td>{{data.tipoPlanta}}</td>
+        <td class="text-sm-end">
+            <div class="d-flex botones ">
+              <!-- <div class="col-sm-6"> -->
+              <button button type="button" class="btn btnModificar btn-sm mb-2 mr-2 btn-rounded" (click)="obtenerTipoPlantaModificar(data)">
+                <i class="fas fa-edit"> </i></button>
+              <button type="button" class="btn btnEliminar btn-sm mb-2 mr-2 btn-rounded" (click)="obtenerTipoPlantaEliminar(data)">
+                <i class="fas fa-trash-alt"> </i></button>
+                <!-- </div> -->
+            </div>
+        </td>
+
+      </tr>
+    </tbody>
+  </table>
+</div>

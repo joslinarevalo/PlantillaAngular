@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { IEnfermedadMostrar } from '../../interfaces/IEnfermedad';
-import { DataTableDirective } from 'angular-datatables';  
+import { DataTableDirective } from 'angular-datatables';
 import { Subject } from 'rxjs';
 import { EnfermedadService } from '../../service/enfermedad.service';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -11,7 +11,7 @@ import { DomSanitizer } from '@angular/platform-browser';
   styleUrls: ['./tabla.component.scss']
 })
 export class TablaComponent implements OnInit {
-  @ViewChild(DataTableDirective, { static: false} ) 
+  @ViewChild(DataTableDirective, { static: false} )
   dtOptions: any = {};
   dtTrigger: Subject<IEnfermedadMostrar> = new Subject<IEnfermedadMostrar>();
   p: any;
@@ -19,7 +19,7 @@ export class TablaComponent implements OnInit {
   @Input()listaEnfermedades:IEnfermedadMostrar[]=[];
   @Output()ObjetoEnfermedadEliminar= new EventEmitter<IEnfermedadMostrar>();
   @Output()ObjetoEnfermedadModificar= new EventEmitter<IEnfermedadMostrar>();
-  
+
   constructor(
     private enfService: EnfermedadService,
     private dm:DomSanitizer
@@ -45,12 +45,12 @@ export class TablaComponent implements OnInit {
     };
     this.lista();
   }
-  
+
   obtenerEnfermedadEliminar(enfermedad:IEnfermedadMostrar){
     //console.log(enfermedad);
     this.ObjetoEnfermedadEliminar.emit(enfermedad);//para emitar el evento de objeto a la vista del padre
   }
-  
+
   obtenerEnfermedadModificar(enfermedad:IEnfermedadMostrar){
     //console.log(enfermedad);
     this.ObjetoEnfermedadModificar.emit(enfermedad);
@@ -88,5 +88,5 @@ export class TablaComponent implements OnInit {
       return miArchivo;
     }
   }
-  
+
 }

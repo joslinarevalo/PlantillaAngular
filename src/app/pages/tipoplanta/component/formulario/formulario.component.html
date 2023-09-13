@@ -1,0 +1,34 @@
+<!-- <div class="modal-header"> -->
+  <h5 class="cajaModal text-center mt-4 texto-mayusculas">{{leyenda}} Tipo De Planta</h5>
+
+<div class="modal-body">
+  <form [formGroup]="formularioTipoPlanta">
+    <div class="row">
+      <div class="mt-1">
+        <label class="control-label">Nombre</label>
+        <input
+          class="form-control"
+          type="text"
+          id="tipoPlanta"
+          formControlName="tipoPlanta"
+          [ngClass]="esCampoValido('tipoPlanta')"
+        />
+        <div class="invalid-feedback">
+          <span
+            *ngIf="formularioTipoPlanta.get('tipoPlanta')?.errors?.['required']"
+            >Requiere un nombre del tipo de planta</span
+          >
+        </div>
+      </div>
+
+    </div>
+
+    <div class="text-center mb-3 mt-2"> <!-- Centrar los botones y agregar espacio inferior -->
+       <button type="button" class="btn btnguardarModal " (click)="guardar()" *ngIf="leyenda=='Registrar'"><i class="fas fa-check"></i>Guardar</button>
+       <button type="button" class="btn btnguardarModal " *ngIf="leyenda=='Modificar'" (click)="modificar()"><i class="fas fa-check" ></i>{{leyenda}}</button>
+      <span class="mx-2"></span> <!-- Agregar un espacio horizontal entre los botones -->
+      <button type="button" class="btn btnCerrar " aria-hidden="true"(click)="cerrarModal()"><i class="dripicons-cross"></i> Cerrar</button>
+  </div>
+  </form>
+</div>
+<!-- Modal -->

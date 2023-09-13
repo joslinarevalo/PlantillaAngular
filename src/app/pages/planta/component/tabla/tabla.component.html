@@ -1,0 +1,37 @@
+<div class="table-responsive mb-0 mt-2" >
+  <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table  row-border hover " width="100%" >
+    <thead class="tabla" >
+      <tr>
+        <th >N°</th>
+        <th >Nombre Cientifico</th>
+        <th >Nombre comun</th>
+        <th >Familia</th>
+        <th >Decripcion</th>
+        <th >Historia</th>
+        <th >Tipo</th>
+        <th >Imagen</th>
+        <th >Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let planta of ListaDePlanta let i = index">
+
+        <td >{{i+1}}</td>
+        <td>{{planta.nombreCientifico}}</td>
+        <td>{{planta.nombreComun}}</td>
+        <td>{{planta.nombreFamilia}}</td>
+        <td class="truncate-text">{{planta.descripcion}}</td>
+        <td class="truncate-text">{{planta.historia}}</td>
+        <td>{{planta.tipoPlanta}}</td>
+        <td><img width="100px" height="100px" class="img-fluid" [src]="planta.imagen"></td>
+        <td class="text-sm-end" >
+          <div class="d-flex">
+            <div class="col-sm-6"><button type="button" class="btn btnModificar btn-sm mb-2 mr-2 btn-rounded" (click)="ObtenerPlantaModificar(planta)"> <i class="fas fa-edit"> </i></button> </div>
+            <div class="col-sm-6"><button type="button" class="btn btnEliminar btn-sm mb-2 mr-2 btn-rounded" (click)="ObtenerPlantaEliminar(planta)"><i class="fas fa-trash-alt" ></i></button></div>
+          </div>
+
+      </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
