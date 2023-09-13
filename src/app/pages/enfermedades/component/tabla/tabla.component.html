@@ -1,12 +1,10 @@
 <div class="table-responsive mb-0 mt-2">
   <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" 
-  class="table row-border hover" width="100%">
+  class="table  row-border hover " width="100%" >
     <thead class="tabla">
       <tr>
         <th>Nombre común</th>
-        <th >Descripción</th>
-        <th >Etapa</th>
-        <th >Condicion favorable</th>
+        <th>Nombre científico</th>
         <th>Partes afectadas</th>
         <th>Imagen</th>
         <th>Acciones</th>
@@ -15,17 +13,18 @@
     <tbody>
       <tr *ngFor="let data of listaEnfermedades">
         <td >{{data.nombreComunEnfermedad}}</td>
-        <td class="truncate-text" >{{data.descripcionEnfermedad}}</td>
-        <td class="truncate-text" >{{data.etapaEnfermedad}}</td>
-        <td class="truncate-text">{{data.condicionFavorableEnfermedad}}</td>
+        <td >{{data.nombreCientificoEnfermedad}}</td>
         <td >{{data.partesAfectadasEnfermedad}}</td>
         <td><img width="100px" height="100px" class="img-fluid" [src]="data.imagen"></td>
+        
         <!--  class="col-sm-6 mx-auto" -->
         <td  class="text-sm-end" >
           <div class="d-flex ">
-            <div class="col-sm-6"><button type="button" class="btn btnModificar btn-sm btn-rounded"
+            <div class="col-sm-4 mt-1 "><button  class="btn btn-warning btn-sm mb-2 mr-2 btn-rounded" >
+              <i class="fas fa-eye" ></i></button></div>
+            <div class="col-sm-4"><button type="button" class="btn btnModificar btn-sm btn-rounded"
                 (click)="obtenerEnfermedadModificar(data)"><i class="fas fa-edit"> </i> </button> </div>
-            <div class="col-sm-6"><button type="button" class="btn btnEliminar btn-sm mb-2 mr-2 btn-rounded"
+            <div class="col-sm-4  mt-1"><button type="button" class="btn btnEliminar btn-sm mb-2 mr-2 btn-rounded"
                 (click)="obtenerEnfermedadEliminar(data)"><i class="fas fa-trash-alt"> </i> </button></div>
           </div>
           

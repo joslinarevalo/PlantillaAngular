@@ -51,6 +51,13 @@ const routes: Routes = [
         (m) => m.EnfermedadesModule
       ),
   },
+  {
+    path: "consultaEnfermedades",
+    loadChildren: () =>
+      import("./consulta-enfermedad/consulta-enfermedad.module").then(
+        (m) => m.ConsultaEnfermedadModule
+      ),
+  },
 ];
 
 @NgModule({

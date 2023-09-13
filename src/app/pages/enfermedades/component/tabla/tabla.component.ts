@@ -32,10 +32,10 @@ export class TablaComponent implements OnInit {
   ngOnInit(): void {
     this.dtOptions={
       columnDefs: [
-        { responsivePriority: 3, targets: 1 },
-        { responsivePriority: 10001, targets: 4 },
-        { responsivePriority: 2, targets: 5 },
-        { responsivePriority: 1, targets: -1 }
+        { responsivePriority: 3, targets: 0 },
+        //{ responsivePriority: 10001, targets: 3 },
+        { responsivePriority: 2, targets: 4 },
+        { responsivePriority: 1, targets: -1 },
     ],
       lengthMenu: [5,10,15,20,50],
       destroy: true,

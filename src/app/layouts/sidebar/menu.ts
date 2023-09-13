@@ -50,4 +50,10 @@ export const MENU: MenuItem[] = [
     icon: "bx bx-file",
     link: "",
   },
+  {
+    id: 16,
+    label: "Lista Enfermedades",
+    icon: "bx bx-file",
+    link: "consultaEnfermedades/listaEnfermedades",
+  },
 ];
