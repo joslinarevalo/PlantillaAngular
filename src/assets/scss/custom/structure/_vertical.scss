@@ -86,6 +86,10 @@
         position: relative;
         font-size: 13px;
         transition: all .4s;
+        background-color: white;
+        margin: 7px 0 ;
+        align-items: center; 
+        width: 90%;
 
         i {
           display: inline-block;
@@ -642,14 +646,14 @@ body[data-sidebar="colored"] {
     ul {
       li {
         &.menu-title {
-          color: rgba($white, 0.6);
+          color: rgba($yellow, 0.6);
         }
 
         a {
-          color: rgba($white, 0.6);
+          color: rgba($yellow, 0.6);
 
           i {
-            color: rgba($white, 0.6);
+            color: rgba($yellow, 0.6);
           }
 
           &.waves-effect {
@@ -670,10 +674,10 @@ body[data-sidebar="colored"] {
         ul.sub-menu {
           li {
             a {
-              color: rgba($white, .5);
+              color: rgba($yellow, .5);
 
               &:hover {
-                color: $white;
+                color: $yellow;
               }
             }
           }

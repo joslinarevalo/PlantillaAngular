@@ -1,21 +1,10 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
-
 import { DefaultComponent } from "./dashboards/default/default.component";
-
 const routes: Routes = [
   { path: "", redirectTo: "dashboard" },
   { path: "dashboard", component: DefaultComponent },
-  {
-    path: "dashboards",
-    loadChildren: () =>
-      import("./dashboards/dashboards.module").then((m) => m.DashboardsModule),
-  },
-  {
-    path: "icons",
-    loadChildren: () =>
-      import("./icons/icons.module").then((m) => m.IconsModule),
-  },
+
   {
     path: "detallecausa",
     loadChildren: () =>
@@ -56,6 +45,17 @@ const routes: Routes = [
     loadChildren: () =>
       import("./consulta-enfermedad/consulta-enfermedad.module").then(
         (m) => m.ConsultaEnfermedadModule
+    path: "paginas-principal",
+    loadChildren: () =>
+      import("./paginas-principal/paginas-principal.module").then(
+        (m) => m.PaginasPrincipalModule
+      ),
+  },
+  {
+    path: "patogenos",
+    loadChildren: () =>
+      import("./patogenos/patogenos.module").then(
+        (m) => m.PatogenosModule
       ),
   },
 ];

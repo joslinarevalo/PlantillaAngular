@@ -1,0 +1,15 @@
+.card-title {
+    text-align: justify;
+    margin: 0 auto;
+    max-width: 1000px; /* Establece el ancho máximo para controlar la extensión del texto */
+  }
+  .card-image {
+    width: 200px; /* El ancho deseado para las imágenes */
+    height: 250px; /* La altura deseada para las imágenes */
+    object-fit: cover; /* Esto asegurará que la imagen se ajuste correctamente en el espacio especificado sin distorsión */
+  }
+  .product-card:hover {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* Agrega una sombra suave al pasar el cursor */
+    transform: scale(1.01); /* Escala la tarjeta ligeramente al pasar el cursor */
+    transition: box-shadow 0.3s, transform 0.3s; /* Agrega una transición suave para el efecto */
+  }
