@@ -45,6 +45,7 @@ export class MostrarComponent implements OnInit {
   verDetalle(idTipoCausa: string) {
     // Navega a la ruta del componente de detalle, pasando el ID como parámetro
     this.router.navigate(['patogenos/detalle', idTipoCausa]);
-   
   }
+ 
+  
 }

@@ -1,6 +1,7 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { MostrarComponent } from "./pages/mostrar/mostrar.component";
+import { DetalleComponent } from "./pages/detalle/detalle.component";
 
 const routes: Routes = [
   {
@@ -8,9 +9,11 @@ const routes: Routes = [
     component: MostrarComponent,
   },
   {
-    path: "patogenos/detalle/:idTipoCausa",
-    component: MostrarComponent,
+    path: "detalle/:idTipoCausa",
+    component: DetalleComponent,
   },
+  
+
 ];
 
 @NgModule({

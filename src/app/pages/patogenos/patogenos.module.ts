@@ -6,7 +6,8 @@ import { MostrarComponent } from "./pages/mostrar/mostrar.component";
 import { DetalleComponent } from "./pages/detalle/detalle.component";
 
 @NgModule({
-  declarations: [MostrarComponent,
+  declarations: [
+    MostrarComponent,
     DetalleComponent
   ],
   imports: [CommonModule, PatogenosRoutingModule],
