@@ -52,6 +52,27 @@ const routes: Routes = [
       ),
   },
   {
+    path: "consultaEnfermedades",
+    loadChildren: () =>
+      import("./consulta-enfermedad/consulta-enfermedad.module").then(
+        (m) => m.ConsultaEnfermedadModule
+      ),
+  },
+  {
+    path: "paginas-principal",
+    loadChildren: () =>
+      import("./paginas-principal/paginas-principal.module").then(
+        (m) => m.PaginasPrincipalModule
+      ),
+  },
+  {
+    path: "patogenos",
+    loadChildren: () =>
+      import("./patogenos/patogenos.module").then(
+        (m) => m.PatogenosModule
+      ),
+  },
+  {
     path: "tipoplanta",
     loadChildren: () =>
       import("./tipoplanta/tipoplanta.module").then(
@@ -72,6 +93,7 @@ const routes: Routes = [
         (m) => m.PlantaModule
       ),
   },
+  
 ];
 
 @NgModule({

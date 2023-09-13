@@ -110,7 +110,8 @@ export class NuevoComponent implements OnInit {
         this.registrando();
       } else {
         console.log("Entrando al else");
-        this.editar();
+        //this.editar();
+        this.editando();
       }
     } else {
       // Marcar los campos inválidos como tocados para mostrar los mensajes de error

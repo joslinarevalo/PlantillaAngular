@@ -1,0 +1,23 @@
+.text-justify {
+    text-align: justify;
+  }
+  
+  .card-image {
+    width: 200px; /* El ancho deseado para las imágenes */
+    height: 250px; /* La altura deseada para las imágenes */
+    object-fit: cover; /* Esto asegurará que la imagen se ajuste correctamente en el espacio especificado sin distorsión */
+  }
+ 
+  .parrafo-container {
+    margin-bottom: 15px;
+    font-size: 13px;
+    line-height: 1.5;
+    font-family: Arial, sans-serif;
+    margin-left: auto; /* Centra el texto horizontalmente en el contenedor */
+    margin-right: auto; /* Centra el texto horizontalmente en el contenedor */
+  }
+  .titulo {
+    font-size: 20px;
+  }
+  
+  

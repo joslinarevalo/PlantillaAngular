@@ -52,14 +52,38 @@ export const MENU: MenuItem[] = [
   },
   {
     id: 14,
+    label: "Registro Usuario",
+    icon: "bx bx-file",
+    link: "usuario/registro",
+  },
+  {
+    id: 15,
     label: "Tipo Planta",
     icon: "bx bx-file",
     link: "/tipoplanta/listar",
   },
   {
-    id: 15,
+    id: 16,
     label: "Familia",
     icon: "bx bx-file",
     link: "/familia/listar",
+  },
+  {
+    id: 17,
+    label: "Principal",
+    icon: "bx bx-file",
+    link: "paginas-principal/principal",
+  },
+  {
+    id: 18,
+    label: "Lista Enfermedades",
+    icon: "bx bx-file",
+    link: "consultaEnfermedades/listaEnfermedades",
+  },
+  {
+    id: 19,
+    label: "Lista Patogenos",
+    icon: "bx bx-file",
+    link: "patogenos/listpatogenos",
   },
 ];

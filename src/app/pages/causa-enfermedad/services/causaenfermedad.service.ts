@@ -30,8 +30,12 @@ export class CausaenfermedadService {
     const url = `${urlEndPoint}/${tcausa.idTipoCausa}`;
     return this.http.delete(url);
   }
+
   eliminarCausa(tcausa:ITipoCausa):Observable<any>{
     return this.http.delete<any>(urlEndPoint+"/eliminar/"+tcausa.idTipoCausa);
+  }
+  obtenerPatogenoPorId(id: String): Observable<ITipoCausa> {
+    return this.http.get<ITipoCausa>(`${urlEndPoint}/${id}`);
   }
   editarTipoCausa(tipoCausa: TipoCausa, file: File):any {
     console.log("entro a editar los tipoCausa: ",tipoCausa);
@@ -49,5 +53,7 @@ export class CausaenfermedadService {
     formData.append('tipoCausa', JSON.stringify(tipoCausa));
     return this.http.post(`${urlEndPoint}/guardar`, formData);
   }
+
+  
 
 }
