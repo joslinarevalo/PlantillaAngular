@@ -32,4 +32,8 @@ export class EnfermedadService {
   eliminar(obj:IEnfermedad):Observable<any>{
     return this.http.delete<any>(this.urlAPI+"eliminar/"+obj.idEnfermedad);
   }
+
+  buscarEnfermedad(id:String):Observable<any>{
+    return this.http.get<IEnfermedad>(this.urlAPI+"buscar/"+id);
+  }
 }

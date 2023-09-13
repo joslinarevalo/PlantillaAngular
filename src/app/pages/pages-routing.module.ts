@@ -41,6 +41,10 @@ const routes: Routes = [
       ),
   },
   {
+    path: "consultaEnfermedades",
+    loadChildren: () =>
+      import("./consulta-enfermedad/consulta-enfermedad.module").then(
+        (m) => m.ConsultaEnfermedadModule
     path: "paginas-principal",
     loadChildren: () =>
       import("./paginas-principal/paginas-principal.module").then(

@@ -63,6 +63,12 @@ export const MENU: MenuItem[] = [
     link: "paginas-principal/principal",
   },
   {
+    id: 16,
+    label: "Lista Enfermedades",
+    icon: "bx bx-file",
+    link: "consultaEnfermedades/listaEnfermedades",
+  },
+  {
     id: 32,
     label: "Lista Patogenos",
     icon: "bx bx-file",
