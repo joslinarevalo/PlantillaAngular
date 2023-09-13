@@ -58,7 +58,7 @@ const routes: Routes = [
         (m) => m.ReportesModule
       ),
   },
-    path: "consultaEnfermedades",
+    {path: "consultaEnfermedades",
     loadChildren: () =>
       import("./consulta-enfermedad/consulta-enfermedad.module").then(
         (m) => m.ConsultaEnfermedadModule

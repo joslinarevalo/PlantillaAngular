@@ -130,8 +130,7 @@ export class NuevoComponent implements OnInit {
       idTipoCausa: this.dtCausa.tipoCausa.idTipoCausa,
       idPlanta: this.dtCausa.planta.idPlanta,
     };
-
-    console.log(detalle);
+ 
 
     this.detallecausaservice.registrarDetalleCausa(detalle).subscribe({
       next: (resp) => {
