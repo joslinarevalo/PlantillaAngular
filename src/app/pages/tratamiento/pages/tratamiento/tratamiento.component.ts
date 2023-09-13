@@ -32,6 +32,7 @@ export class TratamientoComponent implements OnInit {
   }
   openModal(content: any) {
     this.leyenda="Registrar";
+    this.formularioTratamiento.reset();
     this.modalService.open(content, this.modalOptions);
     
   }
@@ -101,6 +102,7 @@ export class TratamientoComponent implements OnInit {
         .modificarTratamiento(tratamientoModificar)
         .subscribe({
           next:(resp)=>{
+            console.log(resp);
             mensajeExito("Tratamiento modificado con exito");
           },
           error:(err)=>{
@@ -128,10 +130,12 @@ export class TratamientoComponent implements OnInit {
         .guardarTratamiento(tratamientoGuardar)
         .subscribe({
           next:(resp)=>{
+            console.log(resp);
             mensajeExito("Tratamiento guardado con exito");
           },
           error:(err)=>{
-            mensajeError("Error al guardar el tratamiento");
+            console.log(err);
+            mensajeError("Error al guardar el tratamiento: "+err);
           },
           complete:()=>{
           this.modalService.dismissAll();

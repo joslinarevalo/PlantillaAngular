@@ -17,6 +17,7 @@
                             <td>Enfermedad mas contagiosa</td>
                             <td>
                               <div class="d-flex">
+                                <div class="col-sm-6"></div>
                                 <div class="col-sm-6"><button type="button" class="btn btn-success btn-sm mb-2 mr-2 btn-rounded" (click)="descargarPdf('pdfEnfermedadMasContagiosa')"> <i class="dripicons-arrow-down"> </i></button> </div>
                               </div>
                           </td>
@@ -25,6 +26,7 @@
                             <td>Enfermedades que no tienen cura</td>
                             <td>
                               <div class="d-flex">
+                                <div class="col-sm-6"></div>
                                 <div class="col-sm-6"><button type="button" class="btn btn-success btn-sm mb-2 mr-2 btn-rounded" (click)="descargarPdf('pdfEnfermedadSinCura')"> <i class="dripicons-arrow-down"> </i></button> </div>
                               </div>
                           </td>
@@ -33,6 +35,7 @@
                             <td>Enfermedades menos comunes</td>
                             <td>
                               <div class="d-flex">
+                                <div class="col-sm-6"></div>
                                 <div class="col-sm-6"><button type="button" class="btn btn-success btn-sm mb-2 mr-2 btn-rounded" (click)="descargarPdf('pdfEnfermedadMenosContagiosa')"> <i class="dripicons-arrow-down"> </i></button> </div>
                               </div>
                           </td>
@@ -41,21 +44,22 @@
                             <td>Enfermedades mas comunes</td>
                             <td>
                               <div class="d-flex">
+                                <div class="col-sm-6"></div>
                                 <div class="col-sm-6"><button type="button" class="btn btn-success btn-sm mb-2 mr-2 btn-rounded" (click)="descargarPdf('pdfEnfermedadesComunes')"> <i class="dripicons-arrow-down"> </i></button> </div>
                               </div>
                           </td>
                         </tr>
                         <tr>
-                          <td>Enfermedades de una planta especifica
+                          <td >Enfermedades de una planta especifica
                           </td>
                           <td>
                             <div class="d-flex">
                               <div class="col-sm-6">
-                                <select [(ngClass)]="idplanta">
+                                <select class="form-control" [(ngModel)]="idplanta">
                                   <option *ngFor="let planta of listPlantas" [value]="planta.idplanta">{{planta.nombreplantacomun}}</option>
                                 </select>
                               </div>
-                              <div class="col-sm-6"><button type="button" class="btn btn-success btn-sm mb-2 mr-2 btn-rounded" (click)="descargarPdfParametro('pdfEnfermedadesDeUnaPlanta')"> <i class="dripicons-arrow-down"> </i></button> </div>
+                              <div class="col-sm-6 mt-1"><button type="button" class="btn btn-success btn-sm mb-2 mr-2 btn-rounded" (click)="descargarPdfParametro('pdfEnfermedadesDeUnaPlanta')"> <i class="dripicons-arrow-down"> </i></button> </div>
                             </div>
                         </td>
                           </tr>
