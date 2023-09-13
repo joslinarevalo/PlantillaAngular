@@ -19,8 +19,9 @@
         <td class="text-sm-end" >
           
             <div class="d-flex">
-              <div class="col-sm-6"><button type="button" class="btn btn-sm btn-rounded"><app-nuevo [leyenda]="'Editar '" [detalledto]="detalleC"[titulo]="''" [modo]="'Editar'" ></app-nuevo> </button> </div>
-              <div class="col-sm-6 mt-1"><button type="button" class="btn btnEliminar btn-sm mb-2 mr-2 btn-rounded" (click)=" eliminarDetalle(detalleC)"><i class="fas fa-trash-alt" ></i></button></div>
+              <div class="col-sm-4 mt-1 "><button  class="btn btn-warning btn-sm mb-2 mr-2 btn-rounded" ><i class="fas fa-eye" ></i></button></div>
+              <div class="col-sm-4"><button type="button" class="btn btn-sm btn-rounded"><app-nuevo [leyenda]="'Editar '" [detalledto]="detalleC"[titulo]="''" [modo]="'Editar'" ></app-nuevo> </button> </div>
+              <div class="col-sm-4 mt-1"><button type="button" class="btn btnEliminar btn-sm mb-2 mr-2 btn-rounded" (click)=" eliminarDetalle(detalleC)"><i class="fas fa-trash-alt" ></i></button></div>
             </div>
             
         </td>
