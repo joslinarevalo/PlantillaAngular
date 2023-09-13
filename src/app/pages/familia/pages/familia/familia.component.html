@@ -1,0 +1,42 @@
+<div class="container-fluid">
+  <div class="row">
+      <div class="col-12">
+          <div class="card">
+              <div class="card-body">
+                  <div class="caja">Familia</div>
+                  <div class="row mt-4">
+                      <!-- end col -->
+                      <div class="col-sm-12">
+                          <div class="text-sm-end">
+                              <div >
+                                  <div class="text-sm-end">
+                                      <button type="button" class="btn btnguardar btn-sm mb-2 mr-2 btn-rounded"
+                                          (click)="openModal(content)">
+                                          <i class="fas fa-seedling"></i> Nuevo
+                                      </button>
+                                  </div>
+                              </div>
+
+                          </div>
+                      </div>
+
+                  </div>
+
+                      <!-- Contenido del Scroll data -->
+                      <app-tabla [listaFamilias]="familiaList"
+                      (ObjetoFamiliaEliminar)="eliminarFamilia($event)"
+                      (ObjetoFamiliaModificar)="modificarFamilia($event,content)"
+                       ></app-tabla>
+
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <ng-template #content role="document" let-modal>
+       <app-formulario [ModalService]="modalService"
+      [formularioFamilia]="formularioFamilia"
+      (ObjetoGuardar)="guardarFamilia($event)"
+      [leyenda]="leyenda"
+      (ObjetoModificar)="modificarFamiliaFormulario($event)"></app-formulario>
+  </ng-template>

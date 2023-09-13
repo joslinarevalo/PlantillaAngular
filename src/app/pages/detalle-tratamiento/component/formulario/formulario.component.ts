@@ -14,7 +14,7 @@ import { ITratamientoMostrar } from 'src/app/pages/tratamiento/interface/tratami
 })
 export class FormularioComponent implements OnInit {
   @Input() ModalService!:NgbModal;
-  detalleTratamiento!:IDetalleTratamientoDTOValid; 
+  detalleTratamiento!:IDetalleTratamientoDTOValid;
   listDetalleCausa:IDetalleCausaDTO[]=[];
   listTratamiento:ITratamientoMostrar[]=[];
   @Input()formularioDetalleTratamiento!:FormGroup;
@@ -31,15 +31,15 @@ export class FormularioComponent implements OnInit {
   cerrarModal(){
     this.ModalService.dismissAll();
   }
-  
-  
+
+
   guardar() {
     if (this.formulario_valido()) {
-      console.log(this.formularioDetalleTratamiento); 
+      console.log(this.formularioDetalleTratamiento);
       this. detalleTratamiento = {
         idDetalleCausa: this.formularioDetalleTratamiento.controls['idDetalleCausa'].value,
         idTratamiento: this.formularioDetalleTratamiento.controls['idTratamiento'].value
-        
+
       };
       //this.presentacion=this.formulario.value;
       console.log(this.detalleTratamiento);
@@ -53,12 +53,12 @@ export class FormularioComponent implements OnInit {
           timer: 1500,
         });
       }
-    
-    
+
+
   }
   modificar() {
     if (this.formulario_valido()) {
-      //console.log(this.formularioDetalleTratamiento); 
+      //console.log(this.formularioDetalleTratamiento);
       this.detalleTratamiento = {
         idDetalleCausa: this.formularioDetalleTratamiento.controls['idDetalleCausa'].value,
         idTratamiento: this.formularioDetalleTratamiento.controls['idTratamiento'].value,
@@ -88,7 +88,7 @@ export class FormularioComponent implements OnInit {
     }
     return estado;
   }
-  
+
   esCampoValido(campo: string) {
     const validarCampo = this.formularioDetalleTratamiento.get(campo);
     return !validarCampo?.valid && validarCampo?.touched

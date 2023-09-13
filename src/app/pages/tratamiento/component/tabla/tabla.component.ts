@@ -21,7 +21,7 @@ export class TablaComponent implements OnInit {
   @ViewChild(DataTableDirective, { static: false} ) dtElement: DataTableDirective;
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<ITratamientoMostrar> = new Subject<ITratamientoMostrar>();
-  constructor(private serviceTratamiento:TratamientoService, 
+  constructor(private serviceTratamiento:TratamientoService,
     private dm:DomSanitizer, private fb: FormBuilder) { }
 
   ngOnInit(): void {
@@ -63,7 +63,7 @@ export class TablaComponent implements OnInit {
           this.dtTrigger.next(null);
         });
       });
-      
+
     })
   }
   convertirArchivo(blob: Blob | undefined, url:string): File {
