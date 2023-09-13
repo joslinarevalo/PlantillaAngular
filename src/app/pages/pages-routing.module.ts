@@ -1,10 +1,21 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
+
 import { DefaultComponent } from "./dashboards/default/default.component";
+
 const routes: Routes = [
   { path: "", redirectTo: "dashboard" },
   { path: "dashboard", component: DefaultComponent },
-
+  {
+    path: "dashboards",
+    loadChildren: () =>
+      import("./dashboards/dashboards.module").then((m) => m.DashboardsModule),
+  },
+  {
+    path: "icons",
+    loadChildren: () =>
+      import("./icons/icons.module").then((m) => m.IconsModule),
+  },
   {
     path: "detallecausa",
     loadChildren: () =>
@@ -45,6 +56,9 @@ const routes: Routes = [
     loadChildren: () =>
       import("./consulta-enfermedad/consulta-enfermedad.module").then(
         (m) => m.ConsultaEnfermedadModule
+      ),
+  },
+  {
     path: "paginas-principal",
     loadChildren: () =>
       import("./paginas-principal/paginas-principal.module").then(
@@ -58,6 +72,28 @@ const routes: Routes = [
         (m) => m.PatogenosModule
       ),
   },
+  {
+    path: "tipoplanta",
+    loadChildren: () =>
+      import("./tipoplanta/tipoplanta.module").then(
+        (m) => m.TipoplantaModule
+      ),
+  },
+  {
+    path: "familia",
+    loadChildren: () =>
+      import("./familia/familia.module").then(
+        (m) => m.FamiliaModule
+      ),
+  },
+  {
+    path: "planta",
+    loadChildren: () =>
+      import("./planta/planta.module").then(
+        (m) => m.PlantaModule
+      ),
+  },
+  
 ];
 
 @NgModule({

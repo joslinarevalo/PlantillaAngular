@@ -1,0 +1,184 @@
+<div class="modal-body">
+  <h5 class="cajaModal text-center mt-4 texto-mayusculas">
+    {{ leyenda }} Planta
+  </h5>
+  <form [formGroup]="formularioPlanta">
+    <div class="row">
+
+      <div class="col-md-12">
+        <label class="control-label">Nombre Cientifico</label>
+        <input
+          class="form-control"
+          type="text"
+          id="nombreCientifico"
+          formControlName="nombreCientifico"
+          [ngClass]="esCampoValido('nombreCientifico')"
+        />
+        <div class="invalid-feedback">
+          <span
+            *ngIf="formularioPlanta.get('nombreCientifico')?.errors?.['required']"
+            >Requiere un nombre de planta</span
+          >
+        </div>
+      </div>
+
+      <div class="col-md-12">
+        <label class="control-label">Nombre Comun</label>
+        <input
+          class="form-control"
+          type="text"
+          id="nombreComun"
+          formControlName="nombreComun"
+          [ngClass]="esCampoValido('nombreComun')"
+        />
+        <div class="invalid-feedback">
+          <span
+            *ngIf="formularioPlanta.get('nombreComun')?.errors?.['required']"
+            >Requiere un nombre de planta</span
+          >
+        </div>
+      </div>
+
+      <div class="col-md-12">
+        <label class="control-label">Seleccionar Familia</label>
+        <ng-select
+          class="form-control"
+          id="idFamilia"
+          formControlName="idFamilia"
+          [ngClass]="esCampoValido('idFamilia')"
+        >
+          <ng-option
+            *ngFor="let familia of listFamilia"
+            [value]="familia.idfamilia"
+            >{{ familia.nombreFamilia }}</ng-option
+          >
+        </ng-select>
+
+        <div class="invalid-feedback">
+          <span
+            *ngIf="formularioPlanta.get('idFamilia')?.errors?.['required']"
+            >Requiere una Familia</span
+          >
+        </div>
+      </div>
+
+      <div class="col-md-12">
+        <label class="control-label">Seleccionar Tipo Planta</label>
+        <ng-select
+          class="form-control"
+          id="idTipoPlanta"
+          formControlName="idTipoPlanta"
+          [ngClass]="esCampoValido('idTipoPlanta')"
+        >
+          <ng-option
+            *ngFor="let tipoP of listTipoPlanta"
+            [value]="tipoP.idTipoPlanta"
+            >{{ tipoP.tipoPlanta }}</ng-option
+          >
+        </ng-select>
+
+        <div class="invalid-feedback">
+          <span
+            *ngIf="formularioPlanta.get('idTipoPlanta')?.errors?.['required']"
+            >Requiere un tipo de planta</span
+          >
+        </div>
+      </div>
+
+      <div class="col-md-12">
+        <label class="control-label">Descripción de la planta</label>
+        <textarea
+          class="form-control"
+          type="text"
+          id="descripcion"
+          formControlName="descripcion"
+          [ngClass]="esCampoValido('descripcion')"
+        ></textarea>
+        <div class="invalid-feedback">
+          <span
+            *ngIf="formularioPlanta.get('descripcion')?.errors?.['required']"
+            >Requiere una descripcion de la Planta</span
+          >
+        </div>
+      </div>
+
+      <div class="col-md-12">
+        <label class="control-label">Historia de la planta</label>
+        <textarea
+          class="form-control"
+          type="text"
+          id="historia"
+          formControlName="historia"
+          [ngClass]="esCampoValido('historia')"
+        ></textarea>
+        <div class="invalid-feedback">
+          <span
+            *ngIf="formularioPlanta.get('historia')?.errors?.['required']"
+            >Requiere una hisotoria de la Planta</span
+          >
+        </div>
+      </div>
+
+
+
+      <div class="col-md-12">
+        <label class="control-label">Seleccionar Imagen Planta</label>
+        <input
+          class="form-control"
+          type="file"
+          id="urlPlanta"
+          accept="image/*"
+          formControlName="urlPlanta"
+          (change)="SeleccionarImagen($event)"
+          [ngClass]="esCampoValido('urlPlanta')"
+        />
+        <div class="invalid-feedback">
+          <span
+            *ngIf="formularioPlanta.get('urlPlanta')?.errors?.['required']"
+            >Requiere una imagen de la planta</span
+          >
+        </div>
+      </div>
+
+      <div class="col-md-12 text-center">
+        <img
+          width="100px"
+          height="100px"
+          class="img-fluid"
+          [src]="imagenMostrar"
+          *ngIf="imagenMostrar != undefined"
+        />
+      </div>
+    </div>
+    <div class="text-center mb-3 mt-2">
+      <!-- Centrar los botones y agregar espacio inferior -->
+      <button
+        type="button"
+        class="btn btnguardarModal"
+        (click)="guardar()"
+        *ngIf="leyenda == 'Registrar'"
+      >
+        <i class="fas fa-check"></i>Guardar
+      </button>
+      <button
+        type="button"
+        class="btn btnguardarModal"
+        *ngIf="leyenda == 'Modificar'"
+        (click)="modificar()"
+      >
+        <i class="fas fa-check"></i>{{ leyenda }}
+      </button>
+      <span class="mx-2"></span>
+      <!-- Agregar un espacio horizontal entre los botones -->
+      <button
+        type="button"
+        class="btn btnCerrar"
+        aria-hidden="true"
+        (click)="cerrarModal()"
+      >
+        <i class="dripicons-cross"></i>cerrar
+      </button>
+    </div>
+  </form>
+</div>
+<!-- Modal -->
