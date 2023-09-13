@@ -39,12 +39,12 @@ export class TratamientoComponent implements OnInit {
   inicializarFormulario(): FormGroup {
     return this.fb.group({
       idTratamiento: [''],
-      nombrePesticidaTratamiento: ['', [Validators.required]],
-      descripcionTratamiento: ['', [Validators.required]],
-      aplicacionTratamiento: ['', [Validators.required]],
-      indicacionesTratamiento: ['', [Validators.required]],
-      tipoTratamiento: ['', [Validators.required]],
-      urlTratamiento: ['', [Validators.required]]
+      nombrePesticidaTratamiento: ['', [Validators.required,Validators.minLength(3),Validators.maxLength(250)]],
+      descripcionTratamiento: ['', [Validators.required,Validators.minLength(10),Validators.maxLength(250)]],
+      aplicacionTratamiento: ['', [Validators.required,Validators.minLength(10),Validators.maxLength(250)]],
+      indicacionesTratamiento: ['', [Validators.required,Validators.minLength(10),Validators.maxLength(250)]],
+      tipoTratamiento: ['', [Validators.required,Validators.minLength(5),Validators.maxLength(20)]],
+      urlTratamiento: ['', [Validators.required,,Validators.minLength(10),Validators.maxLength(200)]]
     });
   }
   listaTratamiento(){
