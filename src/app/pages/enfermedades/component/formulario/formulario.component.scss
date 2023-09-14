@@ -1,3 +1,67 @@
 .texto-mayusculas {
     text-transform: uppercase;
   }
+
+  #contador {
+    margin-top: 10px;
+    font-size: 12px;
+    color: gray;
+}
+.required::before {
+  content: "*";
+  color: red;
+  margin-right: 5px; /* Espacio entre el asterisco y el texto */
+}
+
+
+
+
+
+
+
+
+
+
+/* Estilos para el icono de información */
+.info-icon {
+  cursor: pointer;
+  margin-left: 5px;
+  font-size: 18px;
+  color: #666; /* Color gris o el color que desees */
+}
+
+/* Estilos para el tooltip de ayuda */
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip::after {
+  content: '';
+  position: absolute;
+  background-color: #704444; /* Fondo diferente (por ejemplo, gris claro) */
+  color: #333; /* Texto en un color más oscuro para contraste */
+  border: 1px solid #862424; /* Borde gris */
+  padding: 5px;
+  border-radius: 4px;
+  font-size: 12px;
+  white-space: nowrap;
+  z-index: 1;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 0.3s, transform 0.3s; /* Agregamos una transición para suavizar la aparición */
+  pointer-events: none; /* Evita que el tooltip bloquee la interacción con elementos subyacentes */
+}
+
+.tooltip:hover::after {
+  opacity: 1;
+  transform: translateX(-50%) translateY(-10px); /* Hace que el tooltip aparezca como flotando */
+  pointer-events: auto; /* Habilita la interacción con el tooltip */
+}
+
+.tooltip-text {
+  display: block;
+  padding: 5px;
+}

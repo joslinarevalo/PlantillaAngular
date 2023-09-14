@@ -23,9 +23,19 @@ export class FormularioComponent implements OnInit {
   @Input() leyenda: string;
   @Input() imagen: any;
   @Input() archivo: File;
+  contador: number = 0;
+  porcentajeCompletado: number = 0;
+  longitudesDeCampos: any = {};
+  //mensaje: String;
+  mensaje: { [key: string]: string } = {};
+
   constructor(private fb: FormBuilder, private serviceEnfermedad: EnfermedadService, private dm: DomSanitizer) { }
 
   ngOnInit(): void {
+    console.log("esto imprimo antes"+this.longitudesDeCampos);
+    this.obtenerLongitudesCampos();
+    console.log("esto imprimo despues"+this.longitudesDeCampos);
+
     if (this.leyenda == "Modificar") {
       this.imagenMostrar = this.imagen;
       this.formularioSerealizable.set('imagen', this.archivo);
@@ -130,6 +140,48 @@ export class FormularioComponent implements OnInit {
     this.formularioEnfermedad.reset(); // Esto restablecerá el estado del formulario a su valor inicial
     this.imagenMostrar = undefined; // También puedes eliminar la imagen mostrada si es necesario
     this.formularioSerealizable = new FormData(); // Limpia el FormData
+  }
+
+  contarCaracteres(idInput:String) {
+    const textarea = document.getElementById(""+idInput) as HTMLTextAreaElement;
+    let limiteCaracteres = 0;
+    
+    if (this.longitudesDeCampos.hasOwnProperty(idInput+"")) {
+      limiteCaracteres = this.longitudesDeCampos[idInput+""];
+      console.log(`Campo: ${idInput}, Valor: ${limiteCaracteres}`);
+    } else {
+      console.log(`Campo "${idInput}" no encontrado en fieldLengths`);
+    }
+
+    this.contador = textarea.value.length;
+    if(this.contador > limiteCaracteres){
+      this.contador = textarea.value.length-1;
+    }
+
+    if (this.contador >= limiteCaracteres) {
+      textarea.value = textarea.value.substring(0, limiteCaracteres);
+      this.mensaje[idInput+""] = `Se ha alcanzado el límite de caracteres permitidos`;
+    }else{
+      this.mensaje[idInput+""] = `${this.contador} caracteres de ${limiteCaracteres} permitidos`;
+    }
+  }
+
+  obtenerLongitudesCampos() {
+    this.serviceEnfermedad.longitudCampos().subscribe((lista) => {
+      this.longitudesDeCampos = lista;
+      
+      console.log(this.longitudesDeCampos);
+    });
+  }
+
+  mostrarAyudaNombreComunEnfermedad = false; // Variable para controlar la visibilidad del tooltip de ayuda
+
+  mostrarAyuda(campo: string) {
+    // Aquí puedes determinar cuál campo se está solicitando la ayuda
+    if (campo === 'nombreComunEnfermedad') {
+      this.mostrarAyudaNombreComunEnfermedad = !this.mostrarAyudaNombreComunEnfermedad;
+    }
+    // Puedes repetir este patrón para otros campos si es necesario
   }
 
 }
