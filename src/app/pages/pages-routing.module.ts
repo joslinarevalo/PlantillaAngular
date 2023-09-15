@@ -57,13 +57,21 @@ const routes: Routes = [
       import("./reportes/reportes.module").then(
         (m) => m.ReportesModule
       ),
-  },
+  },{
     path: "consultaEnfermedades",
     loadChildren: () =>
       import("./consulta-enfermedad/consulta-enfermedad.module").then(
         (m) => m.ConsultaEnfermedadModule
       ),
   },
+  {
+    path: "consultaTratamiento",
+    loadChildren: () =>
+      import("./consulta-tratamiento/consulta-tratamiento.module").then(
+        (m) => m.ConsultaTratamientoModule
+      ),
+  },
+  
   {
     path: "paginas-principal",
     loadChildren: () =>

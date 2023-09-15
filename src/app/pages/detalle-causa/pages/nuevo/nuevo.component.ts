@@ -248,8 +248,8 @@ export class NuevoComponent implements OnInit {
       },
       error: (err) => {
        // mensajeError("Error al guardar el detalle de causa");
-        this.errores = err.error.errors as string[];
-        console.error('Código del error desde el backend: ' + err.status);
+       // this.errores = err.error.errors as string[];
+        console.error('Código del error desde el backend: ' + err);
       },
       complete: () => {
         this.modalService.dismissAll();
