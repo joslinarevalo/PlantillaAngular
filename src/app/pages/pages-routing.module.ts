@@ -57,13 +57,9 @@ const routes: Routes = [
       import("./reportes/reportes.module").then(
         (m) => m.ReportesModule
       ),
-<<<<<<< HEAD
-  },{
-    path: "consultaEnfermedades",
-=======
+
   },
     {path: "consultaEnfermedades",
->>>>>>> 103f273ceec41a25a6b7a673df3262322b36ca02
     loadChildren: () =>
       import("./consulta-enfermedad/consulta-enfermedad.module").then(
         (m) => m.ConsultaEnfermedadModule
