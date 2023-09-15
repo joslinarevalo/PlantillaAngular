@@ -9,8 +9,7 @@ export class DetalleCausa {
 }
 
 export class Planta {
-  idPlanta?: number;
-  tipoPlanta?: string;
+  idPlanta?: string;
   nombreComunPlanta?: string;
 }
 

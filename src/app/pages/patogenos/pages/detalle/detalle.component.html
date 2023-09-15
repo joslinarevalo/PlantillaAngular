@@ -10,10 +10,13 @@
             </div>
             <!-- Primer párrafo -->
             <div class="parrafo-container text-muted text-justify" *ngFor="let parrafo of parrafos; let i = index">
-              {{ parrafo }}
+             <p>{{ parrafo }}</p> 
              <!-- Segundo párrafo -->
               <div *ngIf="i ==0" class="text-center">
-                <img [src]="causa.imagen" class="img-fluid mx-auto d-block card-image">
+                <div class="position-relative mb-3">
+                  <img [src]="causa.imagen" class="img-fluid mx-auto d-block card-image img-thumbnail">
+              </div>
+              
               </div>
             </div>
 
