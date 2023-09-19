@@ -1,29 +1,28 @@
 
-<div class="container-fluid">
-    <div class="row">
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
       <div class="card">
-        <div class="col-lg-12">
-          <div class="row" *ngIf="enfermedad">
-            <div class="card-body">
-              <h2 class="card-title mb-4 text-center">ENFERMEDAD DE LA PLANTA</h2>
-              <p class="card-title mb-4 text-center">{{ enfermedad.nombreComunEnfermedad }}</p>
+        <div class="card-body">
+          <h2 class="card-title">Información de la Enfermedad</h2>
+          <div class="row">
+            <!-- <div class="col-md-5 d-flex justify-content-center"> -->
+            <div class="col-md-5">
+              <img [src]="enfermedad.urlEnfermedad" class="img-fluid" alt="Imagen de la enfermedad">
             </div>
-  
-            <div class="card product-card">
-              <div class="card-body">
-                <div class="product-img position-relative">
-                  <div class="mt-4 text-center">
-                    <h5 class="mb-3 text-truncate">{{ enfermedad.descripcionEnfermedad }}</h5>
-                  </div>
-                  <img [src]="enfermedad.urlEnfermedad" class="img-fluid mx-auto d-block card-image">
-                </div>
-              </div>
+            <div class="col-md-7">
+              <p class="card-text"><strong>Nombre Común:</strong> {{ enfermedad.nombreComunEnfermedad }}</p>
+              <p class="card-text"><strong>Nombre Científico:</strong> {{ enfermedad.nombreCientificoEnfermedad }}</p>
+              <p class="card-text"><strong>Descripción:</strong> {{ enfermedad.descripcionEnfermedad }}</p>
+              <p class="card-text"><strong>Etapa:</strong> {{ enfermedad.etapaEnfermedad }}</p>
+              <p class="card-text"><strong>Tipo:</strong> {{ enfermedad.tipoEnfermedad }}</p>
+              <p class="card-text"><strong>Síntomas:</strong> {{ enfermedad.sintomasEnfermedad }}</p>
+              <p class="card-text"><strong>Condición Favorable:</strong> {{ enfermedad.condicionFavorableEnfermedad }}</p>
+              <p class="card-text"><strong>Partes Afectadas:</strong> {{ enfermedad.partesAfectadasEnfermedad }}</p>
             </div>
           </div>
-          <!-- end row -->
         </div>
       </div>
-      <!-- end row -->
     </div>
   </div>
-  
+</div>

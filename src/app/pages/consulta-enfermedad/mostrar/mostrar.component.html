@@ -5,7 +5,7 @@
             <div class="card">
                 <div class="row">
                     <div class="card-body">
-                        <h2 class="card-title mb-4 text-center">ENFERMEDADES</h2>
+                        <h1 class="card-title mb-4 text-center">ENFERMEDADES</h1>
                         <!-- <p class="card-title text-center">...</p> -->
                         <div class="row mb-3">
                             <div class="col-lg-12 col-sm-12">
@@ -25,8 +25,7 @@
                                     <div class="mt-2 text-center">
                                         <h5 class="mb-3 text-truncate">{{enfermedad.nombreComunEnfermedad}}</h5>
                                     </div>
-                                    <a [routerLink]="['consultaEnfermedades/detalle',enfermedad.idEnfermedad]"
-                                        href="javascript: void(0);"><!-- /consuta-enfermedad/detalle -->
+                                    <a (click)="verDetalle(enfermedad.idEnfermedad)">
                                         <img [src]="enfermedad.imagen" class="img-fluid mx-auto d-block card-image">
                                     </a>
                                 </div>

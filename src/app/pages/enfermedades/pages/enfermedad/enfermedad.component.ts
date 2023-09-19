@@ -106,7 +106,7 @@ export class EnfermedadComponent implements OnInit {
     this.serviceEnfermedad.modificar(enfermedadModificar)
       .subscribe({
         next: (resp) => {
-          mensajeExito("Enfermedad modificada con exito "+ resp.Mensaje);
+          mensajeExito("Enfermedad modificada con exito ");//+ resp.Mensaje
         },
         error: (value) => {
           mensajeError("Error al modificar la enfermedad "+value.Mensaje); 
@@ -134,7 +134,7 @@ export class EnfermedadComponent implements OnInit {
       .guardar(enfermedadGuardar)
       .subscribe({
         next: (resp) => {
-          mensajeExito("Enfermedad guardado con exito "+ resp);
+          mensajeExito("Enfermedad guardado con exito ");//+ resp
         },
         error: (err) => {
           /* mensajeError("Error al guardar la enfermedad"); */
