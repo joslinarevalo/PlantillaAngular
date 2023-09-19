@@ -11,6 +11,7 @@ import { NgbDropdownModule, NgbTooltipModule, NgbNavModule } from '@ng-bootstrap
 import { SimplebarAngularModule } from 'simplebar-angular';
 
 import { DefaultComponent } from './default/default.component';
+import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [DefaultComponent],
@@ -25,7 +26,8 @@ import { DefaultComponent } from './default/default.component';
     NgbNavModule,
     WidgetModule,
     NgApexchartsModule,
-    SimplebarAngularModule
+    SimplebarAngularModule,
+    ChartsModule
   ]
 })
 export class DashboardsModule { }
