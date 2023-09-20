@@ -9,6 +9,7 @@ import { IPlanta, IPlantaMostrar, IPlantaValid } from '../interface/iplanta';
 export class PlantaService {
 
   urlPlanta:string="http://localhost:8080/planta/";
+  //http://localhost:8080/planta/contarPlantas
 
   constructor(private http:HttpClient) { }
 
@@ -38,6 +39,9 @@ export class PlantaService {
 
   eliminarPlanta(tratamiento:IPlantaMostrar):Observable<any>{
     return this.http.delete<any>(this.urlPlanta+"eliminar/"+tratamiento.idPlanta);
+  }
+  obtenerConteoPlantas(): Observable<number> {
+    return this.http.get<number>(this.urlPlanta + "contarPlantas");
   }
 
   buscarPlanta(id:String):Observable<any>{

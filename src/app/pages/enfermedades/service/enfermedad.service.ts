@@ -37,6 +37,10 @@ export class EnfermedadService {
     return this.http.get<IEnfermedad>(this.urlAPI+"buscar/"+id);
   }
 
+  obtenerConteoenfermedad(): Observable<number> {
+    return this.http.get<number>(this.urlAPI + "contarEnfermedades");
+  }
+
   longitudCampos():Observable<any>{
     return this.http.get<any>(this.urlAPI+"longitudCampos");
   }

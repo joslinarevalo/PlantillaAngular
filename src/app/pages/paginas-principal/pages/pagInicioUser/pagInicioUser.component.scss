@@ -1,4 +1,26 @@
-.text-justify {
-    text-align: justify;
-  }
+.search-button {
+  width: 100%; /* Usa el ancho completo */
+  height: 250px; /* Ajusta la altura según tus necesidades */
+  background-image: url('../../../../../assets/images/small/fitopatologia.jpg');
+  background-size: cover;
+  text-align: center;
+  cursor: pointer;
+  position: relative; /* Agrega posición relativa para los elementos internos */
+}
+
+.search-box {
+  position: absolute; /* Agrega posición absoluta para centrar verticalmente */
+  top: 50%; /* Mueve el cuadro de búsqueda al centro vertical */
+  left: 1%;
+  right: 0;
+  transform: translateY(-50%); /* Alinea verticalmente al centro */
+  background-color: rgba(255, 255, 255, 0.7); /* Fondo semitransparente para legibilidad */
+  padding: 20px;
   
+}
+
+.form-control {
+  border: none; /* Quita el borde del input */
+  border-radius: 0; /* Quita el radio de las esquinas */
+  box-shadow: none; /* Quita la sombra del input */
+}

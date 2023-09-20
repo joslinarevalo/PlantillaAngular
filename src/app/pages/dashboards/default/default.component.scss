@@ -1,0 +1,12 @@
+.custom-card {
+    padding: 5px; /* Aumenta el espacio interno de la tarjeta */
+    border: 0.5px solid #ccc; /* Agrega un borde */
+    box-shadow: 5px 5px 5px #888888; /* Agrega una sombra */
+  }
+  
+  .custom-border {
+    margin: -10px; /* Hace que el borde sobresalga */
+    padding: 5px; /* Aumenta el espacio interno del borde */
+    border: 0.5px solid #ccc; /* Agrega un borde al borde */
+    border-radius: 0.5px; /* Añade bordes redondeados al borde */
+  }
