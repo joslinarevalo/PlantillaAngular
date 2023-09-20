@@ -28,7 +28,8 @@ FullCalendarModule.registerPlugins([
   bootstrapPlugin,
 ]);
 @NgModule({
-  declarations: [],
+  declarations: [
+  ],
   imports: [
     CommonModule,
     NgbDropdownModule,
