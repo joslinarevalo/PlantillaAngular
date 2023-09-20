@@ -1,3 +1,72 @@
 .texto-mayusculas {
     text-transform: uppercase;
   }
+
+  #contador {
+    margin-top: 10px;
+    font-size: 12px;
+    color: gray;
+}
+.required::before {
+  content: "*";
+  color: red;
+  margin-right: 5px; /* Espacio entre el asterisco y el texto */
+}
+
+
+/* Estilos para el icono de información */
+.info-icon {
+  cursor: pointer;
+  display: inline-block;
+  width: 12px;
+  height: 15px;
+  line-height: 13px;
+  text-align: center;
+  border-radius: 50%;
+  background-color: #ffffff; /* Cambia esto al color que desees */
+  border: 1px solid #666; /* Cambia esto al color que desees para la línea del círculo */
+  color: #666;
+  font-size: 8px;
+}
+
+/* (Inicio) Estilos para el mensaje emergente (tooltip) */
+[data-title]:hover:after {
+  opacity: 1;
+  transition: all 0.1s ease 0.5s;
+  visibility: visible;
+}
+
+[data-title]:after {
+  content: attr(data-title);
+  background-color: #5c5b5b;
+  color: #fff;
+  font-size: 12px;
+  font-family: Raleway;
+  position: absolute;
+  
+  /* Ajusta el padding para hacer el recuadro más ancho (10px arriba/abajo, 20px izquierda/derecha) */
+  padding: 3px 10px;
+  top: 50%;
+  left: 110%;
+  transform: translateY(-50%);
+  /* Permite que el texto se divida en varias líneas si es necesario */
+  white-space: normal;//normal,nowrap 
+  //word-wrap: break-word;
+  box-shadow: 12px 12px 6px #707070;
+  opacity: 0;
+  border: 1px solid #333333;
+  z-index: 99999;
+  visibility: hidden;
+  border-radius: 6px;
+    /* Ajusta el ancho máximo para permitir que el recuadro acomode un texto más largo sin recortarlo */
+    //max-width: 800px; /* Por ejemplo, puedes cambiar esto a 400px */
+    
+}
+
+[data-title] {
+  position: relative;
+  cursor: pointer;
+}
+/* (Fin) Estilos para el mensaje emergente (tooltip) */
+
+

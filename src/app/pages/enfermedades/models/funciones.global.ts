@@ -4,9 +4,10 @@ export function mensajeExito(mensaje:string){
     Swal.fire({
         position: 'center',
         icon: 'success',
-        title: mensaje,
+        title: '¡Buen trabajo!',
+        text: mensaje,
         showConfirmButton: false,
-        timer: 1500,
+        timer: 3000,
       });
       
 }
@@ -14,9 +15,10 @@ export function mensajeError(mensaje:string){
     Swal.fire({
         position: 'center',
         icon: 'error',
-        title: mensaje,
+        title: '¡Algo anda mal!',
+        text: mensaje,
         showConfirmButton: false,
-        timer: 1500,
+        timer: 3000,
       });
       
 }

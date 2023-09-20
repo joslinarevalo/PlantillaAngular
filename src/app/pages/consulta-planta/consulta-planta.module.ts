@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { ConsultaEnfermedadRoutingModule } from './consulta-enfermedad-routing.module';
+import { ConsultaPlantaRoutingModule } from './consulta-planta-routing.module';
 import { DetalleComponent } from './detalle/detalle.component';
 import { MostrarComponent } from './mostrar/mostrar.component';
 import { FormsModule } from '@angular/forms';
@@ -14,8 +14,8 @@ import { FormsModule } from '@angular/forms';
   ],
   imports: [
     CommonModule,
-    ConsultaEnfermedadRoutingModule,
+    ConsultaPlantaRoutingModule,
     FormsModule
   ]
 })
-export class ConsultaEnfermedadModule { }
+export class ConsultaPlantaModule { }

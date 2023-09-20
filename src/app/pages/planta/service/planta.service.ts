@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { IPlantaMostrar } from '../interface/iplanta';
+import { IPlanta, IPlantaMostrar, IPlantaValid } from '../interface/iplanta';
 
 @Injectable({
   providedIn: 'root'
@@ -42,6 +42,10 @@ export class PlantaService {
   }
   obtenerConteoPlantas(): Observable<number> {
     return this.http.get<number>(this.urlPlanta + "contarPlantas");
+  }
+
+  buscarPlanta(id:String):Observable<any>{
+    return this.http.get<IPlanta>(this.urlPlanta+"buscar/"+id);
   }
 
 }
