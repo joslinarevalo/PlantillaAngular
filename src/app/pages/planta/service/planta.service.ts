@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { IPlantaMostrar } from '../interface/iplanta';
+import { IPlanta, IPlantaMostrar, IPlantaValid } from '../interface/iplanta';
 
 @Injectable({
   providedIn: 'root'
@@ -38,6 +38,10 @@ export class PlantaService {
 
   eliminarPlanta(tratamiento:IPlantaMostrar):Observable<any>{
     return this.http.delete<any>(this.urlPlanta+"eliminar/"+tratamiento.idPlanta);
+  }
+
+  buscarPlanta(id:String):Observable<any>{
+    return this.http.get<IPlanta>(this.urlPlanta+"buscar/"+id);
   }
 
 }
