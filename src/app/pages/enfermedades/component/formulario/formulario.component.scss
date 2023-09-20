@@ -14,54 +14,59 @@
 }
 
 
-
-
-
-
-
-
-
-
 /* Estilos para el icono de información */
 .info-icon {
   cursor: pointer;
-  margin-left: 5px;
-  font-size: 18px;
-  color: #666; /* Color gris o el color que desees */
-}
-
-/* Estilos para el tooltip de ayuda */
-.tooltip {
-  position: relative;
   display: inline-block;
+  width: 12px;
+  height: 15px;
+  line-height: 13px;
+  text-align: center;
+  border-radius: 50%;
+  background-color: #ffffff; /* Cambia esto al color que desees */
+  border: 1px solid #666; /* Cambia esto al color que desees para la línea del círculo */
+  color: #666;
+  font-size: 8px;
 }
 
-.tooltip::after {
-  content: '';
-  position: absolute;
-  background-color: #704444; /* Fondo diferente (por ejemplo, gris claro) */
-  color: #333; /* Texto en un color más oscuro para contraste */
-  border: 1px solid #862424; /* Borde gris */
-  padding: 5px;
-  border-radius: 4px;
-  font-size: 12px;
-  white-space: nowrap;
-  z-index: 1;
-  top: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  opacity: 0;
-  transition: opacity 0.3s, transform 0.3s; /* Agregamos una transición para suavizar la aparición */
-  pointer-events: none; /* Evita que el tooltip bloquee la interacción con elementos subyacentes */
-}
-
-.tooltip:hover::after {
+/* (Inicio) Estilos para el mensaje emergente (tooltip) */
+[data-title]:hover:after {
   opacity: 1;
-  transform: translateX(-50%) translateY(-10px); /* Hace que el tooltip aparezca como flotando */
-  pointer-events: auto; /* Habilita la interacción con el tooltip */
+  transition: all 0.1s ease 0.5s;
+  visibility: visible;
 }
 
-.tooltip-text {
-  display: block;
-  padding: 5px;
+[data-title]:after {
+  content: attr(data-title);
+  background-color: #5c5b5b;
+  color: #fff;
+  font-size: 12px;
+  font-family: Raleway;
+  position: absolute;
+  
+  /* Ajusta el padding para hacer el recuadro más ancho (10px arriba/abajo, 20px izquierda/derecha) */
+  padding: 3px 10px;
+  top: 50%;
+  left: 110%;
+  transform: translateY(-50%);
+  /* Permite que el texto se divida en varias líneas si es necesario */
+  white-space: normal;//normal,nowrap 
+  //word-wrap: break-word;
+  box-shadow: 12px 12px 6px #707070;
+  opacity: 0;
+  border: 1px solid #333333;
+  z-index: 99999;
+  visibility: hidden;
+  border-radius: 6px;
+    /* Ajusta el ancho máximo para permitir que el recuadro acomode un texto más largo sin recortarlo */
+    //max-width: 800px; /* Por ejemplo, puedes cambiar esto a 400px */
+    
 }
+
+[data-title] {
+  position: relative;
+  cursor: pointer;
+}
+/* (Fin) Estilos para el mensaje emergente (tooltip) */
+
+

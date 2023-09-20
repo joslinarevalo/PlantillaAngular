@@ -90,9 +90,18 @@ export class EnfermedadComponent implements OnInit {
       .then((result) => {
         if (result.isConfirmed) {
 
-          this.serviceEnfermedad.eliminar(objetoEliminar).subscribe((resp) => {
-            alert.fire('Eliminado', 'El registro ha sido eliminado', 'success');
-            this.listaEnfermedad();
+          this.serviceEnfermedad.eliminar(objetoEliminar).subscribe({
+            next: (resp) => {
+              mensajeExito("Enfermedad eliminada con exito ");//+ resp.Mensaje
+            },
+            error: (value) => {
+              mensajeError("Error al modificar la enfermedad "+value.mensaje); 
+            },
+            complete: () => {
+              this.modalService.dismissAll();
+              this.formularioEnfermedad.reset();
+              this.listaEnfermedad();
+            }
           });
 
         } else if (result.dismiss === Swal.DismissReason.cancel) {

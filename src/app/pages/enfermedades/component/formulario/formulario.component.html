@@ -8,12 +8,11 @@
     <div class="row">
 
       <div class="mt-1 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
-        <label class="control-label">Nombre común <span class="required"></span>
-          <span class="info-icon" (click)="mostrarAyuda('nombreComunEnfermedad')">ℹ️</span> <!-- Icono de información -->
-        
+        <label class="control-label" >Nombre común <span class="required"></span>
+          <span class="info-icon" data-title="En este campo se registra el nombre común de la enfermedad.">?</span> <!-- Icono de información -->
         </label>
         <input class="form-control" type="text" id="nombreComunEnfermedad" formControlName="nombreComunEnfermedad"
-          [ngClass]="esCampoValido('nombreComunEnfermedad')" (input)="contarCaracteres('nombreComunEnfermedad')" title="Ingrese el nombre común de la enfermedad"/>
+          [ngClass]="esCampoValido('nombreComunEnfermedad')" (input)="contarCaracteres('nombreComunEnfermedad')"/>
           <div id="contador">{{ mensaje['nombreComunEnfermedad'] }}</div>
         <div class="invalid-feedback">
           <span *ngIf="formularioEnfermedad.get('nombreComunEnfermedad').hasError('required')">
@@ -22,15 +21,12 @@
           <span *ngIf="formularioEnfermedad.get('nombreComunEnfermedad').hasError('espaciosVacios')">
             No se permiten espacios en blanco como valor
           </span>
-        </div>
-        <div *ngIf="mostrarAyudaNombreComunEnfermedad" class="tooltip">
-          <span class="tooltip-text">Ingrese el nombre común de la enfermedad.</span>
-        </div>
-
-        
+        </div>        
       </div>
+
       <div class="mt-1 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
         <label class="control-label">Nombre científico <span class="required"></span></label>
+        <span class="info-icon" data-title="En este campo se registra el nombre científico de la enfermedad.">?</span> <!-- Icono de información -->
         <input class="form-control" type="text" id="nombreCientificoEnfermedad"
           formControlName="nombreCientificoEnfermedad" [ngClass]="esCampoValido('nombreCientificoEnfermedad')" (input)="contarCaracteres('nombreCientificoEnfermedad')"/>
           <div id="contador">{{ mensaje['nombreCientificoEnfermedad'] }}</div>
@@ -45,6 +41,7 @@
 
       <div class="mt-1 col-6">
         <label class="control-label">Etapa que afecta <span class="required"></span></label>
+        <span class="info-icon" data-title="En este campo se registra la etapa de desarrollo de la planta que se ve afectada por la enfermedad.">?</span> <!-- Icono de información -->
         <input class="form-control" type="text" id="etapaEnfermedad" formControlName="etapaEnfermedad"
           [ngClass]="esCampoValido('etapaEnfermedad')" (input)="contarCaracteres('etapaEnfermedad')"/>
           <div id="contador">{{ mensaje['etapaEnfermedad'] }}</div>
@@ -58,6 +55,7 @@
       </div>
       <div class="mt-1 col-6">
         <label class="control-label">Tipo de enfermedad <span class="required"></span></label>
+        <span class="info-icon" data-title="En este campo se registra el tipo de enfermedad ya sea bacteria, hongo, entre otros; por ejemplo: Hongo necrotrófico.">?</span> <!-- Icono de información -->
         <input class="form-control" type="text" id="tipoEnfermedad" formControlName="tipoEnfermedad"
           [ngClass]="esCampoValido('tipoEnfermedad')" (input)="contarCaracteres('tipoEnfermedad')" />
           <div id="contador">{{ mensaje['tipoEnfermedad'] }}</div>
@@ -72,6 +70,7 @@
 
       <div class="mt-1 col-6">
         <label class="control-label">Condición favorable para la enfermedad <span class="required"></span></label>
+        <span class="info-icon" data-title="En este campo se registran las condiciones que favorecen el desarrollo de la enfermedad.">?</span> <!-- Icono de información -->
         <textarea class="form-control" type="text" id="condicionFavorableEnfermedad"
           formControlName="condicionFavorableEnfermedad"
           [ngClass]="esCampoValido('condicionFavorableEnfermedad')" (input)="contarCaracteres('condicionFavorableEnfermedad')"></textarea>
@@ -86,6 +85,7 @@
       </div>
       <div class="mt-1 col-6">
         <label class="control-label">Partes que afecta la enfermedad <span class="required"></span></label>
+        <span class="info-icon" data-title="En este campo se registran las partes de la planta que son afectadas por la enfermedad.">?</span> <!-- Icono de información -->
         <textarea class="form-control" type="text" id="partesAfectadasEnfermedad"
           formControlName="partesAfectadasEnfermedad" [ngClass]="esCampoValido('partesAfectadasEnfermedad')" 
           (input)="contarCaracteres('partesAfectadasEnfermedad')"></textarea>
@@ -100,6 +100,7 @@
       </div>
       <div class="mt-1 col-12">
         <label class="control-label">Descripción <span class="required"></span></label>
+        <span class="info-icon" data-title="Este campo se utiliza para proporcionar detalles y características específicas de la enfermedad que estás reportando.">?</span> <!-- Icono de información -->
         <textarea class="form-control" type="text" id="descripcionEnfermedad" formControlName="descripcionEnfermedad"
           [ngClass]="esCampoValido('descripcionEnfermedad')" (input)="contarCaracteres('descripcionEnfermedad')"></textarea>
           <div id="contador">{{ mensaje['descripcionEnfermedad'] }}</div>
@@ -113,6 +114,7 @@
       </div>
       <div class="mt-1 col-12">
         <label class="control-label">Síntomas de enfermedad <span class="required"></span></label>
+        <span class="info-icon" data-title="En este campo, debes listar los síntomas específicos que se han observado relacionados con la enfermedad que estás reportando.">?</span> <!-- Icono de información -->
         <textarea class="form-control" type="text" id="sintomasEnfermedad" formControlName="sintomasEnfermedad"
           [ngClass]="esCampoValido('sintomasEnfermedad')" (input)="contarCaracteres('sintomasEnfermedad')"></textarea>
           <div id="contador">{{ mensaje['sintomasEnfermedad'] }}</div>
@@ -127,12 +129,13 @@
 
       <div class="mt-1 col-xl-8 col-lg-8 col-md-12 col-sm-12 col-12">
         <label class="control-label">Seleccionar Imagen de la enfermedad <span class="required"></span></label>
+        <span class="info-icon" data-title="En este campo, puedes adjuntar una imagen que ilustre visualmente la enfermedad que estás reportando.">?</span> <!-- Icono de información -->
         <input class="form-control" type="file"  accept="image/*" id="urlEnfermedad" formControlName="urlEnfermedad"
           (change)="SeleccionarImagen($event)" [ngClass]="esCampoValido('urlEnfermedad')" (input)="contarCaracteres('urlEnfermedad')"/>
           <div id="contador">{{ mensaje['urlEnfermedad'] }}</div>
         <div class="invalid-feedback">
-          <!-- <span *ngIf="formularioEnfermedad.get('urlEnfermedad')?.errors?.['required']">
-            Requiere una imagen de la enfermedad</span> -->
+          <span *ngIf="formularioEnfermedad.get('urlEnfermedad')?.errors?.['required']">
+            Requiere una imagen de la enfermedad</span>
         </div>
       </div>
       <br>

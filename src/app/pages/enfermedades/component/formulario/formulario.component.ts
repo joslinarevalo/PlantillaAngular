@@ -174,14 +174,4 @@ export class FormularioComponent implements OnInit {
     });
   }
 
-  mostrarAyudaNombreComunEnfermedad = false; // Variable para controlar la visibilidad del tooltip de ayuda
-
-  mostrarAyuda(campo: string) {
-    // Aquí puedes determinar cuál campo se está solicitando la ayuda
-    if (campo === 'nombreComunEnfermedad') {
-      this.mostrarAyudaNombreComunEnfermedad = !this.mostrarAyudaNombreComunEnfermedad;
-    }
-    // Puedes repetir este patrón para otros campos si es necesario
-  }
-
 }
