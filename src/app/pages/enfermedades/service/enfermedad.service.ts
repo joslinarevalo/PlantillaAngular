@@ -36,4 +36,8 @@ export class EnfermedadService {
   buscarEnfermedad(id:String):Observable<any>{
     return this.http.get<IEnfermedad>(this.urlAPI+"buscar/"+id);
   }
+
+  longitudCampos():Observable<any>{
+    return this.http.get<any>(this.urlAPI+"longitudCampos");
+  }
 }

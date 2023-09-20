@@ -12,6 +12,9 @@ import { DomSanitizer } from '@angular/platform-browser';
 export class MostrarComponent implements OnInit {
   @Input() allEnfermedad!: IEnfermedadMostrar[];
   imagen: any;
+  searchTerm: string = "";
+  filtrarEnfermedad: IEnfermedadMostrar[];
+
   constructor(
     private serviceEnfermedad: EnfermedadService,
     private router: Router,
@@ -21,6 +24,19 @@ export class MostrarComponent implements OnInit {
   ngOnInit() {
     this.listatipo();
   }
+
+  filterCards() {
+    // Si el término de búsqueda está vacío, muestra todas las cards
+    if (this.searchTerm.trim() === "") {
+      this.filtrarEnfermedad = this.allEnfermedad;
+    } else {
+      // Filtrar el array de datos usando el término de búsqueda
+      this.filtrarEnfermedad = this.allEnfermedad.filter((causa) =>
+        causa.nombreComunEnfermedad.toLowerCase().includes(this.searchTerm.toLowerCase())
+      );
+    }
+  }
+
   listatipo() {
     this.serviceEnfermedad.listaEnfermedades().subscribe((resp) => {
       this.allEnfermedad = resp;
@@ -32,6 +48,8 @@ export class MostrarComponent implements OnInit {
           element.imagen = this.imagen;
         });
       });
+       // Inicializa filteredCausas después de cargar los datos en allEnfermedad
+       this.filtrarEnfermedad = this.allEnfermedad;
     });
   }
 

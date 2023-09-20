@@ -57,6 +57,7 @@ const routes: Routes = [
       import("./reportes/reportes.module").then(
         (m) => m.ReportesModule
       ),
+
   },
     {path: "consultaEnfermedades",
     loadChildren: () =>
@@ -70,6 +71,14 @@ const routes: Routes = [
         (m) => m.ConsultaPlantaModule
       ),
   },
+  {
+    path: "consultaTratamiento",
+    loadChildren: () =>
+      import("./consulta-tratamiento/consulta-tratamiento.module").then(
+        (m) => m.ConsultaTratamientoModule
+      ),
+  },
+  
   {
     path: "paginas-principal",
     loadChildren: () =>

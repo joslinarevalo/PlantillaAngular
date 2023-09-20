@@ -18,3 +18,11 @@ export interface ITratamientoDTOValid{
     tipoTratamiento:string,
     urlTratamiento:string
 }
+export interface ITratamientoConsulta{
+     idenfermedad:string,
+     nombrecomunenfermedad:string,
+     nombrecienticoenfermedad:string,
+     idplanta:string,
+     nombrecomunplanta:string,
+     nombrecienticoplanta:string
+}

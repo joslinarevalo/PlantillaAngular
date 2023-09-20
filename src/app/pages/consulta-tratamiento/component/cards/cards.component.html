@@ -1,0 +1,90 @@
+<div class="container-fluid">
+    <div class="row">
+      <div class="card">
+        <div class="col-lg-12">
+          <div class="row" *ngIf="tratamiento">
+            <div class="card-body">
+              <h2 class="card-title mb-4 text-center">TRATAMIENTO DE LA PLANTA</h2>
+              <p class="card-title mb-4 text-center">{{ tratamiento.nombrePesticidaTratamiento }}</p>
+            </div>
+  
+            <div class="card product-card">
+              <div class="card-body">
+                <div class="product-img position-relative">
+                  <div class="mt-4 text-justifity">
+                     <img [src]="tratamiento.urlTratamiento" class="img-fluid mx-auto d-block card-image">
+                    <p><strong>Descripcion del tratamiento:</strong> {{ tratamiento.descripcionTratamiento }}</p>
+                    <p><strong>Indicaciones de uso:</strong> {{ tratamiento.indicacionesTratamiento }}</p>
+                    <p><strong>Modo de aplicacion:</strong> {{ tratamiento.aplicacionTratamiento }}</p>
+                    <p><strong>Tipo de tratamiento:</strong> {{ tratamiento.tipoTratamiento }}</p>
+                  </div>
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- end row -->
+        </div>
+      </div>
+      <!-- end row -->
+      
+    </div>
+    <div class="row">
+      <div>
+        <div class="table-responsive mb-0 mt-2" >
+          <table  class="table  row-border hover " width="100%" >
+            <thead class="tabla" >
+              <tr>
+                <th >Nombre comun enfermedad</th>
+                <th >Nombre cientifico enfermedad</th>
+                <th >Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let enfermedadConsulta of listEnfermedades">
+      
+                <td>{{enfermedadConsulta.nombrecomunenfermedad}}</td>
+                <td>{{enfermedadConsulta.nombrecienticoenfermedad}}</td>
+                <td class="text-sm-end" >
+                  <div class="d-flex">
+                    <div class="col-sm-6"><button type="button" class="btn btnModificar btn-sm mb-2 mr-2 btn-rounded" (click)="ObtenerEnfermedad(enfermedadConsulta.idenfermedad)"> <i class="fas fa-edit"> </i> Ver Detalle</button> </div>
+                  </div>
+                  
+              </td>
+              </tr>
+            </tbody>
+          </table>
+      </div>
+      
+      </div>
+    </div>
+    <div class="row">
+      <div>
+        <div class="table-responsive mb-0 mt-2" >
+          <table  class="table  row-border hover " width="100%" >
+            <thead class="tabla" >
+              <tr>
+                <th >Nombre comun Planta</th>
+                <th >Nombre cientifico Planta</th>
+                <th >Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let enfermedadConsulta of listEnfermedades">
+      
+                <td>{{enfermedadConsulta.nombrecomunplanta}}</td>
+                <td>{{enfermedadConsulta.nombrecienticoplanta}}</td>
+                <td class="text-sm-end" >
+                  <div class="d-flex">
+                    <div class="col-sm-6"><button type="button" class="btn btnModificar btn-sm mb-2 mr-2 btn-rounded" (click)="ObtenerEnfermedad(enfermedadConsulta.idenfermedad)"> <i class="fas fa-edit"> </i> Ver Detalle</button> </div>
+                  </div>
+                  
+              </td>
+              </tr>
+            </tbody>
+          </table>
+      </div>
+      
+      </div>
+    </div>
+  </div>

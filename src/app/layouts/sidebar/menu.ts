@@ -92,4 +92,9 @@ export const MENU: MenuItem[] = [
     icon: "bx bx-file",
     link: "consultaPlantas/listaPlantas",
   },
+    id: 21,
+    label: "Lista Tratamiento",
+    icon: "bx bx-file",
+    link: "consultaTratamiento/listaTratamiento",
+  }
 ];

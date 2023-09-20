@@ -1,0 +1,31 @@
+
+.card-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.card-title {
+  font-size: 24px;
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.card-text {
+  font-size: 16px;
+  text-align: justify;
+  color: #555;
+}
+
+.img-fluid {
+  max-width: 100%;/* Ajusta según tus preferencias */
+  //height: 100%;//alto
+  width: 100%;//ancho
+  display: block;
+  margin: 0 ;/* Centra la imagen horizontalmente */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
