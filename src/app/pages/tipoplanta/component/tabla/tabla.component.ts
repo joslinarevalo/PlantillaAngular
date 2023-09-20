@@ -1,4 +1,4 @@
-import { Component, Input, EventEmitter, OnInit, Output , ViewChild } from '@angular/core';
+import { Component, Input, EventEmitter, OnDestroy, OnInit, Output , ViewChild } from '@angular/core';
 import { DataTableDirective } from 'angular-datatables';
 import { Subject } from 'rxjs';
 
@@ -13,7 +13,7 @@ import { TipoplantaService } from '../../services/tipoplanta.service';
   templateUrl: './tabla.component.html',
   styleUrls: ['./tabla.component.scss']
 })
-export class TablaComponent implements OnInit {
+export class TablaComponent implements OnInit, OnDestroy {
 
   breadCrumbItems: Array<{}>;
 
@@ -57,8 +57,8 @@ export class TablaComponent implements OnInit {
       this.listaTipoPlantas = lista;
       this.dtTrigger.next(null);
       });
-
     };
+
 
     obtenerTipoPlantaEliminar(tipo:Itipoplanta){
       console.log("A eliminar "+tipo);
@@ -69,5 +69,11 @@ export class TablaComponent implements OnInit {
       console.log("A modificar " + tipo);
       this.ObjetoTipoPlantaModificar.emit(tipo);//para emitar el evento de objeto a la vista del padre
     }
+
+    ngOnDestroy(): void {
+      // Do not forget to unsubscribe the event
+      this.dtTrigger.unsubscribe();
+    }
+    
 
 }

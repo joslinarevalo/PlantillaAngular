@@ -64,6 +64,12 @@ const routes: Routes = [
         (m) => m.ConsultaEnfermedadModule
       ),
   },
+  {path: "consultaPlantas",
+    loadChildren: () =>
+      import("./consulta-planta/consulta-planta.module").then(
+        (m) => m.ConsultaPlantaModule
+      ),
+  },
   {
     path: "paginas-principal",
     loadChildren: () =>
@@ -99,7 +105,7 @@ const routes: Routes = [
         (m) => m.PlantaModule
       ),
   },
-  
+
 
 ];
 

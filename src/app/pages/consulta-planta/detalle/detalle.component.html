@@ -1,0 +1,26 @@
+<p>detalle works!</p>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-body">
+          <h2 class="card-title">Información de la Planta</h2>
+          <div class="row">
+            <!-- <div class="col-md-5 d-flex justify-content-center"> -->
+            <div class="col-md-5">
+              <img [src]="planta.urlPlanta" class="img-fluid" alt="Imagen de la Planta">
+            </div>
+            <div class="col-md-7">
+              <p class="card-text"><strong>Nombre Común:</strong> {{ planta.nombreComunPlanta }}</p>
+              <p class="card-text"><strong>Nombre Científico:</strong> {{ planta.nombreCientificoPlanta }}</p>
+              <p class="card-text"><strong>Familia:</strong> {{ planta.familia.nombreFamilia }}</p>
+              <p class="card-text"><strong>Tipo de Planta:</strong> {{ planta.tipoPlanta.tipoPlanta }}</p>
+              <p class="card-text"><strong>Descripción:</strong> {{ planta.descripcionPlanta }}</p>
+              <p class="card-text"><strong>Historia:</strong> {{ planta.historia }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
