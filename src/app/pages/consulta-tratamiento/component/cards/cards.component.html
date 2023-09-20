@@ -32,7 +32,7 @@
     <div class="row">
       <div>
         <div class="table-responsive mb-0 mt-2" >
-          <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table  row-border hover " width="100%" >
+          <table  class="table  row-border hover " width="100%" >
             <thead class="tabla" >
               <tr>
                 <th >Nombre comun enfermedad</th>
@@ -45,6 +45,35 @@
       
                 <td>{{enfermedadConsulta.nombrecomunenfermedad}}</td>
                 <td>{{enfermedadConsulta.nombrecienticoenfermedad}}</td>
+                <td class="text-sm-end" >
+                  <div class="d-flex">
+                    <div class="col-sm-6"><button type="button" class="btn btnModificar btn-sm mb-2 mr-2 btn-rounded" (click)="ObtenerEnfermedad(enfermedadConsulta.idenfermedad)"> <i class="fas fa-edit"> </i> Ver Detalle</button> </div>
+                  </div>
+                  
+              </td>
+              </tr>
+            </tbody>
+          </table>
+      </div>
+      
+      </div>
+    </div>
+    <div class="row">
+      <div>
+        <div class="table-responsive mb-0 mt-2" >
+          <table  class="table  row-border hover " width="100%" >
+            <thead class="tabla" >
+              <tr>
+                <th >Nombre comun Planta</th>
+                <th >Nombre cientifico Planta</th>
+                <th >Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let enfermedadConsulta of listEnfermedades">
+      
+                <td>{{enfermedadConsulta.nombrecomunplanta}}</td>
+                <td>{{enfermedadConsulta.nombrecienticoplanta}}</td>
                 <td class="text-sm-end" >
                   <div class="d-flex">
                     <div class="col-sm-6"><button type="button" class="btn btnModificar btn-sm mb-2 mr-2 btn-rounded" (click)="ObtenerEnfermedad(enfermedadConsulta.idenfermedad)"> <i class="fas fa-edit"> </i> Ver Detalle</button> </div>

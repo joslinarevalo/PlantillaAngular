@@ -81,5 +81,8 @@ export class CardsComponent implements OnInit {
   ObtenerEnfermedad(idEnfermedad:string){
     this.router.navigate(['consultaEnfermedades/detalle', idEnfermedad]);
   }
+  ObtenerPlanta(idplanta:string){
+   // this.router.navigate(['consultaPlanta/detalle', idplanta]);
+  }
 
 }
