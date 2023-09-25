@@ -18,8 +18,9 @@
           <td><img width="100px" height="100px" class="img-fluid" [src]="tratamiento.imagen"></td>
           <td class="text-sm-end" >
             <div class="d-flex">
-              <div class="col-sm-6"><button type="button" class="btn btnModificar btn-sm mb-2 mr-2 btn-rounded" (click)="ObtenerTratamientoModificar(tratamiento)"> <i class="fas fa-edit"> </i></button> </div>
-              <div class="col-sm-6 mt-1"><button type="button" class="btn btnEliminar btn-sm mb-2 mr-2 btn-rounded" (click)="ObtenerTratamientoEliminar(tratamiento)"><i class="fas fa-trash-alt" ></i></button></div>
+              <div class="col-sm-4"><button type="button" class="btn btnModificar btn-sm mb-2 mr-2 btn-rounded" (click)="ObtenerTratamientoModificar(tratamiento)"> <i class="fas fa-edit"> </i></button> </div>
+              <div class="col-sm-4 mt-1"><button type="button" class="btn btnEliminar btn-sm mb-2 mr-2 btn-rounded" (click)="ObtenerTratamientoEliminar(tratamiento)"><i class="fas fa-trash-alt" ></i></button></div>
+              <div class="col-sm-4 mt-1"><button type="button" class="btn btn-secondary btn-sm mb-2 mr-2 btn-rounded" (click)="openModal(content,tratamiento)"><i class="fas fa-eye" ></i></button></div>
             </div>
             
         </td>
@@ -27,3 +28,30 @@
       </tbody>
     </table>
 </div>
+<ng-template #content role="document" let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title mt-0">Informacion de tratamiento</h5>
+    <button
+      type="button"
+      class="btn-close"
+      aria-hidden="true"
+      (click)="modal.dismiss('Cross click')"
+    ></button>
+  </div>
+   <form>
+    <!--  -->
+    <div class="modal-body">
+      <p><strong>Descripcion del tratamiento:</strong> {{ tratamiento.descripcionTratamiento }}</p>
+      <p><strong>Indicaciones de uso:</strong> {{ tratamiento.indicacionesTratamiento }}</p>
+      <p><strong>Modo de aplicacion:</strong> {{ tratamiento.aplicacionTratamiento }}</p>
+      <p><strong>Tipo de tratamiento:</strong> {{ tratamiento.tipoTratamiento }}</p>
+    </div>
+    <!--  -->
+    <div class="modal-footer">
+      <button  class="btn btnEliminar btn-sm mb-2 mr-2 btn-rounded" (click)="modal.close('Close click')">
+        Cerrar
+      </button>
+    </div>
+    <!--  -->
+   </form>
+</ng-template>

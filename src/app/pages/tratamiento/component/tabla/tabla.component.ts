@@ -5,6 +5,7 @@ import { DataTableDirective } from 'angular-datatables';
 import { FormBuilder } from '@angular/forms';
 import { TratamientoService } from '../../service/service.service';
 import { DomSanitizer } from '@angular/platform-browser';
+import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-tabla',
@@ -14,6 +15,11 @@ import { DomSanitizer } from '@angular/platform-browser';
 export class TablaComponent implements OnInit {
   p: any;
   imagen:any;
+  modalOptions: NgbModalOptions = {
+    ariaLabelledBy: 'modal-basic-title',
+    size: 'lg', // sm (SMALL), md (MEDIANO), lg (LARGO),xl (EXTRA LARGO)
+    backdrop:'static'
+  };
   //tratamientoList:ITratamientoMostrar[]=[];
   @Input()ListaDeTratamiento:ITratamientoMostrar[]=[];
   @Output()ObjetoTratamientoEliminar= new EventEmitter<ITratamientoMostrar>();
@@ -21,8 +27,9 @@ export class TablaComponent implements OnInit {
   @ViewChild(DataTableDirective, { static: false} ) dtElement: DataTableDirective;
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<ITratamientoMostrar> = new Subject<ITratamientoMostrar>();
+  tratamiento?:ITratamientoMostrar;
   constructor(private serviceTratamiento:TratamientoService,
-    private dm:DomSanitizer, private fb: FormBuilder) { }
+    private dm:DomSanitizer, private fb: FormBuilder,public modalService:NgbModal) { }
 
   ngOnInit(): void {
     this.dtOptions={
@@ -78,5 +85,10 @@ export class TablaComponent implements OnInit {
     } else {
       return miArchivo;
     }
+  }
+  openModal(content: any,tratamiento:ITratamientoMostrar) {
+    this.tratamiento=tratamiento;
+    this.modalService.open(content);
+
   }
 }
