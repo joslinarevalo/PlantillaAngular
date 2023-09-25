@@ -22,7 +22,6 @@ export class CardsComponent implements OnInit {
     private dm: DomSanitizer,private router: Router) {}
 
   ngOnInit(): void {
-    this.listaEnfermedades();
     this.dtOptions={
       lengthMenu: [5,10,15,20,50],
       destroy: true,
@@ -54,14 +53,15 @@ export class CardsComponent implements OnInit {
             this.imagen = this.dm.bypassSecurityTrustUrl(url);
             //this.tratamiento.urltratamiento = this.imagen;
           }); */
+          this.listaEnfermedades(idtratamiento);
       },
       (error) => {
         console.error("Error al obtener los detalles de la tratamiento:", error);
       }
     );
   }
-  listaEnfermedades(){
-    this.tratamientoService.listaDeTratamientoConsulta().subscribe((resp)=>{
+  listaEnfermedades(idTratamiento:string){
+    this.tratamientoService.listaDeTratamientoConsulta(idTratamiento).subscribe((resp)=>{
       console.log(resp);
       this.listEnfermedades=resp;
       this.dtTrigger.next(null);

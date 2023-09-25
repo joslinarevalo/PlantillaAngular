@@ -24,5 +24,6 @@ export interface ITratamientoConsulta{
      nombrecienticoenfermedad:string,
      idplanta:string,
      nombrecomunplanta:string,
-     nombrecienticoplanta:string
+     nombrecienticoplanta:string,
+     
 }

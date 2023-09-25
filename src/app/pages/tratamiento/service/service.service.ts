@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ITratamientoConsulta, ITratamientoDTOValid, ITratamientoMostrar } from '../interface/tratamiento.interface';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +13,19 @@ export class TratamientoService {
   listaDeTratamiento():Observable<ITratamientoMostrar[]>{
     return this.http.get<ITratamientoMostrar[]>(this.urlTratamiento+"listar");
   }
-  listaDeTratamientoConsulta():Observable<ITratamientoConsulta[]>{
-    return this.http.get<ITratamientoConsulta[]>(this.urlTratamiento+"listaConsulta");
+  listaDeTratamientoPaginacion(pagina:number,tamaño:number):Observable<any>{
+    //return this.http.get<any>(this.urlTratamiento+"listaPaginacion?page='"+pagina+"'&size='"+tamaño+"'").pipe(map((resp:any)=>resp.content));
+    const params:any={
+      page:pagina,
+      size:tamaño
+    }
+    return this.http.get<any>(this.urlTratamiento+"listaPaginacion",{params}).pipe(map((resp:any)=>resp.content));;
+  }
+  listaDeTratamientoScroll():Observable<ITratamientoMostrar[]>{
+    return this.http.get<ITratamientoMostrar[]>(this.urlTratamiento+"listar");
+  }
+  listaDeTratamientoConsulta(idTratamiento:string):Observable<ITratamientoConsulta[]>{
+    return this.http.get<ITratamientoConsulta[]>(this.urlTratamiento+"listaConsulta/"+idTratamiento);
   }
   retornarImagen(urlImagen:string):Observable<Blob>{
     return this.http.get<Blob>(this.urlTratamiento+"imagen/"+urlImagen);
