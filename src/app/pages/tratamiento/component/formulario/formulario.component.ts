@@ -31,6 +31,10 @@ export class FormularioComponent implements OnInit {
       this.imagenMostrar=this.imagen;
       this.formularioSerealizable.set('imagen',this.archivo);
     }
+    else{this.convertirImagen();
+      this.formularioTratamiento.controls['urlTratamiento'].setValue('No_imagen.jpg');
+    }
+    
   }
   cerrarModal(){
     this.ModalService.dismissAll();
@@ -105,6 +109,7 @@ export class FormularioComponent implements OnInit {
     lector.readAsDataURL(event.target.files[0]);
     lector.onload=()=>{this.imagenMostrar=lector.result;}
     let file:File=event.target.files[0];
+    console.log(file);
     this.formularioSerealizable.set("imagen",file);
   }
   esCampoValido(campo: string) {
@@ -115,5 +120,17 @@ export class FormularioComponent implements OnInit {
       ? 'is-valid'
       : '';
   }
+  convertirImagen() {
+    const imagenPath = 'assets/images/NoImage.png'; 
+   
+   fetch(imagenPath)
+    .then((response) => response.blob())
+    .then((blob) => {
+    const nombreArchivo = 'No_imagen.jpg';
+    const archivo = new File([blob], nombreArchivo, { type: 'image/jpeg' }); 
+   console.log('Imagen convertida a File:', archivo);
+    this.formularioSerealizable.set('imagen',archivo);
+    });
+    }
   
 }

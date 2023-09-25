@@ -6,6 +6,8 @@ import { ConsultaTratamientoComponent } from './pages/consulta-tratamiento/consu
 import { CardsComponent } from './component/cards/cards.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { DataTablesModule } from 'angular-datatables';
+import { InfiniteScrollModule } from "ngx-infinite-scroll";
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -17,7 +19,10 @@ import { DataTablesModule } from 'angular-datatables';
     CommonModule,
     ConsultaTratamientoRoutingModule,
     NgxPaginationModule, //PARA LA PAGINACION
-    DataTablesModule
+    DataTablesModule,
+    InfiniteScrollModule,
+    ReactiveFormsModule
+    
   ]
 })
 export class ConsultaTratamientoModule { }

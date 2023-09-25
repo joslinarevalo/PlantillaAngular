@@ -1,46 +1,76 @@
 <div class="container-fluid">
 
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="card">
-                <div class="row">
-                    <div class="card-body">
-                        <h2 class="card-title mb-4 text-center">TRATAMIENTOS</h2>
-                        <!-- <p class="card-title text-center">...</p> -->
-                        <div class="row mb-3">
-                            <div class="col-lg-12 col-sm-12">
-                                <div class="search-box me-2">
-                                    <div class="position-relative">
-                                        <input type="text" class="form-control border-0" placeholder="Buscar...">
-                                        <i class="bx bx-search-alt search-icon"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-sm-6" *ngFor="let tratamiento of tratamientoList">
-                        <div class="card tratamiento-card">
-                            <div class="card-body">
-                                <div class="product-img position-relative">
-                                    <div class="mt-2 text-center">
-                                        <h5 class="mb-3 text-truncate">{{tratamiento.nombrePesticidaTratamiento}}</h5>
-                                    </div>
-                                    <a [routerLink]="['consultaTratamientoes/detalle',tratamiento.idTratamiento]"
-                                        href="javascript: void(0);"><!-- /consuta-tratamiento/detalle -->
-                                        <img [src]="tratamiento.imagen" class="img-fluid mx-auto d-block card-image">
-                                    </a>
-                                </div>
-                                <div class="mt-4 text-center">
-                                    <div class=""><button type="button" class="btn btnDetalle "
-                                            (click)="verDetalle(tratamiento.idTratamiento)"><i
-                                                class="fas fa-long-arrow-alt-right"></i> Ver detalle</button></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- end row -->
+  <div class="row">
+      <div class="col-lg-12">
+          <div class="card">
+              <div class="row">
+                  <div class="card-body">
+                      <h2 class="card-title mb-4 text-center">TRATAMIENTOS</h2>
+                      <!-- <p class="card-title text-center">...</p> -->
+                      <div class="row mb-3">
+                          <div class="col-lg-12 col-sm-12">
+                              <div class="search-box me-2">
+                                  <div class="position-relative">
+                                      <input type="text" class="form-control border-0" placeholder="Buscar...">
+                                      <i class="bx bx-search-alt search-icon"></i>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="row"  infiniteScroll
+                  [infiniteScrollDistance]="2"
+                  [infiniteScrollThrottle]="30"
+                  (scrolled)="onScroll()">
+                  <div class="col-xl-4 col-sm-6" *ngFor="let tratamiento of tratamientoListPaginada">
+                      <div class="card tratamiento-card">
+                          <div class="card-body">
+                              <div class="product-img position-relative">
+                                  <div class="mt-2 text-center">
+                                      <h5 class="mb-3 text-truncate">{{tratamiento.nombrePesticidaTratamiento}}</h5>
+                                  </div>
+                                  <a [routerLink]="['consultaTratamiento/detalle',tratamiento.idTratamiento]"
+                                      href="javascript: void(0);"><!-- /consuta-tratamiento/detalle -->
+                                      <img [src]="tratamiento.imagen" class="img-fluid mx-auto d-block card-image">
+                                  </a>
+                              </div>
+                              <div class="mt-4 text-center">
+                                  <div class=""><button type="button" class="btn btnDetalle "
+                                          (click)="verDetalle(tratamiento.idTratamiento)"><i
+                                              class="fas fa-long-arrow-alt-right"></i> Ver detalle</button></div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                </div>  
+              </div>
+          </div>
+      </div>
+
+      <!--  <div class="col-lg-3">
+          <div class="card">
+              <div class="search-box me-2">
+                  <div class="position-relative">
+                    <input type="text" class="form-control border-0" placeholder="Buscar..." >
+                    <i class="bx bx-search-alt search-icon"></i>
+                  </div>
+              </div>
+              <div class="card-body">
+                  <h4 class="card-title mb-4">Filtrar</h4>
+                  <div>
+                      <h5 class="font-size-14 mb-3">Categorias</h5>
+                      <ul class="list-unstyled product-list">
+                          <li><a href="javascript: void(0);"><i class="mdi mdi-chevron-right me-1"></i>
+                                  Hongos</a></li>
+                          <li><a href="javascript: void(0);"><i class="mdi mdi-chevron-right me-1"></i> Virus</a>
+                          </li>
+                          <li><a href="javascript: void(0);"><i class="mdi mdi-chevron-right me-1"></i> Patogenos</a>
+                          </li>
+                      </ul>
+                  </div>
+              </div>
+          </div>
+      </div> -->
+  </div>
+  <!-- end row -->
 </div>

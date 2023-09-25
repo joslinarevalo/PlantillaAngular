@@ -44,7 +44,7 @@ export class TratamientoComponent implements OnInit {
       aplicacionTratamiento: ['', [Validators.required,Validators.minLength(10),Validators.maxLength(250)]],
       indicacionesTratamiento: ['', [Validators.required,Validators.minLength(10),Validators.maxLength(250)]],
       tipoTratamiento: ['', [Validators.required,Validators.minLength(5),Validators.maxLength(20)]],
-      urlTratamiento: ['', [Validators.required,,Validators.minLength(10),Validators.maxLength(200)]]
+      urlTratamiento: ['']
     });
   }
   listaTratamiento(){
@@ -158,5 +158,6 @@ export class TratamientoComponent implements OnInit {
       return miArchivo;
     }
   }
+  
 
 }
