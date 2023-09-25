@@ -27,6 +27,7 @@ export class TablaComponent implements OnInit {
   @ViewChild(DataTableDirective, { static: false} ) dtElement: DataTableDirective;
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<ITratamientoMostrar> = new Subject<ITratamientoMostrar>();
+  tratamiento?:ITratamientoMostrar;
   constructor(private serviceTratamiento:TratamientoService,
     private dm:DomSanitizer, private fb: FormBuilder,public modalService:NgbModal) { }
 
@@ -86,6 +87,7 @@ export class TablaComponent implements OnInit {
     }
   }
   openModal(content: any,tratamiento:ITratamientoMostrar) {
+    this.tratamiento=tratamiento;
     this.modalService.open(content);
 
   }
