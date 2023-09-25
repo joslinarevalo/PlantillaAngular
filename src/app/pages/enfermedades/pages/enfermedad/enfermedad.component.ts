@@ -52,7 +52,34 @@ export class EnfermedadComponent implements OnInit {
   }
 
   listaEnfermedad() {
-    this.serviceEnfermedad.listaEnfermedades().subscribe((resp) => {
+    this.serviceEnfermedad.listaEnfermedades()
+    /* .subscribe({
+      next: (resp) => {
+        this.enfermedadList = resp;
+        console.log(resp);
+        this.enfermedadList.forEach(element => {
+          this.serviceEnfermedad.getImagen(element.urlEnfermedad).subscribe((resp) => {
+            //console.log(resp);
+            let url = URL.createObjectURL(resp);
+            this.imagen = this.dm.bypassSecurityTrustUrl(url);
+            //console.log(this.imagen);
+            element.imagen = this.imagen;
+            element.archivo = this.convertirArchivo(resp, element.urlEnfermedad);
+            console.log(element.archivo);
+          });
+        });
+        mensajeExito("Enfermedad modificada con exito ");//+ resp.Mensaje
+      },
+      error: (value) => {
+        mensajeError("Error al modificar la enfermedad "+value.Mensaje); 
+      },
+      complete: () => {
+        this.modalService.dismissAll();
+        this.formularioEnfermedad.reset();
+        this.listaEnfermedad();
+      }
+    }); */
+    .subscribe((resp) => {
       this.enfermedadList = resp;
       console.log(resp);
       this.enfermedadList.forEach(element => {
@@ -95,7 +122,7 @@ export class EnfermedadComponent implements OnInit {
               mensajeExito("Enfermedad eliminada con exito ");//+ resp.Mensaje
             },
             error: (value) => {
-              mensajeError("Error al modificar la enfermedad "+value.mensaje); 
+              mensajeError("Error al modificar la enfermedad "+value); 
             },
             complete: () => {
               this.modalService.dismissAll();

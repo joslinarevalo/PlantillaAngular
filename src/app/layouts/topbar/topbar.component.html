@@ -36,11 +36,11 @@
         <button type="button" class="btn header-item" >
           <span class="d-none d-xl-inline-block ms-1">Manual </span>
         </button>
-        <button type="button" class="btn header-item" id="page-header-user-dropdown" ngbDropdownToggle>
-          <span class="d-none d-xl-inline-block ms-1">Claudia</span>
+        <button  *ngIf="autenticacionService.isAuthenticated()" type="button" class="btn header-item" id="page-header-user-dropdown" ngbDropdownToggle>
+          <span class="d-none d-xl-inline-block ms-1">{{autenticacionService.usuario.usuario}}</span>
           <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
         </button>
-        <div class="dropdown-menu dropdown-menu-end" ngbDropdownMenu>
+        <div  *ngIf="autenticacionService.isAuthenticated()" class="dropdown-menu dropdown-menu-end" ngbDropdownMenu>
           <!-- item-->
           <a class="dropdown-item" href="javascript: void(0);"><i class="bx bx-user font-size-16 align-middle me-1"></i>
             {{ 'HEADER.LOGIN.PROFILE' | translate}}</a>
@@ -52,8 +52,10 @@
               class="bx bx-power-off font-size-16 align-middle me-1 text-danger"></i>
             {{ 'HEADER.LOGIN.LOGOUT' | translate}}</a>
         </div>
+
+        <a routerLink="/" *ngIf="!autenticacionService.isAuthenticated()" class="btn btn-info" >Iniciar sesión</a>
+
       </div>
- 
 
     </div>
   </div>
