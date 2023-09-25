@@ -11,12 +11,9 @@ const urlEndPoint: string = "http://localhost:8080/api/DetalleCausa";
 })
 export class DetallecausaService {
 
-
   private httpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' });
   constructor(private http: HttpClient) {}
  
-
-
   listaenfermedad(): Observable<Enfermedad[]> {
     return this.http.get<Enfermedad[]>(urlEndPoint + "/enfermedad");
   }
@@ -26,6 +23,9 @@ export class DetallecausaService {
   }
   getPlantas(): Observable<Planta[]> {
     return this.http.get<Planta[]>(urlEndPoint + "/plantas");
+  }
+  obtenerDetallesCausaPorPlanta(idPlanta: string): Observable<any[]> {
+    return this.http.get<any[]>(`${urlEndPoint}/planta/${idPlanta}`);
   }
 
   getDetalle(): Observable<DetalleCausa[]> {
@@ -73,4 +73,14 @@ export class DetallecausaService {
       );
     }
     
+    retornarImagen(urlImagen:string):Observable<Blob>{
+      return this.http.get<Blob>(urlEndPoint+"imagen/"+urlImagen);
+    }
+    getImagen(idimagen:any):Observable<Blob>{
+      const headers= new HttpHeaders().set("Content-Type",'Aplication/json');
+       return this.http.get<Blob>(`${urlEndPoint}imagen/${idimagen}`,{
+        headers,
+        responseType:'blob' as 'json'
+       });
+    }
 }

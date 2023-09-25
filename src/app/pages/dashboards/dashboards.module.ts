@@ -12,9 +12,13 @@ import { SimplebarAngularModule } from 'simplebar-angular';
 
 import { DefaultComponent } from './default/default.component';
 import { ChartsModule } from 'ng2-charts';
+import { HttpClientModule } from '@angular/common/http';
+import { BrowserModule } from '@angular/platform-browser';
+import { GraficoComponent } from './grafico/grafico.component';
+import { NgxEchartsModule } from 'ngx-echarts';
 
 @NgModule({
-  declarations: [DefaultComponent],
+  declarations: [DefaultComponent,GraficoComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -25,9 +29,15 @@ import { ChartsModule } from 'ng2-charts';
     NgbTooltipModule,
     NgbNavModule,
     WidgetModule,
-    NgApexchartsModule,
     SimplebarAngularModule,
-    ChartsModule
-  ]
+    ChartsModule,
+    HttpClientModule,
+    NgApexchartsModule ,// para graficos 
+    ChartsModule ,//graficas 
+    NgxEchartsModule.forRoot({
+      echarts: () => import('echarts')
+    })
+  ],
+
 })
 export class DashboardsModule { }

@@ -25,7 +25,7 @@
                                     <div class="mt-2 text-center">
                                         <h5 class="mb-3 text-truncate">{{tratamiento.nombrePesticidaTratamiento}}</h5>
                                     </div>
-                                    <a [routerLink]="['consultaTratamientoes/detalle',tratamiento.idTratamiento]"
+                                    <a (click)="verDetalle(tratamiento.idTratamiento)"
                                         href="javascript: void(0);"><!-- /consuta-tratamiento/detalle -->
                                         <img [src]="tratamiento.imagen" class="img-fluid mx-auto d-block card-image">
                                     </a>

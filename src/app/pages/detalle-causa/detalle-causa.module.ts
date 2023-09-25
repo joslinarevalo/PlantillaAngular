@@ -12,13 +12,15 @@ import { TablaComponent } from './pages/tabla/tabla.component';
 import { NuevoComponent } from './pages/nuevo/nuevo.component';
 import { DataTablesModule } from 'angular-datatables';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { VerDetalleComponent } from './pages/VerDetalle/VerDetalle.component';
 
 @NgModule({
   declarations: [
     BuscarComponent,
     ListarComponent,
     TablaComponent,
-    NuevoComponent
+    NuevoComponent,
+    VerDetalleComponent
   ],
   imports: [
     CommonModule,

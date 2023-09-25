@@ -1,5 +1,5 @@
 export interface ITratamientoMostrar{
-    idTratamiento?:string,
+    idTratamiento:string,
     nombrePesticidaTratamiento:string,
     descripcionTratamiento:string,
     aplicacionTratamiento:string,
@@ -25,4 +25,15 @@ export interface ITratamientoConsulta{
      idplanta:string,
      nombrecomunplanta:string,
      nombrecienticoplanta:string
+}
+export interface BuscarTramiento{
+    idtratamiento:string,
+    nombrePesticidaTratamiento:string,
+    descripcionTratamiento:string,
+    aplicacionTratamiento:string,
+    indicacionesTratamiento:string,
+    tipoTratamiento:string,
+    urlTratamiento:string,
+    imagen?:any,
+    archivo?:File
 }
