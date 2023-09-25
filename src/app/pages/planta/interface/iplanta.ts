@@ -43,5 +43,18 @@ export interface IPlantaValid {
   archivo?:         File;
 }
 
-
+export interface IBuscarPlanta {
+  nombreCientificoPlanta: string;
+  descripcionPlanta:      string;
+  tipoPlanta:       string;
+  nombreComunPlanta:      string;
+  historia:         string;
+  idTipoPlanta:     string;
+  nombreFamilia:    string;
+  idPlanta?:         string;
+  idFamilia:        string;
+  urlPlanta:        string;
+  imagen?:          any;
+  archivo?:         File;
+}
 

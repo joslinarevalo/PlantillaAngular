@@ -6,11 +6,11 @@ import { DetalleComponent } from './detalle/detalle.component';
 import { MostrarComponent } from './mostrar/mostrar.component';
 import { FormsModule } from '@angular/forms';
 
-
 @NgModule({
   declarations: [
     DetalleComponent,
-    MostrarComponent
+    MostrarComponent,
+   
   ],
   imports: [
     CommonModule,

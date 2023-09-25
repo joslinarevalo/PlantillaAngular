@@ -10,7 +10,9 @@
                 <div class="search-box me-2 ">
                   <div class="position-relative">
                     <!-- Vincula el valor del cuadro de búsqueda al modelo -->
-                    <input type="text" class="form-control  color mt-4" placeholder="Buscar..." [(ngModel)]="searchTerm" (input)="filterCards()">
+                    <input type="text" class="form-control  color mt-4"
+                     placeholder="Buscar..."
+                      [(ngModel)]="searchTerm" (input)="filterCards()">
                     <i class="bx bx-search-alt search-icon"></i>
                   </div>
                 </div>
@@ -25,7 +27,9 @@
                   <div class="mt-4 text-center">
                     <h5 class="text-center">{{ causa.tipoTC }}</h5>
                   </div>
-                  <img [src]="causa.imagen" class="img-fluid mx-auto d-block card-image">
+                  <div class="card border-0 rounded-3 overflow-hidden img-ycard" >
+                    <img [src]="causa.imagen" class="img-fluid mx-auto d-block card-image">
+                  </div>
                 </div>
                 <div class="mt-4 text-center">
                   <div class=""><button type="button" class="btn btnEliminar" (click)="verDetalle(causa.idTipoCausa)"><i class="fas fa-long-arrow-alt-right"></i> Ver detalle</button></div>

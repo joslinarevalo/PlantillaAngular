@@ -18,4 +18,7 @@ export class Enfermedad {
   nombreComunEnfermedad?: string;
   nombreCientificoEnfermedad?: string;
   tipoEnfermedad?: string;
+  urlEnfermedad?:string
+  imagen?:any
+  archivo?:File
 }

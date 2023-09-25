@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ITratamientoConsulta, ITratamientoMostrar } from 'src/app/pages/tratamiento/interface/tratamiento.interface';
 import { TratamientoService } from 'src/app/pages/tratamiento/service/service.service';

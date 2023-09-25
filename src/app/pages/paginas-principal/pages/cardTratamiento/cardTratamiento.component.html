@@ -1,0 +1,17 @@
+<div class="card tratamiento-card">
+  <div class="card-body">
+      <div class="product-img position-relative">
+          <div class="mt-2 text-center">
+              <h5 class="mb-3 text-truncate">{{tratamiento.nombrePesticidaTratamiento}}</h5>
+          </div>
+          <a (click)="verDetalle(tratamiento.idtratamiento)">
+              <img [src]="tratamiento.imagen" class="img-fluid mx-auto d-block card-image">
+          </a>
+      </div>
+      <div class="mt-4 text-center">
+          <div class=""><button type="button" class="btn btnDetalle "
+                  (click)="verDetalle(tratamiento.idtratamiento)"><i
+                      class="fas fa-long-arrow-alt-right"></i> Ver detalle</button></div>
+      </div>
+  </div>
+</div>

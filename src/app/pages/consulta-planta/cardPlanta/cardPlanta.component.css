@@ -1,0 +1,21 @@
+.card-title {
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  .card-image {
+    width: 140px; /* El ancho deseado para las imágenes */
+    height: 175px; /* La altura deseada para las imágenes */
+    object-fit: cover; /* Esto asegurará que la imagen se ajuste correctamente en el espacio especificado sin distorsión */
+  }
+  .planta-card:hover {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* Agrega una sombra suave al pasar el cursor */
+    transform: scale(1.01); /* Escala la tarjeta ligeramente al pasar el cursor */
+    transition: box-shadow 0.3s, transform 0.3s; /* Agrega una transición suave para el efecto */
+    background-color: #faeaea;
+  }
+  .planta-card {
+    background-color: #eaf9fa;
+  }
+  
