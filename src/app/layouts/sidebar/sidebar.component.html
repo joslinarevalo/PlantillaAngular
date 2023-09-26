@@ -10,7 +10,7 @@
         <li class="menu-title" *ngIf="item.isTitle">
           {{ item.label | translate }}
         </li>
-        <li *ngIf="!item.isTitle && !item.isLayout">
+        <li *ngIf="!item.isTitle && !item.isLayout && autenticacionService.tieneRol(item.roles)"><!-- // -->
           <a
             [routerLink]="item.link"
             *ngIf="!hasItems(item)"
