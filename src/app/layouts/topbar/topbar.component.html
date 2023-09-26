@@ -43,14 +43,14 @@
         <div  *ngIf="autenticacionService.isAuthenticated()" class="dropdown-menu dropdown-menu-end" ngbDropdownMenu>
           <!-- item-->
           <a class="dropdown-item" href="javascript: void(0);"><i class="bx bx-user font-size-16 align-middle me-1"></i>
-            {{ 'HEADER.LOGIN.PROFILE' | translate}}</a>
+            {{ 'Mi perfil' | translate}}</a>
           <a class="dropdown-item" href="javascript: void(0);"><i
               class="bx bx-lock-open font-size-16 align-middle me-1"></i>
             {{ 'HEADER.LOGIN.LOCK_SCREEN' | translate}}</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item text-danger" href="javascript: void(0);" (click)="logout()"><i
               class="bx bx-power-off font-size-16 align-middle me-1 text-danger"></i>
-            {{ 'HEADER.LOGIN.LOGOUT' | translate}}</a>
+            {{ 'Cerrar sesión' | translate}}</a>
         </div>
 
         <a routerLink="/" *ngIf="!autenticacionService.isAuthenticated()" class="btn btn-info" >Iniciar sesión</a>

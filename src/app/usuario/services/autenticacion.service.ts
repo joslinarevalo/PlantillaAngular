@@ -46,8 +46,6 @@ export class AutenticacionService {
   }
 
   login(usuario:Usuario): Observable<any>{
-    //let loginDAta = { "usuario": "bonifacio", "clave": "1234" }
-    //funciona con y sin el headers
     return this.http.post<any>(`${this.urlEndPoid}`,usuario,{headers: this.httpHeaders});
   }
 

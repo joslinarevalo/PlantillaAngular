@@ -2,6 +2,7 @@ import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 
 import { DefaultComponent } from "./dashboards/default/default.component";
+import { RolGuard } from "../usuario/guards/rol.guard";
 
 const routes: Routes = [
   { path: "", redirectTo: "dashboard" },
@@ -10,6 +11,7 @@ const routes: Routes = [
     path: "dashboards",
     loadChildren: () =>
       import("./dashboards/dashboards.module").then((m) => m.DashboardsModule),
+      canActivate: [ RolGuard], data:{rol:"ROLE_ADMIN"} 
   },
   {
     path: "icons",
@@ -22,6 +24,7 @@ const routes: Routes = [
       import("./detalle-causa/detalle-causa.module").then(
         (m) => m.DetalleCausaModule
       ),
+      canActivate: [ RolGuard], data:{rol:"ROLE_ADMIN"} 
   },
   {
     path: "causaEnfermedad",
@@ -29,6 +32,7 @@ const routes: Routes = [
       import("./causa-enfermedad/causa-enfermedad.module").then(
         (m) => m.CausaEnfermedadModule
       ),
+      canActivate: [ RolGuard], data:{rol:"ROLE_ADMIN"} 
   },
   {
     path: "tratamiento",
@@ -36,6 +40,7 @@ const routes: Routes = [
       import("./tratamiento/tratamiento.module").then(
         (m) => m.TratamientoModule
       ),
+      canActivate: [ RolGuard], data:{rol:"ROLE_ADMIN"} 
   },
   {
     path: "detalleTratamiento",
@@ -43,6 +48,7 @@ const routes: Routes = [
       import("./detalle-tratamiento/detalle-tratamiento.module").then(
         (m) => m.DetalleTratamientoModule
       ),
+      canActivate: [ RolGuard], data:{rol:"ROLE_ADMIN"} 
   },
   {
     path: "enfermedades",
@@ -50,6 +56,7 @@ const routes: Routes = [
       import("./enfermedades/enfermedades.module").then(
         (m) => m.EnfermedadesModule
       ),
+      canActivate: [ RolGuard], data:{rol:"ROLE_ADMIN"} 
   },
   {
     path: "reportes",
@@ -57,41 +64,7 @@ const routes: Routes = [
       import("./reportes/reportes.module").then(
         (m) => m.ReportesModule
       ),
-
-  },
-    {path: "consultaEnfermedades",
-    loadChildren: () =>
-      import("./consulta-enfermedad/consulta-enfermedad.module").then(
-        (m) => m.ConsultaEnfermedadModule
-      ),
-  },
-  {path: "consultaPlantas",
-    loadChildren: () =>
-      import("./consulta-planta/consulta-planta.module").then(
-        (m) => m.ConsultaPlantaModule
-      ),
-  },
-  {
-    path: "consultaTratamiento",
-    loadChildren: () =>
-      import("./consulta-tratamiento/consulta-tratamiento.module").then(
-        (m) => m.ConsultaTratamientoModule
-      ),
-  },
-  
-  {
-    path: "paginas-principal",
-    loadChildren: () =>
-      import("./paginas-principal/paginas-principal.module").then(
-        (m) => m.PaginasPrincipalModule
-      ),
-  },
-  {
-    path: "patogenos",
-    loadChildren: () =>
-      import("./patogenos/patogenos.module").then(
-        (m) => m.PatogenosModule
-      ),
+      canActivate: [ RolGuard], data:{rol:"ROLE_ADMIN"} 
   },
   {
     path: "tipoplanta",
@@ -113,8 +86,43 @@ const routes: Routes = [
       import("./planta/planta.module").then(
         (m) => m.PlantaModule
       ),
+  },  
+  
+  /* INICIO Vistas permitidas para los alumnos */
+  {
+    path: "paginas-principal",
+    loadChildren: () =>
+      import("./paginas-principal/paginas-principal.module").then(
+        (m) => m.PaginasPrincipalModule
+      ),
   },
-
+  {path: "consultaEnfermedades",
+    loadChildren: () =>
+      import("./consulta-enfermedad/consulta-enfermedad.module").then(
+        (m) => m.ConsultaEnfermedadModule
+      ),
+  },
+  {
+    path: "patogenos",
+    loadChildren: () =>
+      import("./patogenos/patogenos.module").then(
+        (m) => m.PatogenosModule
+      ),
+  },
+  {path: "consultaPlantas",
+    loadChildren: () =>
+      import("./consulta-planta/consulta-planta.module").then(
+        (m) => m.ConsultaPlantaModule
+      ),
+  },
+  {
+    path: "consultaTratamiento",
+    loadChildren: () =>
+      import("./consulta-tratamiento/consulta-tratamiento.module").then(
+        (m) => m.ConsultaTratamientoModule
+      ),
+  },
+/* FIN Vistas permitidas para los alumnos */
 
 ];
 
