@@ -40,6 +40,7 @@ export class GraficoComponent implements OnInit {
         xAxis: {
           type: "category",
           data: tiposCausa,
+          name: "Tipos de Causa",
           axisLabel: {
             interval: 0, // Muestra todas las etiquetas
             rotate: 0,   // Rotación de etiquetas en grados (0 para horizontal)
@@ -47,6 +48,7 @@ export class GraficoComponent implements OnInit {
         },
         yAxis: {
           type: "value",
+          name: "Cantidad de Enfermedades", 
         },
         series: [
           {

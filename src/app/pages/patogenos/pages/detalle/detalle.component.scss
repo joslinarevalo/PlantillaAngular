@@ -15,7 +15,10 @@
   .titulo {
     font-size: 20px;
   }
-  
+  .img-fluid.float-left {
+    float: left;
+    margin: 0 20px 20px 0; /* Margen alrededor de la imagen para separarla del texto */
+  }
   .text-justify {
     text-align: justify !important;
   }

@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
+import { map } from 'rxjs/operators';
 import { ITipoCausa, TipoCausa } from "../models/TipoCausa";
 const urlEndPoint: string = "http://localhost:8080/tipoCausa";
 //listar
@@ -10,7 +11,14 @@ const urlEndPoint: string = "http://localhost:8080/tipoCausa";
 export class CausaenfermedadService {
   constructor(private http: HttpClient) {}
 
- 
+  listaDeTpoCausaPaginacion(pagina:number,tamaño:number):Observable<any>{
+    //return this.http.get<any>(this.urlTratamiento+"listaPaginacion?page='"+pagina+"'&size='"+tamaño+"'").pipe(map((resp:any)=>resp.content));
+    const params:any={
+      page:pagina,
+      size:tamaño
+    }
+    return this.http.get<any>(urlEndPoint+"/causaTipoPaginacion",{params}).pipe(map((resp:any)=>resp.content));;
+  }
   listaDeTipoCausa(): Observable<ITipoCausa[]> {
     return this.http.get<ITipoCausa[]>(`${urlEndPoint}/listar`);
   }

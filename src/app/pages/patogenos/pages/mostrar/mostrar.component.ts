@@ -14,7 +14,8 @@ export class MostrarComponent implements OnInit {
   searchTerm: string = "";
   filteredCausas: ITipoCausa[] = []; 
   imagen: any;
-
+  pagina:number=0;
+  tamaño:number=5;
   constructor(
     private causaenfermedad: CausaenfermedadService,
     private router: Router,
@@ -38,9 +39,9 @@ export class MostrarComponent implements OnInit {
   }
 
   listatipo() {
-    this.causaenfermedad.listaDeTipoCausa().subscribe((resp) => {
+    this.causaenfermedad.listaDeTpoCausaPaginacion(this.pagina,this.tamaño).subscribe((resp) => {
       this.alltipocausa = resp;
-      console.log(resp);
+      console.log("respuestacon paginacion",resp);
       this.alltipocausa.forEach((element) => {
         this.causaenfermedad.getImagen(element.urlTC).subscribe((resp) => {
           let url = URL.createObjectURL(resp);
@@ -48,7 +49,6 @@ export class MostrarComponent implements OnInit {
           element.imagen = this.imagen;
         });
       });
-
       // Inicializa filteredCausas después de cargar los datos en alltipocausa
       this.filteredCausas = this.alltipocausa;
     });
@@ -67,4 +67,10 @@ export class MostrarComponent implements OnInit {
     // Navega a la ruta del componente de detalle, pasando el ID como parámetro
     this.router.navigate(['patogenos/detalle', idTipoCausa]);
   }
+  onScroll(){
+    console.log("scroll infinito")
+    this.tamaño+=5;
+    this.listatipo();
+  }
+
 }
