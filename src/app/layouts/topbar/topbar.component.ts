@@ -7,6 +7,8 @@ import { environment } from '../../../environments/environment';
 import { CookieService } from 'ngx-cookie-service';
 import { LanguageService } from '../../core/services/language.service';
 import { TranslateService } from '@ngx-translate/core';
+import { AutenticacionService } from 'src/app/usuario/services/autenticacion.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-topbar',
@@ -29,7 +31,8 @@ export class TopbarComponent implements OnInit {
               private authFackservice: AuthfakeauthenticationService,
               public languageService: LanguageService,
               public translate: TranslateService,
-              public _cookiesService: CookieService) {
+              public _cookiesService: CookieService,
+              public autenticacionService: AutenticacionService) {
   }
 
   listLang = [
@@ -85,12 +88,14 @@ export class TopbarComponent implements OnInit {
    * Logout the user
    */
   logout() {
-    if (environment.defaultauth === 'firebase') {
+    Swal.fire('Cerrar sesión',`Hola ${this.autenticacionService.usuario.usuario} has cerrado sesión con éxito`,'success');
+    this.autenticacionService.logout();
+    /* if (environment.defaultauth === 'firebase') {
       this.authService.logout();
     } else {
       this.authFackservice.logout();
-    }
-    this.router.navigate(['/account/login']);
+    } */
+    this.router.navigate(['/login']);
   }
 
   /**
@@ -128,4 +133,7 @@ export class TopbarComponent implements OnInit {
       }
     }
   }
+
+
+
 }
