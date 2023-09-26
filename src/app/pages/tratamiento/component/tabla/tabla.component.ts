@@ -88,7 +88,12 @@ export class TablaComponent implements OnInit {
   }
   openModal(content: any,tratamiento:ITratamientoMostrar) {
     this.tratamiento=tratamiento;
-    this.modalService.open(content);
+    this.modalService.open(content, {
+      size: "xl",
+      centered: true,
+      backdrop: "static",
+      keyboard: false,
+    });
 
   }
 }

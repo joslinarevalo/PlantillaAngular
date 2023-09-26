@@ -23,68 +23,64 @@
               </div>
             </div>
           </div>
+          <div class="mt-3">
+            <h5 class="mb-4 text-dark">
+              Enfermedades en {{ tratamiento.nombrePesticidaTratamiento }}:
+            </h5>
+
+            <div *ngIf="listEnfermedades && listEnfermedades.length > 0">
+              <div
+                class="media border-bottom"
+                *ngFor="let enfermedadConsulta of listEnfermedades"
+              >
+                <div class="media-body">
+                  <h5 class="mt-0 mb-1 font-size-15">
+                    <a
+                    [routerLink]="['../../../consultaEnfermedades/detalle',enfermedadConsulta.idenfermedad]"
+                      href="javascript: void(0);"
+                      class="text-dark"
+                      >{{ enfermedadConsulta.nombrecomunenfermedad }}</a
+                    >
+                  </h5>
+                </div>
+                <!-- Agrega cualquier otra información de la causa que desees mostrar -->
+              </div>
+            </div>
+            <div *ngIf="!listEnfermedades || listEnfermedades.length === 0">
+              <p>No se encontraron detalles de causa para esta planta.</p>
+            </div>
+          </div>
+          <div class="mt-3">
+            <h5 class="mb-4 text-dark">
+              Plantas en {{ tratamiento.nombrePesticidaTratamiento }}:
+            </h5>
+
+            <div *ngIf="listEnfermedades && listEnfermedades.length > 0">
+              <div
+                class="media border-bottom"
+                *ngFor="let enfermedadConsulta of listEnfermedades"
+              >
+                <div class="media-body">
+                  <h5 class="mt-0 mb-1 font-size-15">
+                    <a
+                    [routerLink]="['../../../consultaPlantas/detalle',enfermedadConsulta.idplanta]"
+                      href="javascript: void(0);"
+                      class="text-dark"
+                      >{{enfermedadConsulta.nombrecomunplanta}}</a
+                    >
+                  </h5>
+                </div>
+                <!-- Agrega cualquier otra información de la causa que desees mostrar -->
+              </div>
+            </div>
+            <div *ngIf="!listEnfermedades || listEnfermedades.length === 0">
+              <p>No se encontraron detalles de causa para esta planta.</p>
+            </div>
+          </div>
           <!-- end row -->
         </div>
       </div>
       <!-- end row -->
       
-    </div>
-    <div class="row">
-      <div>
-        <div class="table-responsive mb-0 mt-2" >
-          <table  class="table  row-border hover " width="100%" >
-            <thead class="tabla" >
-              <tr>
-                <th >Nombre comun enfermedad</th>
-                <th >Nombre cientifico enfermedad</th>
-                <th >Acciones</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let enfermedadConsulta of listEnfermedades">
-      
-                <td>{{enfermedadConsulta.nombrecomunenfermedad}}</td>
-                <td>{{enfermedadConsulta.nombrecienticoenfermedad}}</td>
-                <td class="text-sm-end" >
-                  <div class="d-flex">
-                    <div class="col-sm-6"><button type="button" class="btn btnModificar btn-sm mb-2 mr-2 btn-rounded" (click)="ObtenerEnfermedad(enfermedadConsulta.idenfermedad)"> <i class="fas fa-edit"> </i> Ver Detalle</button> </div>
-                  </div>
-                  
-              </td>
-              </tr>
-            </tbody>
-          </table>
-      </div>
-      
-      </div>
-    </div>
-    <div class="row">
-      <div>
-        <div class="table-responsive mb-0 mt-2" >
-          <table  class="table  row-border hover " width="100%" >
-            <thead class="tabla" >
-              <tr>
-                <th >Nombre comun Planta</th>
-                <th >Nombre cientifico Planta</th>
-                <th >Acciones</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let enfermedadConsulta of listEnfermedades">
-      
-                <td>{{enfermedadConsulta.nombrecomunplanta}}</td>
-                <td>{{enfermedadConsulta.nombrecienticoplanta}}</td>
-                <td class="text-sm-end" >
-                  <div class="d-flex">
-                    <div class="col-sm-6"><button type="button" class="btn btnModificar btn-sm mb-2 mr-2 btn-rounded" (click)="ObtenerEnfermedad(enfermedadConsulta.idenfermedad)"> <i class="fas fa-edit"> </i> Ver Detalle</button> </div>
-                  </div>
-                  
-              </td>
-              </tr>
-            </tbody>
-          </table>
-      </div>
-      
-      </div>
     </div>
   </div>
