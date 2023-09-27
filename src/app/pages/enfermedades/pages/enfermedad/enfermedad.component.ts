@@ -121,8 +121,8 @@ export class EnfermedadComponent implements OnInit {
             next: (resp) => {
               mensajeExito("Enfermedad eliminada con exito ");//+ resp.Mensaje
             },
-            error: (value) => {
-              mensajeError("Error al eliminar la enfermedad "+value); 
+            error: (e) => {
+              mensajeError(e.error.Mensaje);
             },
             complete: () => {
               this.modalService.dismissAll();
@@ -144,8 +144,8 @@ export class EnfermedadComponent implements OnInit {
         next: (resp) => {
           mensajeExito("Enfermedad modificada con exito ");//+ resp.Mensaje
         },
-        error: (value) => {
-          mensajeError("Error al modificar la enfermedad "+value); 
+        error: (e) => {
+          mensajeError(e.error.Mensaje); 
         },
         complete: () => {
           this.modalService.dismissAll();
@@ -172,13 +172,8 @@ export class EnfermedadComponent implements OnInit {
         next: (resp) => {
           mensajeExito("Enfermedad guardado con exito ");//+ resp
         },
-        error: (err) => {
-          /* mensajeError("Error al guardar la enfermedad"); */
-         /*  mensajeError(err); // Muestra el mensaje de error desde la respuesta
-            mensajeError(err.Mensaje); // Muestra el mensaje de error desde la respuesta
-             */
-            mensajeError("Error al guardar la enfermedad "+ err);
-         
+        error: (e) => {
+          mensajeError(e.error.Mensaje); 
         },
         complete: () => {
           this.modalService.dismissAll();

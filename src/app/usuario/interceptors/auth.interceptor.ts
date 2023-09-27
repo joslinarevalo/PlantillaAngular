@@ -21,7 +21,7 @@ export class AuthInterceptor implements HttpInterceptor {
 
     return next.handle(req).pipe(
       catchError(e => {
-        this.modalService.dismissAll();
+        
         if (e.status == 401) {//cuando el usuario no esta autenticado
           if (this.autenticacionService.isAuthenticated()) {
             this.autenticacionService.logout();
@@ -30,6 +30,7 @@ export class AuthInterceptor implements HttpInterceptor {
           this.router.navigate(['/login']);
           return throwError(e);
         } else if (e.status == 403) {//cuando el usuario esta autenticado pero no tiene permiso/roles para acceder a ese recurso
+          this.modalService.dismissAll();
           if(this.autenticacionService.usuario.usuario != null){
             if(this.autenticacionService.elTokenExpiro()){
               this.autenticacionService.logout();
@@ -43,7 +44,7 @@ export class AuthInterceptor implements HttpInterceptor {
             this.router.navigate(['/paginas-principal/principal'])
             return throwError(e);
           }else{
-            if (this.autenticacionService.isAuthenticated()) {
+            if (this.autenticacionService.isAuthenticated()) { 
               this.autenticacionService.logout();
             }
             Swal.fire('Sesión expirada', `¡Tú sesión ha expirado, por favor vuelve a iniciar sesión!`, 'warning');
@@ -51,7 +52,15 @@ export class AuthInterceptor implements HttpInterceptor {
             this.router.navigate(['/login']);
             return throwError(e);
           }
-        }/* else{
+        }else
+        if(e.error.Codigo == 400 || e.error.Codigo == 500 || e.error.Codigo == 404){
+          e.Codigo = e.error.Codigo;
+          e.Mensaje = e.error.Mensaje;
+          console.log(e)
+          return throwError(e);
+        }
+          
+          /* else{
           return throwError(e);
         } */
       })
