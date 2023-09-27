@@ -11,8 +11,8 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class DetalleComponent implements OnInit {
   imagen: any;
-  //causa:ITipoCausa
   enfermedad: IEnfermedad | undefined;
+
   constructor(
     private serviceEnfermedad: EnfermedadService,
     private route: ActivatedRoute,
@@ -32,13 +32,11 @@ export class DetalleComponent implements OnInit {
     this.serviceEnfermedad.buscarEnfermedad(idEnfermedad).subscribe(
       (data) => {
         this.enfermedad = data;
-        //console.log(this.enfermedad.urlEnfermedad);
-        this.ObtenerImagen(this.enfermedad.urlEnfermedad);
-          /* this.serviceEnfermedad.getImagen(this.enfermedad.urlEnfermedad).subscribe((resp) => {
+          this.serviceEnfermedad.getImagen(this.enfermedad.urlEnfermedad).subscribe((resp) => {
             let url = URL.createObjectURL(resp);
             this.imagen = this.dm.bypassSecurityTrustUrl(url);
-            //this.enfermedad.urlEnfermedad = this.imagen;
-          }); */
+            this.enfermedad.urlEnfermedad = this.imagen;
+          });
       },
       (error) => {
         console.error("Error al obtener los detalles de la enfermedad:", error);
@@ -47,13 +45,4 @@ export class DetalleComponent implements OnInit {
   }
   
   
-  ObtenerImagen(url: string) {
-    this.serviceEnfermedad.getImagen(url).subscribe((resp) => {
-      //console.log(resp);
-      let url = URL.createObjectURL(resp);
-      this.imagen = this.dm.bypassSecurityTrustUrl(url);
-      this.enfermedad.urlEnfermedad = this.imagen;
-      //console.log(this.imagen);
-    });
-  }
 }

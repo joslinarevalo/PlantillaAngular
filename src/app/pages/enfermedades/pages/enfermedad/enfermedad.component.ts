@@ -122,7 +122,7 @@ export class EnfermedadComponent implements OnInit {
               mensajeExito("Enfermedad eliminada con exito ");//+ resp.Mensaje
             },
             error: (value) => {
-              mensajeError("Error al modificar la enfermedad "+value); 
+              mensajeError("Error al eliminar la enfermedad "+value); 
             },
             complete: () => {
               this.modalService.dismissAll();

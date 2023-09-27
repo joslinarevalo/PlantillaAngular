@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { IEnfermedad } from '../interfaces/IEnfermedad';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +16,14 @@ export class EnfermedadService {
 
   listaEnfermedades():Observable<IEnfermedad[]>{
     return this.http.get<IEnfermedad[]>(this.urlAPI+"listar");
+  }
+  listaDeEnfermedadPaginacion(pagina:number,tamaño:number):Observable<any>{
+    //return this.http.get<any>(this.urlTratamiento+"listaPaginacion?page='"+pagina+"'&size='"+tamaño+"'").pipe(map((resp:any)=>resp.content));
+    const params:any={
+      page:pagina,
+      size:tamaño
+    }
+    return this.http.get<any>(this.urlAPI+"listaPaginacion",{params}).pipe(map((resp:any)=>resp.content));;
   }
   retornarImagen(urlImagen:string):Observable<Blob>{
     return this.http.get<Blob>(this.urlAPI+"imagen/"+urlImagen);
@@ -37,7 +46,7 @@ export class EnfermedadService {
     return this.http.delete<any>(this.urlAPI+"eliminar/"+obj.idEnfermedad);
   }
 
-  buscarEnfermedad(id:String):Observable<any>{
+  buscarEnfermedad(id:String):Observable<IEnfermedad>{
     return this.http.get<IEnfermedad>(this.urlAPI+"buscar/"+id);
   }
 
