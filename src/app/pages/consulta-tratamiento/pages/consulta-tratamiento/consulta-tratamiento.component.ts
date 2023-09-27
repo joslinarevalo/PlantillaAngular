@@ -14,6 +14,8 @@ export class ConsultaTratamientoComponent implements OnInit {
   imagen:any;
   pagina:number=0;
   tamaño:number=5;
+  searchTerm: string = "";
+  filtrarTratamiento: ITratamientoMostrar[]=[];
   constructor(private tratamientoService:TratamientoService, private router: Router,
     private dm: DomSanitizer) { }
 
@@ -42,6 +44,7 @@ export class ConsultaTratamientoComponent implements OnInit {
     this.tratamientoService.listaDeTratamientoPaginacion(this.pagina,this.tamaño).subscribe((resp)=>{
       console.log(resp);
       this.tratamientoListPaginada=resp;
+      this.filtrarTratamiento = this.tratamientoListPaginada;
       this.tratamientoListPaginada.forEach(element => {
         this.tratamientoService.getImagen(element.urlTratamiento).subscribe((resp)=>{
           //console.log(resp);
@@ -49,10 +52,11 @@ export class ConsultaTratamientoComponent implements OnInit {
           this.imagen=this.dm.bypassSecurityTrustUrl(url);
           //console.log(this.imagen);
           element.imagen=this.imagen;
-          console.log(element.archivo);
         });
       });
-    })
+    });
+   
+    console.log(this.filtrarTratamiento);
   }
   ObtenerImagen(url: string) {
     this.tratamientoService.getImagen(url).subscribe((resp) => {
@@ -72,6 +76,18 @@ export class ConsultaTratamientoComponent implements OnInit {
     console.log("scroll infinito")
     this.tamaño+=5;
     this.listaTratamientoPaginada();
+  }
+  filterCards() {
+    console.log("entra");
+    // Si el término de búsqueda está vacío, muestra todas las cards
+    if (this.searchTerm.trim() === "") {
+      this.filtrarTratamiento = this.tratamientoListPaginada;
+    } else {
+      // Filtrar el array de datos usando el término de búsqueda
+      this.filtrarTratamiento = this.tratamientoListPaginada.filter((buscar) =>
+        buscar.nombrePesticidaTratamiento.toLowerCase().includes(this.searchTerm.toLowerCase())
+      );
+    }
   }
 
 }
