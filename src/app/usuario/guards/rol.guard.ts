@@ -18,12 +18,14 @@ export class RolGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     
-      let role = route.data['rol'] as string[];
-      if(this.autenticacionService.tieneRol(role)){
+      let role = route.data['rol'] as string;//ver como paso esto a una cadena de string
+      let rol = [role]
+      if(this.autenticacionService.tieneRol(rol)){
         return true;
       }
-      Swal.fire('Acceso denegado',`Hola ${this.autenticacionService.usuario.usuario} ¡no tienes acceso a este recurso!,'warning`);
-      return true;
+      this.router.navigate(['/paginas-principal/principal']);
+      Swal.fire('Acceso denegado',`Hola ${this.autenticacionService.usuario.usuario} ¡no tienes acceso a este recurso!`,'warning');
+      return false;
   }
   
 }

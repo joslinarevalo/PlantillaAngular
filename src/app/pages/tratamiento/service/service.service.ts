@@ -31,9 +31,9 @@ export class TratamientoService {
     return this.http.get<Blob>(this.urlTratamiento+"imagen/"+urlImagen);
   }
   getImagen(idimagen:any):Observable<Blob>{
-    const headers= new HttpHeaders().set("Content-Type",'Aplication/json');
+    //const headers= new HttpHeaders().set("Content-Type",'Aplication/json');
      return this.http.get<Blob>(`${this.urlTratamiento}imagen/${idimagen}`,{
-      headers,
+      //headers,
       responseType:'blob' as 'json'
      });
   }

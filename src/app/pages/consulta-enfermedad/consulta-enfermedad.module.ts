@@ -5,6 +5,8 @@ import { ConsultaEnfermedadRoutingModule } from './consulta-enfermedad-routing.m
 import { DetalleComponent } from './detalle/detalle.component';
 import { MostrarComponent } from './mostrar/mostrar.component';
 import { FormsModule } from '@angular/forms';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { InfiniteScrollModule } from "ngx-infinite-scroll";
 
 
 @NgModule({
@@ -15,7 +17,9 @@ import { FormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     ConsultaEnfermedadRoutingModule,
-    FormsModule
+    FormsModule,
+    InfiniteScrollModule,
+    NgxPaginationModule //PARA LA PAGINACION
   ]
 })
 export class ConsultaEnfermedadModule { }

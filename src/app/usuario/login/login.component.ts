@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
   usuario: Usuario;
 
   constructor(
-    private autenticacionSevice: AutenticacionService,
+    private autenticacionService: AutenticacionService,
     private router: Router,
     private formBuilder: FormBuilder
     ) {
@@ -28,9 +28,9 @@ export class LoginComponent implements OnInit {
    }
 
    ngOnInit(): void {
-    if(this.autenticacionSevice.isAuthenticated()){
+    if(this.autenticacionService.isAuthenticated()){
       console.log("No habian datos")
-      Swal.fire('Login', `${this.autenticacionSevice.usuario.usuario} ya estás autenticado!`,'info');
+      Swal.fire('Login', `${this.autenticacionService.usuario.usuario} ya estás autenticado!`,'info');
       
       this.router.navigate(['/dashboard']);
     }
@@ -43,28 +43,37 @@ export class LoginComponent implements OnInit {
       return;
     }
 
-    this.autenticacionSevice.login(this.usuario).subscribe(response =>{
+    this.autenticacionService.login(this.usuario).subscribe(response =>{
       console.log(response);
       console.log("--------------------------")
       //let payload = JSON.parse(atob(response.token.split(".")[1]));
       console.log(JSON.parse(atob(response.token.split(".")[1])));
 
-     this.autenticacionSevice.guardarUsuario(response.token);
-      this.autenticacionSevice.guardarToken(response.token);
-      /* let admin = 'ROLE_ADMIN';
-      let estudiante = "ROLE_USER";
-      let rol = [estudiante,admin]
-      this.autenticacionSevice.tieneRol(rol); */
+     this.autenticacionService.guardarUsuario(response.token);
+      this.autenticacionService.guardarToken(response.token);
+      let admin = "ROLE_ADMIN";
+      //let estudiante = "ROLE_USER";
+      let rol = [admin]
+      /*this.autenticacionSevice.tieneRol(rol); */
 
-      let user = this.autenticacionSevice.usuario;
+      let user = this.autenticacionService.usuario;
 
       /* Swal.fire('Error Login', 'rol: '+rol, 'error');
       Swal.fire('Error Login', 'Usuario !'+this.autenticacionSevice.tieneRol(rol), 'error');
  */
-      this.router.navigate(['/dashboard']);
-      Swal.fire('Login',`hola ${user.usuario}, Has iniciado sesión con éxito!`,'success');
+
+      /* if (this.usuario.roles.includes(roles[i])) {
+        return true; // Si encuentra al menos un rol coincidente, devuelve true
+      } */
+      if(this.autenticacionService.tieneRol(rol)){
+        this.router.navigate(['/dashboard']);
+      }else{
+        this.router.navigate(['/paginas-principal/principal']);
+      }
+      
+      Swal.fire('Inicio de sesión',`Hola ${user.usuario}, Has iniciado sesión con éxito!`,'success');
     }, error => {
-      Swal.fire('Error Login', 'Usuario o contraseña son incorrectas!', 'error');
+      Swal.fire('Error al iniciar sesión', 'Usuario o contraseña son incorrectas!', 'error');
     }
       /* (response:any)=>{
         this.router.navigate(['/dashboard']);
