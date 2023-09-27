@@ -10,17 +10,29 @@
               <h5 class="text-center">{{ causa.tipoTC }}</h5>
               <!-- Primer párrafo -->
               <div class="row ">
-                <div class="col-sm-3">
-                  <div class="position-relative ">
-                    <img
-                      [src]="causa.imagen"
-                      class="img-fluid mx-auto img-thumbnail"
-                    />
+                <div class="col-xl-6">
+                  <div class="row" orientation="vertical">
+                    <div class="position-relative">
+                      <img
+                        [src]="causa.imagen"
+                        class="img-fluid mx-auto d-block"
+                        alt=""
+                      />
+                    </div>
                   </div>
                 </div>
-                <div class="col-sm-9">
-                  <div *ngFor="let parrafo of parrafos">
-                    <p class="text-muted text-justify">{{ parrafo }}</p>
+                <div class="col-xl-6">
+                  <div class="mt-4 mt-xl-3">
+                    <h4 class="mt-1 mb-3">
+                      <strong>Nombre Común:</strong> 
+                    </h4>
+                  </div>
+                </div>
+                <div class="col-xl-12">
+                  <div class="mt-4 mt-xl-4">
+                    <div *ngFor="let parrafo of parrafos">
+                      <p class="text-muted mb-4">{{ parrafo }}</p>
+                    </div>
                   </div>
                 </div>
               </div>

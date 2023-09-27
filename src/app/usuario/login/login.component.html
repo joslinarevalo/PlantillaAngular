@@ -12,12 +12,12 @@
       
             <div class="card-body pt-0">
               <div class="p-2">
-                <form class="form-horizontal">
+                <form class="form-horizontal" [formGroup]="loginForm">
                   <div class="mb-3 input-group"> <!-- Agregamos la clase "input-group" para agrupar el icono y el input -->
                     <div class="input-group-prepend"> <!-- Agregamos un div para el icono -->
                       <span class="input-group-text"><i class="mdi mdi-lock mr-1 "></i></span>
                     </div>
-                    <input type="email" formControlName="email" class="form-control" id="email" placeholder="Email" [ngClass]="" />
+                    <input type="text" formControlName="usuario" class="form-control" id="usuario" placeholder="Email" [(ngModel)]="usuario.usuario" />
                     <div *ngIf="" class="invalid-feedback">
                       <div *ngIf="">Usuario requerido</div>
                       <div *ngIf="">Usuario incorrecto</div>
@@ -28,8 +28,8 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="mdi mdi-lock mr-1"></i></span>
                     </div>
-                    <input type="password" class="form-control" formControlName="password" placeholder="Enter password" [ngClass]=""
-                      aria-label="Password" aria-describedby="password-addon">
+                    <input type="password" class="form-control" formControlName="clave" placeholder="Ingrese la contraseña" [(ngModel)]="usuario.clave"
+                      aria-label="Clave" aria-describedby="password-addon">
                     <div *ngIf="" class="invalid-feedback">
                       <span *ngIf="">Contraseña requerida</span>
                     </div>
@@ -38,7 +38,7 @@
                     </div>
                   </div>
                   <div class="mt-3 d-grid">
-                    <button class="btn btn-primary" type="button" (click)="redireccionar()">Ingresar</button>
+                    <button class="btn btn-primary" type="button" (click)="login()">Ingresar</button>
                   </div>
                   <div class="mt-4 text-center">
                     <a routerLink="" class="text-muted"><i class="mdi mdi-lock mr-1"></i> ¿Olvidó su contraseña?</a>

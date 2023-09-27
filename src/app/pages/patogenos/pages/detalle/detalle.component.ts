@@ -14,6 +14,7 @@ export class DetalleComponent implements OnInit {
   //causa:ITipoCausa
   causa: ITipoCausa | undefined;
   parrafos: string[] = [];
+  
   constructor(
     private causaenfermedad: CausaenfermedadService,
     private route: ActivatedRoute,

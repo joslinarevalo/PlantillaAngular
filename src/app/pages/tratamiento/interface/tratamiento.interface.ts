@@ -27,7 +27,7 @@ export interface ITratamientoConsulta{
      nombrecienticoplanta:string
 }
 export interface BuscarTramiento{
-    idtratamiento:string,
+    idTratamiento:string,
     nombrePesticidaTratamiento:string,
     descripcionTratamiento:string,
     aplicacionTratamiento:string,
