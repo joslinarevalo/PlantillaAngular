@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { EnfermedadService } from '../../service/enfermedad.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-formulario',
@@ -29,7 +30,7 @@ export class FormularioComponent implements OnInit {
   //mensaje: String;
   mensaje: { [key: string]: string } = {};
 
-  constructor(private fb: FormBuilder, private serviceEnfermedad: EnfermedadService, private dm: DomSanitizer) { }
+  constructor(private fb: FormBuilder, private serviceEnfermedad: EnfermedadService, private dm: DomSanitizer, private router: Router) { }
 
   ngOnInit(): void {
     console.log("esto imprimo antes"+this.longitudesDeCampos);
@@ -67,6 +68,7 @@ export class FormularioComponent implements OnInit {
       console.log(this.enfermedad);
       this.formularioSerealizable.set("enfermedad", JSON.stringify(this.enfermedad));
       this.ObjetoGuardar.emit(this.formularioSerealizable);
+      this.recargar();
     } else {
       Swal.fire({
         position: 'center',
@@ -95,6 +97,7 @@ export class FormularioComponent implements OnInit {
       //console.log(this.enfermedad);
       this.formularioSerealizable.set("enfermedad", JSON.stringify(this.enfermedad));
       this.ObjetoModificar.emit(this.formularioSerealizable);
+      this.recargar();
     } else {
       Swal.fire({
         position: 'center',
@@ -172,6 +175,13 @@ export class FormularioComponent implements OnInit {
       
       console.log(this.longitudesDeCampos);
     });
+  }
+
+  recargar() {
+    let currentUrl = this.router.url;
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+    this.router.onSameUrlNavigation = "reload";
+    this.router.navigate([currentUrl]);
   }
 
 }

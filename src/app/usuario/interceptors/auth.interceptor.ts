@@ -53,7 +53,7 @@ export class AuthInterceptor implements HttpInterceptor {
             return throwError(e);
           }
         }else
-        if(e.error.Codigo == 400 || e.error.Codigo == 500 || e.error.Codigo == 404){
+        if(e.error.Codigo == 400 || e.error.Codigo == 500 || e.error.Codigo == 404 || e.error.Codigo == 409){
           e.Codigo = e.error.Codigo;
           e.Mensaje = e.error.Mensaje;
           console.log(e)
