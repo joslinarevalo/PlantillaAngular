@@ -4,6 +4,7 @@ import { DataTableDirective } from 'angular-datatables';
 import { Subject } from 'rxjs';
 import { EnfermedadService } from '../../service/enfermedad.service';
 import { DomSanitizer } from '@angular/platform-browser';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-tabla',
@@ -19,17 +20,19 @@ export class TablaComponent implements OnInit {
   @Output()ObjetoEnfermedadModificar= new EventEmitter<IEnfermedadMostrar>();
   @ViewChild(DataTableDirective, { static: false} ) 
   dtElement: DataTableDirective;
+  dtOptions: any = {};
+  enfermedad?:IEnfermedadMostrar;
 
-   dtOptions: any = {};
-  //dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<IEnfermedadMostrar> = new Subject<IEnfermedadMostrar>();
 
   constructor(
     private enfService: EnfermedadService,
-    private dm:DomSanitizer
+    private dm:DomSanitizer,
+    public modalService:NgbModal
     ) { }
 
   ngOnInit(): void {
+    this.lista();
     this.dtOptions={
       columnDefs: [
         { responsivePriority: 3, targets: 0 },
@@ -47,7 +50,6 @@ export class TablaComponent implements OnInit {
       pagingType: 'full_numbers',
       responsive: true,
     };
-    this.lista();
   }
 
   obtenerEnfermedadEliminar(enfermedad:IEnfermedadMostrar){
@@ -65,17 +67,13 @@ export class TablaComponent implements OnInit {
       this.listaEnfermedades = lista;
       this.listaEnfermedades.forEach(element => {
         this.enfService.getImagen(element.urlEnfermedad).subscribe((resp)=>{
-          //console.log(resp);
           let url=URL.createObjectURL(resp);
           this.imagen=this.dm.bypassSecurityTrustUrl(url);
-          //console.log(this.imagen);
           element.imagen=this.imagen;
-          //nuevo
           element.archivo=this.convertirArchivo(resp,element.urlEnfermedad);
-          //console.log(element.archivo);
-          this.dtTrigger.next(null);
         });
       });
+      this.dtTrigger.next(null);
     });
   }
 
@@ -93,4 +91,25 @@ export class TablaComponent implements OnInit {
     }
   }
 
+  openModal(content: any,enfermedad:IEnfermedadMostrar) {
+    this.enfermedad=enfermedad;
+
+    console.log(this.enfermedad);
+    console.log(enfermedad);
+    
+    if(this.enfermedad != undefined ){
+      this.enfService.getImagen(this.enfermedad.urlEnfermedad).subscribe((resp) => {
+        let url = URL.createObjectURL(resp);
+        this.imagen = this.dm.bypassSecurityTrustUrl(url);
+        this.enfermedad.urlEnfermedad = this.imagen;
+      });  
+    }
+    
+    this.modalService.open(content, {
+      size: "xl",
+      centered: true,
+      backdrop: "static",
+      keyboard: false,
+    });
+  }
 }

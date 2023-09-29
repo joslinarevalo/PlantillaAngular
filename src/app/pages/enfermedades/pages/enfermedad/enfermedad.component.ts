@@ -6,6 +6,7 @@ import { EnfermedadService } from '../../service/enfermedad.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import Swal from 'sweetalert2';
 import { mensajeError, mensajeExito } from '../../models/funciones.global';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-enfermedad',
@@ -24,7 +25,7 @@ export class EnfermedadComponent implements OnInit {
   leyenda: string = "";
   archivo: File;
   constructor(public modalService: NgbModal, private serviceEnfermedad: EnfermedadService,
-    private dm: DomSanitizer, private fb: FormBuilder) { }
+    private dm: DomSanitizer, private fb: FormBuilder, private router: Router ) { }
 
   ngOnInit(): void {
     this.listaEnfermedad();
@@ -53,32 +54,6 @@ export class EnfermedadComponent implements OnInit {
 
   listaEnfermedad() {
     this.serviceEnfermedad.listaEnfermedades()
-    /* .subscribe({
-      next: (resp) => {
-        this.enfermedadList = resp;
-        console.log(resp);
-        this.enfermedadList.forEach(element => {
-          this.serviceEnfermedad.getImagen(element.urlEnfermedad).subscribe((resp) => {
-            //console.log(resp);
-            let url = URL.createObjectURL(resp);
-            this.imagen = this.dm.bypassSecurityTrustUrl(url);
-            //console.log(this.imagen);
-            element.imagen = this.imagen;
-            element.archivo = this.convertirArchivo(resp, element.urlEnfermedad);
-            console.log(element.archivo);
-          });
-        });
-        mensajeExito("Enfermedad modificada con exito ");//+ resp.Mensaje
-      },
-      error: (value) => {
-        mensajeError("Error al modificar la enfermedad "+value.Mensaje); 
-      },
-      complete: () => {
-        this.modalService.dismissAll();
-        this.formularioEnfermedad.reset();
-        this.listaEnfermedad();
-      }
-    }); */
     .subscribe((resp) => {
       this.enfermedadList = resp;
       console.log(resp);
@@ -120,9 +95,10 @@ export class EnfermedadComponent implements OnInit {
           this.serviceEnfermedad.eliminar(objetoEliminar).subscribe({
             next: (resp) => {
               mensajeExito("Enfermedad eliminada con exito ");//+ resp.Mensaje
+              this.recargar();
             },
-            error: (value) => {
-              mensajeError("Error al eliminar la enfermedad "+value); 
+            error: (e) => {
+              mensajeError(e.error.Mensaje);
             },
             complete: () => {
               this.modalService.dismissAll();
@@ -144,8 +120,8 @@ export class EnfermedadComponent implements OnInit {
         next: (resp) => {
           mensajeExito("Enfermedad modificada con exito ");//+ resp.Mensaje
         },
-        error: (value) => {
-          mensajeError("Error al modificar la enfermedad "+value); 
+        error: (e) => {
+          mensajeError(e.error.Mensaje); 
         },
         complete: () => {
           this.modalService.dismissAll();
@@ -172,13 +148,8 @@ export class EnfermedadComponent implements OnInit {
         next: (resp) => {
           mensajeExito("Enfermedad guardado con exito ");//+ resp
         },
-        error: (err) => {
-          /* mensajeError("Error al guardar la enfermedad"); */
-         /*  mensajeError(err); // Muestra el mensaje de error desde la respuesta
-            mensajeError(err.Mensaje); // Muestra el mensaje de error desde la respuesta
-             */
-            mensajeError("Error al guardar la enfermedad "+ err);
-         
+        error: (e) => {
+          mensajeError(e.error.Mensaje); 
         },
         complete: () => {
           this.modalService.dismissAll();
@@ -215,6 +186,13 @@ export class EnfermedadComponent implements OnInit {
     };
   }
 
+  recargar() {
+    let currentUrl = this.router.url;
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+    this.router.onSameUrlNavigation = "reload";
+    this.router.navigate([currentUrl]);
+  }
+  
   /* validarImagen(control: any) {
     const archivo = control.value;
     if (!archivo) {

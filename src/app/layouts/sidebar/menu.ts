@@ -63,7 +63,7 @@ export const MENU: MenuItem[] = [
     id: 14,
     label: "Registro Usuario",
     icon: "bx bx-file",
-    link: "usuario/registro",
+    link: "usuario-c/registro",
     roles: [admin]
   },
   {

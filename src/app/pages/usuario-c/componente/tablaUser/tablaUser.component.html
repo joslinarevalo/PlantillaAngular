@@ -1,0 +1,54 @@
+<div class="table-responsive mb-0 mt-2" >
+  <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table  row-border hover " width="100%" >
+    <thead class="tabla" >
+      <tr>
+        <th >Nombre </th>
+        <th >Apellido </th>
+        <th >Usuario</th>
+        <th >Correo</th>
+        <th >Estado</th>
+        <th >Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let usuario of listaUsuario ">
+
+        <td>{{usuario.nombre}}</td>
+        <td>{{usuario.apellido}}</td>
+        <td>{{usuario.correo}}</td>
+        <td>{{usuario.usuario}}</td>
+        <td>{{usuario.estado}}</td>
+        <td class="text-sm-end" >
+          <div class="d-flex">
+            <div class="col-sm-4 mt-1 "><button  class="btn btn-warning btn-sm mb-2 mr-2 btn-rounded"  (click)="openModal(content,usuario)">
+              <i class="fas fa-eye" ></i></button></div>
+            <div class="col-sm-4"><button type="button" class="btn btnModificar btn-sm mb-2 mr-2 btn-rounded"> <i class="fas fa-edit"> </i></button> </div>
+            <div class="col-sm-4 mt-1"><button type="button" class="btn btnEliminar btn-sm mb-2 mr-2 btn-rounded" ><i class="fas fa-trash-alt" ></i></button></div>
+          </div>
+          
+      </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<ng-template #content role="document" let-modal>
+<h5 class="cajaModal text-center mt-4 texto-mayusculas">
+  USUARIO
+</h5>
+<div class="modal-body">
+  <form>
+    <div class="row">
+
+ 
+      <!-- Fin del contenido individual -->
+      <div class="text-center mb-3 mt-2">
+        <span class="mx-2"></span>
+        <!-- Agregar un espacio horizontal entre los botones -->
+        <button type="button" class="btn btnCerrar" aria-hidden="true" (click)="modal.dismiss('Cross click')">
+          <i class="dripicons-cross"> </i> Cerrar
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
+</ng-template>

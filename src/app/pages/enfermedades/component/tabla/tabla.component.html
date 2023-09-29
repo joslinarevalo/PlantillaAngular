@@ -20,7 +20,7 @@
         <!--  class="col-sm-6 mx-auto" -->
         <td  class="text-sm-end" >
           <div class="d-flex ">
-            <div class="col-sm-4 mt-1 "><button  class="btn btn-warning btn-sm mb-2 mr-2 btn-rounded" >
+            <div class="col-sm-4 mt-1 "><button  class="btn btn-warning btn-sm mb-2 mr-2 btn-rounded"  (click)="openModal(content,data)">
               <i class="fas fa-eye" ></i></button></div>
             <div class="col-sm-4 mt-1"><button type="button" class="btn btnModificar btn-sm btn-rounded"
                 (click)="obtenerEnfermedadModificar(data)"><i class="fas fa-edit"> </i> </button> </div>
@@ -32,3 +32,40 @@
     </tbody>
   </table>
 </div>
+
+<!-- MODAL -->
+<ng-template #content role="document" let-modal>
+  <h5 class="cajaModal text-center mt-4 texto-mayusculas">
+    TRATAMIENTO
+  </h5>
+  <div class="modal-body">
+    <form>
+      <div class="row">
+        <!-- <div class="col-md-5 d-flex justify-content-center"> -->
+        <div class="col-md-5">
+          <img [src]="enfermedad.urlEnfermedad" class="img-fluid" alt="Imagen de la enfermedad">
+        </div>
+        <div class="col-md-7">
+          <p class="card-text"><strong>Nombre Común:</strong> {{ enfermedad.nombreComunEnfermedad }}</p>
+          <p class="card-text"><strong>Nombre Científico:</strong> {{ enfermedad.nombreCientificoEnfermedad }}</p>
+          <p class="card-text"><strong>Etapa:</strong> {{ enfermedad.etapaEnfermedad }}</p>
+          <p class="card-text"><strong>Tipo:</strong> {{ enfermedad.tipoEnfermedad }}</p>
+          <p class="card-text"><strong>Condición Favorable:</strong> {{ enfermedad.condicionFavorableEnfermedad }}</p>
+          <p class="card-text"><strong>Partes Afectadas:</strong> {{ enfermedad.partesAfectadasEnfermedad }}</p>
+        </div>
+        <div class="col-md-12 mt-4">
+          <p class="card-text"><strong>Descripción:</strong> {{ enfermedad.descripcionEnfermedad }}</p>
+          <p class="card-text"><strong>Síntomas:</strong> {{ enfermedad.sintomasEnfermedad }}</p>
+        </div>
+        <div class="text-center mb-3 mt-2">
+          <span class="mx-2"></span>
+          <!-- Agregar un espacio horizontal entre los botones -->
+          <button type="button" class="btn btnCerrar" aria-hidden="true" (click)="modal.dismiss('Cross click')">
+            <i class="dripicons-cross"> </i> Cerrar
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</ng-template>
+

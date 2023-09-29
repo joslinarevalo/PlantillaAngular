@@ -1,0 +1,31 @@
+<div class="container-fluid">
+  <div class="row mt-2">
+      <div class="col-12">
+          <div class="card">
+              <div class="card-body">
+                  <div class="caja">USUARIO</div>
+                  <div class="row mt-4">
+                      <!-- end col -->
+                      <div class="col-sm-12">
+                          <div class="text-sm-end">
+                                  <div class="text-sm-end">
+                                      <button type="button" class="btn btnguardar btn-sm mb-2 mr-2 btn-rounded "
+                                          (click)="openModal(content)">
+                                          <i class="fas fa-seedling"></i>Nuevo Usuario
+                                      </button>
+                                  </div>
+                          </div>
+                      </div>
+                  </div>
+
+                      <!-- Contenido del Scroll data --> 
+                      <app-tablaUser ></app-tablaUser>
+                     
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <ng-template #content role="document" let-modal>
+  <app-formularioUser [ModalService]="modalService"  [leyenda]="leyenda"[formularioUsuario]="formularioUsuario"></app-formularioUser>
+  </ng-template>
