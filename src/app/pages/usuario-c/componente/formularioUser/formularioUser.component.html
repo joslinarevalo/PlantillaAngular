@@ -2,7 +2,6 @@
   <h5 class="cajaModal text-center mt-4 texto-mayusculas">
     {{ leyenda }} Usuario
   </h5>
-  <div class="card-body">
     <div class="row justify-content-center">
       <div class="col-md-8 col-lg-6 col-xl-5">
         <div class="card overflow-hidden">
@@ -11,8 +10,6 @@
                 <img src="assets/images/minerva2.png" alt="" class="img-fluid smaller-image">
               </div>
             </div>
-          <div class="card-body pt-0">
-            <div class="p-2">
               <form class="form-horizontal" [formGroup]="formularioUsuario">
                <h5 class="text-center">REGISTRO</h5>
                 <div class="mb-3 input-group"> <!-- Agregamos la clase "input-group" para agrupar el icono y el input -->
@@ -79,16 +76,40 @@
                     <button class="btn btn-light" type="button" id="password-addon"><i class="mdi mdi-eye-outline"></i></button>
                   </div>
                 </div>
-                <div class="mt-3 d-grid">
-                  <button class="btn btn-primary" type="submit">Registrarme</button>
+                <div class="text-center mb-3 mt-2">
+                  <!-- Centrar los botones y agregar espacio inferior -->
+                  <button
+                    type="button"
+                    class="btn btnguardarModal"
+                    (click)="guardar()"
+                    *ngIf="leyenda == 'Registrar'"
+                  >
+                    <i class="fas fa-check"></i>Guardar
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btnguardarModal"
+                    *ngIf="leyenda == 'Modificar'"
+                    (click)="modificar()"
+                  >
+                    <i class="fas fa-check"></i>{{ leyenda }}
+                  </button>
+                  <span class="mx-2"></span>
+                  <!-- Agregar un espacio horizontal entre los botones -->
+                  <button
+                    type="button"
+                    class="btn btnCerrar"
+                    aria-hidden="true"
+                    (click)="cerrarModal()"
+                  >
+                    <i class="dripicons-cross"></i>cerrar
+                  </button>
                 </div>
-                
               </form>
-            </div>
-          </div>
+         
         </div>
       </div>
     </div>
-  </div>
+
 </div>
-<!-- Modal -->
+
