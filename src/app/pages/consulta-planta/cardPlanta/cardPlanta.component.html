@@ -12,17 +12,18 @@
       </a>
       <div class="mt-2 text-center">
         <h5 class="mb-3 text-truncate">{{ planta.nombreCientificoPlanta }}</h5>
+        <div *ngIf="detallesCausa && detallesCausa.length > 0"></div>
       </div>
-    </div>
-    <div class="mt-4 text-center">
-      <div class="">
-        <button
-          type="button"
-          class="btn btnDetalle"
-          (click)="verDetalle(planta.idPlanta)"
-        >
-          <i class="fas fa-long-arrow-alt-right"></i> Ver detalle
-        </button>
+      <div class="mt-4 text-center">
+        <div class="">
+          <button
+            type="button"
+            class="btn btnDetalle"
+            (click)="verDetalle(planta.idPlanta)"
+          >
+            <i class="fas fa-long-arrow-alt-right"></i> Ver detalle
+          </button>
+        </div>
       </div>
     </div>
   </div>

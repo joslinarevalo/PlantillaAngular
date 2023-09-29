@@ -5,6 +5,7 @@ import { EnfermedadService } from "../../enfermedades/service/enfermedad.service
 import { GraficoService } from "../services/grafico.service";
 import { ChartOptions } from "../chartType.interface";
 import { IGrafico } from "./grafico";
+import { AutenticacionService } from "src/app/usuario/services/autenticacion.service";
 
 @Component({
   selector: "app-default",
@@ -19,7 +20,7 @@ export class DefaultComponent implements OnInit {
   constructor(
     private plantService: PlantaService,
     private enfermeda: EnfermedadService,
-    private graficoService: GraficoService
+    private graficoService: GraficoService,public autenticacion:AutenticacionService
   ) {}
   ngOnInit() {
     this.obtenerConteoPlantas();

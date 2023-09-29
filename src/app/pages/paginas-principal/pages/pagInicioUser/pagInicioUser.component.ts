@@ -12,14 +12,14 @@ import { IBuscarPlanta } from "src/app/pages/planta/interface/iplanta";
 export class PagInicioUserComponent implements OnInit {
   textoBusqueda: string = "";
   resultadosPlantas:IBuscarPlanta[] = [];
- // resultadosTratamientos:any[] = [];
+  resultadosTratamientosD:any[] = [];
   resultadosTrata:BuscarTramiento[] = [];
   resultadosCausas:any[] = [];
   constructor(private router: Router,private busquedaService: BusquedaService) {}
 
   ngOnInit() {
     this.resultadosPlantas = [];
-   // this.resultadosTratamientos = [];
+    this.resultadosTratamientosD = [];
     this.resultadosTrata = [];
     this.resultadosCausas = [];
   }
@@ -33,8 +33,8 @@ buscar() {
     console.log("estos son de tratmaiento",this.resultadosTrata);
   });
   this.busquedaService.buscarDetalleTratamiento(this.textoBusqueda).subscribe((data) => {
-   // this.resultadosTratamientos = data;
-   // console.log(this.resultadosTratamientos);
+   this.resultadosTratamientosD = data;
+   console.log(this.resultadosTratamientosD);
   });
   
   this.busquedaService.buscarDetalleCausa(this.textoBusqueda).subscribe((data) => {

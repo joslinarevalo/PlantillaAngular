@@ -1,8 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { IBuscarPlanta, IPlantaMostrar } from '../../planta/interface/iplanta';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { PlantaService } from '../../planta/service/planta.service';
 import { DomSanitizer } from '@angular/platform-browser';
+import { DetallecausaService } from '../../detalle-causa/services/detallecausa.service';
 
 @Component({
   selector: 'app-cardPlanta',
@@ -12,17 +13,34 @@ import { DomSanitizer } from '@angular/platform-browser';
 export class CardPlantaComponent implements OnInit {
   @Input() planta: IBuscarPlanta;
   imagen: any;
-  
+  detallesCausa:any;
   constructor(
     private servicePlanta: PlantaService,
     private router: Router,
-    private dm: DomSanitizer
+    private dm: DomSanitizer,private serviceDetalleCausa:DetallecausaService,private route: ActivatedRoute
   ) { }
 
   ngOnInit() {
    this.cargaImagen();
+   this.route.params.subscribe((params) => {
+    const idPlanta = params["idPlanta"];
+    this.obtenerDetallesCausa(idPlanta);
+  });
   }
- 
+  obtenerDetallesCausa(idPlanta: string) {
+    this.serviceDetalleCausa.obtenerDetallesCausaPorPlanta(idPlanta).subscribe(
+      (data) => {
+        // Aquí puedes almacenar los detalles de la causa relacionados con la planta
+        this.detallesCausa = data;
+       
+        console.log("detalle por planta",this.detallesCausa);
+        
+      },
+      (error) => {
+        console.error("Error al obtener los detalles de causa:", error);
+      }
+    );
+  }
   cargaImagen() {
     // Cargar la imagen directamente en this.planta
     this.servicePlanta.getImagen(this.planta.urlPlanta).subscribe((resp) => {

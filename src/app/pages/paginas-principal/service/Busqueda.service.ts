@@ -22,7 +22,7 @@ buscarDetalleCausa(texto: string) {
 }
 
 buscarDetalleTratamiento(texto: string) {
-  return this.http.get<any[]>(`${this.baseUrl2}/buscarTratamiento?texto=${texto}`);
+  return this.http.get<any[]>(`${this.baseUrl2}/buscarDetalleTratamiento?texto=${texto}`);
 }
 buscarTratamiento(texto: string) {
   return this.http.get<any[]>(`${this.baseUrl4}/buscaTratamiento?texto=${texto}`);
