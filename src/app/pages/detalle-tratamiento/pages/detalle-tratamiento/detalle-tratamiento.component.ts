@@ -27,6 +27,7 @@ export class DetalleTratamientoComponent implements OnInit {
     this.formularioDetalleTratamiento=this.inicializarFormulario();
   }
   openModal(content: any) {
+    console.log("entra");
     this.leyenda="Registrar";
     this.formularioDetalleTratamiento.reset();
     this.modalService.open(content, this.modalOptions);
@@ -125,3 +126,4 @@ export class DetalleTratamientoComponent implements OnInit {
   }
 
 }
+
