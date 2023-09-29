@@ -21,6 +21,8 @@ import { SimplebarAngularModule } from "simplebar-angular";
 import { DropzoneModule } from "ngx-dropzone-wrapper";
 import { LayoutComponent } from "../layouts/layout.component";
 import { LayoutsModule } from "../layouts/layouts.module";
+import { NgxPaginationModule } from "ngx-pagination";
+import { DataTablesModule } from "angular-datatables";
 
 @NgModule({
   declarations: [LoginComponent],
@@ -45,6 +47,9 @@ import { LayoutsModule } from "../layouts/layouts.module";
     SimplebarAngularModule,
     DropzoneModule,
     LayoutsModule,
+    ReactiveFormsModule,
+    NgxPaginationModule, //PARA LA PAGINACION
+    DataTablesModule
   ],
 })
 export class UsuarioModule {}
