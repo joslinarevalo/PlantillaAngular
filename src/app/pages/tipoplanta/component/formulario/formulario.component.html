@@ -5,7 +5,9 @@
   <form [formGroup]="formularioTipoPlanta">
     <div class="row">
       <div class="mt-1">
-        <label class="control-label">Nombre</label>
+        <label class="control-label">Nombre <span class="required"></span>
+          <span class="info-icon" data-title="información">?</span> <!-- Icono de información -->
+        </label>
         <input
           class="form-control"
           type="text"

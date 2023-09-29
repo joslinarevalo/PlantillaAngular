@@ -5,9 +5,9 @@
   <form [formGroup]="formularioDetalleTratamiento">
     <div class="row">
       <div class="col-md-12">
-        <label class="control-label">Seleccionar Tratamiento</label>
-        <i class="fas fa-solid fa-question" data-bs-toggle="tooltip" data-bs-placement="top" title=" El campo mostrado es el nombre del pesticida o tratamiento que se desea vincular">
-        </i>
+        <label class="control-label">Seleccionar Tratamiento <span class="required"></span>
+          <span class="info-icon" data-title="El campo mostrado es el nombre del pesticida o tratamiento que se desea vincular">?</span> <!-- Icono de información -->
+        </label>
         <ng-select
           class="form-control"
           id="idTratamiento"
@@ -29,9 +29,9 @@
         </div>
       </div>
       <div class="col-md-12">
-        <label class="control-label">Seleccionar Detalle Causa</label>
-        <i class="fas fa-solid fa-question" data-bs-toggle="tooltip" data-bs-placement="top" title=" El campo contiene el detalle de causa de la enfermedad asociado a la planta y sus causas puntuales">
-        </i>
+        <label class="control-label">Seleccionar Detalle Causa <span class="required"></span>
+          <span class="info-icon" data-title="El campo contiene el detalle de causa de la enfermedad asociado a la planta y sus causas puntuales">?</span> <!-- Icono de información -->
+        </label>
         <ng-select
           class="form-control"
           id="idDetalleCausa"

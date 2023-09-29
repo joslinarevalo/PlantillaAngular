@@ -36,7 +36,9 @@
       <form (ngSubmit)="guardar()" [formGroup]="formularioCausa">
         <div class="row">
           <div class="form-group">
-            <label for="tipoTC">Tipo de causa</label>
+            <label for="tipoTC">Tipo de causa <span class="required"></span>
+              <span class="info-icon" data-title="información">?</span> <!-- Icono de información -->
+            </label>
             <input
               id="tipoTC"
               name="tipoTC"
@@ -54,7 +56,9 @@
           </div>
 
           <div class="form-group">
-            <label for="nombre">Definición:</label>
+            <label for="nombre">Definición <span class="required"></span>
+              <span class="info-icon" data-title="información">?</span> <!-- Icono de información -->
+            </label>
 
             <textarea
               type="text"
@@ -76,7 +80,9 @@
           </div>
 
           <div class="form-group mb-3">
-            <label class="control-label" for="file">Imagen: </label>
+            <label class="control-label" for="file">Imagen <span class="required"></span>
+              <span class="info-icon" data-title="información">?</span> <!-- Icono de información -->
+            </label>
             <input
               class="form-control"
               type="file"
