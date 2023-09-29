@@ -87,7 +87,13 @@ const routes: Routes = [
         (m) => m.PlantaModule
       ),
   },  
-  
+  {
+    path: "usuario-c",
+    loadChildren: () =>
+      import("./usuario-c/usuario-c.module").then(
+        (m) => m.UsuarioCModule
+      ),
+  },  
   /* INICIO Vistas permitidas para los alumnos */
   {
     path: "paginas-principal",
