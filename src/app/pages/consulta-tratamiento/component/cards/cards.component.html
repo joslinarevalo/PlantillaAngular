@@ -5,13 +5,13 @@
           <div class="row" *ngIf="tratamiento">
             <div class="card-body">
               <h2 class="card-title mb-4 text-center">TRATAMIENTO DE LA PLANTA</h2>
-              <p class="card-title mb-4 text-center">{{ tratamiento.nombrePesticidaTratamiento }}</p>
+              <p class="card-title  text-center">{{ tratamiento.nombrePesticidaTratamiento }}</p>
             </div>
   
             <div class="card product-card">
               <div class="card-body">
                 <div class="product-img position-relative">
-                  <div class="mt-4 text-justifity">
+                  <div class=" text-justifity">
                      <img [src]="tratamiento.urlTratamiento" class="img-fluid mx-auto d-block card-image">
                     <p><strong>Descripcion del tratamiento:</strong> {{ tratamiento.descripcionTratamiento }}</p>
                     <p><strong>Indicaciones de uso:</strong> {{ tratamiento.indicacionesTratamiento }}</p>

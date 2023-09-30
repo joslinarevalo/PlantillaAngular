@@ -159,5 +159,4 @@ export class TratamientoComponent implements OnInit {
     }
   }
   
-
 }

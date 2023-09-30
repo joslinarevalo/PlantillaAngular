@@ -26,14 +26,15 @@
               </div>
             </div>
             <div class="row">
-              <div class="col-lg-12">
+              <div class="col-lg-6">
                 <div *ngIf="resultadosPlantas.length > 0">
                   <app-cardPlanta
                     *ngFor="let planta of resultadosPlantas"
                     [planta]="planta"
                   ></app-cardPlanta>
                 </div>
-
+              </div>
+              <div class="col-lg-6" >
                 <div *ngIf="resultadosTrata.length > 0">
                   <!-- Muestra los resultados de tratamientos aquí -->
                   <app-cardTratamiento *ngFor="let tratamiento of resultadosTrata"
@@ -45,11 +46,12 @@
                   <!-- Muestra los resultados de causas aquí -->
                 </div>
 
-                <div *ngIf="resultadosPlantas.length === 0 && resultadosTrata.length === 0">
-                  <div class="col-lg-12 text-center">
-                    <p>No se encontraron datos para su busqueda.</p>
-                  </div>
-                </div>
+                
+              </div>
+            </div>
+            <div *ngIf="resultadosPlantas.length === 0 && resultadosTrata.length === 0">
+              <div class="col-lg-12 text-center">
+                <p>No se encontraron datos para su busqueda.</p>
               </div>
             </div>
           </div>
