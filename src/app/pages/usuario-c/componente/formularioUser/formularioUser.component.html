@@ -2,114 +2,199 @@
   <h5 class="cajaModal text-center mt-4 texto-mayusculas">
     {{ leyenda }} Usuario
   </h5>
-    <div class="row justify-content-center">
-      <div class="col-md-8 col-lg-6 col-xl-5">
-        <div class="card overflow-hidden">
-            <div class="row mt-3">
-              <div class="col-12 center-self-end">
-                <img src="assets/images/minerva2.png" alt="" class="img-fluid smaller-image">
-              </div>
-            </div>
-              <form class="form-horizontal" [formGroup]="formularioUsuario">
-               <h5 class="text-center">REGISTRO</h5>
-                <div class="mb-3 input-group"> <!-- Agregamos la clase "input-group" para agrupar el icono y el input -->
-                  <div class="input-group-prepend"> <!-- Agregamos un div para el icono -->
-                    <span class="input-group-text"><i class="mdi mdi-lock mr-1 "></i></span>
-                  </div>
-                  <input type="email" formControlName="nombre" class="form-control" id="nombre" placeholder="Nombre" />
-                  <div *ngIf="" class="invalid-feedback">
-                    <div *ngIf="">Usuario requerido</div>
-                    <div *ngIf="">Usuario incorrecto</div>
-                  </div>
-                </div>
-                <div class="mb-3 input-group"> <!-- Agregamos la clase "input-group" para agrupar el icono y el input -->
-                  <div class="input-group-prepend"> <!-- Agregamos un div para el icono -->
-                    <span class="input-group-text"><i class="mdi mdi-lock mr-1 "></i></span>
-                  </div>
-                  <input type="email" formControlName="apellido" class="form-control" id="apellido" placeholder="Apellido" />
-                  <div *ngIf="" class="invalid-feedback">
-                    <div *ngIf="">Usuario requerido</div>
-                    <div *ngIf="">Usuario incorrecto</div>
-                  </div>
-                </div>
-                <div class="mb-3 input-group"> <!-- Agregamos la clase "input-group" para agrupar el icono y el input -->
-                  <div class="input-group-prepend"> <!-- Agregamos un div para el icono -->
-                    <span class="input-group-text"><i class="mdi mdi-lock mr-1 "></i></span>
-                  </div>
-                  <input type="correo" formControlName="correo" class="form-control" id="correo" placeholder="Correo" />
-                  <div *ngIf="" class="invalid-feedback">
-                    <div *ngIf="">Usuario requerido</div>
-                    <div *ngIf="">Usuario incorrecto</div>
-                  </div>
-                </div>
-                <div class="mb-3 input-group"> <!-- Agregamos la clase "input-group" para agrupar el icono y el input -->
-                  <div class="input-group-prepend"> <!-- Agregamos un div para el icono -->
-                    <span class="input-group-text"><i class="mdi mdi-lock mr-1 "></i></span>
-                  </div>
-                  <input type="rol" formControlName="rol" class="form-control" id="email" placeholder="Rol" />
-                  <div *ngIf="" class="invalid-feedback">
-                    <div *ngIf="">Usuario requerido</div>
-                    <div *ngIf="">Usuario incorrecto</div>
-                  </div>
-                </div>
-                <div class="mb-3 input-group"> <!-- Agregamos la clase "input-group" para agrupar el icono y el input -->
-                  <div class="input-group-prepend"> <!-- Agregamos un div para el icono -->
-                    <span class="input-group-text"><i class="mdi mdi-lock mr-1 "></i></span>
-                  </div>
-                  <input type="usuario" formControlName="usuario" class="form-control" id="usuario" placeholder="Usuario" />
-                  <div *ngIf="" class="invalid-feedback">
-                    <div *ngIf="">Usuario requerido</div>
-                    <div *ngIf="">Usuario incorrecto</div>
-                  </div>
-                </div>
-              
-                <div class="mb-3 input-group"> <!-- Repetimos el mismo proceso para el segundo input -->
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="mdi mdi-lock mr-1"></i></span>
-                  </div>
-                  <input type="password" class="form-control" formControlName="password" placeholder="Contraseña"
-                    aria-label="Password" aria-describedby="password-addon">
-                  <div *ngIf="" class="invalid-feedback">
-                    <span *ngIf="">Contraseña requerida</span>
-                  </div>
-                  <div class="input-group-append"> <!-- Agregamos un div para el botón de ojo -->
-                    <button class="btn btn-light" type="button" id="password-addon"><i class="mdi mdi-eye-outline"></i></button>
-                  </div>
-                </div>
-                <div class="text-center mb-3 mt-2">
-                  <!-- Centrar los botones y agregar espacio inferior -->
-                  <button
-                    type="button"
-                    class="btn btnguardarModal"
-                    (click)="guardar()"
-                    *ngIf="leyenda == 'Registrar'"
-                  >
-                    <i class="fas fa-check"></i>Guardar
-                  </button>
-                  <button
-                    type="button"
-                    class="btn btnguardarModal"
-                    *ngIf="leyenda == 'Modificar'"
-                    (click)="modificar()"
-                  >
-                    <i class="fas fa-check"></i>{{ leyenda }}
-                  </button>
-                  <span class="mx-2"></span>
-                  <!-- Agregar un espacio horizontal entre los botones -->
-                  <button
-                    type="button"
-                    class="btn btnCerrar"
-                    aria-hidden="true"
-                    (click)="cerrarModal()"
-                  >
-                    <i class="dripicons-cross"></i>cerrar
-                  </button>
-                </div>
-              </form>
-         
+  <div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6 col-xl-5">
+      <div class="card overflow-hidden">
+        <div class="row mt-3">
+          <div class="col-12 center-self-end">
+            <img
+              src="assets/images/minerva2.png"
+              alt=""
+              class="img-fluid smaller-image"
+            />
+          </div>
         </div>
+        <form class="form-horizontal" [formGroup]="formularioUsuario">
+          <h5 class="text-center">REGISTRO</h5>
+          <div class="mb-3 input-group">
+            <!-- Agregamos la clase "input-group" para agrupar el icono y el input -->
+            <div class="input-group-prepend">
+              <!-- Agregamos un div para el icono -->
+              <span class="input-group-text"
+                ><i class="mdi mdi-lock mr-1"></i
+              ></span>
+            </div>
+            <input
+              type="text"
+              formControlName="nombre"
+              class="form-control"
+              id="nombre"
+              placeholder="Nombre"
+              [ngClass]="esCampoValido('nombre')"
+            />
+            <div class="invalid-feedback">
+              <div  *ngIf="formularioUsuario.get('nombre')?.errors?.['required']">Nombre requerido</div>
+              <div  *ngIf="formularioUsuario.get('nombre')?.errors?.['pattern']">Nombre incorrecto</div>
+            </div>
+          </div>
+          <div class="mb-3 input-group">
+            <!-- Agregamos la clase "input-group" para agrupar el icono y el input -->
+            <div class="input-group-prepend">
+              <!-- Agregamos un div para el icono -->
+              <span class="input-group-text"
+                ><i class="mdi mdi-lock mr-1"></i
+              ></span>
+            </div>
+            <input
+              type="text"
+              formControlName="apellido"
+              class="form-control"
+              id="apellido"
+              placeholder="Apellido"
+              [ngClass]="esCampoValido('apellido')"
+            />
+            <div class="invalid-feedback">
+              <div  *ngIf="formularioUsuario.get('apellido')?.errors?.['required']">Apellido requerido</div>
+              <div  *ngIf="formularioUsuario.get('apellido')?.errors?.['pattern']">Apellido incorrecto</div>
+            </div>
+          </div>
+          <div class="mb-3 input-group">
+            <!-- Agregamos la clase "input-group" para agrupar el icono y el input -->
+            <div class="input-group-prepend">
+              <!-- Agregamos un div para el icono -->
+              <span class="input-group-text"
+                ><i class="mdi mdi-lock mr-1"></i
+              ></span>
+            </div>
+            <input
+              type="email"
+              formControlName="correo"
+              class="form-control"
+              id="correo"
+              placeholder="Correo"
+              [ngClass]="esCampoValido('correo')"
+            />
+            <div class="invalid-feedback">
+              <div  *ngIf="formularioUsuario.get('correo')?.errors?.['required']">Correo requerido</div>
+              <div  *ngIf="formularioUsuario.get('correo')?.errors?.['email']">Correo incorrecto</div>
+            </div>
+          </div>
+          <div class="mb-3 input-group">
+            <!-- Agregamos la clase "input-group" para agrupar el icono y el input -->
+            <div class="input-group-prepend">
+              <!-- Agregamos un div para el icono -->
+              <span class="input-group-text"
+                ><i class="mdi mdi-lock mr-1"></i
+              ></span>
+            </div>
+            <ng-select
+              class="form-control"
+              id="estado"
+              formControlName="estado"
+              [ngClass]="esCampoValido('estado')"
+            >
+              <ng-option value="ACTIVO">ACTIVO</ng-option>
+              <ng-option value="INACTIVO">INACTIVO</ng-option>
+            </ng-select>
+            <div class="invalid-feedback">
+              <div  *ngIf="formularioUsuario.get('estado')?.errors?.['required']">Estado requerido</div>
+            </div>
+          </div>
+          <div class="mb-3 input-group">
+            <!-- Agregamos la clase "input-group" para agrupar el icono y el input -->
+            <div class="input-group-prepend">
+              <!-- Agregamos un div para el icono -->
+              <span class="input-group-text"
+                ><i class="mdi mdi-lock mr-1"></i
+              ></span>
+            </div>
+            <input
+              type="text"
+              formControlName="usuario"
+              class="form-control"
+              id="usuario"
+              placeholder="Usuario"
+              [ngClass]="esCampoValido('usuario')"
+            />
+            <div  class="invalid-feedback">
+              <div  *ngIf="formularioUsuario.get('usuario')?.errors?.['required']">Usuario requerido</div>
+            </div>
+          </div>
+
+          <div class="mb-3 input-group">
+            <!-- Repetimos el mismo proceso para el segundo input -->
+            <div class="input-group-prepend">
+              <span class="input-group-text"
+                ><i class="mdi mdi-lock mr-1"></i
+              ></span>
+            </div>
+            <input
+              type="password"
+              class="form-control"
+              formControlName="clave"
+              placeholder="Contraseña"
+              aria-label="Password"
+              aria-describedby="password-addon"
+              [ngClass]="esCampoValido('clave')"
+            />
+            <div class="invalid-feedback">
+              <span *ngIf="formularioUsuario.get('clave')?.errors?.['required']">Contraseña requerida</span>
+            </div>
+            <div class="input-group-append">
+              <!-- Agregamos un div para el botón de ojo -->
+              <button class="btn btn-light" type="button" id="password-addon">
+                <i class="mdi mdi-eye-outline"></i>
+              </button>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <label class="control-label">Seleccionar Rol</label>
+            <ng-select
+              class="form-control"
+              id="idrol"
+              formControlName="idrol"
+              [ngClass]="esCampoValido('idrol')"
+            >
+              <ng-option *ngFor="let rol of roList" [value]="rol.id">{{
+                rol.rol}}</ng-option>
+            </ng-select>
+            <div class="invalid-feedback">
+              <span *ngIf="formularioUsuario.get('idrol')?.errors?.['required']"
+                >Requiere un Rol</span
+              >
+            </div>
+          </div>
+          <div class="text-center mb-3 mt-2">
+            <!-- Centrar los botones y agregar espacio inferior -->
+            <button
+              type="button"
+              class="btn btnguardarModal"
+              (click)="guardar()"
+              *ngIf="leyenda == 'Registrar'"
+            >
+              <i class="fas fa-check"></i>Guardar
+            </button>
+            <button
+              type="button"
+              class="btn btnguardarModal"
+              *ngIf="leyenda == 'Modificar'"
+              (click)="modificar()"
+            >
+              <i class="fas fa-check"></i>{{ leyenda }}
+            </button>
+            <span class="mx-2"></span>
+            <!-- Agregar un espacio horizontal entre los botones -->
+            <button
+              type="button"
+              class="btn btnCerrar"
+              aria-hidden="true"
+              (click)="cerrarModal()"
+            >
+              <i class="dripicons-cross"></i>cerrar
+            </button>
+          </div>
+        </form>
       </div>
     </div>
-
+  </div>
 </div>
-

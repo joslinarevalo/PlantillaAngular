@@ -1,28 +1,79 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { IRoles, IUsuarioValid } from '../../interface/usuario.interface';
+import Swal from 'sweetalert2';
+import { UsuarioServiceService } from '../../service/usuario-service.service';
 @Component({
   selector: 'app-formularioUser',
   templateUrl: './formularioUser.component.html',
   styleUrls: ['./formularioUser.component.scss']
 })
 export class FormularioUserComponent implements OnInit {
-
   @Input() ModalService!:NgbModal;
+  usuarios:IUsuarioValid;
+  roList:IRoles[]=[];
   @Input()formularioUsuario!:FormGroup;
-  formularioSerealizable= new FormData();
-  @Output()ObjetoGuardar= new EventEmitter<FormData>();
-  @Output()ObjetoModificar= new EventEmitter<FormData>();
+  @Output()ObjetoGuardar= new EventEmitter<IUsuarioValid>();
+  @Output()ObjetoModificar= new EventEmitter<IUsuarioValid>();
   @Input()leyenda:string;
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder,private userService:UsuarioServiceService) { }
 
   ngOnInit() {
+    this.listaRol();
   }
   cerrarModal(){
     this.ModalService.dismissAll();
   }
-  guardar(){}
-  modificar() {}
+  guardar(){
+    if (this.formulario_valido()) {
+       console.log(this.formularioUsuario); 
+      this.usuarios = {
+        nombre: this.formularioUsuario.controls['nombre'].value,
+        apellido:this.formularioUsuario.controls['apellido'].value,
+        correo:this.formularioUsuario.controls['correo'].value,
+        estado:this.formularioUsuario.controls['estado'].value,
+        usuario:this.formularioUsuario.controls['usuario'].value,
+        clave:this.formularioUsuario.controls['clave'].value,
+        idrol: this.formularioUsuario.controls['idrol'].value
+      };
+      //this.presentacion=this.formulario.value;
+      console.log(this.usuarios);
+      this.ObjetoGuardar.emit(this.usuarios);
+      }else {
+        Swal.fire({
+          position: 'center',
+          icon: 'warning',
+          title: 'error en el formulario',
+          showConfirmButton: false,
+          timer: 1500,
+        });
+  }
+  }
+  modificar() {
+    if (this.formulario_valido()) {
+      this.usuarios = {
+        id:this.formularioUsuario.controls['id'].value,
+        nombre: this.formularioUsuario.controls['nombre'].value,
+        apellido:this.formularioUsuario.controls['apellido'].value,
+        correo:this.formularioUsuario.controls['correo'].value,
+        estado:this.formularioUsuario.controls['estado'].value,
+        usuario:this.formularioUsuario.controls['usuario'].value,
+        clave:this.formularioUsuario.controls['clave'].value,
+        idrol: this.formularioUsuario.controls['idrol'].value
+      };
+      console.log(this.usuarios);
+      this.ObjetoModificar.emit(this.usuarios);
+    } else {
+      Swal.fire({
+        position: 'center',
+        icon: 'warning',
+        title: 'error en el formulario',
+        showConfirmButton: false,
+        timer: 1500,
+      });
+  }
+}
   formulario_valido(): boolean {
     let estado: boolean = false;
     if (this.formularioUsuario.valid) {
@@ -42,6 +93,12 @@ export class FormularioUserComponent implements OnInit {
       : validarCampo?.touched
       ? 'is-valid'
       : '';
+  }
+  listaRol(){
+    this.userService.listaDeRoles().subscribe((resp)=>{
+      this.roList=resp;
+      console.log(this.roList);
+    })
   }
 
 }

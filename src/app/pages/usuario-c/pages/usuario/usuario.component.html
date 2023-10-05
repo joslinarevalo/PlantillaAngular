@@ -19,7 +19,9 @@
                   </div>
 
                       <!-- Contenido del Scroll data --> 
-                      <app-tablaUser ></app-tablaUser>
+                      <app-tablaUser [listUsuario]="listaUsuario"
+                      (ObjetoUsuarioEliminar)="EliminarUsuario($event)"
+                      (ObjetoUsuarioModificar)="modificarUsuarioFormulario($event,content)" ></app-tablaUser>
                      
                   </div>
               </div>
@@ -27,5 +29,8 @@
       </div>
   </div>
   <ng-template #content role="document" let-modal>
-  <app-formularioUser [ModalService]="modalService"  [leyenda]="leyenda"[formularioUsuario]="formularioUsuario"></app-formularioUser>
+  <app-formularioUser [ModalService]="modalService"  
+  [leyenda]="leyenda"[formularioUsuario]="formularioUsuario"
+  (ObjetoGuardar)="guardarUsuario($event)"
+  (ObjetoModificar)="modificarUsuario($event)"></app-formularioUser>
   </ng-template>
