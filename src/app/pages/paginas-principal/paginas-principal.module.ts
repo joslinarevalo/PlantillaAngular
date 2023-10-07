@@ -5,12 +5,14 @@ import { PagInicioUserComponent } from './pages/pagInicioUser/pagInicioUser.comp
 import { FormsModule } from '@angular/forms';
 import { CardPlantaComponent } from '../consulta-planta/cardPlanta/cardPlanta.component';
 import { CardTratamientoComponent } from './pages/cardTratamiento/cardTratamiento.component';
+import { DetalleTraCardComponent } from './pages/DetalleTraCard/DetalleTraCard.component';
 
 @NgModule({
   declarations: [
 PagInicioUserComponent,
 CardPlantaComponent,
-CardTratamientoComponent
+CardTratamientoComponent,
+DetalleTraCardComponent
   ],
   imports: [
     CommonModule,

@@ -31,22 +31,31 @@
   aria-hidden="true"
 >
   <ng-template #content role="document" let-modal>
-    <h5 class="cajaModal text-center mt-4 texto-mayusculas">{{ leyenda }} Tipo de Causa</h5>
+    <h5 class="cajaModal text-center mt-4 texto-mayusculas">
+      {{ leyenda }} Tipo de Causa
+    </h5>
     <div class="modal-body">
       <form (ngSubmit)="guardar()" [formGroup]="formularioCausa">
         <div class="row">
           <div class="form-group">
-            <label for="tipoTC">Tipo de causa <span class="required"></span>
-              <span class="info-icon" data-title="información">?</span> <!-- Icono de información -->
+            <label for="tipoTC"
+              >Tipo de causa <span class="required"></span>
+              <span
+                class="info-icon"
+                data-title="Agregar el nombre de la cusa que propicia cierta enfermedad en la planta"
+                >?</span
+              >
+              <!-- Icono de información -->
             </label>
             <input
               id="tipoTC"
               name="tipoTC"
-              class="form-control"
+              class="form-control mayusculas"
               formControlName="tipoTC"
               [ngModel]="causaT != null ? causaT.tipoTC : ''"
               required
             />
+
             <div class="invalid-feedback">
               <!--aqui validacion-->
               <span *ngIf="formularioCausa.get('tipoTC')?.errors?.['required']"
@@ -56,8 +65,14 @@
           </div>
 
           <div class="form-group">
-            <label for="nombre">Definición <span class="required"></span>
-              <span class="info-icon" data-title="información">?</span> <!-- Icono de información -->
+            <label for="nombre"
+              >Definición <span class="required"></span>
+              <span
+                class="info-icon"
+                data-title="Agregar una definicion o descripcion informativa sobre la causa"
+                >?</span
+              >
+              <!-- Icono de información -->
             </label>
 
             <textarea
@@ -80,8 +95,14 @@
           </div>
 
           <div class="form-group mb-3">
-            <label class="control-label" for="file">Imagen <span class="required"></span>
-              <span class="info-icon" data-title="información">?</span> <!-- Icono de información -->
+            <label class="control-label" for="file"
+              >Imagen <span class="required"></span>
+              <span
+                class="info-icon"
+                data-title="Agregar imagen relacionada con el tipo de Causa"
+                >?</span
+              >
+              <!-- Icono de información -->
             </label>
             <input
               class="form-control"
@@ -90,26 +111,17 @@
               id="urlTipo"
               formControlName="urlTipo"
               (change)="SeleccionarImagen($event)"
-              [ngClass]="esCampoValido('urlTipo')"
-              required
             />
-            <div class="invalid-feedback">
-              <span *ngIf="formularioCausa.get('urlTipo')?.errors?.['required']"
-                >Requiere una imagen
-              </span>
-            </div>
-           
           </div>
           <div class="text-center mb-4">
             <img
               width="150px"
               height="150px"
               class="img-fluid"
-              [src]="imagenMostrar "
-              [src]="causaT.imagen "
-              *ngIf="imagenMostrar  "
+              [src]="imagenMostrar"
+              [src]="causaT.imagen"
+              *ngIf="imagenMostrar != undefined"
             />
-            
           </div>
         </div>
         <div class="text-center mb-3 mt-2">

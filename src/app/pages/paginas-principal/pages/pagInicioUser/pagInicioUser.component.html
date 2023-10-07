@@ -31,25 +31,40 @@
                   <app-cardPlanta
                     *ngFor="let planta of resultadosPlantas"
                     [planta]="planta"
+                    [detallePlantaPreview]="detallePlantaPreview"
                   ></app-cardPlanta>
                 </div>
               </div>
-              <div class="col-lg-6" >
+              <div class="col-lg-6">
                 <div *ngIf="resultadosTrata.length > 0">
                   <!-- Muestra los resultados de tratamientos aquí -->
-                  <app-cardTratamiento *ngFor="let tratamiento of resultadosTrata"
-                  [tratamiento]="tratamiento" >
-          
-                </app-cardTratamiento>
+                  <app-cardTratamiento
+                    *ngFor="let tratamiento of resultadosTrata"
+                    [tratamiento]="tratamiento"
+                  >
+                  </app-cardTratamiento>
                 </div>
                 <div *ngIf="resultadosCausas.length > 0">
                   <!-- Muestra los resultados de causas aquí -->
                 </div>
-
-                
+              </div>
+              <div class="col-lg-6">
+                <!-- Cambia *ngFor para iterar sobre resultadosTratamientosD y asigna el elemento a cada instancia -->
+                <div *ngFor="let detalleT of resultadosTratamientosD">
+                  <app-DetalleTraCard
+                    [tratamientoDetalle]="detalleT"
+                  ></app-DetalleTraCard>
+                </div>
               </div>
             </div>
-            <div *ngIf="resultadosPlantas.length === 0 && resultadosTrata.length === 0">
+           
+            <div
+              *ngIf="
+                resultadosPlantas.length === 0 &&
+                resultadosTrata.length === 0 &&
+                resultadosTratamientosD.length === 0
+              "
+            >
               <div class="col-lg-12 text-center">
                 <p>No se encontraron datos para su busqueda.</p>
               </div>
