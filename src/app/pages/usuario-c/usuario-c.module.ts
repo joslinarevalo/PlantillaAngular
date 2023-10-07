@@ -8,6 +8,7 @@ import { DataTablesModule } from 'angular-datatables';
 import { UsuarioComponent } from './pages/usuario/usuario.component';
 import { FormularioUserComponent } from './componente/formularioUser/formularioUser.component';
 import { TablaUserComponent } from './componente/tablaUser/tablaUser.component';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { TablaUserComponent } from './componente/tablaUser/tablaUser.component';
     FormsModule,
     ReactiveFormsModule,
     NgxPaginationModule, //PARA LA PAGINACION
-    DataTablesModule
+    DataTablesModule,
+    NgSelectModule
   ]
 })
 export class UsuarioCModule { }

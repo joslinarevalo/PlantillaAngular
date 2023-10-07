@@ -1,9 +1,11 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { DataTableDirective } from 'angular-datatables';
 import { Subject } from 'rxjs';
 import { Usuario } from 'src/app/usuario/models/Usuario';
+import { IUsuarioMostrar } from '../../interface/usuario.interface';
+import { UsuarioServiceService } from '../../service/usuario-service.service';
 
 @Component({
   selector: 'app-tablaUser',
@@ -11,12 +13,13 @@ import { Usuario } from 'src/app/usuario/models/Usuario';
   styleUrls: ['./tablaUser.component.scss']
 })
 export class TablaUserComponent implements OnInit {
-
+  @Input()listUsuario:IUsuarioMostrar[]=[];
+  @Output()ObjetoUsuarioEliminar= new EventEmitter<IUsuarioMostrar>();
+  @Output()ObjetoUsuarioModificar= new EventEmitter<IUsuarioMostrar>();
   @ViewChild(DataTableDirective, { static: false} ) dtElement: DataTableDirective;
   dtOptions: DataTables.Settings = {};
-  dtTrigger: Subject<Usuario> = new Subject<Usuario>();
-  usuario?:Usuario;
-  constructor(private fb: FormBuilder,public modalService:NgbModal) { }
+  dtTrigger: Subject<IUsuarioMostrar> = new Subject<IUsuarioMostrar>();
+  constructor(private UsuarioService:UsuarioServiceService) { }
 
   ngOnInit(): void {
     this.dtOptions={
@@ -28,20 +31,24 @@ export class TablaUserComponent implements OnInit {
         zeroRecords: "Ninguna enfermedad encontrada",
       },
       pagingType: 'full_numbers',
-      responsive: true,
+      responsive: true
     };
     this.listaUsuario();
   }
-  listaUsuario(){}
-  openModal(content: any,usuario:Usuario) {
-    this.usuario=usuario;
-    this.modalService.open(content, {
-      size: "xl",
-      centered: true,
-      backdrop: "static",
-      keyboard: false,
+ 
+  ObtenerUsuarioEliminar(Usuario:IUsuarioMostrar){
+    //console.log(Usuario);
+    this.ObjetoUsuarioEliminar.emit(Usuario);//para emitar el evento de objeto a la vista del padre
+  }
+  ObtenerUsuarioModificar(Usuario:IUsuarioMostrar){
+    //console.log(Usuario);
+    this.ObjetoUsuarioModificar.emit(Usuario);
+  }
+  listaUsuario(){
+    this.UsuarioService.listaDeUsuarios().subscribe((resp)=>{
+      this.listUsuario=resp;
+      this.dtTrigger.next(null);
     });
-
   }
 
 }

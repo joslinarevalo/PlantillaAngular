@@ -93,6 +93,7 @@ const routes: Routes = [
       import("./usuario-c/usuario-c.module").then(
         (m) => m.UsuarioCModule
       ),
+      canActivate: [RolGuard], data:{rol:"ROLE_ADMIN"} 
   },  
   /* INICIO Vistas permitidas para los alumnos */
   {
