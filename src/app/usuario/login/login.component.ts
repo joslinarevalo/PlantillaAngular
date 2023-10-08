@@ -14,7 +14,7 @@ import { MyObj } from '../interfaces/MyObj';
 export class LoginComponent implements OnInit {
   loginForm: FormGroup; // Declaracion de un FormGroup
   usuario: Usuario;
-
+  tipo:string="password";
   constructor(
     private autenticacionService: AutenticacionService,
     private router: Router,
@@ -87,5 +87,11 @@ export class LoginComponent implements OnInit {
     )
   }
   
-
+  mostrarPassword(){
+    if(this.tipo=="password") {
+      this.tipo="text" ;
+      } else{
+      this.tipo="password" 
+      }
+  }
 }

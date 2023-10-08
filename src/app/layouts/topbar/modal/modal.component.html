@@ -1,0 +1,39 @@
+<div class="modal-header">
+  <h5 class="modal-title mt-0">Familia</h5>
+  <button
+    type="button"
+    class="btn-close"
+    aria-hidden="true"
+
+  ></button>
+</div>
+<div class="modal-body">
+  <form >
+    <div class="row">
+      <div class="mt-1">
+        <label class="control-label">Nombre<span class="required"></span>
+          <span class="info-icon" data-title="información">?</span> <!-- Icono de información -->
+        </label>
+        <input
+          class="form-control"
+          type="text"
+          id="nombreFamilia"
+          formControlName="nombreFamilia"
+        />
+        <div class="invalid-feedback">
+          <span
+            >Requiere un nombre de la familia</span
+          >
+        </div>
+      </div>
+
+    </div>
+
+    <div class="text-center mb-3 mt-2"> <!-- Centrar los botones y agregar espacio inferior -->
+       <button type="button" class="btn btnguardarModal" ><i class="fas fa-check"></i>Guardar</button>
+       <button type="button" class="btn btnguardarModal" ><i class="fas fa-check" ></i></button>
+      <span class="mx-2"></span> <!-- Agregar un espacio horizontal entre los botones -->
+      <button type="button" class="btn btnCerrar" aria-hidden="true"><i class="dripicons-cross"></i>cerrar</button>
+  </div>
+  </form>
+</div>

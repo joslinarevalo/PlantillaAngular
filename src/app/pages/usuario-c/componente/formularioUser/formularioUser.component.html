@@ -15,7 +15,6 @@
           </div>
         </div>
         <form class="form-horizontal" [formGroup]="formularioUsuario">
-          <h5 class="text-center">REGISTRO</h5>
           <div class="mb-3 input-group">
             <!-- Agregamos la clase "input-group" para agrupar el icono y el input -->
             <div class="input-group-prepend">
@@ -129,7 +128,7 @@
               ></span>
             </div>
             <input
-              type="password"
+              [type]="tipo"
               class="form-control"
               formControlName="clave"
               placeholder="Contraseña"
@@ -142,7 +141,7 @@
             </div>
             <div class="input-group-append">
               <!-- Agregamos un div para el botón de ojo -->
-              <button class="btn btn-light" type="button" id="password-addon">
+              <button class="btn btn-light" type="button" id="password-addon" (click)="mostrarPassword()">
                 <i class="mdi mdi-eye-outline"></i>
               </button>
             </div>

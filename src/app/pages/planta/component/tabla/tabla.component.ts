@@ -5,6 +5,7 @@ import { Subject } from 'rxjs';
 import { PlantaService } from '../../service/planta.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { FormBuilder } from '@angular/forms';
+import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-tabla',
@@ -15,15 +16,21 @@ export class TablaComponent implements OnInit {
 
   p: any;
   imagen:any;
-  //tratamientoList:ITratamientoMostrar[]=[];
+  modalOptions: NgbModalOptions = {
+    ariaLabelledBy: 'modal-basic-title',
+    size: 'md', // sm (SMALL), md (MEDIANO), lg (LARGO),xl (EXTRA LARGO)
+    backdrop:'static'
+  };
   @Input()ListaDePlanta:IPlantaMostrar[]=[];
   @Output()ObjetoPlantaEliminar= new EventEmitter<IPlantaMostrar>();
   @Output()ObjetoPlantaModificar= new EventEmitter<IPlantaMostrar>();
   @ViewChild(DataTableDirective, { static: false} ) dtElement: DataTableDirective;
   dtOptions: any = {};
   dtTrigger: Subject<IPlantaMostrar> = new Subject<IPlantaMostrar>();
+  planta?:IPlantaMostrar;
   constructor(private servicePlanta:PlantaService,
-    private dm:DomSanitizer, private fb: FormBuilder) { }
+    private dm:DomSanitizer,
+    public modalService:NgbModal, private fb: FormBuilder) { }
 
   ngOnInit(): void {
     this.dtOptions={
@@ -33,7 +40,7 @@ export class TablaComponent implements OnInit {
         { responsivePriority: 3, targets: 1 },
         { responsivePriority: 1, targets: [7, -1] },
     ],
-      lengthMenu: [1,5,10,15,20,50],
+      lengthMenu: [5,10,15,20,50],
       destroy: true,
       language:{
         url: '//cdn.datatables.net/plug-ins/1.13.5/i18n/es-ES.json',
@@ -46,13 +53,13 @@ export class TablaComponent implements OnInit {
     this.listaPlanta();
   }
 
-  ObtenerPlantaEliminar(tratamiento:IPlantaMostrar){
-    console.log(tratamiento);
-    this.ObjetoPlantaEliminar.emit(tratamiento);//para emitar el evento de objeto a la vista del padre
+  ObtenerPlantaEliminar(planta:IPlantaMostrar){
+    console.log(planta);
+    this.ObjetoPlantaEliminar.emit(planta);//para emitar el evento de objeto a la vista del padre
   }
-  ObtenerPlantaModificar(tratamiento:IPlantaMostrar){
-    console.log(tratamiento);
-    this.ObjetoPlantaModificar.emit(tratamiento);
+  ObtenerPlantaModificar(planta:IPlantaMostrar){
+    console.log(planta);
+    this.ObjetoPlantaModificar.emit(planta);
   }
   listaPlanta(){
     this.servicePlanta.listaDePlanta().subscribe((resp)=>{
@@ -85,6 +92,17 @@ export class TablaComponent implements OnInit {
     } else {
       return miArchivo;
     }
+  }
+
+  openModal(content: any,planta:IPlantaMostrar) {
+    this.planta=planta;
+    this.modalService.open(content, {
+      size: "xl",
+      centered: true,
+      backdrop: "static",
+      keyboard: false,
+    });
+
   }
 
 }

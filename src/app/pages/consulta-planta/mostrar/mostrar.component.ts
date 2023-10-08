@@ -14,7 +14,9 @@ export class MostrarComponent implements OnInit {
   imagen: any;
   searchTerm: string = "";
   filtrarPlanta: IPlantaMostrar[]=[];
-  //filtrarPlanta: IPlantaMostrar[];
+  pagina:number=0;
+  tamaño:number=5;
+
   constructor(
     private servicePlanta: PlantaService,
     private router: Router,
@@ -22,7 +24,7 @@ export class MostrarComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.listatipo();
+    this.listaPlantaPaginada();
   }
 
   filterCards() {
@@ -37,35 +39,34 @@ export class MostrarComponent implements OnInit {
     }
   }
 
-  listatipo() {
-    this.servicePlanta.listaDePlanta().subscribe((resp) => {
-      this.allPlanta = resp;
-      console.log(resp);
-      this.allPlanta.forEach((element) => {
-        this.servicePlanta.getImagen(element.urlPlanta).subscribe((resp) => {
-          let url = URL.createObjectURL(resp);
-          this.imagen = this.dm.bypassSecurityTrustUrl(url);
-          element.imagen = this.imagen;
-        });
-      });
-       // Inicializa filteredCausas después de cargar los datos en allEnfermedad
-       this.filtrarPlanta = this.allPlanta;
-    });
-  }
-
-  ObtenerImagen(url: string) {
-    this.servicePlanta.getImagen(url).subscribe((resp) => {
-      console.log(resp);
-      let url = URL.createObjectURL(resp);
-      this.imagen = this.dm.bypassSecurityTrustUrl(url);
-      console.log(this.imagen);
-    });
-  }
-
   verDetalle(idPlanta: string) {
     // Navega a la ruta del componente de detalle, pasando el ID como parámetro
     this.router.navigate(['consultaPlantas/detalle', idPlanta]);
-
   }
+
+  onScroll(){
+    console.log("scroll infinito")
+    this.tamaño+=5;
+    this.listaPlantaPaginada();
+  }
+
+  listaPlantaPaginada(){
+    this.servicePlanta.listaDePlantaPaginacion(this.pagina,this.tamaño).subscribe((resp)=>{
+      console.log(resp);
+      this.allPlanta=resp;
+      this.allPlanta.forEach(element => {
+        this.servicePlanta.getImagen(element.urlPlanta).subscribe((resp)=>{
+          //console.log(resp);
+          let url=URL.createObjectURL(resp);
+          this.imagen=this.dm.bypassSecurityTrustUrl(url);
+          //console.log(this.imagen);
+          element.imagen=this.imagen;
+        });
+      });
+      this.filtrarPlanta = this.allPlanta;
+    });
+    console.log(this.filtrarPlanta);
+  }
+
 
 }

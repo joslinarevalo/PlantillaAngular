@@ -2,10 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { PlantaService } from '../../service/planta.service';
 import { DomSanitizer } from '@angular/platform-browser';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { IPlantaMostrar, IPlantaValid } from '../../interface/iplanta';
+import { AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
+import { IPlantaMostrar } from '../../interface/iplanta';
 import Swal from 'sweetalert2';
 import { mensajeError, mensajeExito } from 'src/app/pages/models/funciones.global';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-planta',
@@ -27,7 +28,7 @@ export class PlantaComponent implements OnInit {
   archivo:File;
 
   constructor(public modalService:NgbModal, private servicePlanta:PlantaService,
-    private dm:DomSanitizer, private fb: FormBuilder) { }
+    private dm:DomSanitizer, private fb: FormBuilder, private router: Router) { }
 
   ngOnInit(): void {
     this.listaPlanta();
@@ -62,13 +63,13 @@ export class PlantaComponent implements OnInit {
   inicializarFormulario(): FormGroup {
     return this.fb.group({
       idPlanta: [''],
-      nombreCientifico: ['', [Validators.required]],
-      nombreComun: ['', [Validators.required]],
-      idFamilia: ['', [Validators.required]],
-      idTipoPlanta: ['', [Validators.required]],
-      descripcion: ['', [Validators.required]],
-      historia: ['', [Validators.required]],
-      urlPlanta: ['', [Validators.required]],
+      nombreCientifico: ['', [Validators.required, this.noSoloEspacios()]],
+      nombreComun: ['', [Validators.required, this.noSoloEspacios()]],
+      idFamilia: ['', [Validators.required, this.noSoloEspacios()]],
+      idTipoPlanta: ['', [Validators.required, this.noSoloEspacios()]],
+      descripcion: ['', [Validators.required, this.noSoloEspacios()]],
+      historia: ['', [Validators.required, this.noSoloEspacios()]],
+      urlPlanta: ['', [Validators.required, this.noSoloEspacios()]],
 
     });
   }
@@ -111,6 +112,7 @@ export class PlantaComponent implements OnInit {
           this.servicePlanta.eliminarPlanta(objetoEliminar).subscribe((resp)=>{
             alert.fire('Eliminado', 'El registro ha sido eliminado', 'success');
             this.listaPlanta();
+            this.recargar();
           });
 
         } else if (result.dismiss === Swal.DismissReason.cancel) {
@@ -126,6 +128,7 @@ export class PlantaComponent implements OnInit {
         .subscribe({
           next:(resp)=>{
             mensajeExito("Planta guardado con exito");
+            this.recargar();
           },
           error:(err)=>{
             mensajeError("Detalle Error al guardar la planta");
@@ -146,9 +149,11 @@ export class PlantaComponent implements OnInit {
         .subscribe({
           next:(resp)=>{
             mensajeExito("Planta modificado con exito");
+            this.recargar();
           },
           error:(err)=>{
-            mensajeError("Error al modificar el Planta");
+            //mensajeError("Error al modificar el Planta");
+            mensajeError(err.error.Mensaje)
           },
           complete:()=>{
           this.modalService.dismissAll();
@@ -166,7 +171,27 @@ export class PlantaComponent implements OnInit {
     this.formularioPlanta.patchValue(objetoModificar);
     this.leyenda="Modificar";
     this.archivo=objetoModificar.archivo;
-     this.modalService.open(content, this.modalOptions);
+    this.modalService.open(content, this.modalOptions);
   }
+
+  noSoloEspacios(): ValidatorFn {
+    return (control: AbstractControl): { [key: string]: any } | null => {
+      const inputValue = control.value;
+      // Verificar si inputValue es una cadena de texto antes de aplicar .trim()
+      if (typeof inputValue === 'string' && inputValue.trim() === '') {
+        return { 'espaciosVacios': true };
+      }
+      return null;
+    };
+  }
+
+  recargar(){
+    let currentUrl = this.router.url;
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+    this.router.onSameUrlNavigation = "reload";
+    this.router.navigate([currentUrl]);
+  }
+
+
 
 }
