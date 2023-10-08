@@ -9,6 +9,7 @@ import Swal from 'sweetalert2';
 import { Itipoplanta } from '../../interfaces/ITipoPlanta';
 import { TipoplantaService } from '../../services/tipoplanta.service';
 import { mensajeError, mensajeExito } from 'src/app/pages/familia/models/funciones.global';
+import { Router } from '@angular/router';
 
 
 
@@ -33,7 +34,8 @@ export class TipoplantaComponent implements OnInit {
   constructor(public modalService:NgbModal,
     private serviceTipoPlanta:TipoplantaService,
     private dm:DomSanitizer,
-    private fb: FormBuilder) { }
+    private fb: FormBuilder,
+    private router: Router) { }
 
   ngOnInit(): void {
     this.listaTipoPlanta();
@@ -65,6 +67,7 @@ export class TipoplantaComponent implements OnInit {
         .subscribe({
           next:(resp)=>{
             mensajeExito("Tipo de planta guardado con exito");
+            this.recargar();
           },
           error:(err)=>{
             mensajeError("Error al guardar el Tipo de planta");
@@ -102,6 +105,7 @@ eliminarTipoPlanta(objetoEliminar:Itipoplanta){
           this.serviceTipoPlanta.eliminarTipoPlanta(objetoEliminar).subscribe((resp)=>{
             alert.fire('Eliminado', 'El registro ha sido eliminado', 'success');
             this.listaTipoPlanta();
+            this.recargar();
           });
 
         } else if (result.dismiss === Swal.DismissReason.cancel) {
@@ -123,6 +127,7 @@ eliminarTipoPlanta(objetoEliminar:Itipoplanta){
         .subscribe({
           next:(resp)=>{
             mensajeExito("Tipo de planta modificado con exito");
+            this.recargar();
           },
           error:(err)=>{
             mensajeError("Error al modificar el tipo de planta ");
@@ -134,6 +139,13 @@ eliminarTipoPlanta(objetoEliminar:Itipoplanta){
           }
         });
 
+  }
+
+  recargar(){
+    let currentUrl = this.router.url;
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+    this.router.onSameUrlNavigation = "reload";
+    this.router.navigate([currentUrl]);
   }
 
 }

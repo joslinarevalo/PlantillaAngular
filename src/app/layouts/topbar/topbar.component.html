@@ -42,7 +42,7 @@
         </button>
         <div  *ngIf="autenticacionService.isAuthenticated()" class="dropdown-menu dropdown-menu-end" ngbDropdownMenu>
           <!-- item-->
-          <a class="dropdown-item" href="javascript: void(0);"><i class="bx bx-user font-size-16 align-middle me-1"></i>
+          <a class="dropdown-item" href="javascript: void(0);" (click)="openModal(content)"><i class="bx bx-user font-size-16 align-middle me-1"></i>
             {{ 'Mi perfil' | translate}}</a>
           <a class="dropdown-item" href="javascript: void(0);"><i
               class="bx bx-lock-open font-size-16 align-middle me-1"></i>
@@ -60,3 +60,6 @@
     </div>
   </div>
 </header>
+<ng-template #content role="document" let-modal>
+  <app-modal></app-modal>
+</ng-template>

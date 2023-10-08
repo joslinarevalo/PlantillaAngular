@@ -5,17 +5,19 @@
   <form [formGroup]="formularioPlanta">
     <div class="row">
 
-      <div class="col-md-12">
-        <label class="control-label">Nombre Cientifico <span class="required"></span>
-          <span class="info-icon" data-title="información">?</span> <!-- Icono de información -->
+      <div class="mt-1 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+        <label class="control-label">Nombre Científico <span class="required"></span>
+          <span class="info-icon" data-title="En este campo se agregue el nombre Científico de la planta.">?</span> <!-- Icono de información -->
         </label>
         <input
-          class="form-control"
+          class="form-control text-capitalize"
           type="text"
           id="nombreCientifico"
           formControlName="nombreCientifico"
           [ngClass]="esCampoValido('nombreCientifico')"
+
         />
+        <!--<div id="contador">{{ mensaje['nombreCientifico'] }}</div>(input)="contarCaracteres('nombreCientifico')"-->
         <div class="invalid-feedback">
           <span
             *ngIf="formularioPlanta.get('nombreCientifico')?.errors?.['required']"
@@ -24,9 +26,9 @@
         </div>
       </div>
 
-      <div class="col-md-12">
+      <div class="mt-1 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
         <label class="control-label">Nombre Comun <span class="required"></span>
-          <span class="info-icon" data-title="información">?</span> <!-- Icono de información -->
+          <span class="info-icon" data-title="En este campo agregue el nombre común de la planta.">?</span> <!-- Icono de información -->
         </label>
         <input
           class="form-control"
@@ -35,6 +37,7 @@
           formControlName="nombreComun"
           [ngClass]="esCampoValido('nombreComun')"
         />
+        <!--<div id="contador">{{ mensaje['nombreComun'] }}</div> (input)="contarCaracteres('nombreComun')"-->
         <div class="invalid-feedback">
           <span
             *ngIf="formularioPlanta.get('nombreComun')?.errors?.['required']"
@@ -43,9 +46,9 @@
         </div>
       </div>
 
-      <div class="col-md-12">
+      <div class="mt-1 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
         <label class="control-label">Seleccionar Familia <span class="required"></span>
-          <span class="info-icon" data-title="información">?</span> <!-- Icono de información -->
+          <span class="info-icon" data-title="En este campo seleccione la familia a la que pertenece la planta.">?</span> <!-- Icono de información -->
         </label>
         <ng-select
           class="form-control"
@@ -68,9 +71,9 @@
         </div>
       </div>
 
-      <div class="col-md-12">
+      <div class="mt-1 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
         <label class="control-label">Seleccionar Tipo Planta <span class="required"></span>
-          <span class="info-icon" data-title="información">?</span> <!-- Icono de información -->
+          <span class="info-icon" data-title="En este campo seleccione el tipo al cual pertenece la planta.">?</span> <!-- Icono de información -->
         </label>
         <ng-select
           class="form-control"
@@ -95,7 +98,7 @@
 
       <div class="col-md-12">
         <label class="control-label">Descripción de la planta <span class="required"></span>
-          <span class="info-icon" data-title="información">?</span> <!-- Icono de información -->
+          <span class="info-icon" data-title="En este campo agregue una descripción sobre la planta.">?</span> <!-- Icono de información -->
         </label>
         <textarea
           class="form-control"
@@ -114,7 +117,7 @@
 
       <div class="col-md-12">
         <label class="control-label">Historia de la planta <span class="required"></span>
-          <span class="info-icon" data-title="información">?</span> <!-- Icono de información -->
+          <span class="info-icon" data-title="En este campo agregue una historia sobre la planta.">?</span> <!-- Icono de información -->
         </label>
         <textarea
           class="form-control"
@@ -135,7 +138,7 @@
 
       <div class="col-md-12">
         <label class="control-label">Seleccionar Imagen Planta <span class="required"></span>
-          <span class="info-icon" data-title="información">?</span> <!-- Icono de información -->
+          <span class="info-icon" data-title="En este campo agrege una imagen representativa de planta.">?</span> <!-- Icono de información -->
         </label>
         <input
           class="form-control"

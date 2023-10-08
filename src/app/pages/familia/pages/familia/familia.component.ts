@@ -6,6 +6,7 @@ import { FamiliaService } from '../../service/familia.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { mensajeError, mensajeExito } from '../../models/funciones.global';
 import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-familia',
@@ -28,7 +29,8 @@ export class FamiliaComponent implements OnInit {
   constructor(public modalService:NgbModal,
     private serviceFamilia:FamiliaService,
     private dm:DomSanitizer,
-    private fb: FormBuilder) { }
+    private fb: FormBuilder,
+    private router: Router) { }
 
   ngOnInit(): void {
     this.listaFamilia();
@@ -60,6 +62,7 @@ export class FamiliaComponent implements OnInit {
         .subscribe({
           next:(resp)=>{
             mensajeExito("Familia guardado con exito");
+            this.recargar();
           },
           error:(err)=>{
             mensajeError("Error al guardar la familia");
@@ -97,6 +100,7 @@ eliminarFamilia(objetoEliminar:IFamilia){
           this.serviceFamilia.eliminarFamilia(objetoEliminar).subscribe((resp)=>{
             alert.fire('Eliminado', 'El registro ha sido eliminado', 'success');
             this.listaFamilia();
+            this.recargar();
           });
 
         } else if (result.dismiss === Swal.DismissReason.cancel) {
@@ -118,6 +122,7 @@ eliminarFamilia(objetoEliminar:IFamilia){
         .subscribe({
           next:(resp)=>{
             mensajeExito("Familia modificada con exito");
+            this.recargar();
           },
           error:(err)=>{
             mensajeError("Error al modificar la familia");
@@ -129,6 +134,13 @@ eliminarFamilia(objetoEliminar:IFamilia){
           }
         });
 
+  }
+
+  recargar(){
+    let currentUrl = this.router.url;
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+    this.router.onSameUrlNavigation = "reload";
+    this.router.navigate([currentUrl]);
   }
 
 }
