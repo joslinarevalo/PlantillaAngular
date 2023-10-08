@@ -136,9 +136,8 @@ export class NuevoComponent implements OnInit {
       next: (resp) => {
         mensajeExito("Detalle de Causa guardado con exito");
       },
-      error: (err) => {
-        //mensajeError("Error al guardar el detalle de causa");
-        this.errores = err.error.errors as string[];
+      error: (e) => {
+        mensajeError(e.error.Mensaje); 
       },
       complete: () => {
         this.modalService.dismissAll();

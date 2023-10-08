@@ -22,10 +22,11 @@ export class NuevoComponent implements OnInit {
   imagenMostrar: SafeUrl | string | undefined;
   tipoCausa: TipoCausa;
   formularioCausa!: FormGroup;
-  formularioSerealizable= new FormData();
   @Input() imagen: any;
   public fotoSeleccionada: File;
-  archivo:File;
+  predefinedImageUrl: string = "assets/images/NoImage.png";
+
+  archivo: File;
   modalRef: NgbModalRef | undefined;
   constructor(
     private modalService: NgbModal,
@@ -47,8 +48,6 @@ export class NuevoComponent implements OnInit {
       urlTC: "",
     };
     //
-   
-    
   }
 
   openModal(content: any) {
@@ -66,7 +65,7 @@ export class NuevoComponent implements OnInit {
   private iniciarFormulario(): FormGroup {
     return this.fb.group({
       definicion: ["", [Validators.required]],
-      urlTipo: [''],
+      urlTipo: [""],
       tipoTC: ["", [Validators.required]],
     });
   }
@@ -84,7 +83,22 @@ export class NuevoComponent implements OnInit {
       if (this.causaT != null) {
         this.editando();
       } else {
-        this.registrando();
+        // Verifica si no se ha seleccionado una imagen
+        if (!this.fotoSeleccionada) {
+          // Crea un Blob a partir de la URL de la imagen predefinida
+          fetch(this.predefinedImageUrl)
+            .then((response) => response.blob())
+            .then((blob) => {
+              const file = new File([blob], "No_imagen.jpg");
+              this.fotoSeleccionada = file;
+              this.registrando();
+            })
+            .catch((error) => {
+              console.error("Error al cargar la imagen predefinida:", error);
+            });
+        } else {
+          this.registrando();
+        }
       }
     } else {
       Object.keys(this.formularioCausa.controls).forEach((controlName) => {
@@ -92,28 +106,28 @@ export class NuevoComponent implements OnInit {
       });
     }
   }
-  
+
   registrando() {
     if (this.formularioCausa.valid) {
       const causa: any = {
-        tipoTC: this.formularioCausa.get("tipoTC").value,
-        definicionTipoTC: this.formularioCausa.get("definicion").value,
+        tipoTC: this.formularioCausa.get("tipoTC").value.charAt(0).toUpperCase() + this.formularioCausa.get("tipoTC").value.slice(1),
+        definicionTipoTC: this.formularioCausa.get("definicion").value.charAt(0).toUpperCase() + this.formularioCausa.get("definicion").value.slice(1),
         urlTC: this.formularioCausa.get("urlTipo").value,
       };
-  
+
       // Verifica si no se seleccionó una imagen y proporciona un valor predeterminado
       if (!this.fotoSeleccionada) {
-        causa.urlTC = ''; // Cambia esto al valor predeterminado que desees
+        causa.urlTC = ""; // Cambia esto al valor predeterminado que desees
       }
-  
+
       this.causaenfermedadservice
         .addTipoCausa(causa, this.fotoSeleccionada)
         .subscribe({
           next: (resp) => {
             mensajeExito("Tipo de Causa guardado con éxito");
           },
-          error: (err) => {
-            mensajeError("Error al guardar el Tipo de causa");
+          error: (e) => {
+            mensajeError(e.error.Mensaje); 
           },
           complete: () => {
             this.modalService.dismissAll();
@@ -127,7 +141,7 @@ export class NuevoComponent implements OnInit {
       });
     }
   }
-  
+
   editando() {
     // Obtener los valores del formulario
     const tipoTC = this.formularioCausa.get("tipoTC").value;

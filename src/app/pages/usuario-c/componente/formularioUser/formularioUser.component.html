@@ -20,7 +20,7 @@
             <div class="input-group-prepend">
               <!-- Agregamos un div para el icono -->
               <span class="input-group-text"
-                ><i class="mdi mdi-lock mr-1"></i
+                ><i class="fas fa-user mb-2"></i
               ></span>
             </div>
             <input
@@ -41,7 +41,7 @@
             <div class="input-group-prepend">
               <!-- Agregamos un div para el icono -->
               <span class="input-group-text"
-                ><i class="mdi mdi-lock mr-1"></i
+                ><i class="fas fa-user mb-2"></i
               ></span>
             </div>
             <input
@@ -62,7 +62,7 @@
             <div class="input-group-prepend">
               <!-- Agregamos un div para el icono -->
               <span class="input-group-text"
-                ><i class="mdi mdi-lock mr-1"></i
+                ><i class="fas fa-at mb-2"></i
               ></span>
             </div>
             <input
@@ -83,7 +83,7 @@
             <div class="input-group-prepend">
               <!-- Agregamos un div para el icono -->
               <span class="input-group-text"
-                ><i class="mdi mdi-lock mr-1"></i
+                ><i class="fas fa-street-view mb-4"></i
               ></span>
             </div>
             <ng-select
@@ -104,7 +104,7 @@
             <div class="input-group-prepend">
               <!-- Agregamos un div para el icono -->
               <span class="input-group-text"
-                ><i class="mdi mdi-lock mr-1"></i
+                ><i class="fas fa-id-badge mb-2"></i
               ></span>
             </div>
             <input
@@ -124,7 +124,7 @@
             <!-- Repetimos el mismo proceso para el segundo input -->
             <div class="input-group-prepend">
               <span class="input-group-text"
-                ><i class="mdi mdi-lock mr-1"></i
+                ><i class="mdi mdi-lock mb-2"></i
               ></span>
             </div>
             <input
@@ -146,22 +146,28 @@
               </button>
             </div>
           </div>
-          <div class="col-md-12">
-            <label class="control-label">Seleccionar Rol</label>
-            <ng-select
-              class="form-control"
-              id="idrol"
-              formControlName="idrol"
-              [ngClass]="esCampoValido('idrol')"
-            >
-              <ng-option *ngFor="let rol of roList" [value]="rol.id">{{
-                rol.rol}}</ng-option>
-            </ng-select>
-            <div class="invalid-feedback">
-              <span *ngIf="formularioUsuario.get('idrol')?.errors?.['required']"
-                >Requiere un Rol</span
-              >
+          <div class="mb-3 input-group">
+            <!-- Agregamos la clase "input-group" para agrupar el icono y el input -->
+            <div class="input-group-prepend">
+              <!-- Agregamos un div para el icono -->
+              <span class="input-group-text"
+                ><i class="fas fa-street-view mb-4"></i
+              ></span>
             </div>
+            <ng-select
+            class="form-control"
+            id="idrol"
+            formControlName="idrol"
+            [ngClass]="esCampoValido('idrol')"
+          >
+            <ng-option *ngFor="let rol of roList" [value]="rol.id">{{
+              rol.rol}}</ng-option>
+          </ng-select>
+          <div class="invalid-feedback">
+            <span *ngIf="formularioUsuario.get('idrol')?.errors?.['required']"
+              >Requiere un Rol</span
+            >
+          </div>
           </div>
           <div class="text-center mb-3 mt-2">
             <!-- Centrar los botones y agregar espacio inferior -->
