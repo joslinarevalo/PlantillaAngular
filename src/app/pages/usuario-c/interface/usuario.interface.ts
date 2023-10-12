@@ -8,6 +8,18 @@ export interface IUsuarioValid {
   nombre: string;
   idrol: number;
 }
+export interface IUsuarioCorreo {
+  id?: string;
+  apellido: string;
+  correo: string;
+  clave: string;
+  usuario: string;
+  estado: string;
+  nombre: string;
+  idrol: number;
+  claveTemporal?: string;
+  horaExpiracion?: string;
+}
 export interface IUsuarioMostrar {
   rol: string,
   nombre: string,

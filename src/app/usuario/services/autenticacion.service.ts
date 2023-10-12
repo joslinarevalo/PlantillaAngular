@@ -5,6 +5,8 @@ import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import Swal from 'sweetalert2';
 import { Usuario } from '../models/Usuario';
+import { DatosClaveTemp, Email } from '../interfaces/Email';
+import { IUsuarioCorreo } from 'src/app/pages/usuario-c/interface/usuario.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +14,7 @@ import { Usuario } from '../models/Usuario';
 export class AutenticacionService {
   
   private urlEndPoid: string = 'http://localhost:8080/login';
+  private urlEndPoid2: string = 'http://localhost:8080/correo';
   private httpHeaders = new HttpHeaders({'Content-Type':'application/json'});
   private _usuario: Usuario;
   private _token: string;
@@ -101,6 +104,22 @@ export class AutenticacionService {
     let payload = this.obtenerDatosToken(token);
     let ahora = new Date().getTime()/1000;//obteniendo la fecha en milisegundos
     return (payload.exp < ahora);
+  }
+
+  resetPassword(email: Email): Observable<any> {
+    return this.http.post<any>(`${this.urlEndPoid2+"/enviarMensaje"}`,email,{headers: this.httpHeaders});
+  }
+
+  setClaveTemp(Usuario:IUsuarioCorreo):Observable<IUsuarioCorreo>{
+    return this.http.put<IUsuarioCorreo>(this.urlEndPoid2+"/setDatosRecuperacionClave",Usuario);
+  }
+
+  buscarUserEmail(Usuario:IUsuarioCorreo):Observable<any>{
+    return this.http.put<any>(this.urlEndPoid2+"/buscarUserEmail",Usuario);
+  }
+
+  setNuevaClave(Usuario:IUsuarioCorreo):Observable<any>{
+    return this.http.put<any>(this.urlEndPoid2+"/setNuevaClave",Usuario);
   }
 
   logout() {

@@ -23,9 +23,10 @@ import { LayoutComponent } from "../layouts/layout.component";
 import { LayoutsModule } from "../layouts/layouts.module";
 import { NgxPaginationModule } from "ngx-pagination";
 import { DataTablesModule } from "angular-datatables";
+import { PasswordResetComponent } from './password-reset/password-reset.component';
 
 @NgModule({
-  declarations: [LoginComponent],
+  declarations: [LoginComponent, PasswordResetComponent],
   imports: [
     CommonModule,
     UsuarioRoutingModule,
