@@ -27,4 +27,7 @@ export class UsuarioServiceService {
   buscarUsuario(idUsuario:string):Observable<IUsuarioMostrar>{
     return this.http.get<IUsuarioMostrar>(this.urlUsuario+"buscar/"+idUsuario);
   }
+  obtenerConteUser(): Observable<number> {
+    return this.http.get<number>(this.urlUsuario + "contarUsuario");
+  }
 }

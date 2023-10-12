@@ -5,58 +5,104 @@
       <div class="navbar-brand-box">
         <a routerLink="/" class="logo logo-dark">
           <span class="logo-sm">
-            <img src="assets/images/logo-sm.png" alt="" height="45">
+            <img src="assets/images/logo-sm.png" alt="" height="45" />
           </span>
           <span class="logo-lg">
-            <img class="logo-top" src="assets/images/logo-lg.png" alt="" height="55">
+            <img
+              class="logo-top"
+              src="assets/images/logo-lg.png"
+              alt=""
+              height="55"
+            />
           </span>
         </a>
 
         <a routerLink="/" class="logo logo-light">
           <span class="logo-sm">
-            <img src="assets/images/logo-sm.png" alt="" height="45">
+            <img src="assets/images/logo-sm.png" alt="" height="45" />
           </span>
           <span class="logo-lg">
-            <img class="logo-top" src="assets/images/logo-lg.png" alt="" height="55">
+            <img
+              class="logo-top"
+              src="assets/images/logo-lg.png"
+              alt=""
+              height="55"
+            />
           </span>
         </a>
       </div>
 
-      <button type="button" class="btn btn-sm px-3 font-size-16 header-item" id="vertical-menu-btn"
-        (click)="toggleMobileMenu($event)">
-        <i class="{{icono}}"></i>
+      <button
+        type="button"
+        class="btn btn-sm px-3 font-size-16 header-item"
+        id="vertical-menu-btn"
+        (click)="toggleMobileMenu($event)"
+      >
+        <i class="{{ icono }}"></i>
       </button>
     </div>
 
     <div class="constainer d-flex">
       <div class="dropdown d-inline-block" ngbDropdown>
-        <button type="button" class="btn header-item"  >
-          <span class="d-none d-xl-inline-block ms-1">Acerca de </span>
+        <button type="button" class="btn header-item">
+          <span class="d-none d-xl-inline-block ms-1" (click)="acercaDe()"
+            >Acerca de
+          </span>
         </button>
-        <button type="button" class="btn header-item" >
+        <button type="button" class="btn header-item">
           <span class="d-none d-xl-inline-block ms-1">Manual </span>
         </button>
-        <button  *ngIf="autenticacionService.isAuthenticated()" type="button" class="btn header-item" id="page-header-user-dropdown" ngbDropdownToggle>
-          <span class="d-none d-xl-inline-block ms-1">{{autenticacionService.usuario.usuario}}</span>
+        <button
+          *ngIf="autenticacionService.isAuthenticated()"
+          type="button"
+          class="btn header-item"
+          id="page-header-user-dropdown"
+          ngbDropdownToggle
+        >
+          <span class="d-none d-xl-inline-block ms-1">{{
+            autenticacionService.usuario.usuario
+          }}</span>
           <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
         </button>
-        <div  *ngIf="autenticacionService.isAuthenticated()" class="dropdown-menu dropdown-menu-end" ngbDropdownMenu>
+        <div
+          *ngIf="autenticacionService.isAuthenticated()"
+          class="dropdown-menu dropdown-menu-end"
+          ngbDropdownMenu
+        >
           <!-- item-->
-          <a class="dropdown-item" href="javascript: void(0);"><i class="bx bx-user font-size-16 align-middle me-1"></i>
-            {{ 'Mi perfil' | translate}}</a>
-          <a class="dropdown-item" href="javascript: void(0);"><i
-              class="bx bx-lock-open font-size-16 align-middle me-1"></i>
-            {{ 'HEADER.LOGIN.LOCK_SCREEN' | translate}}</a>
+          <a
+            class="dropdown-item"
+            href="javascript: void(0);"
+            (click)="openModal(content)"
+            ><i class="bx bx-user font-size-16 align-middle me-1"></i>
+            {{ "Mi perfil" | translate }}</a
+          >
+          <a class="dropdown-item" href="javascript: void(0);"
+            ><i class="bx bx-lock-open font-size-16 align-middle me-1"></i>
+            {{ "HEADER.LOGIN.LOCK_SCREEN" | translate }}</a
+          >
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item text-danger" href="javascript: void(0);" (click)="logout()"><i
-              class="bx bx-power-off font-size-16 align-middle me-1 text-danger"></i>
-            {{ 'Cerrar sesión' | translate}}</a>
+          <a
+            class="dropdown-item text-danger"
+            href="javascript: void(0);"
+            (click)="logout()"
+            ><i
+              class="bx bx-power-off font-size-16 align-middle me-1 text-danger"
+            ></i>
+            {{ "Cerrar sesión" | translate }}</a
+          >
         </div>
 
-        <a routerLink="/" *ngIf="!autenticacionService.isAuthenticated()" class="btn btn-info" >Iniciar sesión</a>
-
+        <a
+          routerLink="/"
+          *ngIf="!autenticacionService.isAuthenticated()"
+          class="btn btn-info"
+          >Iniciar sesión</a
+        >
       </div>
-
     </div>
   </div>
 </header>
+<ng-template #content role="document" let-modal>
+  <app-modal></app-modal>
+</ng-template>

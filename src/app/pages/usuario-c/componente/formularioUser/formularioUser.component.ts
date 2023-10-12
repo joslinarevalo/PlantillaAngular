@@ -13,6 +13,7 @@ export class FormularioUserComponent implements OnInit {
   @Input() ModalService!:NgbModal;
   usuarios:IUsuarioValid;
   roList:IRoles[]=[];
+  tipo:string="password";
   @Input()formularioUsuario!:FormGroup;
   @Output()ObjetoGuardar= new EventEmitter<IUsuarioValid>();
   @Output()ObjetoModificar= new EventEmitter<IUsuarioValid>();
@@ -99,6 +100,13 @@ export class FormularioUserComponent implements OnInit {
       this.roList=resp;
       console.log(this.roList);
     })
+  }
+  mostrarPassword(){
+    if(this.tipo=="password") {
+      this.tipo="text" ;
+      } else{
+      this.tipo="password" 
+      }
   }
 
 }

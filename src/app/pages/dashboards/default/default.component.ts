@@ -6,6 +6,8 @@ import { GraficoService } from "../services/grafico.service";
 import { ChartOptions } from "../chartType.interface";
 import { IGrafico } from "./grafico";
 import { AutenticacionService } from "src/app/usuario/services/autenticacion.service";
+import { TratamientoService } from "../../tratamiento/service/service.service";
+import { UsuarioServiceService } from "../../usuario-c/service/usuario-service.service";
 
 @Component({
   selector: "app-default",
@@ -19,12 +21,14 @@ export class DefaultComponent implements OnInit {
   totalTratamientos: number;
   constructor(
     private plantService: PlantaService,
-    private enfermeda: EnfermedadService,
-    private graficoService: GraficoService,public autenticacion:AutenticacionService
+    private enfermeda: EnfermedadService,private serviceTratamiento:TratamientoService,private usuarioService:UsuarioServiceService
+    ,private graficoService: GraficoService,public autenticacion:AutenticacionService
   ) {}
   ngOnInit() {
     this.obtenerConteoPlantas();
     this.obtenerConteoEnfermedad();
+    this.obtenerConteoTratamiento();
+    this.obtenerConteoUser();
   }
   obtenerConteoPlantas() {
     this.plantService.obtenerConteoPlantas().subscribe(
@@ -48,8 +52,28 @@ export class DefaultComponent implements OnInit {
       }
     );
   }
- 
-  
+  obtenerConteoTratamiento() {
+    this.serviceTratamiento.obtenerConteTramiento().subscribe(
+      (conteo) => {
+        this.totalTratamientos = conteo;
+        console.log("conteo de tratamiento: ", this.totalPlantas);
+      },
+      (error) => {
+        console.error("Error al obtener el conteo de tratamiento: ", error);
+      }
+    );
+  }
+  obtenerConteoUser() {
+    this.usuarioService.obtenerConteUser().subscribe(
+      (conteo) => {
+        this.totalUsuarios = conteo;
+        console.log("conteo de Usuario: ", this.totalPlantas);
+      },
+      (error) => {
+        console.error("Error al obtener el conteo de usuarios: ", error);
+      }
+    );
+  }
  
   
 }

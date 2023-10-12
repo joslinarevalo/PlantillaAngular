@@ -148,7 +148,7 @@ export class FormularioComponent implements OnInit {
   contarCaracteres(idInput:String) {
     const textarea = document.getElementById(""+idInput) as HTMLTextAreaElement;
     let limiteCaracteres = 0;
-    
+
     if (this.longitudesDeCampos.hasOwnProperty(idInput+"")) {
       limiteCaracteres = this.longitudesDeCampos[idInput+""];
       console.log(`Campo: ${idInput}, Valor: ${limiteCaracteres}`);
@@ -172,7 +172,7 @@ export class FormularioComponent implements OnInit {
   obtenerLongitudesCampos() {
     this.serviceEnfermedad.longitudCampos().subscribe((lista) => {
       this.longitudesDeCampos = lista;
-      
+
       console.log(this.longitudesDeCampos);
     });
   }

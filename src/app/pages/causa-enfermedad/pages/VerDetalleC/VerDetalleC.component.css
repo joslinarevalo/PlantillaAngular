@@ -1,0 +1,9 @@
+.texto-mayusculas {
+    text-transform: uppercase;
+  }
+  .smaller-image {
+    max-width: 20%;
+    display: block; 
+    margin: 0 auto; 
+   
+}

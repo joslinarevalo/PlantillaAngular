@@ -9,6 +9,7 @@ import { IFamilia } from 'src/app/pages/familia/interfaces/ifamilia';
 import { FamiliaService } from 'src/app/pages/familia/service/familia.service';
 import { TipoplantaService } from 'src/app/pages/tipoplanta/services/tipoplanta.service';
 import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-formulario',
@@ -21,7 +22,7 @@ export class FormularioComponent implements OnInit {
   planta!:IPlantaValid;
   listFamilia:IFamilia[]=[];
   listTipoPlanta:Itipoplanta[]=[];
-  @Input()formularioPlanta!:FormGroup;
+  @Input()formularioPlanta!: FormGroup;
   imagenMostrar!:any;
   formularioSerealizable= new FormData();
   @Output()ObjetoGuardar= new EventEmitter();
@@ -29,14 +30,23 @@ export class FormularioComponent implements OnInit {
   @Input()leyenda:string;
   @Input()imagen:any;
   @Input()archivo:File;
+  contador: number = 0;
+  porcentajeCompletado: number = 0;
+  longitudesDeCampos: any = {};
+  //mensaje: String;
+  mensaje: { [key: string]: string } = {};
+
   constructor( private fb: FormBuilder, private servicePlanta:PlantaService,
     private serviceFamilia:FamiliaService,
     private serviceTipoPlanta:TipoplantaService,
-    private dm:DomSanitizer) { }
+    private dm:DomSanitizer,
+    private router: Router) { }
 
   ngOnInit(): void {
+    this.obtenerLongitudesCampos();
     this.listaFamilia();
     this.listaTipoPlanta();
+
     if(this.leyenda=="Modificar"){
       this.imagenMostrar=this.imagen;
       this.formularioSerealizable.set('imagen',this.archivo);
@@ -45,6 +55,8 @@ export class FormularioComponent implements OnInit {
 
   cerrarModal(){
     this.ModalService.dismissAll();
+    this.formularioPlanta.reset();
+    this.limpiarFormData();
   }
 
   guardar() {
@@ -63,6 +75,7 @@ export class FormularioComponent implements OnInit {
       console.log(this.planta);
       this.formularioSerealizable.set("planta",JSON.stringify(this.planta));
       this.ObjetoGuardar.emit(this.formularioSerealizable);
+      this.recargar();
       }else {
         Swal.fire({
           position: 'center',
@@ -76,7 +89,6 @@ export class FormularioComponent implements OnInit {
 
   modificar() {
     if (this.formulario_valido()) {
-      //console.log(this.formularioDetalleTratamiento);
       this.planta = {
         idFamilia: this.formularioPlanta.controls['idFamilia'].value,
         idTipoPlanta: this.formularioPlanta.controls['idTipoPlanta'].value,
@@ -90,6 +102,7 @@ export class FormularioComponent implements OnInit {
       console.log(this.planta);
       this.formularioSerealizable.set("planta",JSON.stringify(this.planta));
       this.ObjetoModificar.emit(this.formularioSerealizable);
+      this.recargar();
     } else {
       Swal.fire({
         position: 'center',
@@ -145,5 +158,53 @@ export class FormularioComponent implements OnInit {
         console.log(resp);
       })
     }
+
+    limpiarFormData() {
+      this.formularioPlanta.reset(); // Esto restablecerá el estado del formulario a su valor inicial
+      this.imagenMostrar = undefined; // También puedes eliminar la imagen mostrada si es necesario
+      this.formularioSerealizable = new FormData(); // Limpia el FormData
+    }
+
+    contarCaracteres(idInput:String) {
+      const textarea = document.getElementById(""+idInput) as HTMLTextAreaElement;
+      let limiteCaracteres = 0;
+
+      if (this.longitudesDeCampos.hasOwnProperty(idInput+"")) {
+        limiteCaracteres = this.longitudesDeCampos[idInput+""];
+        console.log("si: " +this.longitudesDeCampos)
+        console.log(`Campo: ${idInput}, Valor: ${limiteCaracteres}`);
+      } else {
+        console.log("no: " +this.longitudesDeCampos)
+        console.log(`Campo "${idInput}" no encontrado en fieldLengths`);
+      }
+
+      this.contador = textarea.value.length;
+      if(this.contador > limiteCaracteres){
+        this.contador = textarea.value.length-1;
+      }
+
+      if (this.contador >= limiteCaracteres) {
+        textarea.value = textarea.value.substring(0, limiteCaracteres);
+        this.mensaje[idInput+""] = `Se ha alcanzado el límite de caracteres permitidos`;
+      }else{
+        this.mensaje[idInput+""] = `${this.contador} caracteres de ${limiteCaracteres} permitidos`;
+      }
+    }
+
+    obtenerLongitudesCampos() {
+      this.servicePlanta.longitudCampos().subscribe((lista) => {
+        this.longitudesDeCampos = lista;
+
+        console.log(this.longitudesDeCampos);
+      });
+    }
+
+    recargar() {
+      let currentUrl = this.router.url;
+      this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+      this.router.onSameUrlNavigation = "reload";
+      this.router.navigate([currentUrl]);
+    }
+
 
 }

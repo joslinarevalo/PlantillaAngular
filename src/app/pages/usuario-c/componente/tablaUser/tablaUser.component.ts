@@ -16,8 +16,10 @@ export class TablaUserComponent implements OnInit {
   @Input()listUsuario:IUsuarioMostrar[]=[];
   @Output()ObjetoUsuarioEliminar= new EventEmitter<IUsuarioMostrar>();
   @Output()ObjetoUsuarioModificar= new EventEmitter<IUsuarioMostrar>();
-  @ViewChild(DataTableDirective, { static: false} ) dtElement: DataTableDirective;
+  @ViewChild(DataTableDirective, { static: false} ) 
+  dtElement: DataTableDirective;
   dtOptions: DataTables.Settings = {};
+  
   dtTrigger: Subject<IUsuarioMostrar> = new Subject<IUsuarioMostrar>();
   constructor(private UsuarioService:UsuarioServiceService) { }
 
@@ -48,6 +50,16 @@ export class TablaUserComponent implements OnInit {
     this.UsuarioService.listaDeUsuarios().subscribe((resp)=>{
       this.listUsuario=resp;
       this.dtTrigger.next(null);
+    });
+  }
+  ngOnDestroy():void{
+    this.dtTrigger.unsubscribe();
+    //this.dtTrigger.complete();
+  }
+  public reloadTable(): void {
+    this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
+      this.listUsuario = [];
+      dtInstance.destroy();
     });
   }
 

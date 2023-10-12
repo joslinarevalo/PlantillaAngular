@@ -11,6 +11,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { DataTablesModule } from 'angular-datatables';
+import { VerDetalleCComponent } from './pages/VerDetalleC/VerDetalleC.component';
 
 
 
@@ -18,7 +19,8 @@ import { DataTablesModule } from 'angular-datatables';
   declarations: [
     MostrarCausaComponent,
     TablaCausaComponent,
-    NuevoComponent
+    NuevoComponent,
+    VerDetalleCComponent
   
   ],
   imports: [

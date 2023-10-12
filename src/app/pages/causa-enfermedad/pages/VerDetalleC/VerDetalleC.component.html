@@ -1,0 +1,38 @@
+<button
+  type="button"
+  class="btn btn-warning btn-sm mb-2 mr-2 btn-rounded"
+  (click)="openModal(content)"
+>
+  <i class="fas fa-eye"></i>
+</button>
+
+
+<!-- Modal -->
+<!-- Modal -->
+<div class="modal fade bd-example-modal-lg" id="modalDetalleCausa" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <ng-template #content role="document" let-modal>
+    <h5 class="cajaModal text-center mt-4 texto-mayusculas">
+      Detalle de Causas de la Enfermedad
+    </h5>
+    <div class="modal-body">
+      <form>
+        <div class="row">
+          <!-- Elimina el bucle *ngFor aquí -->
+          <p><strong>Planta:</strong> {{ detalledto.tipoTC  }}</p>
+          <p><strong>Enfermedad:</strong> {{ detalledto.definicionTipoTC}}</p>
+          <img width="100px" height="100px" class="img-fluid smaller-image" [src]="detalledto.imagen" >
+          <!-- Fin del contenido individual -->
+          <div class="text-center mb-3 mt-2">
+            <span class="mx-2"></span>
+            <!-- Agregar un espacio horizontal entre los botones -->
+            <button type="button" class="btn btnCerrar" aria-hidden="true" (click)="modal.dismiss('Cross click')">
+              <i class="dripicons-cross"> </i> Cerrar
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </ng-template>
+</div>
+
+

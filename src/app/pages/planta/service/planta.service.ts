@@ -1,7 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { IPlanta, IPlantaMostrar, IPlantaValid } from '../interface/iplanta';
+import { IPlanta, IPlantaMostrar } from '../interface/iplanta';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -46,6 +47,19 @@ export class PlantaService {
 
   buscarPlanta(id:String):Observable<any>{
     return this.http.get<IPlanta>(this.urlPlanta+"buscar/"+id);
+  }
+
+  listaDePlantaPaginacion(pagina:number,tamaño:number):Observable<any>{
+    //return this.http.get<any>(this.urlTratamiento+"listaPaginacion?page='"+pagina+"'&size='"+tamaño+"'").pipe(map((resp:any)=>resp.content));
+    const params:any={
+      page:pagina,
+      size:tamaño
+    }
+    return this.http.get<any>(this.urlPlanta+"listaPaginacion",{params}).pipe(map((resp:any)=>resp.content));;
+  }
+
+  longitudCampos():Observable<any>{
+    return this.http.get<any>(this.urlPlanta+"longitudCampos");
   }
 
 }

@@ -6,6 +6,7 @@ import { DataTableDirective } from "angular-datatables";
 import { ITipoCausa, TipoCausa } from "../../models/TipoCausa";
 import { DomSanitizer } from "@angular/platform-browser";
 import { Subject } from "rxjs";
+import { mensajeExito, mensajeError } from 'src/app/pages/models/funciones.global';
 
 @Component({
   selector: "app-tablaCausa",
@@ -113,15 +114,21 @@ export class TablaCausaComponent implements OnInit , OnDestroy {
       })
       .then((result) => {
         if (result.isConfirmed) {
-          this.causaenfermedad.eliminarCausa(cusatp).subscribe((resp) => {
-            alert.fire("Eliminado", "El registro ha sido eliminado", "success");
-           //this.reloadTable();
-            //  this.ngOnInit();
-            this.listatipo();
+          this.causaenfermedad.eliminarCausa(cusatp).subscribe( {
+            next: (resp) => {
+              mensajeExito("Enfermedad eliminada con exito ");//+ resp.Mensaje
+            },
+            error: (e) => {
+              mensajeError(e.error.Mensaje);
+            },
+            complete: () => {
+              this.listatipo();
+            }
           });
         } else if (result.dismiss === Swal.DismissReason.cancel) {
           alert.fire("Canselado", "El registro no se elimino", "error");
         }
       });
+      
   }
 }

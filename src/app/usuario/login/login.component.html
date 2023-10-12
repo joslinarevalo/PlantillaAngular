@@ -28,13 +28,13 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="mdi mdi-lock mr-1"></i></span>
                     </div>
-                    <input type="password" class="form-control" formControlName="clave" placeholder="Ingrese la contraseña" [(ngModel)]="usuario.clave"
+                    <input [type]="tipo" class="form-control" formControlName="clave" placeholder="Ingrese la contraseña" [(ngModel)]="usuario.clave"
                       aria-label="Clave" aria-describedby="password-addon">
                     <div *ngIf="" class="invalid-feedback">
                       <span *ngIf="">Contraseña requerida</span>
                     </div>
                     <div class="input-group-append"> <!-- Agregamos un div para el botón de ojo -->
-                      <button class="btn btn-light" type="button" id="password-addon"><i class="mdi mdi-eye-outline"></i></button>
+                      <button class="btn btn-light" type="button" id="password-addon" (click)="mostrarPassword()"><i class="mdi mdi-eye-outline"></i></button>
                     </div>
                   </div>
                   <div class="mt-3 d-grid">

@@ -6,6 +6,7 @@ import { UsuarioServiceService } from '../../service/usuario-service.service';
 import { mensajeError, mensajeExito } from 'src/app/pages/models/funciones.global';
 import Swal from 'sweetalert2';
 import { NAME_VALIDATE } from 'src/app/constants/constants';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-usuario',
@@ -22,7 +23,7 @@ export class UsuarioComponent implements OnInit {
   usuarioList:IUsuarioMostrar[]=[];
   formularioUsuario!:FormGroup;
   leyenda:string="";
-  constructor(public modalService:NgbModal, private fb: FormBuilder,private usuarioService:UsuarioServiceService) { }
+  constructor(public modalService:NgbModal, private fb: FormBuilder,private usuarioService:UsuarioServiceService,private router: Router,) { }
 
   ngOnInit() {
     this.listaUsuario();
@@ -72,7 +73,7 @@ export class UsuarioComponent implements OnInit {
         
           this.usuarioService.eliminarUsuario(objetoEliminar).subscribe((resp)=>{
             alert.fire('Eliminado', 'El Usuario ha sido eliminado', 'success'); 
-            this.listaUsuario();
+            this.recargar();
           });
          
         } else if (result.dismiss === Swal.DismissReason.cancel) {
@@ -90,6 +91,9 @@ export class UsuarioComponent implements OnInit {
   modificarUsuarioFormulario(objetoModificar:IUsuarioMostrar,content:any){
     console.log(objetoModificar);
     this.formularioUsuario.patchValue(objetoModificar);
+    this.formularioUsuario.controls['clave'].setValue("");
+    this.formularioUsuario.get('clave').setValidators([]);
+    this.formularioUsuario.get('clave').updateValueAndValidity();
     this.leyenda="Modificar";
     this.modalService.open(content,this.modalOptions);
   }
@@ -106,7 +110,7 @@ export class UsuarioComponent implements OnInit {
       complete:()=>{
       this.modalService.dismissAll();
       this.formularioUsuario.reset();
-      this.listaUsuario();
+      this.recargar();
       }
     });
   }
@@ -123,9 +127,16 @@ export class UsuarioComponent implements OnInit {
       complete:()=>{
       this.modalService.dismissAll();
       this.formularioUsuario.reset();
-      this.listaUsuario();
+      this.recargar();
       }
     });
   }
+  recargar() {
+    let currentUrl = this.router.url;
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+    this.router.onSameUrlNavigation = "reload";
+    this.router.navigate([currentUrl]);
+  }
+ 
 
 }

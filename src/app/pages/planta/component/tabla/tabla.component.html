@@ -3,10 +3,10 @@
     <thead class="tabla" >
       <tr>
         <th >N°</th>
-        <th >Nombre Cientifico</th>
-        <th >Nombre comun</th>
+        <th >Nombre Científico</th>
+        <th >Nombre común</th>
         <th >Familia</th>
-        <th >Decripcion</th>
+        <th >Decripción</th>
         <th >Historia</th>
         <th >Tipo</th>
         <th >Imagen</th>
@@ -26,8 +26,9 @@
         <td><img width="100px" height="100px" class="img-fluid" [src]="planta.imagen"></td>
         <td class="text-sm-end" >
           <div class="d-flex">
-            <div class="col-sm-6"><button type="button" class="btn btnModificar btn-sm mb-2 mr-2 btn-rounded" (click)="ObtenerPlantaModificar(planta)"> <i class="fas fa-edit"> </i></button> </div>
-            <div class="col-sm-6"><button type="button" class="btn btnEliminar btn-sm mb-2 mr-2 btn-rounded" (click)="ObtenerPlantaEliminar(planta)"><i class="fas fa-trash-alt" ></i></button></div>
+            <div class="col-sm-4"><button type="button" class="btn btn-warning btn-sm mb-2 mr-2 btn-rounded" (click)="openModal(content,planta)"><i class="fas fa-eye" ></i></button></div>
+            <div class="col-sm-4"><button type="button" class="btn btnModificar btn-sm mb-2 mr-2 btn-rounded" (click)="ObtenerPlantaModificar(planta)"> <i class="fas fa-edit"> </i></button> </div>
+            <div class="col-sm-4"><button type="button" class="btn btnEliminar btn-sm mb-2 mr-2 btn-rounded" (click)="ObtenerPlantaEliminar(planta)"><i class="fas fa-trash-alt" ></i></button></div>
           </div>
 
       </td>
@@ -35,3 +36,38 @@
     </tbody>
   </table>
 </div>
+
+<ng-template #content role="document" let-modal>
+  <h5 class="cajaModal text-center mt-4 texto-mayusculas">
+    PLANTA
+  </h5>
+  <div class="modal-body">
+    <form>
+
+      <div class="row">
+        <div class="col-md-5" >
+            <img class="img-fluid" align="center" [src]="planta.imagen" alt="Imagen de la Planta">
+        </div>
+        <div class="col-md-7">
+          <p><strong>Nombre científico de la planta:</strong> {{ planta.nombreCientifico }}</p>
+          <p><strong>Nombre común de la planta:</strong> {{ planta.nombreComun }}</p>
+          <p><strong>Familia de la planta:</strong> {{ planta.nombreFamilia }}</p>
+          <p><strong>Tipo de planta:</strong> {{ planta.tipoPlanta }}</p>
+        </div>
+        <div class="col-md-12 mt-4">
+          <p><strong>Descripción:</strong> {{ planta.descripcion }}</p>
+          <p><strong>Historia:</strong> {{ planta.historia }}</p>
+        </div>
+
+        <!-- Fin del contenido individual -->
+        <div class="text-center mb-3 mt-2">
+          <span class="mx-2"></span>
+          <!-- Agregar un espacio horizontal entre los botones -->
+          <button type="button" class="btn btnCerrar" aria-hidden="true" (click)="modal.dismiss('Cross click')">
+            <i class="dripicons-cross"> </i> Cerrar
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</ng-template>

@@ -3,7 +3,6 @@ import { PlantaService } from '../../planta/service/planta.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
 import { DetallecausaService } from '../../detalle-causa/services/detallecausa.service';
-import { Enfermedad } from '../../detalle-causa/models/DetalleCausa';
 
 @Component({
   selector: 'app-detalle',
@@ -26,7 +25,7 @@ export class DetalleComponent implements OnInit {
       this.obtenerDetallesCausa(idPlanta);
     });
   }
- 
+
   buscarPlanta(idPlanta: string) {
     this.servicePlanta.buscarPlanta(idPlanta).subscribe(
       (data) => {
@@ -44,9 +43,9 @@ export class DetalleComponent implements OnInit {
       (data) => {
         // Aquí puedes almacenar los detalles de la causa relacionados con la planta
         this.detallesCausa = data;
-       
+
         console.log("detalle por planta",this.detallesCausa);
-        
+
       },
       (error) => {
         console.error("Error al obtener los detalles de causa:", error);

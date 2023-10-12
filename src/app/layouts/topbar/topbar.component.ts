@@ -9,6 +9,7 @@ import { LanguageService } from '../../core/services/language.service';
 import { TranslateService } from '@ngx-translate/core';
 import { AutenticacionService } from 'src/app/usuario/services/autenticacion.service';
 import Swal from 'sweetalert2';
+import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-topbar',
@@ -21,6 +22,12 @@ import Swal from 'sweetalert2';
  */
 export class TopbarComponent implements OnInit {
 
+  modalOptions: NgbModalOptions = {
+    ariaLabelledBy: 'modal-basic-title',
+    size: 'sm', // sm (SMALL), md (MEDIANO), lg (LARGO),xl (EXTRA LARGO)
+    backdrop:'static'
+  };
+
   element;
   cookieValue;
   flagvalue;
@@ -32,9 +39,18 @@ export class TopbarComponent implements OnInit {
               public languageService: LanguageService,
               public translate: TranslateService,
               public _cookiesService: CookieService,
-              public autenticacionService: AutenticacionService) {
+              public autenticacionService: AutenticacionService,
+              public modalService:NgbModal) {
   }
 
+  openModal(content: any) {
+
+    this.modalService.open(content, this.modalOptions);
+  }
+  acercaDe() {
+    // Navega a la ruta del componente de detalle, pasando el ID como parámetro
+    this.router.navigate(['dashboards/acercade']);
+  }
   listLang = [
     { text: 'English', flag: 'assets/images/flags/us.jpg', lang: 'en' },
     { text: 'Spanish', flag: 'assets/images/flags/spain.jpg', lang: 'es' },
