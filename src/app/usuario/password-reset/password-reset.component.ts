@@ -171,7 +171,8 @@ export class PasswordResetComponent implements OnInit {
             const horaExpiracion = new Date(obj.horaExpiracion).getTime();
 
             if (horaActual <= horaExpiracion) {
-              this.autenticacionService.buscarUserEmail(this.usuario).subscribe(
+              this.usuario.clave = newPassword;
+              this.autenticacionService.setNuevaClave(this.usuario).subscribe(
                 (response) => {
                   Swal.fire('Recuperación de Contraseña', `¡Se ha actualizado la contraseña exitosamente!`, 'success');
                   this.router.navigate(['/login']);
