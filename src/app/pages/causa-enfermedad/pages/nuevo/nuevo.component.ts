@@ -48,18 +48,19 @@ export class NuevoComponent implements OnInit {
       urlTC: "",
     };
     //
- 
-  
+
     if (this.leyenda === "Editar") {
-      if (this.causaT.urlTC) {
-        this.imagenMostrar = this.dm.bypassSecurityTrustUrl(this.causaT.urlTC); // Cambia 'imagen' por 'urlTC'
+      if (this.causaT && this.causaT.urlTC) {
+        // Verifica si this.causaT existe y tiene urlTC
+        this.imagenMostrar = this.dm.bypassSecurityTrustUrl(this.causaT.urlTC);
       }
     }
   }
 
   openModal(content: any) {
     this.formularioCausa.reset();
-    if (this.causaT.urlTC ) {
+    if (this.causaT && this.causaT.urlTC) {
+      // Verifica si this.causaT existe y tiene urlTC
       this.imagenMostrar = this.dm.bypassSecurityTrustUrl(this.causaT.imagen);
     }
     this.modalRef = this.modalService.open(content, {
@@ -67,7 +68,7 @@ export class NuevoComponent implements OnInit {
       keyboard: false,
     });
   }
-  
+
   closeModal() {
     if (this.modalRef) {
       this.modalRef.close();
@@ -92,7 +93,7 @@ export class NuevoComponent implements OnInit {
   guardar() {
     if (this.formularioCausa.valid) {
       if (this.causaT != null) {
-            this.editando();
+        this.editando();
       } else {
         // Verifica si no se ha seleccionado una imagen
         if (!this.fotoSeleccionada) {
@@ -166,51 +167,49 @@ export class NuevoComponent implements OnInit {
       this.formularioCausa.get("definicion").value.charAt(0).toUpperCase() +
       this.formularioCausa.get("definicion").value.slice(1);
     const urlTC = this.formularioCausa.get("urlTipo").value;
-  
+    this.formularioCausa.get("urlTipo").setValidators([]);
+    this.formularioCausa.get("urlTipo").updateValueAndValidity();
+
     const tipoCausa: TipoCausa = {
       idTipoCausa: this.causaT.idTipoCausa,
       tipoTC: tipoTC,
       definicionTipoTC: definicionTipoTC,
-      urlTC: this.causaT.urlTC || urlTC, // Mantén la imagen existente si no seleccionas una nueva
+      urlTC: this.causaT.urlTC || urlTC,
     };
-  
-    // Verifica si se ha seleccionado una nueva imagen
-    if (this.fotoSeleccionada) {
-      // Se ha seleccionado una nueva imagen, asigna la imagen a this.fotoSeleccionada
-      this.causaT.imagen = this.fotoSeleccionada;
-    } else {
-      // No se ha seleccionado una nueva imagen, asigna la imagen existente
-      this.causaT.imagen = this.imagen; // Reemplaza 'imagen' con el campo correcto
-      console.log("IMAGEN", this.causaT.imagen);
-    }
-  
-    console.log("editando", tipoCausa);
-  
-    this.causaenfermedadservice.editarTipoCausa(tipoCausa, this.fotoSeleccionada).subscribe({
-      next: (resp) => {
-        mensajeExito("Tipo de Causa editado con éxito");
-      },
-      error: (e) => {
-        if (e.status === 400) {
-          // Maneja el error de validación del lado del servidor
-          if (e.error && e.error.Mensaje) {
-            mensajeError(e.error.Mensaje);
+    fetch(tipoCausa.urlTC)
+      .then((response) => response.blob())
+      .then((blob) => {
+        const archivo = new File([blob], tipoCausa.urlTC, { type: "image/jpeg" });
+        this.fotoSeleccionada = archivo;
+        console.log("Imagen convertida a File:", this.fotoSeleccionada);
+      });
+      
+    this.causaenfermedadservice
+      .editarTipoCausa(tipoCausa, this.fotoSeleccionada)
+      .subscribe({
+        next: (resp) => {
+          mensajeExito("Tipo de Causa editado con éxito");
+        },
+        error: (e) => {
+          if (e.status === 400) {
+            // Maneja el error de validación del lado del servidor
+            if (e.error && e.error.Mensaje) {
+              mensajeError(e.error.Mensaje);
+            } else {
+              mensajeError("Error desconocido al editar el tipo de causa.");
+            }
           } else {
-            mensajeError("Error desconocido al editar el tipo de causa.");
+            // Maneja otros tipos de errores (p. ej., error de red o del servidor)
+            mensajeError("Error de red o servidor al editar el tipo de causa.");
           }
-        } else {
-          // Maneja otros tipos de errores (p. ej., error de red o del servidor)
-          mensajeError("Error de red o servidor al editar el tipo de causa.");
-        }
-      },
-      complete: () => {
-        this.modalService.dismissAll();
-        this.formularioCausa.reset();
-        this.recargar();
-      },
-    });
+        },
+        complete: () => {
+          this.modalService.dismissAll();
+          this.formularioCausa.reset();
+          this.recargar();
+        },
+      });
   }
-  
 
   recargar() {
     let currentUrl = this.router.url;
@@ -219,25 +218,22 @@ export class NuevoComponent implements OnInit {
     this.router.navigate([currentUrl]);
   }
 
-  
   SeleccionarImagen(event: any) {
-    console.log('Evento de selección de imagen:', event);
+    console.log("Evento de selección de imagen:", event);
     const fileInput = event.target;
-  
+
     if (fileInput.files && fileInput.files.length > 0) {
       const file = fileInput.files[0];
-      console.log('Archivo seleccionado:', file);
+      console.log("Archivo seleccionado:", file);
       this.fotoSeleccionada = file;
       const reader = new FileReader();
-  
       reader.onload = (e: any) => {
         this.imagenMostrar = this.dm.bypassSecurityTrustUrl(e.target.result);
       };
-  
+
       reader.readAsDataURL(file);
     }
   }
-  
 
   /*SeleccionarImagen(event: any) {
     let lector = new FileReader();
