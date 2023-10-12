@@ -50,7 +50,7 @@
             <input
               id="tipoTC"
               name="tipoTC"
-              class="form-control "
+              class="form-control"
               formControlName="tipoTC"
               [ngModel]="causaT != null ? causaT.tipoTC : ''"
               required
@@ -115,13 +115,13 @@
           </div>
           <div class="text-center mb-4">
             <img
-              width="150px"
-              height="150px"
-              class="img-fluid"
-              [src]="imagenMostrar"
-              [src]="causaT.imagen"
-              *ngIf="imagenMostrar != undefined"
-            />
+            width="150px"
+            height="150px"
+            class="img-fluid"
+            [src]="imagenMostrar "
+            [src]="causaT.imagen "
+            *ngIf="imagenMostrar  "
+          />
           </div>
         </div>
         <div class="text-center mb-3 mt-2">

@@ -32,8 +32,14 @@
               [ngClass]="esCampoValido('nombre')"
             />
             <div class="invalid-feedback">
-              <div  *ngIf="formularioUsuario.get('nombre')?.errors?.['required']">Nombre requerido</div>
-              <div  *ngIf="formularioUsuario.get('nombre')?.errors?.['pattern']">Nombre incorrecto</div>
+              <div
+                *ngIf="formularioUsuario.get('nombre')?.errors?.['required']"
+              >
+                Nombre requerido
+              </div>
+              <div *ngIf="formularioUsuario.get('nombre')?.errors?.['pattern']">
+                Nombre incorrecto
+              </div>
             </div>
           </div>
           <div class="mb-3 input-group">
@@ -53,8 +59,16 @@
               [ngClass]="esCampoValido('apellido')"
             />
             <div class="invalid-feedback">
-              <div  *ngIf="formularioUsuario.get('apellido')?.errors?.['required']">Apellido requerido</div>
-              <div  *ngIf="formularioUsuario.get('apellido')?.errors?.['pattern']">Apellido incorrecto</div>
+              <div
+                *ngIf="formularioUsuario.get('apellido')?.errors?.['required']"
+              >
+                Apellido requerido
+              </div>
+              <div
+                *ngIf="formularioUsuario.get('apellido')?.errors?.['pattern']"
+              >
+                Apellido incorrecto
+              </div>
             </div>
           </div>
           <div class="mb-3 input-group">
@@ -74,8 +88,14 @@
               [ngClass]="esCampoValido('correo')"
             />
             <div class="invalid-feedback">
-              <div  *ngIf="formularioUsuario.get('correo')?.errors?.['required']">Correo requerido</div>
-              <div  *ngIf="formularioUsuario.get('correo')?.errors?.['email']">Correo incorrecto</div>
+              <div
+                *ngIf="formularioUsuario.get('correo')?.errors?.['required']"
+              >
+                Correo requerido
+              </div>
+              <div *ngIf="formularioUsuario.get('correo')?.errors?.['email']">
+                Correo incorrecto
+              </div>
             </div>
           </div>
           <div class="mb-3 input-group">
@@ -96,7 +116,11 @@
               <ng-option value="INACTIVO">INACTIVO</ng-option>
             </ng-select>
             <div class="invalid-feedback">
-              <div  *ngIf="formularioUsuario.get('estado')?.errors?.['required']">Estado requerido</div>
+              <div
+                *ngIf="formularioUsuario.get('estado')?.errors?.['required']"
+              >
+                Estado requerido
+              </div>
             </div>
           </div>
           <div class="mb-3 input-group">
@@ -115,8 +139,12 @@
               placeholder="Usuario"
               [ngClass]="esCampoValido('usuario')"
             />
-            <div  class="invalid-feedback">
-              <div  *ngIf="formularioUsuario.get('usuario')?.errors?.['required']">Usuario requerido</div>
+            <div class="invalid-feedback">
+              <div
+                *ngIf="formularioUsuario.get('usuario')?.errors?.['required']"
+              >
+                Usuario requerido
+              </div>
             </div>
           </div>
 
@@ -124,7 +152,7 @@
             <!-- Repetimos el mismo proceso para el segundo input -->
             <div class="input-group-prepend">
               <span class="input-group-text"
-                ><i class="mdi mdi-lock mb-2"></i
+                ><i class="mdi mdi-lock "></i
               ></span>
             </div>
             <input
@@ -137,11 +165,18 @@
               [ngClass]="esCampoValido('clave')"
             />
             <div class="invalid-feedback">
-              <span *ngIf="formularioUsuario.get('clave')?.errors?.['required']">Contraseña requerida</span>
+              <span *ngIf="formularioUsuario.get('clave')?.errors?.['required']"
+                >Contraseña requerida</span
+              >
             </div>
             <div class="input-group-append">
               <!-- Agregamos un div para el botón de ojo -->
-              <button class="btn btn-light" type="button" id="password-addon" (click)="mostrarPassword()">
+              <button
+                class="btn btn-light"
+                type="button"
+                id="password-addon"
+                (click)="mostrarPassword()"
+              >
                 <i class="mdi mdi-eye-outline"></i>
               </button>
             </div>
@@ -155,19 +190,20 @@
               ></span>
             </div>
             <ng-select
-            class="form-control"
-            id="idrol"
-            formControlName="idrol"
-            [ngClass]="esCampoValido('idrol')"
-          >
-            <ng-option *ngFor="let rol of roList" [value]="rol.id">{{
-              rol.rol}}</ng-option>
-          </ng-select>
-          <div class="invalid-feedback">
-            <span *ngIf="formularioUsuario.get('idrol')?.errors?.['required']"
-              >Requiere un Rol</span
+              class="form-control"
+              id="idrol"
+              formControlName="idrol"
+              [ngClass]="esCampoValido('idrol')"
             >
-          </div>
+              <ng-option *ngFor="let rol of roList" [value]="rol.id">{{
+                rol.rol
+              }}</ng-option>
+            </ng-select>
+            <div class="invalid-feedback">
+              <span *ngIf="formularioUsuario.get('idrol')?.errors?.['required']"
+                >Requiere un Rol</span
+              >
+            </div>
           </div>
           <div class="text-center mb-3 mt-2">
             <!-- Centrar los botones y agregar espacio inferior -->

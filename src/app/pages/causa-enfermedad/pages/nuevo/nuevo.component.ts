@@ -48,15 +48,26 @@ export class NuevoComponent implements OnInit {
       urlTC: "",
     };
     //
+ 
+  
+    if (this.leyenda === "Editar") {
+      if (this.causaT.urlTC) {
+        this.imagenMostrar = this.dm.bypassSecurityTrustUrl(this.causaT.urlTC); // Cambia 'imagen' por 'urlTC'
+      }
+    }
   }
 
   openModal(content: any) {
     this.formularioCausa.reset();
+    if (this.causaT.urlTC ) {
+      this.imagenMostrar = this.dm.bypassSecurityTrustUrl(this.causaT.imagen);
+    }
     this.modalRef = this.modalService.open(content, {
       backdrop: "static",
       keyboard: false,
     });
   }
+  
   closeModal() {
     if (this.modalRef) {
       this.modalRef.close();
@@ -81,7 +92,7 @@ export class NuevoComponent implements OnInit {
   guardar() {
     if (this.formularioCausa.valid) {
       if (this.causaT != null) {
-        this.editando();
+            this.editando();
       } else {
         // Verifica si no se ha seleccionado una imagen
         if (!this.fotoSeleccionada) {
@@ -110,8 +121,12 @@ export class NuevoComponent implements OnInit {
   registrando() {
     if (this.formularioCausa.valid) {
       const causa: any = {
-        tipoTC: this.formularioCausa.get("tipoTC").value.charAt(0).toUpperCase() + this.formularioCausa.get("tipoTC").value.slice(1),
-        definicionTipoTC: this.formularioCausa.get("definicion").value.charAt(0).toUpperCase() + this.formularioCausa.get("definicion").value.slice(1),
+        tipoTC:
+          this.formularioCausa.get("tipoTC").value.charAt(0).toUpperCase() +
+          this.formularioCausa.get("tipoTC").value.slice(1),
+        definicionTipoTC:
+          this.formularioCausa.get("definicion").value.charAt(0).toUpperCase() +
+          this.formularioCausa.get("definicion").value.slice(1),
         urlTC: this.formularioCausa.get("urlTipo").value,
       };
 
@@ -127,7 +142,7 @@ export class NuevoComponent implements OnInit {
             mensajeExito("Tipo de Causa guardado con éxito");
           },
           error: (e) => {
-            mensajeError(e.error.Mensaje); 
+            mensajeError(e.error.Mensaje);
           },
           complete: () => {
             this.modalService.dismissAll();
@@ -144,36 +159,58 @@ export class NuevoComponent implements OnInit {
 
   editando() {
     // Obtener los valores del formulario
-    const tipoTC = this.formularioCausa.get("tipoTC").value;
-    const definicionTipoTC = this.formularioCausa.get("definicion").value;
+    const tipoTC =
+      this.formularioCausa.get("tipoTC").value.charAt(0).toUpperCase() +
+      this.formularioCausa.get("tipoTC").value.slice(1);
+    const definicionTipoTC =
+      this.formularioCausa.get("definicion").value.charAt(0).toUpperCase() +
+      this.formularioCausa.get("definicion").value.slice(1);
     const urlTC = this.formularioCausa.get("urlTipo").value;
-
-    // Crear un objeto TipoCausa con los valores
+  
     const tipoCausa: TipoCausa = {
       idTipoCausa: this.causaT.idTipoCausa,
       tipoTC: tipoTC,
       definicionTipoTC: definicionTipoTC,
-      urlTC: urlTC,
+      urlTC: this.causaT.urlTC || urlTC, // Mantén la imagen existente si no seleccionas una nueva
     };
-
+  
+    // Verifica si se ha seleccionado una nueva imagen
+    if (this.fotoSeleccionada) {
+      // Se ha seleccionado una nueva imagen, asigna la imagen a this.fotoSeleccionada
+      this.causaT.imagen = this.fotoSeleccionada;
+    } else {
+      // No se ha seleccionado una nueva imagen, asigna la imagen existente
+      this.causaT.imagen = this.imagen; // Reemplaza 'imagen' con el campo correcto
+      console.log("IMAGEN", this.causaT.imagen);
+    }
+  
     console.log("editando", tipoCausa);
-
-    this.causaenfermedadservice
-      .editarTipoCausa(tipoCausa, this.fotoSeleccionada)
-      .subscribe({
-        next: (resp) => {
-          mensajeExito("Tipo de Causa editado con éxito");
-        },
-        error: (err) => {
-          mensajeError("Error al guardar el Tipo de causa");
-        },
-        complete: () => {
-          this.modalService.dismissAll();
-          this.formularioCausa.reset();
-          this.recargar();
-        },
-      });
+  
+    this.causaenfermedadservice.editarTipoCausa(tipoCausa, this.fotoSeleccionada).subscribe({
+      next: (resp) => {
+        mensajeExito("Tipo de Causa editado con éxito");
+      },
+      error: (e) => {
+        if (e.status === 400) {
+          // Maneja el error de validación del lado del servidor
+          if (e.error && e.error.Mensaje) {
+            mensajeError(e.error.Mensaje);
+          } else {
+            mensajeError("Error desconocido al editar el tipo de causa.");
+          }
+        } else {
+          // Maneja otros tipos de errores (p. ej., error de red o del servidor)
+          mensajeError("Error de red o servidor al editar el tipo de causa.");
+        }
+      },
+      complete: () => {
+        this.modalService.dismissAll();
+        this.formularioCausa.reset();
+        this.recargar();
+      },
+    });
   }
+  
 
   recargar() {
     let currentUrl = this.router.url;
@@ -182,7 +219,27 @@ export class NuevoComponent implements OnInit {
     this.router.navigate([currentUrl]);
   }
 
+  
   SeleccionarImagen(event: any) {
+    console.log('Evento de selección de imagen:', event);
+    const fileInput = event.target;
+  
+    if (fileInput.files && fileInput.files.length > 0) {
+      const file = fileInput.files[0];
+      console.log('Archivo seleccionado:', file);
+      this.fotoSeleccionada = file;
+      const reader = new FileReader();
+  
+      reader.onload = (e: any) => {
+        this.imagenMostrar = this.dm.bypassSecurityTrustUrl(e.target.result);
+      };
+  
+      reader.readAsDataURL(file);
+    }
+  }
+  
+
+  /*SeleccionarImagen(event: any) {
     let lector = new FileReader();
     lector.readAsDataURL(event.target.files[0]);
     lector.onload = () => {
@@ -195,5 +252,5 @@ export class NuevoComponent implements OnInit {
     if (this.causaT) {
       this.causaT.imagen = this.imagenMostrar;
     }
-  }
+  }*/
 }

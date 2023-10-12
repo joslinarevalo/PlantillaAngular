@@ -47,7 +47,10 @@ export class TopbarComponent implements OnInit {
 
     this.modalService.open(content, this.modalOptions);
   }
-
+  acercaDe() {
+    // Navega a la ruta del componente de detalle, pasando el ID como parámetro
+    this.router.navigate(['dashboards/acercade']);
+  }
   listLang = [
     { text: 'English', flag: 'assets/images/flags/us.jpg', lang: 'en' },
     { text: 'Spanish', flag: 'assets/images/flags/spain.jpg', lang: 'es' },
