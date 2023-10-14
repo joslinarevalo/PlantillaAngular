@@ -124,6 +124,7 @@ export class EnfermedadComponent implements OnInit {
           mensajeError(e.error.Mensaje); 
         },
         complete: () => {
+          this.recargar();
           this.modalService.dismissAll();
           this.formularioEnfermedad.reset();
           this.listaEnfermedad();
@@ -152,6 +153,7 @@ export class EnfermedadComponent implements OnInit {
           mensajeError(e.error.Mensaje); 
         },
         complete: () => {
+          this.recargar();
           this.modalService.dismissAll();
           this.formularioEnfermedad.reset();
           this.listaEnfermedad();

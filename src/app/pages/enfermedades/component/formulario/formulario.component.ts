@@ -65,10 +65,10 @@ export class FormularioComponent implements OnInit {
         urlEnfermedad: this.formularioEnfermedad.controls['urlEnfermedad'].value,
       };
       //this.presentacion=this.formulario.value;
-      console.log(this.enfermedad);
+      console.log(this.enfermedad);//
       this.formularioSerealizable.set("enfermedad", JSON.stringify(this.enfermedad));
       this.ObjetoGuardar.emit(this.formularioSerealizable);
-      this.recargar();
+      //this.recargar();
     } else {
       Swal.fire({
         position: 'center',
@@ -182,6 +182,14 @@ export class FormularioComponent implements OnInit {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
     this.router.onSameUrlNavigation = "reload";
     this.router.navigate([currentUrl]);
+  }
+
+  capitalizeFirstLetter(input: string): string {
+    if (input) {
+      return input.charAt(0).toUpperCase() + input.slice(1);
+    } else {
+      return input;
+    }
   }
 
 }
