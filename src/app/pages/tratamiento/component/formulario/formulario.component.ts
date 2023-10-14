@@ -15,7 +15,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 export class FormularioComponent implements OnInit {
   //recibe un parametro del padre
   @Input() ModalService!:NgbModal;
-  tratamiento!:ITratamientoDTOValid; 
+  tratamiento!:ITratamientoDTOValid;
   @Input()formularioTratamiento!:FormGroup;
   imagenMostrar!:any;
   formularioSerealizable= new FormData();
@@ -34,16 +34,16 @@ export class FormularioComponent implements OnInit {
     else{this.convertirImagen();
       this.formularioTratamiento.controls['urlTratamiento'].setValue('No_imagen.jpg');
     }
-    
+
   }
   cerrarModal(){
     this.ModalService.dismissAll();
   }
-  
-  
+
+
   guardar() {
     if (this.formulario_valido()) {
-      console.log(this.formularioTratamiento); 
+      console.log(this.formularioTratamiento);
       this.tratamiento = {
         nombrePesticidaTratamiento: this.formularioTratamiento.controls['nombrePesticidaTratamiento'].value,
         descripcionTratamiento:this.formularioTratamiento.controls['descripcionTratamiento'].value,
@@ -65,8 +65,8 @@ export class FormularioComponent implements OnInit {
           timer: 1500,
         });
       }
-    
-    
+
+
   }
   modificar() {
     if (this.formulario_valido()) {
@@ -121,16 +121,16 @@ export class FormularioComponent implements OnInit {
       : '';
   }
   convertirImagen() {
-    const imagenPath = 'assets/images/NoImage.png'; 
-   
+    const imagenPath = 'assets/images/NoImage.png';
+
    fetch(imagenPath)
     .then((response) => response.blob())
     .then((blob) => {
     const nombreArchivo = 'No_imagen.jpg';
-    const archivo = new File([blob], nombreArchivo, { type: 'image/jpeg' }); 
+    const archivo = new File([blob], nombreArchivo, { type: 'image/jpeg' });
    console.log('Imagen convertida a File:', archivo);
     this.formularioSerealizable.set('imagen',archivo);
     });
     }
-  
+
 }

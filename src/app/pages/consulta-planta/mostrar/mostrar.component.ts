@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { IPlantaMostrar } from '../../planta/interface/iplanta';
+import { IPlanta, IPlantaMostrar, IPlantaValid } from '../../planta/interface/iplanta';
 import { PlantaService } from '../../planta/service/planta.service';
 import { Router } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -10,10 +10,10 @@ import { DomSanitizer } from '@angular/platform-browser';
   styleUrls: ['./mostrar.component.scss']
 })
 export class MostrarComponent implements OnInit {
-  @Input() allPlanta!: IPlantaMostrar[];
+  @Input() allPlanta!: IPlanta[];
   imagen: any;
   searchTerm: string = "";
-  filtrarPlanta: IPlantaMostrar[]=[];
+  filtrarPlanta: IPlanta[]=[];
   pagina:number=0;
   tamaño:number=5;
 
@@ -34,7 +34,7 @@ export class MostrarComponent implements OnInit {
     } else {
       // Filtrar el array de datos usando el término de búsqueda
       this.filtrarPlanta = this.allPlanta.filter((buscar) =>
-        buscar.nombreComun.toLowerCase().includes(this.searchTerm.toLowerCase())
+        buscar.nombreComunPlanta.toLowerCase().includes(this.searchTerm.toLowerCase())
       );
     }
   }
@@ -65,7 +65,7 @@ export class MostrarComponent implements OnInit {
       });
       this.filtrarPlanta = this.allPlanta;
     });
-    console.log(this.filtrarPlanta);
+    console.log("planta paginada "+this.filtrarPlanta);
   }
 
 

@@ -24,7 +24,7 @@ export interface IPlanta {
   historia:         string;
   idPlanta?:         string;
   familia:        IFamilia;
-  urlPlanta:        string;
+  urlPlanta?:        string;
   imagen?:          any;
   archivo?:         File;
 }
