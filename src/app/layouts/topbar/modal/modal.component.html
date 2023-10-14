@@ -1,39 +1,30 @@
-<div class="modal-header">
-  <h5 class="modal-title mt-0">Familia</h5>
-  <button
-    type="button"
-    class="btn-close"
-    aria-hidden="true"
-
-  ></button>
-</div>
 <div class="modal-body">
+  <h5 class="cajaModal text-center mt-4 texto-mayusculas">
+    Perfil
+  </h5>
   <form >
     <div class="row">
+
       <div class="mt-1">
-        <label class="control-label">Nombre<span class="required"></span>
-          <span class="info-icon" data-title="información">?</span> <!-- Icono de información -->
-        </label>
-        <input
-          class="form-control"
-          type="text"
-          id="nombreFamilia"
-          formControlName="nombreFamilia"
-        />
-        <div class="invalid-feedback">
-          <span
-            >Requiere un nombre de la familia</span
-          >
-        </div>
+        <label class="control-label"> <strong>Usuario:</strong> {{ ident.usuario }} </label>
+      </div>
+
+      <div class="mt-1">
+        <label class="control-label"> <strong>Nombre:</strong> {{ ident.nombre}} </label>
+      </div>
+
+      <div class="mt-1">
+        <label class="control-label"> <strong>Apellido:</strong> {{ ident.apellido }} </label>
+      </div>
+
+      <div class="mt-1">
+        <label class="control-label"> <strong>Correo:</strong> {{ ident.correo }} </label>
       </div>
 
     </div>
 
     <div class="text-center mb-3 mt-2"> <!-- Centrar los botones y agregar espacio inferior -->
-       <button type="button" class="btn btnguardarModal" ><i class="fas fa-check"></i>Guardar</button>
-       <button type="button" class="btn btnguardarModal" ><i class="fas fa-check" ></i></button>
-      <span class="mx-2"></span> <!-- Agregar un espacio horizontal entre los botones -->
-      <button type="button" class="btn btnCerrar" aria-hidden="true"><i class="dripicons-cross"></i>cerrar</button>
+      <button type="button" class="btn btnCerrar" aria-hidden="true" (click)="cerrarModal()"><i class="dripicons-cross"></i>cerrar</button>
   </div>
   </form>
 </div>

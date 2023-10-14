@@ -31,7 +31,7 @@
           <span class="info-icon" data-title="En este campo agregue el nombre común de la planta.">?</span> <!-- Icono de información -->
         </label>
         <input
-          class="form-control"
+          class="form-control text-capitalize"
           type="text"
           id="nombreComun"
           formControlName="nombreComun"
@@ -106,7 +106,9 @@
           id="descripcion"
           formControlName="descripcion"
           [ngClass]="esCampoValido('descripcion')"
+          (input)="contarCaracteres('descripcion')"
         ></textarea>
+        <div id="contador" >{{ mensaje['descripcion'] }}</div>
         <div class="invalid-feedback">
           <span
             *ngIf="formularioPlanta.get('descripcion')?.errors?.['required']"
@@ -125,7 +127,9 @@
           id="historia"
           formControlName="historia"
           [ngClass]="esCampoValido('historia')"
+          (input)="contarCaracteres('historia')"
         ></textarea>
+        <div id="contador" >{{ mensaje['historia'] }}</div>
         <div class="invalid-feedback">
           <span
             *ngIf="formularioPlanta.get('historia')?.errors?.['required']"
