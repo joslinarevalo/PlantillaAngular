@@ -23,7 +23,7 @@ export class PasswordResetComponent implements OnInit {
   resetForm!: FormGroup;
   showVerificationForm = false; // Variable para controlar la visibilidad del formulario de verificación
   verificationForm: FormGroup; // Formulario de verificación de código y contraseña
-
+  tipo:string="password";
 
   // tslint:disable-next-line: max-line-length
   constructor(private formBuilder: FormBuilder, private route: ActivatedRoute, private router: Router, private autenticacionService: AutenticacionService) {
@@ -101,15 +101,15 @@ export class PasswordResetComponent implements OnInit {
           this.autenticacionService.resetPassword(this.email).subscribe(
             (response) => {
               // Lógica para manejar la respuesta del backend (puede ser una confirmación de éxito)
-              console.log('Solicitud enviada con éxito');
-              Swal.fire('Recuperación de Contraseña', `¡Código de recuperacion enviado con éxito!`, 'success');
+              //console.log('Solicitud enviada con éxito');
+              //Swal.fire('Recuperación de Contraseña', `¡Código de recuperacion enviado con éxito!`, 'success');
 
               //setear el codigo de recuperacion y la fecha de expiracion
               this.autenticacionService.setClaveTemp(this.usuario).subscribe(
                 (resp) => {
                   this.showVerificationForm = true;
-                  console.log('Solicitud enviada con éxito');
-                  Swal.fire('Recuperación de Contraseña', `¡Código de recuperacion enviado a la BD con éxito!`, 'success');
+                  //console.log('Solicitud enviada con éxito');
+                  Swal.fire('Recuperación de Contraseña', `¡Código de recuperacion enviado con éxito!`, 'success');
                 },
                 (e) => {
                   console.error('Error al enviar la solicitud A LA BD', e);
@@ -203,4 +203,12 @@ export class PasswordResetComponent implements OnInit {
     }
   }
 
+  mostrarPassword(){
+    if(this.tipo=="password") {
+      this.tipo="text" ;
+      } else{
+      this.tipo="password" 
+      }
+  }
+  
 }

@@ -11,8 +11,9 @@
         <label class="control-label" >Nombre común <span class="required"></span>
           <span class="info-icon" data-title="En este campo se registra el nombre común de la enfermedad.">?</span> <!-- Icono de información -->
         </label>
-        <input class="form-control" type="text" id="nombreComunEnfermedad" formControlName="nombreComunEnfermedad"
-          [ngClass]="esCampoValido('nombreComunEnfermedad')" (input)="contarCaracteres('nombreComunEnfermedad')"/>
+        <input class="form-control capitalized-input" type="text" id="nombreComunEnfermedad" formControlName="nombreComunEnfermedad"
+          [ngClass]="esCampoValido('nombreComunEnfermedad')" (input)="contarCaracteres('nombreComunEnfermedad')"
+          (input)="formularioEnfermedad.get('nombreComunEnfermedad').setValue(capitalizeFirstLetter(formularioEnfermedad.get('nombreComunEnfermedad').value))"/><!-- para poner la primera letra mayuscula -->
           <div id="contador">{{ mensaje['nombreComunEnfermedad'] }}</div>
         <div class="invalid-feedback">
           <span *ngIf="formularioEnfermedad.get('nombreComunEnfermedad').hasError('required')">
@@ -28,7 +29,8 @@
         <label class="control-label">Nombre científico <span class="required"></span></label>
         <span class="info-icon" data-title="En este campo se registra el nombre científico de la enfermedad.">?</span> <!-- Icono de información -->
         <input class="form-control" type="text" id="nombreCientificoEnfermedad"
-          formControlName="nombreCientificoEnfermedad" [ngClass]="esCampoValido('nombreCientificoEnfermedad')" (input)="contarCaracteres('nombreCientificoEnfermedad')"/>
+          formControlName="nombreCientificoEnfermedad" [ngClass]="esCampoValido('nombreCientificoEnfermedad')" (input)="contarCaracteres('nombreCientificoEnfermedad')"
+          (input)="formularioEnfermedad.get('nombreCientificoEnfermedad').setValue(capitalizeFirstLetter(formularioEnfermedad.get('nombreCientificoEnfermedad').value))"/><!-- para poner la primera letra mayuscula -->
           <div id="contador">{{ mensaje['nombreCientificoEnfermedad'] }}</div>
         <div class="invalid-feedback">
           <span *ngIf="formularioEnfermedad.get('nombreCientificoEnfermedad')?.errors?.['required']">
@@ -43,7 +45,8 @@
         <label class="control-label">Etapa que afecta <span class="required"></span></label>
         <span class="info-icon" data-title="En este campo se registra la etapa de desarrollo de la planta que se ve afectada por la enfermedad.">?</span> <!-- Icono de información -->
         <input class="form-control" type="text" id="etapaEnfermedad" formControlName="etapaEnfermedad"
-          [ngClass]="esCampoValido('etapaEnfermedad')" (input)="contarCaracteres('etapaEnfermedad')"/>
+          [ngClass]="esCampoValido('etapaEnfermedad')" (input)="contarCaracteres('etapaEnfermedad')"
+          (input)="formularioEnfermedad.get('etapaEnfermedad').setValue(capitalizeFirstLetter(formularioEnfermedad.get('etapaEnfermedad').value))"/><!-- para poner la primera letra mayuscula -->
           <div id="contador">{{ mensaje['etapaEnfermedad'] }}</div>
         <div class="invalid-feedback">
           <span *ngIf="formularioEnfermedad.get('etapaEnfermedad')?.errors?.['required']">
@@ -57,7 +60,8 @@
         <label class="control-label">Tipo de enfermedad <span class="required"></span></label>
         <span class="info-icon" data-title="En este campo se registra el tipo de enfermedad ya sea bacteria, hongo, entre otros; por ejemplo: Hongo necrotrófico.">?</span> <!-- Icono de información -->
         <input class="form-control" type="text" id="tipoEnfermedad" formControlName="tipoEnfermedad"
-          [ngClass]="esCampoValido('tipoEnfermedad')" (input)="contarCaracteres('tipoEnfermedad')" />
+          [ngClass]="esCampoValido('tipoEnfermedad')" (input)="contarCaracteres('tipoEnfermedad')" 
+          (input)="formularioEnfermedad.get('tipoEnfermedad').setValue(capitalizeFirstLetter(formularioEnfermedad.get('tipoEnfermedad').value))"/><!-- para poner la primera letra mayuscula -->
           <div id="contador">{{ mensaje['tipoEnfermedad'] }}</div>
         <div class="invalid-feedback">
           <span *ngIf="formularioEnfermedad.get('tipoEnfermedad')?.errors?.['required']">
@@ -73,7 +77,8 @@
         <span class="info-icon" data-title="En este campo se registran las condiciones que favorecen el desarrollo de la enfermedad.">?</span> <!-- Icono de información -->
         <textarea class="form-control" type="text" id="condicionFavorableEnfermedad"
           formControlName="condicionFavorableEnfermedad"
-          [ngClass]="esCampoValido('condicionFavorableEnfermedad')" (input)="contarCaracteres('condicionFavorableEnfermedad')"></textarea>
+          [ngClass]="esCampoValido('condicionFavorableEnfermedad')" (input)="contarCaracteres('condicionFavorableEnfermedad')"
+          (input)="formularioEnfermedad.get('condicionFavorableEnfermedad').setValue(capitalizeFirstLetter(formularioEnfermedad.get('condicionFavorableEnfermedad').value))" ></textarea>
           <div id="contador">{{ mensaje['condicionFavorableEnfermedad'] }}</div>
         <div class="invalid-feedback">
           <span *ngIf="formularioEnfermedad.get('condicionFavorableEnfermedad')?.errors?.['required']">
@@ -88,7 +93,8 @@
         <span class="info-icon" data-title="En este campo se registran las partes de la planta que son afectadas por la enfermedad.">?</span> <!-- Icono de información -->
         <textarea class="form-control" type="text" id="partesAfectadasEnfermedad"
           formControlName="partesAfectadasEnfermedad" [ngClass]="esCampoValido('partesAfectadasEnfermedad')" 
-          (input)="contarCaracteres('partesAfectadasEnfermedad')"></textarea>
+          (input)="contarCaracteres('partesAfectadasEnfermedad')"
+          (input)="formularioEnfermedad.get('partesAfectadasEnfermedad').setValue(capitalizeFirstLetter(formularioEnfermedad.get('partesAfectadasEnfermedad').value))"></textarea>
           <div id="contador">{{ mensaje['partesAfectadasEnfermedad'] }}</div>
         <div class="invalid-feedback">
           <span *ngIf="formularioEnfermedad.get('partesAfectadasEnfermedad')?.errors?.['required']">
@@ -102,7 +108,8 @@
         <label class="control-label">Descripción <span class="required"></span></label>
         <span class="info-icon" data-title="Este campo se utiliza para proporcionar detalles y características específicas de la enfermedad que estás reportando.">?</span> <!-- Icono de información -->
         <textarea class="form-control" type="text" id="descripcionEnfermedad" formControlName="descripcionEnfermedad"
-          [ngClass]="esCampoValido('descripcionEnfermedad')" (input)="contarCaracteres('descripcionEnfermedad')"></textarea>
+          [ngClass]="esCampoValido('descripcionEnfermedad')" (input)="contarCaracteres('descripcionEnfermedad')" 
+          (input)="formularioEnfermedad.get('descripcionEnfermedad').setValue(capitalizeFirstLetter(formularioEnfermedad.get('descripcionEnfermedad').value))"></textarea>
           <div id="contador">{{ mensaje['descripcionEnfermedad'] }}</div>
         <div class="invalid-feedback">
           <span *ngIf="formularioEnfermedad.get('descripcionEnfermedad')?.errors?.['required']">
@@ -116,7 +123,8 @@
         <label class="control-label">Síntomas de enfermedad <span class="required"></span></label>
         <span class="info-icon" data-title="En este campo, debes listar los síntomas específicos que se han observado relacionados con la enfermedad que estás reportando.">?</span> <!-- Icono de información -->
         <textarea class="form-control" type="text" id="sintomasEnfermedad" formControlName="sintomasEnfermedad"
-          [ngClass]="esCampoValido('sintomasEnfermedad')" (input)="contarCaracteres('sintomasEnfermedad')"></textarea>
+          [ngClass]="esCampoValido('sintomasEnfermedad')" (input)="contarCaracteres('sintomasEnfermedad')"
+          (input)="formularioEnfermedad.get('sintomasEnfermedad').setValue(capitalizeFirstLetter(formularioEnfermedad.get('sintomasEnfermedad').value))"></textarea>
           <div id="contador">{{ mensaje['sintomasEnfermedad'] }}</div>
         <div class="invalid-feedback">
           <span *ngIf="formularioEnfermedad.get('sintomasEnfermedad')?.errors?.['required']">
@@ -131,7 +139,8 @@
         <label class="control-label">Seleccionar Imagen de la enfermedad <span class="required"></span></label>
         <span class="info-icon" data-title="En este campo, puedes adjuntar una imagen que ilustre visualmente la enfermedad que estás reportando.">?</span> <!-- Icono de información -->
         <input class="form-control" type="file"  accept="image/*" id="urlEnfermedad" formControlName="urlEnfermedad"
-          (change)="SeleccionarImagen($event)" [ngClass]="esCampoValido('urlEnfermedad')" (input)="contarCaracteres('urlEnfermedad')"/>
+          (change)="SeleccionarImagen($event)" [ngClass]="esCampoValido('urlEnfermedad')" (input)="contarCaracteres('urlEnfermedad')"
+          (input)="formularioEnfermedad.get('urlEnfermedad').setValue(capitalizeFirstLetter(formularioEnfermedad.get('urlEnfermedad').value))"/><!-- para poner la primera letra mayuscula -->
           <div id="contador">{{ mensaje['urlEnfermedad'] }}</div>
         <div class="invalid-feedback">
           <span *ngIf="formularioEnfermedad.get('urlEnfermedad')?.errors?.['required']">

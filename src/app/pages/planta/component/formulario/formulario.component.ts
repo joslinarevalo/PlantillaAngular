@@ -50,6 +50,8 @@ export class FormularioComponent implements OnInit {
     if(this.leyenda=="Modificar"){
       this.imagenMostrar=this.imagen;
       this.formularioSerealizable.set('imagen',this.archivo);
+    }else{this.convertirImagen();
+      this.formularioPlanta.controls['urlPlanta'].setValue('No_imagen.jpg');
     }
   }
 
@@ -206,5 +208,16 @@ export class FormularioComponent implements OnInit {
       this.router.navigate([currentUrl]);
     }
 
+    convertirImagen() {
+      const imagenPath = 'assets/images/NoImage.png';
 
+     fetch(imagenPath)
+      .then((response) => response.blob())
+      .then((blob) => {
+      const nombreArchivo = 'No_imagen.jpg';
+      const archivo = new File([blob], nombreArchivo, { type: 'image/jpeg' });
+     console.log('Imagen convertida a File:', archivo);
+      this.formularioSerealizable.set('imagen',archivo);
+      });
+      }
 }
