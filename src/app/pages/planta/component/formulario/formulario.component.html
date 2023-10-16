@@ -15,9 +15,11 @@
           id="nombreCientifico"
           formControlName="nombreCientifico"
           [ngClass]="esCampoValido('nombreCientifico')"
+          (input)="contarCaracteres('nombreCientifico')"
 
         />
         <!--<div id="contador">{{ mensaje['nombreCientifico'] }}</div>(input)="contarCaracteres('nombreCientifico')"-->
+        <div id="contador" >{{ mensaje['nombreCientifico'] }}</div>
         <div class="invalid-feedback">
           <span
             *ngIf="formularioPlanta.get('nombreCientifico')?.errors?.['required']"
@@ -106,7 +108,7 @@
           id="descripcion"
           formControlName="descripcion"
           [ngClass]="esCampoValido('descripcion')"
-          (input)="contarCaracteres('descripcion')"
+          
         ></textarea>
         <div id="contador" >{{ mensaje['descripcion'] }}</div>
         <div class="invalid-feedback">
