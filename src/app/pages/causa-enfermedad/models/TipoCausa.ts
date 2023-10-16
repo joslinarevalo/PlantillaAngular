@@ -11,4 +11,5 @@ export interface ITipoCausa {
   definicionTipoTC?: string;
   urlTC?: string;
   imagen?: any;
+  archivo?:File
 }

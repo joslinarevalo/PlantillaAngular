@@ -1,29 +1,47 @@
-import { Component, Input, OnDestroy, OnInit, ViewChild } from "@angular/core";
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+  ViewChild,
+} from "@angular/core";
 import { CausaenfermedadService } from "../../services/causaenfermedad.service";
 import { Router } from "@angular/router";
-import Swal from "sweetalert2";
 import { DataTableDirective } from "angular-datatables";
 import { ITipoCausa, TipoCausa } from "../../models/TipoCausa";
 import { DomSanitizer } from "@angular/platform-browser";
 import { Subject } from "rxjs";
-import { mensajeExito, mensajeError } from 'src/app/pages/models/funciones.global';
+import { NgbModal, NgbModalOptions } from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
   selector: "app-tablaCausa",
   templateUrl: "./tablaCausa.component.html",
   styleUrls: ["./tablaCausa.component.scss"],
 })
-export class TablaCausaComponent implements OnInit , OnDestroy {
+export class TablaCausaComponent implements OnInit, OnDestroy {
+  p: any;
+  imagen: any;
+  modalOptions: NgbModalOptions = {
+    ariaLabelledBy: "modal-basic-title",
+    size: "lg", // sm (SMALL), md (MEDIANO), lg (LARGO),xl (EXTRA LARGO)
+    backdrop: "static",
+  };
+  @Input() ListaDeCausa: ITipoCausa[] = [];
+  @Output() ObjetoCausaEliminar = new EventEmitter<ITipoCausa>();
+  @Output() ObjetoCausaModificar = new EventEmitter<ITipoCausa>();
   @ViewChild(DataTableDirective, { static: false })
   dtElement: DataTableDirective;
+  dtTrigger: Subject<ITipoCausa> = new Subject<ITipoCausa>();
+  causa?: ITipoCausa;
+
   dtOptions: any = {};
-  dtTrigger: Subject<TipoCausa> = new Subject<TipoCausa>();
-  @Input() alltipocausa!: ITipoCausa[];
-  imagen: any;
   constructor(
     private causaenfermedad: CausaenfermedadService,
     private router: Router,
-    private dm: DomSanitizer
+    private dm: DomSanitizer,
+    public modalService: NgbModal
   ) {}
   ngOnInit() {
     this.dtOptions = {
@@ -31,20 +49,21 @@ export class TablaCausaComponent implements OnInit , OnDestroy {
         { responsivePriority: 3, targets: 2 },
         { responsivePriority: 10001, targets: 2 },
         { responsivePriority: 2, targets: 3 },
-        { responsivePriority: 0, targets: -1 }
+        { responsivePriority: 0, targets: -1 },
       ],
       lengthMenu: [5, 10, 15, 20],
       destroy: true,
       language: {
-        url: '//cdn.datatables.net/plug-ins/1.13.5/i18n/es-ES.json',
-        lengthMenu: 'Mostrar _MENU_ registros por página',
+        url: "//cdn.datatables.net/plug-ins/1.13.5/i18n/es-ES.json",
+        lengthMenu: "Mostrar _MENU_ registros por página",
         zeroRecords: "Ninguna enfermedad encontrada",
       },
-      pagingType: 'full_numbers',
+      pagingType: "full_numbers",
       responsive: true,
     };
     this.listatipo();
   }
+
   truncateText(text: string, maxLength: number): string {
     if (text.length <= maxLength) {
       return text;
@@ -53,38 +72,32 @@ export class TablaCausaComponent implements OnInit , OnDestroy {
   }
   ngOnDestroy(): void {
     this.dtTrigger.unsubscribe();
-   // this.dtTrigger.complete();
+    // this.dtTrigger.complete();
   }
 
   public reloadTable(): void {
     this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
-      this.alltipocausa = [];
+      this.ListaDeCausa = [];
       dtInstance.destroy();
     });
   }
   listatipo() {
     this.causaenfermedad.listaDeTipoCausa().subscribe((resp) => {
-      this.alltipocausa = resp;
+      this.ListaDeCausa = resp;
       console.log(resp);
-      this.alltipocausa.forEach(element => {
+      this.ListaDeCausa.forEach((element) => {
         this.causaenfermedad.getImagen(element.urlTC).subscribe((resp) => {
           let url = URL.createObjectURL(resp);
           this.imagen = this.dm.bypassSecurityTrustUrl(url);
           element.imagen = this.imagen;
+          element.archivo = this.convertirArchivo(resp, element.urlTC);
+          console.log(element.archivo);
+          this.dtTrigger.next(null);
         });
-
       });
-      // Inicializa o actualiza el DataTable una vez que los datos se han cargado
-      if (this.dtElement && this.dtElement.dtInstance) {
-        this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
-          dtInstance.destroy();
-          this.dtTrigger.next();
-        });
-      } else {
-        this.dtTrigger.next();
-      }
     });
   }
+
   ObtenerImagen(url: string) {
     this.causaenfermedad.getImagen(url).subscribe((resp) => {
       console.log(resp);
@@ -94,41 +107,35 @@ export class TablaCausaComponent implements OnInit , OnDestroy {
     });
   }
 
-  eliminarCausita(cusatp: ITipoCausa) {
-    const alert = Swal.mixin({
-      customClass: {
-        confirmButton: "btn btn-success",
-        cancelButton: "btn btn-danger",
-      },
-      buttonsStyling: false,
-    });
-    alert
-      .fire({
-        title: "¿Estas Seguro?",
-        text: `¡No podras revertir esto!`,
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonText: "Si, borrar",
-        cancelButtonText: "No, cancelar!",
-        reverseButtons: true,
-      })
-      .then((result) => {
-        if (result.isConfirmed) {
-          this.causaenfermedad.eliminarCausa(cusatp).subscribe( {
-            next: (resp) => {
-              mensajeExito("Enfermedad eliminada con exito ");//+ resp.Mensaje
-            },
-            error: (e) => {
-              mensajeError(e.error.Mensaje);
-            },
-            complete: () => {
-              this.listatipo();
-            }
-          });
-        } else if (result.dismiss === Swal.DismissReason.cancel) {
-          alert.fire("Canselado", "El registro no se elimino", "error");
-        }
+  ObtenerCausaEliminar(causa: ITipoCausa) {
+    console.log(causa);
+    this.ObjetoCausaEliminar.emit(causa); //para emitar el evento de objeto a la vista del padre
+  }
+  ObtenerCausaModificar(causa: ITipoCausa) {
+    console.log(causa);
+    this.ObjetoCausaModificar.emit(causa);
+  }
+  convertirArchivo(blob: Blob | undefined, url: string): File {
+    let miArchivo!: File;
+    let nombre = url.substring(36);
+    console.log("nombre del archivo a modificar: " + nombre);
+    if (blob != undefined) {
+      miArchivo = new File([blob], nombre, {
+        type: blob.type,
       });
-      
+      return miArchivo;
+    } else {
+      return miArchivo;
+    }
+  }
+  openModal(content: any, causas: ITipoCausa) {
+    console.log("Abriendo modal de edición para causa: ", causas);
+    this.causa = causas;
+    this.modalService.open(content, {
+      size: "xl",
+      centered: true,
+      backdrop: "static",
+      keyboard: false,
+    });
   }
 }

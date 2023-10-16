@@ -1,22 +1,44 @@
-
 <div class="container-fluid">
   <div class="row mt-2">
-    <div class="col-lg-12">
+    <div class="col-12">
       <div class="card">
         <div class="card-body">
-         <div class="caja">CAUSAS DE ENFERMEDAD</div>
-         <div class="row mt-4">
-           <!-- end col -->
-           <div class="col-sm-12">
-               <div class="text-sm-end  ">
-                    
-                <app-nuevo [leyenda]="'Guardar'" [titulo]="'Nuevo Detalle '" [modo]="'Registrar'"></app-nuevo>
-           </div>
-           
-       </div> 
-          <app-tablaCausa  [alltipocausa]="tpcausa"> </app-tablaCausa>
+          <div class="caja">CAUSAS DE ENFERMEDAD</div>
+          <div class="row mt-4">
+            <!-- end col -->
+            <div class="col-sm-12">
+              <div class="text-sm-end">
+                <div class="text-sm-end">
+                  <button
+                    type="button"
+                    class="btn btnguardar btn-sm mb-2 mr-2 btn-rounded"
+                    (click)="openModal(content)"
+                  >
+                    <i class="fas fa-seedling"></i>Registrar
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Contenido del Scroll data -->
+          <app-tablaCausa
+            [ListaDeCausa]="causaList"
+            (ObjetoCausaEliminar)="eliminarCausa($event)"
+            (ObjetoCausaModificar)="modificarcausatipo($event, content)"
+          ></app-tablaCausa>
+        </div>
       </div>
     </div>
-  
   </div>
- </div>
+</div>
+<ng-template #content role="document" let-modal>
+  <app-nuevo
+    [ModalService]="modalService"
+    [formularioCausa]="formulariocausa"
+    (ObjetoGuardar)="guardarCausa($event)"
+    [leyenda]="leyenda"
+    (ObjetoCausaModificar)="modificarCausaFormulario($event)"
+    [imagen]="imagen"
+    [archivo]="archivo"
+  ></app-nuevo>
+</ng-template>

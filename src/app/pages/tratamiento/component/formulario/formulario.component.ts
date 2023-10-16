@@ -22,8 +22,8 @@ export class FormularioComponent implements OnInit {
   @Output()ObjetoGuardar= new EventEmitter<FormData>();
   @Output()ObjetoModificar= new EventEmitter<FormData>();
   @Input()leyenda:string;
-  @Input()imagen:any;
-  @Input()archivo:File;
+  @Input() imagen:any;
+  @Input() archivo: File;
   constructor( private fb: FormBuilder, private serviceTratamiento:TratamientoService, private dm:DomSanitizer) { }
 
   ngOnInit(): void {

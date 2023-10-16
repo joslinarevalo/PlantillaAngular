@@ -49,7 +49,7 @@ export class TopbarComponent implements OnInit {
   }
   acercaDe() {
     // Navega a la ruta del componente de detalle, pasando el ID como parámetro
-    this.router.navigate(['dashboards/acercade']);
+    this.router.navigate(['paginas-principal/acercade']);
   }
   listLang = [
     { text: 'English', flag: 'assets/images/flags/us.jpg', lang: 'en' },
