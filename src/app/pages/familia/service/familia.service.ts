@@ -2,13 +2,14 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { IFamilia } from '../interfaces/ifamilia';
+import { environment } from 'src/environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FamiliaService {
 
-  url:string="http://localhost:8080/familia";
+  url:string=environment.URL_API+"familia";
 
   constructor(private http:HttpClient) { }
 

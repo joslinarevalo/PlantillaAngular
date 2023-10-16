@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Itipoplanta } from '../interfaces/ITipoPlanta';
+import { environment } from 'src/environments/environment.prod';
 
 
 @Injectable({
@@ -9,7 +10,7 @@ import { Itipoplanta } from '../interfaces/ITipoPlanta';
 })
 export class TipoplantaService {
 
-  url:string="http://localhost:8080/tipoplanta";
+  url:string=environment.URL_API+"tipoplanta";
 
   constructor(private http:HttpClient) { }
 

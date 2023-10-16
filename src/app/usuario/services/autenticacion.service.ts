@@ -7,14 +7,14 @@ import Swal from 'sweetalert2';
 import { Usuario } from '../models/Usuario';
 import { DatosClaveTemp, Email } from '../interfaces/Email';
 import { IUsuarioCorreo } from 'src/app/pages/usuario-c/interface/usuario.interface';
-
+import{environment} from "../../../environments/environment.prod"
 @Injectable({
   providedIn: 'root'
 })
 export class AutenticacionService {
   
-  private urlEndPoid: string = 'http://localhost:8080/login';
-  private urlEndPoid2: string = 'http://localhost:8080/correo';
+  private urlEndPoid: string = environment.URL_API+'login';
+  private urlEndPoid2: string = environment.URL_API+'correo';
   private httpHeaders = new HttpHeaders({'Content-Type':'application/json'});
   private _usuario: Usuario;
   private _token: string;

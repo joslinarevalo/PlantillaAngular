@@ -3,7 +3,8 @@ import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { map } from "rxjs/operators";
 import { ITipoCausa, TipoCausa } from "../models/TipoCausa";
-const urlEndPoint: string = "http://localhost:8080/tipoCausa";
+import { environment } from "src/environments/environment";
+const urlEndPoint: string = environment.URL_API+"tipoCausa";
 //listar
 @Injectable({
   providedIn: "root",
