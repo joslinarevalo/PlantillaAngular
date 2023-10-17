@@ -17,7 +17,7 @@ export interface IPlantaMostrar {
 }
 
 export interface IPlanta {
-  nombreCientificoPlanta: string;
+  nombreCientifico: string;
   descripcionPlanta:      string;
   tipoPlanta:       Itipoplanta;
   nombreComunPlanta:      string;
@@ -44,7 +44,7 @@ export interface IPlantaValid {
 }
 
 export interface IBuscarPlanta {
-  nombreCientificoPlanta: string;
+  nombreCientifico: string;
   descripcionPlanta: string;
   tipoPlanta: string;
   nombreComunPlanta: string;

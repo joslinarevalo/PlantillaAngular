@@ -20,11 +20,11 @@
                         </div>
                     </div>
 
-                    <div class="row" infiniteScroll 
-                    [infiniteScrollDistance]="2" 
+                    <div class="row" infiniteScroll
+                    [infiniteScrollDistance]="2"
                     [infiniteScrollThrottle]="30"
                         (scrolled)="onScroll()">
-                        <div class="col-xl-4 col-sm-6" *ngFor="let enfermedad of filtrarEnfermedad">
+                        <div class="col-xl-3 col-sm-6" *ngFor="let enfermedad of filtrarEnfermedad">
                             <div class="card enfermedad-card">
                                 <div class="card-body">
                                     <div class="product-img position-relative">
