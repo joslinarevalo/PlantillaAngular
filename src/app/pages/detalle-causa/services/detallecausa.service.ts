@@ -6,7 +6,7 @@ import { TipoCausa } from "../../causa-enfermedad/models/TipoCausa";
 import { catchError, map } from "rxjs/operators";
 import Swal from "sweetalert2";
 import { environment } from "src/environments/environment.prod";
-const urlEndPoint: string =environment.URL_API+ "DetalleCausa";
+const urlEndPoint: string =environment.URL_API+ "api/DetalleCausa";
 @Injectable({
   providedIn: "root",
 })

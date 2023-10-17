@@ -142,10 +142,6 @@
           (change)="SeleccionarImagen($event)" [ngClass]="esCampoValido('urlEnfermedad')" (input)="contarCaracteres('urlEnfermedad')"
           (input)="formularioEnfermedad.get('urlEnfermedad').setValue(capitalizeFirstLetter(formularioEnfermedad.get('urlEnfermedad').value))"/><!-- para poner la primera letra mayuscula -->
           <div id="contador">{{ mensaje['urlEnfermedad'] }}</div>
-        <div class="invalid-feedback">
-          <span *ngIf="formularioEnfermedad.get('urlEnfermedad')?.errors?.['required']">
-            Requiere una imagen de la enfermedad</span>
-        </div>
       </div>
       <br>
       <div class="mt-1 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 text-center">

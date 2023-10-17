@@ -31,7 +31,8 @@ export class FormularioComponent implements OnInit {
       this.imagenMostrar=this.imagen;
       this.formularioSerealizable.set('imagen',this.archivo);
     }
-    else{this.convertirImagen();
+    else{
+      this.convertirImagen();
       this.formularioTratamiento.controls['urlTratamiento'].setValue('No_imagen.jpg');
     }
 

@@ -48,7 +48,7 @@ export class EnfermedadComponent implements OnInit {
       sintomasEnfermedad: ['', [Validators.required, this.noSoloEspacios()]],
       condicionFavorableEnfermedad: ['', [Validators.required, this.noSoloEspacios()]],
       partesAfectadasEnfermedad: ['', [Validators.required, this.noSoloEspacios()]],
-      urlEnfermedad: ['', [Validators.required, this.noSoloEspacios()]]
+      urlEnfermedad: ['']
     });
   }
 
