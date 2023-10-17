@@ -25,7 +25,7 @@ export class AutenticacionService {
     ) { }
 
   ngOnInit(){
-    
+
   }
 
   public get usuario(): Usuario{
@@ -83,7 +83,7 @@ export class AutenticacionService {
     }else{
       return false;
     }
-     
+
   }
 
   tieneRol(roles:string[]): boolean{
@@ -96,7 +96,7 @@ export class AutenticacionService {
     }
     // Si no se encuentra ningún rol coincidente, devuelve false al final del bucle
     return false;
-    
+
   }
 
   elTokenExpiro(): boolean{
@@ -126,7 +126,7 @@ export class AutenticacionService {
     this._token = null;
     this._usuario = null;
     localStorage.clear();//se elimina todo lo que este en localStorage
-    /*//de esta otra forma se puede remover item por item 
+    /*//de esta otra forma se puede remover item por item
     sessionStorage.removeItem('token');
     sessionStorage.removeItem('usuario'); */
   }

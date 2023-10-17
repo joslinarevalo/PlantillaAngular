@@ -16,7 +16,6 @@
           formControlName="nombreCientifico"
           [ngClass]="esCampoValido('nombreCientifico')"
           (input)="contarCaracteres('nombreCientifico')"
-
         />
         <!--<div id="contador">{{ mensaje['nombreCientifico'] }}</div>(input)="contarCaracteres('nombreCientifico')"-->
         <div id="contador" >{{ mensaje['nombreCientifico'] }}</div>
@@ -57,6 +56,7 @@
           id="idFamilia"
           formControlName="idFamilia"
           [ngClass]="esCampoValido('idFamilia')"
+          placeholder="Selecciona una familia"
         >
           <ng-option
             *ngFor="let familia of listFamilia"
@@ -82,8 +82,9 @@
           id="idTipoPlanta"
           formControlName="idTipoPlanta"
           [ngClass]="esCampoValido('idTipoPlanta')"
+          placeholder="Selecciona un tipo de planta"
         >
-          <ng-option
+          <ng-option disabled selected
             *ngFor="let tipoP of listTipoPlanta"
             [value]="tipoP.idTipoPlanta"
             >{{ tipoP.tipoPlanta }}</ng-option
@@ -108,7 +109,7 @@
           id="descripcion"
           formControlName="descripcion"
           [ngClass]="esCampoValido('descripcion')"
-          
+          (input)="contarCaracteres('descripcion')"
         ></textarea>
         <div id="contador" >{{ mensaje['descripcion'] }}</div>
         <div class="invalid-feedback">

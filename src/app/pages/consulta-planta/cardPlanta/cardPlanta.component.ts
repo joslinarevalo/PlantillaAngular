@@ -14,8 +14,8 @@ export class CardPlantaComponent implements OnInit {
   @Input() planta: IBuscarPlanta;
   imagen: any;
   detallesCausa:any;
-  @Input() detallePlantaPreview: any; 
-  
+  @Input() detallePlantaPreview: any;
+
   constructor(
     private servicePlanta: PlantaService,
     private router: Router,
@@ -25,7 +25,7 @@ export class CardPlantaComponent implements OnInit {
   ngOnInit() {
    this.cargaImagen();
   }
- 
+
   cargaImagen() {
     // Cargar la imagen directamente en this.planta
     this.servicePlanta.getImagen(this.planta.urlPlanta).subscribe((resp) => {
@@ -33,7 +33,7 @@ export class CardPlantaComponent implements OnInit {
       this.imagen = this.dm.bypassSecurityTrustUrl(url);
       this.planta.imagen = this.imagen; // Asignar la imagen a this.planta
     });
-    console.log("planta",this.planta.nombreCientificoPlanta);
+    console.log("planta",this.planta.nombreCientifico);
   }
   ObtenerImagen(url: string) {
     this.servicePlanta.getImagen(url).subscribe((resp) => {

@@ -14,7 +14,7 @@ export class DetallecausaService {
 
   private httpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' });
   constructor(private http: HttpClient) {}
- 
+
   listaenfermedad(): Observable<Enfermedad[]> {
     return this.http.get<Enfermedad[]>(urlEndPoint + "/enfermedad");
   }
@@ -32,7 +32,7 @@ export class DetallecausaService {
   getDetalle(): Observable<DetalleCausa[]> {
     return this.http.get<DetalleCausa[]>(urlEndPoint + "/listar");
   }
- 
+
   eliminar(id: String): Observable<DetalleCausa> {
     return this.http.delete<DetalleCausa>(`${urlEndPoint + "/eliminar"}/${id}`);
   }
@@ -49,7 +49,7 @@ export class DetallecausaService {
 
           console.error(e.error.mensaje);
          Swal.fire(e.error.mensaje, e.error.error, 'error');
-       
+
           return throwError(e);
         })
       );
@@ -62,18 +62,18 @@ export class DetallecausaService {
     update(detalle: DetalleCausa): Observable<any> {
       return this.http.put<any>(`${urlEndPoint}/${detalle.idDetalleCausa}`, detalle, { headers: this.httpHeaders }).pipe(
         catchError(e => {
-  
+
           if (e.status == 400) {
             return throwError(e);
           }
-  
+
           console.error(e.error.mensaje);
           Swal.fire(e.error.mensaje, e.error.error, 'error');
           return throwError(e);
         })
       );
     }
-    
+
     retornarImagen(urlImagen:string):Observable<Blob>{
       return this.http.get<Blob>(urlEndPoint+"imagen/"+urlImagen);
     }
