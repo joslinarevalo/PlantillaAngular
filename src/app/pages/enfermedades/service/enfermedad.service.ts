@@ -3,12 +3,13 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { IEnfermedad } from '../interfaces/IEnfermedad';
 import { map } from 'rxjs/operators';
+import { environment } from 'src/environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EnfermedadService {
-  private urlAPI:string="http://localhost:8080/enfermedad/";
+  private urlAPI:string=environment.URL_API+"enfermedad/";
 
   constructor(
     private http:HttpClient) { }

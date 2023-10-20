@@ -12,6 +12,10 @@
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* Agrega una sombra suave al pasar el cursor */
     transform: scale(1.01); /* Escala la tarjeta ligeramente al pasar el cursor */
     transition: box-shadow 0.3s, transform 0.3s; /* Agrega una transición suave para el efecto */
+    background-color: #faeaea;
+  }
+  .product-card {
+    background-color: #eaf9fa;
   }
   .product-img img {
     max-width: 100%; /* Establece el ancho máximo para que las imágenes no se extiendan más allá de su contenedor */
@@ -21,4 +25,3 @@
   .color {
     border: 1px solid #000;
   }
-  

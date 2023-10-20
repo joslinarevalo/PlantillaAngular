@@ -3,13 +3,14 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { IPlanta, IPlantaMostrar } from '../interface/iplanta';
 import { map } from 'rxjs/operators';
+import { environment } from 'src/environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PlantaService {
 
-  urlPlanta:string="http://localhost:8080/planta/";
+  urlPlanta:string=environment.URL_API+"planta/";
   //http://localhost:8080/planta/contarPlantas
 
   constructor(private http:HttpClient) { }

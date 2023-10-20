@@ -2,12 +2,13 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { IRoles, IUsuarioMostrar, IUsuarioValid } from '../interface/usuario.interface';
+import { environment } from 'src/environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsuarioServiceService {
-  urlUsuario:string="http://localhost:8080/usuario/";
+  urlUsuario:string=environment.URL_API+"usuario/";
   constructor(private http:HttpClient) { }
   listaDeUsuarios():Observable<IUsuarioMostrar[]>{
     return this.http.get<IUsuarioMostrar[]>(this.urlUsuario+"lista");
