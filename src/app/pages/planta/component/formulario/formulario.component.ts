@@ -68,8 +68,8 @@ export class FormularioComponent implements OnInit {
         idFamilia: this.formularioPlanta.controls['idFamilia'].value,
         idTipoPlanta: this.formularioPlanta.controls['idTipoPlanta'].value,
         nombreCientifico: this.formularioPlanta.controls['nombreCientifico'].value,
-        descripcion: this.formularioPlanta.controls['descripcion'].value,
-        nombreComun: this.formularioPlanta.controls['nombreComun'].value,
+        descripcionPlanta: this.formularioPlanta.controls['descripcionPlanta'].value,
+        nombreComunPlanta: this.formularioPlanta.controls['nombreComunPlanta'].value,
         historia: this.formularioPlanta.controls['historia'].value,
         urlPlanta: this.formularioPlanta.controls['urlPlanta'].value,
       };
@@ -96,8 +96,8 @@ export class FormularioComponent implements OnInit {
         idTipoPlanta: this.formularioPlanta.controls['idTipoPlanta'].value,
         idPlanta:this.formularioPlanta.controls['idPlanta'].value,
         nombreCientifico: this.formularioPlanta.controls['nombreCientifico'].value,
-        descripcion: this.formularioPlanta.controls['descripcion'].value,
-        nombreComun: this.formularioPlanta.controls['nombreComun'].value,
+        descripcionPlanta: this.formularioPlanta.controls['descripcionPlanta'].value,
+        nombreComunPlanta: this.formularioPlanta.controls['nombreComunPlanta'].value,
         historia: this.formularioPlanta.controls['historia'].value,
         urlPlanta: this.formularioPlanta.controls['urlPlanta'].value,
       };
@@ -219,5 +219,13 @@ export class FormularioComponent implements OnInit {
      console.log('Imagen convertida a File:', archivo);
       this.formularioSerealizable.set('imagen',archivo);
       });
+      }
+
+      capitalizeFirstLetter(input: string): string {
+        if (input) {
+          return input.charAt(0).toUpperCase() + input.slice(1);
+        } else {
+          return input;
+        }
       }
 }
