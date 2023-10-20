@@ -6,15 +6,18 @@
     <div class="row">
       <div class="mt-1">
         <label class="control-label">Nombre <span class="required"></span>
-          <span class="info-icon" data-title="información">?</span> <!-- Icono de información -->
+          <span class="info-icon" data-title="Agregue un tipo de planta Ej. Cereales, Leguminosas.">?</span> <!-- Icono de información -->
         </label>
         <input
-          class="form-control"
+          class="form-control text-capitalize"
           type="text"
           id="tipoPlanta"
           formControlName="tipoPlanta"
           [ngClass]="esCampoValido('tipoPlanta')"
+          (input)="contarCaracteres('tipoPlanta')"
+          (input)="formularioTipoPlanta.get('tipoPlanta').setValue(capitalizeFirstLetter(formularioTipoPlanta.get('tipoPlanta').value))"
         />
+        <div id="contador" >{{ mensaje['tipoPlanta'] }}</div>
         <div class="invalid-feedback">
           <span
             *ngIf="formularioTipoPlanta.get('tipoPlanta')?.errors?.['required']"

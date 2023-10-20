@@ -63,7 +63,13 @@ export class NuevoComponent implements OnInit {
       });
     }
   }
-
+  capitalizeFirstLetter(input: string): string {
+    if (input) {
+      return input.charAt(0).toUpperCase() + input.slice(1);
+    } else {
+      return input;
+    }
+  }
   modificar() {
     if (this.formulario_valido()) {
       console.log("formulario", this.formularioCausa);
