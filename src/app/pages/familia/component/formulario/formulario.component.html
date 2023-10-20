@@ -6,7 +6,7 @@
     <div class="row">
       <div class="mt-1">
         <label class="control-label">Nombre<span class="required"></span>
-          <span class="info-icon" data-title="información">?</span> <!-- Icono de información -->
+          <span class="info-icon" data-title="Agregue una familia Ej. Aceraceae, Caprifoliaceae ">?</span> <!-- Icono de información -->
         </label>
         <input
           class="form-control"
@@ -14,7 +14,10 @@
           id="nombreFamilia"
           formControlName="nombreFamilia"
           [ngClass]="esCampoValido('nombreFamilia')"
+          (input)="contarCaracteres('nombreFamilia')"
+          (input)="formularioFamilia.get('nombreFamilia').setValue(capitalizeFirstLetter(formularioFamilia.get('nombreFamilia').value))"
         />
+        <div id="contador" >{{ mensaje['nombreFamilia'] }}</div>
         <div class="invalid-feedback">
           <span
             *ngIf="formularioFamilia.get('nombreFamilia')?.errors?.['required']"

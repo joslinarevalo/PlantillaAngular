@@ -3,6 +3,7 @@ import { IFamilia } from '../../interfaces/ifamilia';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormGroup } from '@angular/forms';
 import Swal from 'sweetalert2';
+import { FamiliaService } from '../../service/familia.service';
 
 @Component({
   selector: 'app-formulario',
@@ -17,10 +18,15 @@ export class FormularioComponent implements OnInit {
   @Output()ObjetoGuardar= new EventEmitter<IFamilia>();
   @Output()ObjetoModificar= new EventEmitter<IFamilia>();
   familia!:IFamilia;
+  contador: number = 0;
+  porcentajeCompletado: number = 0;
+  longitudesDeCampos: any = {};
+  mensaje: { [key: string]: string } = {};
 
-  constructor() { }
+  constructor(private serviceFamilia:FamiliaService) { }
 
   ngOnInit(): void {
+    this.obtenerLongitudesCampos();
   }
 
   cerrarModal(){
@@ -84,6 +90,48 @@ export class FormularioComponent implements OnInit {
       );
     }
     return estado;
+  }
+
+  contarCaracteres(idInput:String) {
+    const textarea = document.getElementById(""+idInput) as HTMLTextAreaElement;
+    let limiteCaracteres = 0;
+
+    if (this.longitudesDeCampos.hasOwnProperty(idInput+"")) {
+      limiteCaracteres = this.longitudesDeCampos[idInput+""];
+      console.log("si: " +this.longitudesDeCampos)
+      console.log(`Campo: ${idInput}, Valor: ${limiteCaracteres}`);
+    } else {
+      console.log("no: " +this.longitudesDeCampos)
+      console.log(`Campo "${idInput}" no encontrado en fieldLengths`);
+    }
+
+    this.contador = textarea.value.length;
+    if(this.contador > limiteCaracteres){
+      this.contador = textarea.value.length-1;
+    }
+
+    if (this.contador >= limiteCaracteres) {
+      textarea.value = textarea.value.substring(0, limiteCaracteres);
+      this.mensaje[idInput+""] = `Se ha alcanzado el límite de caracteres permitidos`;
+    }else{
+      this.mensaje[idInput+""] = `${this.contador} caracteres de ${limiteCaracteres} permitidos`;
+    }
+  }
+
+  obtenerLongitudesCampos() {
+    this.serviceFamilia.longitudCampos().subscribe((lista) => {
+      this.longitudesDeCampos = lista;
+
+      console.log(this.longitudesDeCampos);
+    });
+  }
+
+  capitalizeFirstLetter(input: string): string {
+    if (input) {
+      return input.charAt(0).toUpperCase() + input.slice(1);
+    } else {
+      return input;
+    }
   }
 
 }

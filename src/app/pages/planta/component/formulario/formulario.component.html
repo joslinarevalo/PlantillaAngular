@@ -7,17 +7,17 @@
 
       <div class="mt-1 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
         <label class="control-label">Nombre Científico <span class="required"></span>
-          <span class="info-icon" data-title="En este campo se agregue el nombre Científico de la planta.">?</span> <!-- Icono de información -->
+          <span class="info-icon" data-title="Agregue el nombre científico de la planta Ej. Solanum lycopersicum.">?</span> <!-- Icono de información -->
         </label>
         <input
-          class="form-control text-capitalize"
+          class="form-control"
           type="text"
           id="nombreCientifico"
           formControlName="nombreCientifico"
           [ngClass]="esCampoValido('nombreCientifico')"
           (input)="contarCaracteres('nombreCientifico')"
+          (input)="formularioPlanta.get('nombreCientifico').setValue(capitalizeFirstLetter(formularioPlanta.get('nombreCientifico').value))"
         />
-        <!--<div id="contador">{{ mensaje['nombreCientifico'] }}</div>(input)="contarCaracteres('nombreCientifico')"-->
         <div id="contador" >{{ mensaje['nombreCientifico'] }}</div>
         <div class="invalid-feedback">
           <span
@@ -29,16 +29,18 @@
 
       <div class="mt-1 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
         <label class="control-label">Nombre Comun <span class="required"></span>
-          <span class="info-icon" data-title="En este campo agregue el nombre común de la planta.">?</span> <!-- Icono de información -->
+          <span class="info-icon" data-title="Agregue el nombre común de la planta Ej. Tomate.">?</span> <!-- Icono de información -->
         </label>
         <input
           class="form-control text-capitalize"
           type="text"
-          id="nombreComun"
-          formControlName="nombreComun"
-          [ngClass]="esCampoValido('nombreComun')"
+          id="nombreComunPlanta"
+          formControlName="nombreComunPlanta"
+          [ngClass]="esCampoValido('nombreComunPlanta')"
+          (input)="contarCaracteres('nombreComunPlanta')"
+          (input)="formularioPlanta.get('nombreComunPlanta').setValue(capitalizeFirstLetter(formularioPlanta.get('nombreComunPlanta').value))"
         />
-        <!--<div id="contador">{{ mensaje['nombreComun'] }}</div> (input)="contarCaracteres('nombreComun')"-->
+        <div id="contador" >{{ mensaje['nombreComunPlanta'] }}</div>
         <div class="invalid-feedback">
           <span
             *ngIf="formularioPlanta.get('nombreComun')?.errors?.['required']"
@@ -106,15 +108,16 @@
         <textarea
           class="form-control"
           type="text"
-          id="descripcion"
-          formControlName="descripcion"
-          [ngClass]="esCampoValido('descripcion')"
-          (input)="contarCaracteres('descripcion')"
+          id="descripcionPlanta"
+          formControlName="descripcionPlanta"
+          [ngClass]="esCampoValido('descripcionPlanta')"
+          (input)="contarCaracteres('descripcionPlanta')"
+          (input)="formularioPlanta.get('descripcionPlanta').setValue(capitalizeFirstLetter(formularioPlanta.get('descripcionPlanta').value))"
         ></textarea>
-        <div id="contador" >{{ mensaje['descripcion'] }}</div>
+        <div id="contador" >{{ mensaje['descripcionPlanta'] }}</div>
         <div class="invalid-feedback">
           <span
-            *ngIf="formularioPlanta.get('descripcion')?.errors?.['required']"
+            *ngIf="formularioPlanta.get('descripcionPlanta')?.errors?.['required']"
             >Requiere una descripcion de la Planta</span
           >
         </div>
@@ -122,7 +125,7 @@
 
       <div class="col-md-12">
         <label class="control-label">Historia de la planta <span class="required"></span>
-          <span class="info-icon" data-title="En este campo agregue una historia sobre la planta.">?</span> <!-- Icono de información -->
+          <span class="info-icon" data-title="En este campo agregue un poco sobre historia de la planta.">?</span> <!-- Icono de información -->
         </label>
         <textarea
           class="form-control"
@@ -131,6 +134,7 @@
           formControlName="historia"
           [ngClass]="esCampoValido('historia')"
           (input)="contarCaracteres('historia')"
+          (input)="formularioPlanta.get('historia').setValue(capitalizeFirstLetter(formularioPlanta.get('historia').value))"
         ></textarea>
         <div id="contador" >{{ mensaje['historia'] }}</div>
         <div class="invalid-feedback">
@@ -200,7 +204,7 @@
         aria-hidden="true"
         (click)="cerrarModal()"
       >
-        <i class="dripicons-cross"></i>cerrar
+        <i class="dripicons-cross"></i>Cerrar
       </button>
     </div>
   </form>

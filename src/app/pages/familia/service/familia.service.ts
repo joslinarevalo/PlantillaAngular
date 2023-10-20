@@ -29,4 +29,8 @@ export class FamiliaService {
     return this.http.delete(`${this.url}/eliminar/${id.idfamilia}`);
   }
 
+  longitudCampos():Observable<any>{
+    return this.http.get<any>(this.url+"/longitudCampos");
+  }
+
 }

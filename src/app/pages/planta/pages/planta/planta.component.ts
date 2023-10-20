@@ -64,10 +64,10 @@ export class PlantaComponent implements OnInit {
     return this.fb.group({
       idPlanta: [''],
       nombreCientifico: ['', [Validators.required, this.noSoloEspacios()]],
-      nombreComun: ['', [Validators.required, this.noSoloEspacios()]],
+      nombreComunPlanta: ['', [Validators.required, this.noSoloEspacios()]],
       idFamilia: ['', [Validators.required, this.noSoloEspacios()]],
       idTipoPlanta: ['', [Validators.required, this.noSoloEspacios()]],
-      descripcion: ['', [Validators.required, this.noSoloEspacios()]],
+      descripcionPlanta: ['', [Validators.required, this.noSoloEspacios()]],
       historia: ['', [Validators.required, this.noSoloEspacios()]],
       urlPlanta: ['', [Validators.required, this.noSoloEspacios()]],
 

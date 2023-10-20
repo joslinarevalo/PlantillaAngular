@@ -18,9 +18,9 @@
 
         <td >{{i+1}}</td>
         <td>{{planta.nombreCientifico}}</td>
-        <td>{{planta.nombreComun}}</td>
+        <td>{{planta.nombreComunPlanta}}</td>
         <td>{{planta.nombreFamilia}}</td>
-        <td class="truncate-text">{{planta.descripcion}}</td>
+        <td class="truncate-text">{{planta.descripcionPlanta}}</td>
         <td class="truncate-text">{{planta.historia}}</td>
         <td>{{planta.tipoPlanta}}</td>
         <td><img width="100px" height="100px" class="img-fluid" [src]="planta.imagen"></td>
@@ -50,12 +50,12 @@
         </div>
         <div class="col-md-7">
           <p><strong>Nombre científico de la planta:</strong> {{ planta.nombreCientifico }}</p>
-          <p><strong>Nombre común de la planta:</strong> {{ planta.nombreComun }}</p>
+          <p><strong>Nombre común de la planta:</strong> {{ planta.nombreComunPlanta }}</p>
           <p><strong>Familia de la planta:</strong> {{ planta.nombreFamilia }}</p>
           <p><strong>Tipo de planta:</strong> {{ planta.tipoPlanta }}</p>
         </div>
         <div class="col-md-12 mt-4" style="text-align: justify;">
-          <p><strong>Descripción:</strong> {{ planta.descripcion }}</p>
+          <p><strong>Descripción:</strong> {{ planta.descripcionPlanta }}</p>
           <p><strong>Historia:</strong> {{ planta.historia }}</p>
         </div>
 

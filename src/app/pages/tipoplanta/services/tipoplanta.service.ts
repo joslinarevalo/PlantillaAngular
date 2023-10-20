@@ -30,4 +30,8 @@ export class TipoplantaService {
     return this.http.delete(`${this.url}/eliminar/${id.idTipoPlanta}`);
   }
 
+  longitudCampos():Observable<any>{
+    return this.http.get<any>(this.url+"/longitudCampos");
+  }
+
 }
