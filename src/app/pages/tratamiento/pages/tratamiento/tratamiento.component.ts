@@ -12,6 +12,7 @@ import {
   mensajeError,
   mensajeExito,
 } from "src/app/pages/models/funciones.global";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-tratamiento",
@@ -33,7 +34,8 @@ export class TratamientoComponent implements OnInit {
     public modalService: NgbModal,
     private serviceTratamiento: TratamientoService,
     private dm: DomSanitizer,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private router: Router,
   ) {}
 
   ngOnInit(): void {
@@ -204,5 +206,11 @@ export class TratamientoComponent implements OnInit {
     } else {
       return miArchivo;
     }
+  }
+  recargar() {
+    let currentUrl = this.router.url;
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+    this.router.onSameUrlNavigation = "reload";
+    this.router.navigate([currentUrl]);
   }
 }
