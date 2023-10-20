@@ -125,6 +125,10 @@ button,a {
   background-color: #903B28;
   color: white;
 }
+.btnacerca{
+  color: white;
+  width: 70px;
+}
 .required::before {
   content: "*";
   color: red;
@@ -252,7 +256,6 @@ button,a {
   position: relative;
   cursor: pointer;
 }
-/* (Fin) Estilos para el mensaje emergente (tooltip) */
 
 
 
@@ -290,5 +293,10 @@ button,a {
     background-color: #3388B8;
     color: white;
     width: 70px;
+}
+.btnacerca{
+  
+  color: white;
+  width: 5px;
 }
 }
