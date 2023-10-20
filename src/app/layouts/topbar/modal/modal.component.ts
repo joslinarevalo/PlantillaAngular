@@ -13,12 +13,11 @@ export class ModalComponent implements OnInit {
 
 
   usuarios:IUsuarioMostrar;
-  ident:IUsuarioMostrar
+  ident:IUsuarioMostrar;
   constructor(private modalService: NgbModal, private usuarioService:UsuarioServiceService,
     public autenticacionService: AutenticacionService) { }
 
   ngOnInit() {
-    //this.listausuarios();
     this.obtenerussuario();
   }
 
@@ -33,10 +32,8 @@ export class ModalComponent implements OnInit {
       this.usuarioService.buscarUsuarioU(user).subscribe(
         (data) => {
           this.ident = data;
-          console.log("identificador:"+ this.ident.nombre)
         },
         (error) => {
-          console.error("Error al obtener el usuario:", error);
         });
     }else{
 

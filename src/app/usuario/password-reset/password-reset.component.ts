@@ -90,7 +90,7 @@ export class PasswordResetComponent implements OnInit {
       //validar que el correo ingresado exista en la bd
       this.autenticacionService.buscarUserEmail(this.usuario).subscribe(
         (response) => {
-          console.log(this.usuario);
+          //console.log(this.usuario);
 
           this.email = {
             destinatarios: [this.resetForm.controls['correo'].value],
@@ -117,13 +117,13 @@ export class PasswordResetComponent implements OnInit {
               );
             },
             (error) => {
-              console.error('Error al enviar la solicitud', error);
+              //console.error('Error al enviar la solicitud', error);
               Swal.fire('Error al enviar la solicitud', `Por favor verifique que el correo ingresado sea el correcto `, 'error');
             }
           );
         },
         (error) => {
-          console.error('Error al enviar la solicitud', error);
+          //console.error('Error al enviar la solicitud', error);
           Swal.fire('Error al enviar la solicitud', `El correo electrónico ingresado no esta registrado en el sistema `, 'error');
         }
       );

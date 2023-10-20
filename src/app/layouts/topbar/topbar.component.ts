@@ -10,6 +10,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { AutenticacionService } from 'src/app/usuario/services/autenticacion.service';
 import Swal from 'sweetalert2';
 import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-topbar',
@@ -40,11 +41,11 @@ export class TopbarComponent implements OnInit {
               public translate: TranslateService,
               public _cookiesService: CookieService,
               public autenticacionService: AutenticacionService,
-              public modalService:NgbModal) {
+              public modalService:NgbModal,
+              ) {
   }
 
   openModal(content: any) {
-
     this.modalService.open(content, this.modalOptions);
   }
   acercaDe() {
