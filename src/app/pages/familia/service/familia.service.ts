@@ -2,13 +2,14 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { IFamilia } from '../interfaces/ifamilia';
+import { environment } from 'src/environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FamiliaService {
 
-  url:string="http://localhost:8080/familia";
+  url:string=environment.URL_API+"familia";
 
   constructor(private http:HttpClient) { }
 
@@ -26,6 +27,10 @@ export class FamiliaService {
 
   eliminarFamilia(id : IFamilia):Observable<any>{
     return this.http.delete(`${this.url}/eliminar/${id.idfamilia}`);
+  }
+
+  longitudCampos():Observable<any>{
+    return this.http.get<any>(this.url+"/longitudCampos");
   }
 
 }

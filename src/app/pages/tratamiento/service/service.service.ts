@@ -7,12 +7,14 @@ import {
 } from "../interface/tratamiento.interface";
 import { Observable } from "rxjs";
 import { map } from "rxjs/operators";
+import{environment} from "../../../../environments/environment.prod"
 
 @Injectable({
   providedIn: "root",
 })
 export class TratamientoService {
-  urlTratamiento: string = "http://localhost:8080/tratamiento/";
+  
+  urlTratamiento: string = environment.URL_API+"tratamiento/";
   constructor(private http: HttpClient) {}
   listaDeTratamiento(): Observable<ITratamientoMostrar[]> {
     return this.http.get<ITratamientoMostrar[]>(this.urlTratamiento + "listar");

@@ -3,9 +3,9 @@ import { Itipoplanta } from "../../tipoplanta/interfaces/ITipoPlanta";
 
 export interface IPlantaMostrar {
   nombreCientifico: string;
-  descripcion:      string;
+  descripcionPlanta:      string;
   tipoPlanta:       string;
-  nombreComun:      string;
+  nombreComunPlanta:      string;
   historia:         string;
   idTipoPlanta:     string;
   nombreFamilia:    string;
@@ -17,7 +17,7 @@ export interface IPlantaMostrar {
 }
 
 export interface IPlanta {
-  nombreCientificoPlanta: string;
+  nombreCientifico: string;
   descripcionPlanta:      string;
   tipoPlanta:       Itipoplanta;
   nombreComunPlanta:      string;
@@ -32,8 +32,8 @@ export interface IPlanta {
 
 export interface IPlantaValid {
   nombreCientifico?: string;
-  descripcion?:      string;
-  nombreComun?:      string;
+  descripcionPlanta?:      string;
+  nombreComunPlanta?:      string;
   historia?:         string;
   idTipoPlanta?:     string;
   idPlanta?:         string;
@@ -44,7 +44,7 @@ export interface IPlantaValid {
 }
 
 export interface IBuscarPlanta {
-  nombreCientificoPlanta: string;
+  nombreCientifico: string;
   descripcionPlanta: string;
   tipoPlanta: string;
   nombreComunPlanta: string;

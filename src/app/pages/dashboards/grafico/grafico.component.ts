@@ -34,7 +34,7 @@ export class GraficoComponent implements OnInit {
 
       this.barChartOptions = {
         title: {
-          text: "CANTIDAD DE ENFERMEDADES POR TIPO DE CAUSA",
+          text: "",
           left: "center",
         },
         xAxis: {
@@ -43,12 +43,12 @@ export class GraficoComponent implements OnInit {
           name: "Tipos de Causa",
           axisLabel: {
             interval: 0, // Muestra todas las etiquetas
-            rotate: 0,   // Rotación de etiquetas en grados (0 para horizontal)
+            rotate: 0, // Rotación de etiquetas en grados (0 para horizontal)
           },
         },
         yAxis: {
           type: "value",
-          name: "Cantidad de Enfermedades", 
+          name: "Cantidad de Enfermedades",
         },
         series: [
           {

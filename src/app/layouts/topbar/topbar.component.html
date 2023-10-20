@@ -42,28 +42,32 @@
       </button>
     </div>
 
-    <div class="constainer d-flex">
-      <div class="dropdown d-inline-block" ngbDropdown>
-        <button type="button" class="btn header-item">
-          <span class="d-none d-xl-inline-block ms-1" (click)="acercaDe()"
-            >Acerca de
-          </span>
-        </button>
-        <button type="button" class="btn header-item">
-          <span class="d-none d-xl-inline-block ms-1">Manual </span>
-        </button>
+    <div class="container d-flex justify-content-end">
+      <div class="">
+
         <button
-          *ngIf="autenticacionService.isAuthenticated()"
           type="button"
-          class="btn header-item"
-          id="page-header-user-dropdown"
-          ngbDropdownToggle
+          class="btn d-md-inline-block text-light"
+          (click)="acercaDe()"
         >
-          <span class="d-none d-xl-inline-block ms-1">{{
-            autenticacionService.usuario.usuario
-          }}</span>
-          <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
+          <span>Acerca de</span>
         </button>
+      </div>
+      <div class="dropdown" ngbDropdown>
+        <div class="">
+
+          <button
+            *ngIf="autenticacionService.isAuthenticated()"
+            type="button"
+            class="btn d-md-inline-block text-light"
+            ngbDropdownToggle
+            id="page-header-user-dropdown"
+          >
+            <span>{{ autenticacionService.usuario.usuario }}</span>
+            <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
+          </button>
+        </div>
+
         <div
           *ngIf="autenticacionService.isAuthenticated()"
           class="dropdown-menu dropdown-menu-end"
@@ -77,10 +81,7 @@
             ><i class="bx bx-user font-size-16 align-middle me-1"></i>
             {{ "Mi perfil" | translate }}</a
           >
-          <a class="dropdown-item" href="javascript: void(0);"
-            ><i class="bx bx-lock-open font-size-16 align-middle me-1"></i>
-            {{ "HEADER.LOGIN.LOCK_SCREEN" | translate }}</a
-          >
+
           <div class="dropdown-divider"></div>
           <a
             class="dropdown-item text-danger"

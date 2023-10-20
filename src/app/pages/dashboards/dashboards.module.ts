@@ -16,10 +16,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { GraficoComponent } from './grafico/grafico.component';
 import { NgxEchartsModule } from 'ngx-echarts';
-import { AcercadeComponent } from './Acercade/Acercade.component';
 
 @NgModule({
-  declarations: [DefaultComponent,GraficoComponent,AcercadeComponent],
+  declarations: [DefaultComponent,GraficoComponent],
   imports: [
     CommonModule,
     FormsModule,

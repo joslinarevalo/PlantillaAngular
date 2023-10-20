@@ -31,14 +31,20 @@
   aria-hidden="true"
 >
   <ng-template #content role="document" let-modal>
-    <h5 class="cajaModal text-center mt-4 texto-mayusculas">{{ leyenda }} Detalle de Causa</h5>
+    <h5 class="cajaModal text-center mt-4 texto-mayusculas">
+      {{ leyenda }} Detalle de Causa
+    </h5>
     <div class="modal-body">
       <form (ngSubmit)="guardar()" [formGroup]="formularioDetalleCausa">
         <div class="row">
           <div class="col-md-6">
             <div class="form-group mt-2">
-              <label for="descripcausa">Planta <span class="required"></span>
-                <span class="info-icon" data-title="información">?</span> <!-- Icono de información -->
+              <label for="descripcausa"
+                >Planta <span class="required"></span>
+                <span class="info-icon" data-title="Seleccione una planta"
+                  >?</span
+                >
+                <!-- Icono de información -->
               </label>
               <ng-select
                 [items]="listaPlanta"
@@ -46,7 +52,9 @@
                 placeholder="Seleccione"
                 formControlName="planta"
                 [class]="esCampoValido('planta')"
-                [ngModel]=" detalledto != null ? detalledto.planta.nombreComunPlanta : ''"
+                [ngModel]="
+                  detalledto != null ? detalledto.planta.nombreComunPlanta : ''
+                "
                 (ngModelChange)="SeleccionadaSelectId($event, 'planta')"
               ></ng-select>
               <div class="invalid-feedback">
@@ -59,8 +67,12 @@
               </div>
             </div>
             <div class="form-group mt-2">
-              <label for="descripcausa">Enfermedad <span class="required"></span>
-                <span class="info-icon" data-title="información">?</span> <!-- Icono de información -->
+              <label for="descripcausa"
+                >Enfermedad <span class="required"></span>
+                <span class="info-icon" data-title="Seleccione una enfermedad"
+                  >?</span
+                >
+                <!-- Icono de información -->
               </label>
               <ng-select
                 [items]="listEnfermedad"
@@ -86,8 +98,12 @@
             </div>
 
             <div class="form-group mt-2">
-              <label for="descripcausa">Tipo Causa <span class="required"></span>
-                <span class="info-icon" data-title="información">?</span> <!-- Icono de información -->
+              <label for="descripcausa"
+                >Tipo Causa <span class="required"></span>
+                <span class="info-icon" data-title="Seleccione un tipo de causa"
+                  >?</span
+                >
+                <!-- Icono de información -->
               </label>
               <ng-select
                 [items]="listTipoCausa"
@@ -112,8 +128,14 @@
           </div>
           <div class="col-md-6">
             <div class="form-group mt-2">
-              <label for="descripcausa">Descripción de la causa <span class="required"></span>
-                <span class="info-icon" data-title="información">?</span> <!-- Icono de información -->
+              <label for="descripcausa"
+                >Descripción de la causa <span class="required"></span>
+                <span
+                  class="info-icon"
+                  data-title="Escriba una descripción que este relacionada con la planta y sus enfermedades "
+                  >?</span
+                >
+                <!-- Icono de información -->
               </label>
               <textarea
                 class="form-control"
@@ -139,10 +161,10 @@
 
           <div class="text-center mb-3 mt-2">
             <!-- Centrar los botones y agregar espacio inferior -->
-            <button type="submit" class="btn btnguardarModal" >
-              <i class="fas fa-check">  </i>  Guardar
+            <button type="submit" class="btn btnguardarModal">
+              <i class="fas fa-check"> </i> Guardar
             </button>
-            
+
             <span class="mx-2"></span>
             <!-- Agregar un espacio horizontal entre los botones -->
             <button
@@ -150,8 +172,8 @@
               class="btn btnCerrar"
               aria-hidden="true"
               (click)="modal.dismiss('Cross click')"
-             >
-              <i class=" dripicons-cross" > </i>  Cerrar
+            >
+              <i class="dripicons-cross"> </i> Cerrar
             </button>
           </div>
         </div>

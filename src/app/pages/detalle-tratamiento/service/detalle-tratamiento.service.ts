@@ -2,12 +2,13 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { IDetalleCausaDTO, IDetalleTratamientoDTOMostrar, IDetalleTratamientoDTOValid } from '../interface/detalleTratamiento.interface';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DetalleTratamientoService {
-  urlTratamiento:string="http://localhost:8080/detalleTratamiento/";
+  urlTratamiento:string= environment.URL_API+"detalleTratamiento/";
   constructor(private http:HttpClient) { }
   listaDetalleTratamiento():Observable<IDetalleTratamientoDTOMostrar[]>{
     return this.http.get<IDetalleTratamientoDTOMostrar[]>(this.urlTratamiento+"lista");
