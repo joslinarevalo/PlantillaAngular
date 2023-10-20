@@ -44,7 +44,7 @@
 
     <div class="container d-flex justify-content-end">
       <div class="">
-        
+
         <button
           type="button"
           class="btn d-md-inline-block text-light"
@@ -55,7 +55,7 @@
       </div>
       <div class="dropdown" ngbDropdown>
         <div class="">
-         
+
           <button
             *ngIf="autenticacionService.isAuthenticated()"
             type="button"
@@ -81,10 +81,7 @@
             ><i class="bx bx-user font-size-16 align-middle me-1"></i>
             {{ "Mi perfil" | translate }}</a
           >
-          <a class="dropdown-item" href="javascript: void(0);"
-            ><i class="bx bx-lock-open font-size-16 align-middle me-1"></i>
-            {{ "HEADER.LOGIN.LOCK_SCREEN" | translate }}</a
-          >
+
           <div class="dropdown-divider"></div>
           <a
             class="dropdown-item text-danger"
@@ -107,4 +104,6 @@
     </div>
   </div>
 </header>
-<ng-template #content role="document" let-modal> </ng-template>
+<ng-template #content role="document" let-modal>
+  <app-modal></app-modal>
+</ng-template>
