@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  URL_API:'http://35.174.15.233:8086/',
+  URL_API:'https://stefanydomain2023.me/fitopatologia/',
   defaultauth: 'fackbackend',
   firebaseConfig: {
     apiKey: '',

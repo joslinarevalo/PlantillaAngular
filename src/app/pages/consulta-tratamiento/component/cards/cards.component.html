@@ -13,9 +13,9 @@
                 <div class="product-img position-relative">
                   <div class=" text-justifity">
                      <img [src]="tratamiento.urlTratamiento" class="img-fluid mx-auto d-block card-image">
-                    <p><strong>Descripcion del tratamiento:</strong> {{ tratamiento.descripcionTratamiento }}</p>
+                    <p><strong>Descripción del tratamiento:</strong> {{ tratamiento.descripcionTratamiento }}</p>
                     <p><strong>Indicaciones de uso:</strong> {{ tratamiento.indicacionesTratamiento }}</p>
-                    <p><strong>Modo de aplicacion:</strong> {{ tratamiento.aplicacionTratamiento }}</p>
+                    <p><strong>Modo de aplicación:</strong> {{ tratamiento.aplicacionTratamiento }}</p>
                     <p><strong>Tipo de tratamiento:</strong> {{ tratamiento.tipoTratamiento }}</p>
                   </div>
                   
@@ -47,7 +47,7 @@
               </div>
             </div>
             <div *ngIf="!listEnfermedades || listEnfermedades.length === 0">
-              <p>No se encontraron detalles de causa para esta planta.</p>
+              <p>No se encontraron enfermedades para esta planta.</p>
             </div>
           </div>
           <div class="mt-3">
