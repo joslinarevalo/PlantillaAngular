@@ -32,13 +32,12 @@ export class TablaComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    this.lista();
     this.dtOptions={
       columnDefs: [
-        { responsivePriority: 3, targets: 0 },
-        //{ responsivePriority: 10001, targets: 3 },
-        { responsivePriority: 2, targets: 4 },
-        { responsivePriority: 1, targets: -1 },
+        { responsivePriority: 3, targets: 2 },
+        { responsivePriority: 10001, targets: 2 },
+        { responsivePriority: 2, targets: 3 },
+        { responsivePriority: 0, targets: -1 }
     ],
       lengthMenu: [5,10,15,20,50],
       destroy: true,
@@ -50,6 +49,8 @@ export class TablaComponent implements OnInit {
       pagingType: 'full_numbers',
       responsive: true,
     };
+    
+    this.lista();
   }
 
   obtenerEnfermedadEliminar(enfermedad:IEnfermedadMostrar){
