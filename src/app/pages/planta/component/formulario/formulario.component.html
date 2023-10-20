@@ -86,7 +86,7 @@
           [ngClass]="esCampoValido('idTipoPlanta')"
           placeholder="Selecciona un tipo de planta"
         >
-          <ng-option disabled selected
+          <ng-option
             *ngFor="let tipoP of listTipoPlanta"
             [value]="tipoP.idTipoPlanta"
             >{{ tipoP.tipoPlanta }}</ng-option
