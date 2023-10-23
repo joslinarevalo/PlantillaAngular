@@ -35,6 +35,10 @@
       {{ leyenda }} Detalle de Causa
     </h5>
     <div class="modal-body">
+      <label class="control-label"
+        >Campos obligatorios a llenar con <span class="required"></span>
+        <!-- Icono de información -->
+      </label>
       <form (ngSubmit)="guardar()" [formGroup]="formularioDetalleCausa">
         <div class="row">
           <div class="col-md-6">
