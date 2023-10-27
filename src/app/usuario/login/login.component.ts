@@ -71,9 +71,24 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['/paginas-principal/principal']);
       }
       
-      Swal.fire('Inicio de sesión',`Hola ${user.usuario}, Has iniciado sesión con éxito!`,'success');
+    //  Swal.fire('Inicio de sesión',`Hola ${user.usuario}, Has iniciado sesión con éxito!`,'success');
+      Swal.fire({
+        title: "Inicio de sesión",
+        text: `Hola ${user.usuario}, Has iniciado sesión con éxito!`,
+        icon: "success",
+        confirmButtonText: "OK",
+        confirmButtonColor: "#146C43",
+      });
+ 
     }, error => {
-      Swal.fire('Error al iniciar sesión', 'Usuario o contraseña son incorrectas!', 'error');
+   //   Swal.fire('Error al iniciar sesión', 'Usuario o contraseña son incorrectas!', 'error');
+   Swal.fire({
+    title: "Error al iniciar sesión",
+    text: `Usuario o contraseña son incorrectas!`,
+    icon: "error",
+    confirmButtonText: "OK",
+    confirmButtonColor: "#146C43",
+  });
     }
       /* (response:any)=>{
         this.router.navigate(['/dashboard']);

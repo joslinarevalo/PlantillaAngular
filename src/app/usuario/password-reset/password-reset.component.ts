@@ -1,16 +1,19 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-import { AutenticacionService } from '../services/autenticacion.service';
-import { environment } from 'src/environments/environment';
-import { DatosClaveTemp, Email } from '../interfaces/Email';
-import Swal from 'sweetalert2';
-import { IUsuarioCorreo, IUsuarioValid } from 'src/app/pages/usuario-c/interface/usuario.interface';
+import { Component, OnInit } from "@angular/core";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { ActivatedRoute, Router } from "@angular/router";
+import { AutenticacionService } from "../services/autenticacion.service";
+import { environment } from "src/environments/environment";
+import { DatosClaveTemp, Email } from "../interfaces/Email";
+import Swal from "sweetalert2";
+import {
+  IUsuarioCorreo,
+  IUsuarioValid,
+} from "src/app/pages/usuario-c/interface/usuario.interface";
 
 @Component({
-  selector: 'app-password-reset',
-  templateUrl: './password-reset.component.html',
-  styleUrls: ['./password-reset.component.scss']
+  selector: "app-password-reset",
+  templateUrl: "./password-reset.component.html",
+  styleUrls: ["./password-reset.component.scss"],
 })
 export class PasswordResetComponent implements OnInit {
   // set the currenr year
@@ -23,16 +26,21 @@ export class PasswordResetComponent implements OnInit {
   resetForm!: FormGroup;
   showVerificationForm = false; // Variable para controlar la visibilidad del formulario de verificación
   verificationForm: FormGroup; // Formulario de verificación de código y contraseña
-  tipo:string="password";
+  tipo: string = "password";
 
   // tslint:disable-next-line: max-line-length
-  constructor(private formBuilder: FormBuilder, private route: ActivatedRoute, private router: Router, private autenticacionService: AutenticacionService) {
+  constructor(
+    private formBuilder: FormBuilder,
+    private route: ActivatedRoute,
+    private router: Router,
+    private autenticacionService: AutenticacionService
+  ) {
     this.resetForm = this.formBuilder.group({
-      correo: ['', [Validators.required, Validators.email]],
+      correo: ["", [Validators.required, Validators.email]],
     });
     this.verificationForm = this.formBuilder.group({
-      codigoVerificiacion: ['', Validators.required],
-      nuevaClave: ['', Validators.required],
+      codigoVerificiacion: ["", Validators.required],
+      nuevaClave: ["", Validators.required],
     });
   }
 
@@ -55,18 +63,18 @@ export class PasswordResetComponent implements OnInit {
   esCampoValido(campo: string) {
     const validarCampo = this.resetForm.get(campo);
     return !validarCampo?.valid && validarCampo?.touched
-      ? 'is-invalid'
+      ? "is-invalid"
       : validarCampo?.touched
-        ? 'is-valid'
-        : '';
+      ? "is-valid"
+      : "";
   }
 
   enviarEmail() {
-
     if (this.formulario_valido()) {
-
       // Generar un código de recuperación aleatorio
-      const codigoRecuperacion = Math.floor(100000 + Math.random() * 900000).toString();
+      const codigoRecuperacion = Math.floor(
+        100000 + Math.random() * 900000
+      ).toString();
 
       // Obtener la hora actual
       const now = new Date();
@@ -77,14 +85,14 @@ export class PasswordResetComponent implements OnInit {
       this.usuario = {
         id: "string",
         apellido: "string",
-        correo: this.resetForm.controls['correo'].value,
+        correo: this.resetForm.controls["correo"].value,
         clave: "string",
         usuario: "string",
         estado: "string",
         nombre: "string",
         idrol: 0,
         claveTemporal: codigoRecuperacion,
-        horaExpiracion: horaExpiracion + ""
+        horaExpiracion: horaExpiracion + "",
       };
 
       //validar que el correo ingresado exista en la bd
@@ -93,9 +101,9 @@ export class PasswordResetComponent implements OnInit {
           //console.log(this.usuario);
 
           this.email = {
-            destinatarios: [this.resetForm.controls['correo'].value],
-            asunto: 'Recuperación de Contraseña',
-            mensaje: `Su código de recuperación es: ${codigoRecuperacion}, este código es válido por 15 minutos.`
+            destinatarios: [this.resetForm.controls["correo"].value],
+            asunto: "Recuperación de Contraseña",
+            mensaje: `Su código de recuperación es: ${codigoRecuperacion}, este código es válido por 15 minutos.`,
           };
 
           this.autenticacionService.resetPassword(this.email).subscribe(
@@ -109,29 +117,50 @@ export class PasswordResetComponent implements OnInit {
                 (resp) => {
                   this.showVerificationForm = true;
                   //console.log('Solicitud enviada con éxito');
-                  Swal.fire('Recuperación de Contraseña', `¡Código de recuperacion enviado con éxito!`, 'success');
+                  // Swal.fire('Recuperación de Contraseña', `¡Código de recuperacion enviado con éxito!`, 'success');
+                  Swal.fire({
+                    title: "Recuperación de Contraseña",
+                    text: `¡Código de recuperacion enviado con éxito!`,
+                    icon: "success",
+                    confirmButtonText: "OK",
+                    confirmButtonColor: "#146C43",
+                  });
                 },
                 (e) => {
-                  console.error('Error al enviar la solicitud A LA BD', e);
+                  console.error("Error al enviar la solicitud A LA BD", e);
                 }
               );
             },
             (error) => {
               //console.error('Error al enviar la solicitud', error);
-              Swal.fire('Error al enviar la solicitud', `Por favor verifique que el correo ingresado sea el correcto `, 'error');
+              //   Swal.fire('Error al enviar la solicitud', `Por favor verifique que el correo ingresado sea el correcto `, 'error');
+              Swal.fire({
+                title: "Error al enviar la solicitud",
+                text: `Por favor verifique que el correo ingresado sea el correcto `,
+                icon: "error",
+                confirmButtonText: "OK",
+                confirmButtonColor: "#146C43",
+              });
             }
           );
         },
         (error) => {
           //console.error('Error al enviar la solicitud', error);
-          Swal.fire('Error al enviar la solicitud', `El correo electrónico ingresado no esta registrado en el sistema `, 'error');
+          // Swal.fire('Error al enviar la solicitud', `El correo electrónico ingresado no esta registrado en el sistema `, 'error');
+          Swal.fire({
+            title: "Error al enviar la solicitud",
+            text: `El correo electrónico ingresado no esta registrado en el sistema `,
+            icon: "error",
+            confirmButtonText: "OK",
+            confirmButtonColor: "#146C43",
+          });
         }
       );
     } else {
       Swal.fire({
-        position: 'center',
-        icon: 'warning',
-        title: 'Error en el formulario',
+        position: "center",
+        icon: "warning",
+        title: "Error en el formulario",
         showConfirmButton: false,
         timer: 1500,
       });
@@ -145,16 +174,17 @@ export class PasswordResetComponent implements OnInit {
       this.usuario = {
         id: "string",
         apellido: "string",
-        correo: this.resetForm.controls['correo'].value,
+        correo: this.resetForm.controls["correo"].value,
         clave: "string",
         usuario: "string",
         estado: "string",
         nombre: "string",
         idrol: 0,
         claveTemporal: "string",
-        horaExpiracion: "string"
+        horaExpiracion: "string",
       };
-      const enteredCode = this.verificationForm.controls.codigoVerificiacion.value;
+      const enteredCode =
+        this.verificationForm.controls.codigoVerificiacion.value;
       const newPassword = this.verificationForm.controls.nuevaClave.value;
       console.log(this.usuario);
       // Aquí debes comparar 'enteredCode' con el código guardado en la base de datos
@@ -174,41 +204,72 @@ export class PasswordResetComponent implements OnInit {
               this.usuario.clave = newPassword;
               this.autenticacionService.setNuevaClave(this.usuario).subscribe(
                 (response) => {
-                  Swal.fire('Recuperación de Contraseña', `¡Se ha actualizado la contraseña exitosamente!`, 'success');
-                  this.router.navigate(['/login']);
+                  // Swal.fire('Recuperación de Contraseña', `¡Se ha actualizado la contraseña exitosamente!`, 'success');
+                  Swal.fire({
+                    title: "Recuperación de Contraseña",
+                    text: `¡Se ha actualizado la contraseña exitosamente!`,
+                    icon: "success",
+                    confirmButtonText: "OK",
+                    confirmButtonColor: "#146C43",
+                  });
+                  this.router.navigate(["/login"]);
                 },
                 (error) => {
-                  Swal.fire('Recuperación de Contraseña', `No se ha podido actualizar la contraseña `, 'error');
+                  // Swal.fire('Recuperación de Contraseña', `No se ha podido actualizar la contraseña `, 'error');
+                  Swal.fire({
+                    title: "Recuperación de Contraseña",
+                    text: `No se ha podido actualizar la contraseña `,
+                    icon: "error",
+                    confirmButtonText: "OK",
+                    confirmButtonColor: "#146C43",
+                  });
                 }
               );
             } else {
-              Swal.fire('Error', `!Tiempo de expiración del código superado¡  `, 'error');
+              // Swal.fire('Error', `!Tiempo de expiración del código superado¡  `, 'error');
+              Swal.fire({
+                title: "Error",
+                text: `!Tiempo de expiración del código superado¡ `,
+                icon: "error",
+                confirmButtonText: "OK",
+                confirmButtonColor: "#146C43",
+              });
             }
           } else {
-            Swal.fire('Error', `Código incorrecto `, 'error');
+            // Swal.fire('Error', `Código incorrecto `, 'error');
+            Swal.fire({
+              title: "Error",
+              text: `Código incorrecto `,
+              icon: "error",
+              confirmButtonText: "OK",
+              confirmButtonColor: "#146C43",
+            });
           }
         },
         (error) => {
-          Swal.fire('Error al enviar la solicitud', `Por favor verifique que el correo ingresado sea el correcto `, 'error');
+          Swal.fire(
+            "Error al enviar la solicitud",
+            `Por favor verifique que el correo ingresado sea el correcto `,
+            "error"
+          );
         }
       );
     } else {
       Swal.fire({
-        position: 'center',
-        icon: 'warning',
-        title: 'Error en el formulario',
+        position: "center",
+        icon: "warning",
+        title: "Error en el formulario",
         showConfirmButton: false,
         timer: 1500,
       });
     }
   }
 
-  mostrarPassword(){
-    if(this.tipo=="password") {
-      this.tipo="text" ;
-      } else{
-      this.tipo="password" 
-      }
+  mostrarPassword() {
+    if (this.tipo == "password") {
+      this.tipo = "text";
+    } else {
+      this.tipo = "password";
+    }
   }
-  
 }

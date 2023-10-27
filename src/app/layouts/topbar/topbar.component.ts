@@ -11,6 +11,10 @@ import { AutenticacionService } from 'src/app/usuario/services/autenticacion.ser
 import Swal from 'sweetalert2';
 import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder } from '@angular/forms';
+import {
+  mensajeError,
+  mensajeExito,
+} from "src/app/pages/models/funciones.global";
 
 @Component({
   selector: 'app-topbar',
@@ -105,7 +109,16 @@ export class TopbarComponent implements OnInit {
    * Logout the user
    */
   logout() {
-    Swal.fire('Cerrar sesión',`Hola ${this.autenticacionService.usuario.usuario} has cerrado sesión con éxito`,'success');
+
+    Swal.fire({
+      title: "Cerrar sesión",
+      text: `Hola ${this.autenticacionService.usuario.usuario}, has cerrado sesión con éxito`,
+      icon: "success",
+      confirmButtonText: "OK",
+      confirmButtonColor: "#146C43",
+    });
+    
+  //  Swal.fire('Cerrar sesión',`Hola ${this.autenticacionService.usuario.usuario} has cerrado sesión con éxito`,'success');
     this.autenticacionService.logout();
     /* if (environment.defaultauth === 'firebase') {
       this.authService.logout();
