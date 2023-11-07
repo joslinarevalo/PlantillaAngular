@@ -30,8 +30,13 @@ export class LoginComponent implements OnInit {
    ngOnInit(): void {
     if(this.autenticacionService.isAuthenticated()){
       console.log("No habian datos")
-      Swal.fire('Login', `${this.autenticacionService.usuario.usuario} ya estás autenticado!`,'info');
-      
+      Swal.fire({
+        title: "Login",
+        text: `${this.autenticacionService.usuario.usuario} ya estás autenticado!`,
+        icon: "info",
+        confirmButtonText: "OK",
+        confirmButtonColor: "#146C43",
+      });
       this.router.navigate(['/dashboard']);
     }
   }
