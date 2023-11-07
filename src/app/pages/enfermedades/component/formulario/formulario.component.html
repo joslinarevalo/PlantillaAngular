@@ -381,14 +381,6 @@
       </div>
 
       <div class="mt-1 col-xl-8 col-lg-8 col-md-12 col-sm-12 col-12">
-<<<<<<< HEAD
-        <label class="control-label">Seleccionar Imagen de la enfermedad <span class="required"></span></label>
-        <span class="info-icon" data-title="En este campo, puedes adjuntar una imagen que ilustre visualmente la enfermedad que estás reportando.">?</span> <!-- Icono de información -->
-        <input class="form-control" type="file"  accept="image/*" id="urlEnfermedad" formControlName="urlEnfermedad"
-          (change)="SeleccionarImagen($event)" [ngClass]="esCampoValido('urlEnfermedad')" (input)="contarCaracteres('urlEnfermedad')"
-          (input)="formularioEnfermedad.get('urlEnfermedad').setValue(capitalizeFirstLetter(formularioEnfermedad.get('urlEnfermedad').value))"/><!-- para poner la primera letra mayuscula -->
-          <div id="contador">{{ mensaje['urlEnfermedad'] }}</div>
-=======
         <label class="control-label"
           >Seleccionar Imagen <span class="required"></span
         ></label>
@@ -418,14 +410,6 @@
           "
         /><!-- para poner la primera letra mayuscula -->
         <div id="contador">{{ mensaje["urlEnfermedad"] }}</div>
-        <div class="invalid-feedback">
-          <span
-            *ngIf="formularioEnfermedad.get('urlEnfermedad')?.errors?.['required']"
-          >
-            Requiere una imagen de la enfermedad</span
-          >
-        </div>
->>>>>>> 4d90b6e62293dfa7757e86837893f7c43d8e483a
       </div>
       <br />
       <div
