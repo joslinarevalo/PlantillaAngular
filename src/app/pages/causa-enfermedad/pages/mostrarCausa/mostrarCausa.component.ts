@@ -91,7 +91,9 @@ export class MostrarCausaComponent implements OnInit {
           this.causaenfermedadservice
             .eliminarCausa(ObjetoCausaEliminar)
             .subscribe((resp) => {
+             
               alert.fire(
+                
                 "Eliminado",
                 "El registro ha sido eliminado",
                 "success"
@@ -100,6 +102,7 @@ export class MostrarCausaComponent implements OnInit {
             });
         } else if (result.dismiss === Swal.DismissReason.cancel) {
           alert.fire("Canselado", "El registro no se elimino", "error");
+          
         }
       });
   }
