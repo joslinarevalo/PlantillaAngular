@@ -2,6 +2,10 @@
   <h5 class="cajaModal text-center mt-4 texto-mayusculas">
     {{ leyenda }} Planta
   </h5>
+  <label class="control-label"
+  >Campos obligatorios a llenar con <span class="required"></span>
+  <!-- Icono de información -->
+</label>
   <form [formGroup]="formularioPlanta">
     <div class="row">
 
@@ -102,7 +106,7 @@
       </div>
 
       <div class="col-md-12">
-        <label class="control-label">Descripción de la planta <span class="required"></span>
+        <label class="control-label">Descripción <span class="required"></span>
           <span class="info-icon" data-title="En este campo agregue una descripción sobre la planta.">?</span> <!-- Icono de información -->
         </label>
         <textarea
@@ -124,7 +128,7 @@
       </div>
 
       <div class="col-md-12">
-        <label class="control-label">Historia de la planta <span class="required"></span>
+        <label class="control-label">Historia <span class="required"></span>
           <span class="info-icon" data-title="En este campo agregue un poco sobre historia de la planta.">?</span> <!-- Icono de información -->
         </label>
         <textarea
@@ -148,7 +152,7 @@
 
 
       <div class="col-md-12">
-        <label class="control-label">Seleccionar Imagen Planta <span class="required"></span>
+        <label class="control-label">Seleccionar Imagen <span class="required"></span>
           <span class="info-icon" data-title="En este campo agrege una imagen representativa de planta.">?</span> <!-- Icono de información -->
         </label>
         <input

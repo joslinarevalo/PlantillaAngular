@@ -1,162 +1,473 @@
 <!-- Modal -->
 
-<div class="cajaModal text-center mt-4 texto-mayusculas">
-  <h5 class="cajaModal text-center mt-4 texto-mayusculas">{{leyenda}} Enfermedad</h5>
+<div class="modal-body">
+  <h5 class="cajaModal text-center  texto-mayusculas">
+    {{ leyenda }} Enfermedad
+  </h5>
+  <label class="control-label"
+    >Campos obligatorios a llenar con <span class="required"></span>
+    <!-- Icono de información -->
+  </label>
 </div>
 <div class="modal-body">
   <form [formGroup]="formularioEnfermedad">
     <div class="row">
-
       <div class="mt-1 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
-        <label class="control-label" >Nombre común <span class="required"></span>
-          <span class="info-icon" data-title="En este campo se registra el nombre común de la enfermedad.">?</span> <!-- Icono de información -->
+        <label class="control-label"
+          >Nombre común <span class="required"></span>
+          <span
+            class="info-icon"
+            data-title="En este campo se registra el nombre común de la enfermedad."
+            >?</span
+          >
+          <!-- Icono de información -->
         </label>
-        <input class="form-control capitalized-input" type="text" id="nombreComunEnfermedad" formControlName="nombreComunEnfermedad"
-          [ngClass]="esCampoValido('nombreComunEnfermedad')" (input)="contarCaracteres('nombreComunEnfermedad')"
-          (input)="formularioEnfermedad.get('nombreComunEnfermedad').setValue(capitalizeFirstLetter(formularioEnfermedad.get('nombreComunEnfermedad').value))"/><!-- para poner la primera letra mayuscula -->
-          <div id="contador">{{ mensaje['nombreComunEnfermedad'] }}</div>
+        <input
+          class="form-control capitalized-input"
+          type="text"
+          id="nombreComunEnfermedad"
+          formControlName="nombreComunEnfermedad"
+          [ngClass]="esCampoValido('nombreComunEnfermedad')"
+          (input)="contarCaracteres('nombreComunEnfermedad')"
+          (input)="
+            formularioEnfermedad
+              .get('nombreComunEnfermedad')
+              .setValue(
+                capitalizeFirstLetter(
+                  formularioEnfermedad.get('nombreComunEnfermedad').value
+                )
+              )
+          "
+        /><!-- para poner la primera letra mayuscula -->
+        <div id="contador">{{ mensaje["nombreComunEnfermedad"] }}</div>
         <div class="invalid-feedback">
-          <span *ngIf="formularioEnfermedad.get('nombreComunEnfermedad').hasError('required')">
+          <span
+            *ngIf="
+              formularioEnfermedad
+                .get('nombreComunEnfermedad')
+                .hasError('required')
+            "
+          >
             Requiere un nombre común de la enfermedad
           </span>
-          <span *ngIf="formularioEnfermedad.get('nombreComunEnfermedad').hasError('espaciosVacios')">
+          <span
+            *ngIf="
+              formularioEnfermedad
+                .get('nombreComunEnfermedad')
+                .hasError('espaciosVacios')
+            "
+          >
             No se permiten espacios en blanco como valor
           </span>
-        </div>        
+        </div>
       </div>
 
       <div class="mt-1 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
-        <label class="control-label">Nombre científico <span class="required"></span></label>
-        <span class="info-icon" data-title="En este campo se registra el nombre científico de la enfermedad.">?</span> <!-- Icono de información -->
-        <input class="form-control" type="text" id="nombreCientificoEnfermedad"
-          formControlName="nombreCientificoEnfermedad" [ngClass]="esCampoValido('nombreCientificoEnfermedad')" (input)="contarCaracteres('nombreCientificoEnfermedad')"
-          (input)="formularioEnfermedad.get('nombreCientificoEnfermedad').setValue(capitalizeFirstLetter(formularioEnfermedad.get('nombreCientificoEnfermedad').value))"/><!-- para poner la primera letra mayuscula -->
-          <div id="contador">{{ mensaje['nombreCientificoEnfermedad'] }}</div>
+        <label class="control-label"
+          >Nombre científico <span class="required"></span
+        ></label>
+        <span
+          class="info-icon"
+          data-title="En este campo se registra el nombre científico de la enfermedad."
+          >?</span
+        >
+        <!-- Icono de información -->
+        <input
+          class="form-control"
+          type="text"
+          id="nombreCientificoEnfermedad"
+          formControlName="nombreCientificoEnfermedad"
+          [ngClass]="esCampoValido('nombreCientificoEnfermedad')"
+          (input)="contarCaracteres('nombreCientificoEnfermedad')"
+          (input)="
+            formularioEnfermedad
+              .get('nombreCientificoEnfermedad')
+              .setValue(
+                capitalizeFirstLetter(
+                  formularioEnfermedad.get('nombreCientificoEnfermedad').value
+                )
+              )
+          "
+        /><!-- para poner la primera letra mayuscula -->
+        <div id="contador">{{ mensaje["nombreCientificoEnfermedad"] }}</div>
         <div class="invalid-feedback">
-          <span *ngIf="formularioEnfermedad.get('nombreCientificoEnfermedad')?.errors?.['required']">
-            Requiere un nombre cientifico de la enfermedad</span>
-          <span *ngIf="formularioEnfermedad.get('nombreCientificoEnfermedad').hasError('espaciosVacios')">
+          <span
+            *ngIf="formularioEnfermedad.get('nombreCientificoEnfermedad')?.errors?.['required']"
+          >
+            Requiere un nombre cientifico de la enfermedad</span
+          >
+          <span
+            *ngIf="
+              formularioEnfermedad
+                .get('nombreCientificoEnfermedad')
+                .hasError('espaciosVacios')
+            "
+          >
             No se permiten espacios en blanco como valor
           </span>
         </div>
       </div>
 
       <div class="mt-1 col-6">
-        <label class="control-label">Etapa que afecta <span class="required"></span></label>
-        <span class="info-icon" data-title="En este campo se registra la etapa de desarrollo de la planta que se ve afectada por la enfermedad.">?</span> <!-- Icono de información -->
-        <input class="form-control" type="text" id="etapaEnfermedad" formControlName="etapaEnfermedad"
-          [ngClass]="esCampoValido('etapaEnfermedad')" (input)="contarCaracteres('etapaEnfermedad')"
-          (input)="formularioEnfermedad.get('etapaEnfermedad').setValue(capitalizeFirstLetter(formularioEnfermedad.get('etapaEnfermedad').value))"/><!-- para poner la primera letra mayuscula -->
-          <div id="contador">{{ mensaje['etapaEnfermedad'] }}</div>
+        <label class="control-label"
+          >Etapa que afecta <span class="required"></span
+        ></label>
+        <span
+          class="info-icon"
+          data-title="En este campo se registra la etapa de desarrollo de la planta que se ve afectada por la enfermedad."
+          >?</span
+        >
+        <!-- Icono de información -->
+        <input
+          class="form-control"
+          type="text"
+          id="etapaEnfermedad"
+          formControlName="etapaEnfermedad"
+          [ngClass]="esCampoValido('etapaEnfermedad')"
+          (input)="contarCaracteres('etapaEnfermedad')"
+          (input)="
+            formularioEnfermedad
+              .get('etapaEnfermedad')
+              .setValue(
+                capitalizeFirstLetter(
+                  formularioEnfermedad.get('etapaEnfermedad').value
+                )
+              )
+          "
+        /><!-- para poner la primera letra mayuscula -->
+        <div id="contador">{{ mensaje["etapaEnfermedad"] }}</div>
         <div class="invalid-feedback">
-          <span *ngIf="formularioEnfermedad.get('etapaEnfermedad')?.errors?.['required']">
-            Requiere etapa a la que afecta</span>
-          <span *ngIf="formularioEnfermedad.get('etapaEnfermedad').hasError('espaciosVacios')">
+          <span
+            *ngIf="formularioEnfermedad.get('etapaEnfermedad')?.errors?.['required']"
+          >
+            Requiere etapa a la que afecta</span
+          >
+          <span
+            *ngIf="
+              formularioEnfermedad
+                .get('etapaEnfermedad')
+                .hasError('espaciosVacios')
+            "
+          >
             No se permiten espacios en blanco como valor
           </span>
         </div>
       </div>
       <div class="mt-1 col-6">
-        <label class="control-label">Tipo de enfermedad <span class="required"></span></label>
-        <span class="info-icon" data-title="En este campo se registra el tipo de enfermedad ya sea bacteria, hongo, entre otros; por ejemplo: Hongo necrotrófico.">?</span> <!-- Icono de información -->
-        <input class="form-control" type="text" id="tipoEnfermedad" formControlName="tipoEnfermedad"
-          [ngClass]="esCampoValido('tipoEnfermedad')" (input)="contarCaracteres('tipoEnfermedad')" 
-          (input)="formularioEnfermedad.get('tipoEnfermedad').setValue(capitalizeFirstLetter(formularioEnfermedad.get('tipoEnfermedad').value))"/><!-- para poner la primera letra mayuscula -->
-          <div id="contador">{{ mensaje['tipoEnfermedad'] }}</div>
+        <label class="control-label"
+          >Tipo de enfermedad <span class="required"></span
+        ></label>
+        <span
+          class="info-icon"
+          data-title="En este campo se registra el tipo de enfermedad ya sea bacteria, hongo, entre otros; por ejemplo: Hongo necrotrófico."
+          >?</span
+        >
+        <!-- Icono de información -->
+        <input
+          class="form-control"
+          type="text"
+          id="tipoEnfermedad"
+          formControlName="tipoEnfermedad"
+          [ngClass]="esCampoValido('tipoEnfermedad')"
+          (input)="contarCaracteres('tipoEnfermedad')"
+          (input)="
+            formularioEnfermedad
+              .get('tipoEnfermedad')
+              .setValue(
+                capitalizeFirstLetter(
+                  formularioEnfermedad.get('tipoEnfermedad').value
+                )
+              )
+          "
+        /><!-- para poner la primera letra mayuscula -->
+        <div id="contador">{{ mensaje["tipoEnfermedad"] }}</div>
         <div class="invalid-feedback">
-          <span *ngIf="formularioEnfermedad.get('tipoEnfermedad')?.errors?.['required']">
-            Requiere de un tipo enfermedad</span>
-          <span *ngIf="formularioEnfermedad.get('tipoEnfermedad').hasError('espaciosVacios')">
+          <span
+            *ngIf="formularioEnfermedad.get('tipoEnfermedad')?.errors?.['required']"
+          >
+            Requiere de un tipo enfermedad</span
+          >
+          <span
+            *ngIf="
+              formularioEnfermedad
+                .get('tipoEnfermedad')
+                .hasError('espaciosVacios')
+            "
+          >
             No se permiten espacios en blanco como valor
           </span>
         </div>
       </div>
 
       <div class="mt-1 col-6">
-        <label class="control-label">Condición favorable para la enfermedad <span class="required"></span></label>
-        <span class="info-icon" data-title="En este campo se registran las condiciones que favorecen el desarrollo de la enfermedad.">?</span> <!-- Icono de información -->
-        <textarea class="form-control" type="text" id="condicionFavorableEnfermedad"
+        <label class="control-label"
+          >Condición favorable para la enfermedad <span class="required"></span
+        ></label>
+        <span
+          class="info-icon"
+          data-title="En este campo se registran las condiciones que favorecen el desarrollo de la enfermedad."
+          >?</span
+        >
+        <!-- Icono de información -->
+        <textarea
+          class="form-control"
+          type="text"
+          id="condicionFavorableEnfermedad"
           formControlName="condicionFavorableEnfermedad"
-          [ngClass]="esCampoValido('condicionFavorableEnfermedad')" (input)="contarCaracteres('condicionFavorableEnfermedad')"
-          (input)="formularioEnfermedad.get('condicionFavorableEnfermedad').setValue(capitalizeFirstLetter(formularioEnfermedad.get('condicionFavorableEnfermedad').value))" ></textarea>
-          <div id="contador">{{ mensaje['condicionFavorableEnfermedad'] }}</div>
+          [ngClass]="esCampoValido('condicionFavorableEnfermedad')"
+          (input)="contarCaracteres('condicionFavorableEnfermedad')"
+          (input)="
+            formularioEnfermedad
+              .get('condicionFavorableEnfermedad')
+              .setValue(
+                capitalizeFirstLetter(
+                  formularioEnfermedad.get('condicionFavorableEnfermedad').value
+                )
+              )
+          "
+        ></textarea>
+        <div id="contador">{{ mensaje["condicionFavorableEnfermedad"] }}</div>
         <div class="invalid-feedback">
-          <span *ngIf="formularioEnfermedad.get('condicionFavorableEnfermedad')?.errors?.['required']">
-            Requiere las condiciones favorables para la enfermedad</span>
-            <span *ngIf="formularioEnfermedad.get('condicionFavorableEnfermedad').hasError('espaciosVacios')">
-              No se permiten espacios en blanco como valor
-            </span>
+          <span
+            *ngIf="formularioEnfermedad.get('condicionFavorableEnfermedad')?.errors?.['required']"
+          >
+            Requiere las condiciones favorables para la enfermedad</span
+          >
+          <span
+            *ngIf="
+              formularioEnfermedad
+                .get('condicionFavorableEnfermedad')
+                .hasError('espaciosVacios')
+            "
+          >
+            No se permiten espacios en blanco como valor
+          </span>
         </div>
       </div>
       <div class="mt-1 col-6">
-        <label class="control-label">Partes que afecta la enfermedad <span class="required"></span></label>
-        <span class="info-icon" data-title="En este campo se registran las partes de la planta que son afectadas por la enfermedad.">?</span> <!-- Icono de información -->
-        <textarea class="form-control" type="text" id="partesAfectadasEnfermedad"
-          formControlName="partesAfectadasEnfermedad" [ngClass]="esCampoValido('partesAfectadasEnfermedad')" 
+        <label class="control-label"
+          >Partes que afecta la enfermedad <span class="required"></span
+        ></label>
+        <span
+          class="info-icon"
+          data-title="En este campo se registran las partes de la planta que son afectadas por la enfermedad."
+          >?</span
+        >
+        <!-- Icono de información -->
+        <textarea
+          class="form-control"
+          type="text"
+          id="partesAfectadasEnfermedad"
+          formControlName="partesAfectadasEnfermedad"
+          [ngClass]="esCampoValido('partesAfectadasEnfermedad')"
           (input)="contarCaracteres('partesAfectadasEnfermedad')"
-          (input)="formularioEnfermedad.get('partesAfectadasEnfermedad').setValue(capitalizeFirstLetter(formularioEnfermedad.get('partesAfectadasEnfermedad').value))"></textarea>
-          <div id="contador">{{ mensaje['partesAfectadasEnfermedad'] }}</div>
+          (input)="
+            formularioEnfermedad
+              .get('partesAfectadasEnfermedad')
+              .setValue(
+                capitalizeFirstLetter(
+                  formularioEnfermedad.get('partesAfectadasEnfermedad').value
+                )
+              )
+          "
+        ></textarea>
+        <div id="contador">{{ mensaje["partesAfectadasEnfermedad"] }}</div>
         <div class="invalid-feedback">
-          <span *ngIf="formularioEnfermedad.get('partesAfectadasEnfermedad')?.errors?.['required']">
-            Requiere partes que afecta a la planta</span>
-            <span *ngIf="formularioEnfermedad.get('partesAfectadasEnfermedad').hasError('espaciosVacios')">
-              No se permiten espacios en blanco como valor
-            </span>
+          <span
+            *ngIf="formularioEnfermedad.get('partesAfectadasEnfermedad')?.errors?.['required']"
+          >
+            Requiere partes que afecta a la planta</span
+          >
+          <span
+            *ngIf="
+              formularioEnfermedad
+                .get('partesAfectadasEnfermedad')
+                .hasError('espaciosVacios')
+            "
+          >
+            No se permiten espacios en blanco como valor
+          </span>
         </div>
       </div>
       <div class="mt-1 col-12">
-        <label class="control-label">Descripción <span class="required"></span></label>
-        <span class="info-icon" data-title="Este campo se utiliza para proporcionar detalles y características específicas de la enfermedad que estás reportando.">?</span> <!-- Icono de información -->
-        <textarea class="form-control" type="text" id="descripcionEnfermedad" formControlName="descripcionEnfermedad"
-          [ngClass]="esCampoValido('descripcionEnfermedad')" (input)="contarCaracteres('descripcionEnfermedad')" 
-          (input)="formularioEnfermedad.get('descripcionEnfermedad').setValue(capitalizeFirstLetter(formularioEnfermedad.get('descripcionEnfermedad').value))"></textarea>
-          <div id="contador">{{ mensaje['descripcionEnfermedad'] }}</div>
+        <label class="control-label"
+          >Descripción <span class="required"></span
+        ></label>
+        <span
+          class="info-icon"
+          data-title="Este campo se utiliza para proporcionar detalles y características específicas de la enfermedad que estás reportando."
+          >?</span
+        >
+        <!-- Icono de información -->
+        <textarea
+          class="form-control"
+          type="text"
+          id="descripcionEnfermedad"
+          formControlName="descripcionEnfermedad"
+          [ngClass]="esCampoValido('descripcionEnfermedad')"
+          (input)="contarCaracteres('descripcionEnfermedad')"
+          (input)="
+            formularioEnfermedad
+              .get('descripcionEnfermedad')
+              .setValue(
+                capitalizeFirstLetter(
+                  formularioEnfermedad.get('descripcionEnfermedad').value
+                )
+              )
+          "
+        ></textarea>
+        <div id="contador">{{ mensaje["descripcionEnfermedad"] }}</div>
         <div class="invalid-feedback">
-          <span *ngIf="formularioEnfermedad.get('descripcionEnfermedad')?.errors?.['required']">
-            Requiere una descripcion de la enfermedad</span>
-            <span *ngIf="formularioEnfermedad.get('descripcionEnfermedad').hasError('espaciosVacios')">
-              No se permiten espacios en blanco como valor
-            </span>
+          <span
+            *ngIf="formularioEnfermedad.get('descripcionEnfermedad')?.errors?.['required']"
+          >
+            Requiere una descripcion de la enfermedad</span
+          >
+          <span
+            *ngIf="
+              formularioEnfermedad
+                .get('descripcionEnfermedad')
+                .hasError('espaciosVacios')
+            "
+          >
+            No se permiten espacios en blanco como valor
+          </span>
         </div>
       </div>
       <div class="mt-1 col-12">
-        <label class="control-label">Síntomas de enfermedad <span class="required"></span></label>
-        <span class="info-icon" data-title="En este campo, debes listar los síntomas específicos que se han observado relacionados con la enfermedad que estás reportando.">?</span> <!-- Icono de información -->
-        <textarea class="form-control" type="text" id="sintomasEnfermedad" formControlName="sintomasEnfermedad"
-          [ngClass]="esCampoValido('sintomasEnfermedad')" (input)="contarCaracteres('sintomasEnfermedad')"
-          (input)="formularioEnfermedad.get('sintomasEnfermedad').setValue(capitalizeFirstLetter(formularioEnfermedad.get('sintomasEnfermedad').value))"></textarea>
-          <div id="contador">{{ mensaje['sintomasEnfermedad'] }}</div>
+        <label class="control-label"
+          >Síntomas<span class="required"></span
+        ></label>
+        <span
+          class="info-icon"
+          data-title="En este campo, debes listar los síntomas específicos que se han observado relacionados con la enfermedad que estás reportando."
+          >?</span
+        >
+        <!-- Icono de información -->
+        <textarea
+          class="form-control"
+          type="text"
+          id="sintomasEnfermedad"
+          formControlName="sintomasEnfermedad"
+          [ngClass]="esCampoValido('sintomasEnfermedad')"
+          (input)="contarCaracteres('sintomasEnfermedad')"
+          (input)="
+            formularioEnfermedad
+              .get('sintomasEnfermedad')
+              .setValue(
+                capitalizeFirstLetter(
+                  formularioEnfermedad.get('sintomasEnfermedad').value
+                )
+              )
+          "
+        ></textarea>
+        <div id="contador">{{ mensaje["sintomasEnfermedad"] }}</div>
         <div class="invalid-feedback">
-          <span *ngIf="formularioEnfermedad.get('sintomasEnfermedad')?.errors?.['required']">
-            Requiere sintomasEnfermedad</span>
-            <span *ngIf="formularioEnfermedad.get('sintomasEnfermedad').hasError('espaciosVacios')">
-              No se permiten espacios en blanco como valor
-            </span>
+          <span
+            *ngIf="formularioEnfermedad.get('sintomasEnfermedad')?.errors?.['required']"
+          >
+            Requiere sintomasEnfermedad</span
+          >
+          <span
+            *ngIf="
+              formularioEnfermedad
+                .get('sintomasEnfermedad')
+                .hasError('espaciosVacios')
+            "
+          >
+            No se permiten espacios en blanco como valor
+          </span>
         </div>
       </div>
 
       <div class="mt-1 col-xl-8 col-lg-8 col-md-12 col-sm-12 col-12">
+<<<<<<< HEAD
         <label class="control-label">Seleccionar Imagen de la enfermedad <span class="required"></span></label>
         <span class="info-icon" data-title="En este campo, puedes adjuntar una imagen que ilustre visualmente la enfermedad que estás reportando.">?</span> <!-- Icono de información -->
         <input class="form-control" type="file"  accept="image/*" id="urlEnfermedad" formControlName="urlEnfermedad"
           (change)="SeleccionarImagen($event)" [ngClass]="esCampoValido('urlEnfermedad')" (input)="contarCaracteres('urlEnfermedad')"
           (input)="formularioEnfermedad.get('urlEnfermedad').setValue(capitalizeFirstLetter(formularioEnfermedad.get('urlEnfermedad').value))"/><!-- para poner la primera letra mayuscula -->
           <div id="contador">{{ mensaje['urlEnfermedad'] }}</div>
+=======
+        <label class="control-label"
+          >Seleccionar Imagen <span class="required"></span
+        ></label>
+        <span
+          class="info-icon"
+          data-title="En este campo, puedes adjuntar una imagen que ilustre visualmente la enfermedad que estás reportando."
+          >?</span
+        >
+        <!-- Icono de información -->
+        <input
+          class="form-control"
+          type="file"
+          accept="image/*"
+          id="urlEnfermedad"
+          formControlName="urlEnfermedad"
+          (change)="SeleccionarImagen($event)"
+          [ngClass]="esCampoValido('urlEnfermedad')"
+          (input)="contarCaracteres('urlEnfermedad')"
+          (input)="
+            formularioEnfermedad
+              .get('urlEnfermedad')
+              .setValue(
+                capitalizeFirstLetter(
+                  formularioEnfermedad.get('urlEnfermedad').value
+                )
+              )
+          "
+        /><!-- para poner la primera letra mayuscula -->
+        <div id="contador">{{ mensaje["urlEnfermedad"] }}</div>
+        <div class="invalid-feedback">
+          <span
+            *ngIf="formularioEnfermedad.get('urlEnfermedad')?.errors?.['required']"
+          >
+            Requiere una imagen de la enfermedad</span
+          >
+        </div>
+>>>>>>> 4d90b6e62293dfa7757e86837893f7c43d8e483a
       </div>
-      <br>
-      <div class="mt-1 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 text-center">
-        <img width="100px" height="100px" class="img-fluid" [src]="imagenMostrar" *ngIf="imagenMostrar != undefined" />
+      <br />
+      <div
+        class="mt-1 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 text-center"
+      >
+        <img
+          width="100px"
+          height="100px"
+          class="img-fluid"
+          [src]="imagenMostrar"
+          *ngIf="imagenMostrar != undefined"
+        />
       </div>
-
     </div>
-    <div class="text-center mb-3 mt-2"> <!-- Centrar los botones y agregar espacio inferior -->
-      <button type="button" class="btn btnguardarModal" (click)="guardar()" *ngIf="leyenda=='Registrar'"><i
-          class="fas fa-check"></i>Guardar</button>
-      <button type="button" class="btn btnguardarModal " *ngIf="leyenda=='Modificar'" (click)="modificar()"><i
-          class="fas fa-check"></i>{{leyenda}}</button>
-      <span class="mx-2"></span> <!-- Agregar un espacio horizontal entre los botones -->
-      <button type="button" class="btn btnCerrar" aria-hidden="true" (click)="cerrarModal()"><i
-          class="dripicons-cross"></i>Cerrar</button>
+    <div class="text-center mb-3 mt-2">
+      <!-- Centrar los botones y agregar espacio inferior -->
+      <button
+        type="button"
+        class="btn btnguardarModal"
+        (click)="guardar()"
+        *ngIf="leyenda == 'Registrar'"
+      >
+        <i class="fas fa-check"></i>Guardar
+      </button>
+      <button
+        type="button"
+        class="btn btnguardarModal"
+        *ngIf="leyenda == 'Modificar'"
+        (click)="modificar()"
+      >
+        <i class="fas fa-check"></i>{{ leyenda }}
+      </button>
+      <span class="mx-2"></span>
+      <!-- Agregar un espacio horizontal entre los botones -->
+      <button
+        type="button"
+        class="btn btnCerrar"
+        aria-hidden="true"
+        (click)="cerrarModal()"
+      >
+        <i class="dripicons-cross"></i>Cerrar
+      </button>
     </div>
   </form>
 </div>
