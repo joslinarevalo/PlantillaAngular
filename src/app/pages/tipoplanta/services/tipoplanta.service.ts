@@ -4,7 +4,6 @@ import { Observable } from 'rxjs';
 import { Itipoplanta } from '../interfaces/ITipoPlanta';
 import { environment } from 'src/environments/environment.prod';
 
-
 @Injectable({
   providedIn: 'root'
 })

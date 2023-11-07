@@ -104,13 +104,26 @@ export class FormularioComponent implements OnInit {
     }
     return estado;
   }
-  SeleccionarImagen(event:any){
-    let lector=new FileReader();
-    lector.readAsDataURL(event.target.files[0]);
-    lector.onload=()=>{this.imagenMostrar=lector.result;}
-    let file:File=event.target.files[0];
+  SeleccionarImagen(event: any) {
+    let file: File = event.target.files[0];
     console.log(file);
-    this.formularioSerealizable.set("imagen",file);
+    if (file.size > 350000) {
+      Swal.fire({
+        position: "center",
+        icon: "warning",
+        title: "La imagen excede el tamaño de pixeles.",
+        showConfirmButton: false,
+        timer: 2000,
+      });
+      event.target.value = null;
+      return;
+    }
+    let lector = new FileReader();
+    lector.readAsDataURL(event.target.files[0]);
+    lector.onload = () => {
+      this.imagenMostrar = lector.result;
+    };
+    this.formularioSerealizable.set("imagen", file);
   }
   esCampoValido(campo: string) {
     const validarCampo = this.formularioTratamiento.get(campo);

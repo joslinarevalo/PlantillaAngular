@@ -42,26 +42,21 @@ export class LoginComponent implements OnInit {
       Swal.fire('Error Login', 'Usuario o clave vacias!', 'error');
       return;
     }
-
     this.autenticacionService.login(this.usuario).subscribe(response =>{
       console.log(response);
       console.log("--------------------------")
       //let payload = JSON.parse(atob(response.token.split(".")[1]));
       console.log(JSON.parse(atob(response.token.split(".")[1])));
-
      this.autenticacionService.guardarUsuario(response.token);
       this.autenticacionService.guardarToken(response.token);
       let admin = "ROLE_ADMIN";
       //let estudiante = "ROLE_USER";
       let rol = [admin]
       /*this.autenticacionSevice.tieneRol(rol); */
-
       let user = this.autenticacionService.usuario;
-
       /* Swal.fire('Error Login', 'rol: '+rol, 'error');
       Swal.fire('Error Login', 'Usuario !'+this.autenticacionSevice.tieneRol(rol), 'error');
  */
-
       /* if (this.usuario.roles.includes(roles[i])) {
         return true; // Si encuentra al menos un rol coincidente, devuelve true
       } */

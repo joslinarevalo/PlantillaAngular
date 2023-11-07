@@ -123,13 +123,24 @@ export class NuevoComponent implements OnInit {
     return estado;
   }
   SeleccionarImagen(event: any) {
+    let file: File = event.target.files[0];
+    console.log(file);
+    if (file.size > 350000) {
+      Swal.fire({
+        position: "center",
+        icon: "warning",
+        title: "La imagen excede el tamaño de pixeles.",
+        showConfirmButton: false,
+        timer: 2000,
+      });
+      event.target.value = null;
+      return;
+    }
     let lector = new FileReader();
     lector.readAsDataURL(event.target.files[0]);
     lector.onload = () => {
       this.imagenMostrar = lector.result;
     };
-    let file: File = event.target.files[0];
-    console.log(file);
     this.formularioSerealizable.set("imagen", file);
   }
   convertirImagen() {
