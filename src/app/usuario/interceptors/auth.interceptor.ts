@@ -67,11 +67,13 @@ export class AuthInterceptor implements HttpInterceptor {
             if (this.autenticacionService.isAuthenticated()) {
               this.autenticacionService.logout();
             }
-            Swal.fire(
-              "Sesión expirada",
-              `¡Tú sesión ha expirado, por favor vuelve a iniciar sesión!`,
-              "warning"
-            );
+            Swal.fire({
+              title: "Sesión expirada",
+              text: `¡Tú sesión ha expirado, por favor vuelve a iniciar sesión!`,
+              icon: "warning",
+              confirmButtonText: "OK",
+              confirmButtonColor: "#146C43",
+            });
             e = "¡Tú sesión ha expirado, por favor vuelve a iniciar sesión!";
             this.router.navigate(["/login"]);
             return throwError(e);
@@ -87,10 +89,6 @@ export class AuthInterceptor implements HttpInterceptor {
           console.log(e);
           return throwError(e);
         }
-
-        /* else{
-          return throwError(e);
-        } */
       })
     );
   }

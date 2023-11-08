@@ -1,74 +1,120 @@
 <div class="container-fluid">
-    <div class="row mt-2">
-        <div class="col-12">
-            <div class="card">
-                <div class="card-body">
-                    <div class="caja">REPORTES DEL SISTEMA</div>
-                    <div class="table-responsive mb-0 mt-2">
-                        <table datatable [dtOptions]="dtOptions"  class="table  row-border hover " style="width:100%">
-                        <thead class="tabla" >
-                          <tr>
-                            <th>Lista de Reportes</th>
-                            <th >Descargar</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td>Enfermedad mas contagiosa</td>
-                            <td>
-                              <div class="d-flex">
-                                <div class="col-sm-6"></div>
-                                <div class="col-sm-6"><button type="button" class="btn btn-success btn-sm mb-2 mr-2 btn-rounded" (click)="descargarPdf('pdfEnfermedadMasContagiosa')"> <i class="dripicons-arrow-down"> </i></button> </div>
-                              </div>
-                          </td>
-                          </tr>
-                          <tr>
-                            <td>Enfermedades que no tienen cura</td>
-                            <td>
-                              <div class="d-flex">
-                                <div class="col-sm-6"></div>
-                                <div class="col-sm-6"><button type="button" class="btn btn-success btn-sm mb-2 mr-2 btn-rounded" (click)="descargarPdf('pdfEnfermedadSinCura')"> <i class="dripicons-arrow-down"> </i></button> </div>
-                              </div>
-                          </td>
-                          </tr>
-                          <tr>
-                            <td>Enfermedades menos comunes</td>
-                            <td>
-                              <div class="d-flex">
-                                <div class="col-sm-6"></div>
-                                <div class="col-sm-6"><button type="button" class="btn btn-success btn-sm mb-2 mr-2 btn-rounded" (click)="descargarPdf('pdfEnfermedadMenosContagiosa')"> <i class="dripicons-arrow-down"> </i></button> </div>
-                              </div>
-                          </td>
-                          </tr>
-                          <tr>
-                            <td>Enfermedades mas comunes</td>
-                            <td>
-                              <div class="d-flex">
-                                <div class="col-sm-6"></div>
-                                <div class="col-sm-6"><button type="button" class="btn btn-success btn-sm mb-2 mr-2 btn-rounded" (click)="descargarPdf('pdfEnfermedadesComunes')"> <i class="dripicons-arrow-down"> </i></button> </div>
-                              </div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td >Enfermedades de una planta especifica
-                          </td>
-                          <td>
-                            <div class="d-flex">
-                              <div class="col-sm-6">
-                                <select class="form-control" [(ngModel)]="idplanta">
-                                  <option *ngFor="let planta of listPlantas" [value]="planta.idplanta">{{planta.nombreplantacomun}}</option>
-                                </select>
-                              </div>
-                              <div class="col-sm-6 mt-1"><button type="button" class="btn btn-success btn-sm mb-2 mr-2 btn-rounded" (click)="descargarPdfParametro('pdfEnfermedadesDeUnaPlanta')"> <i class="dripicons-arrow-down"> </i></button> </div>
-                            </div>
-                        </td>
-                          </tr>
-                        </tbody>
-                        </table>
-                    </div>
-                    
-                    </div>
+  <div class="row mt-2">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-body">
+          <div class="caja">REPORTES DEL SISTEMA</div>
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="mt-2 text-center">
+                <h5 class="mb-3 text-truncate">Enfermedades más contagiosas</h5>
+              </div>
+              <div class="mt-4 text-center">
+                <div class="">
+                  <div class="">
+                    <button
+                      type="button"
+                      class="btn btn-success btn-sm mb-2 mr-2 btn-rounded"
+                      (click)="descargarPdf('pdfEnfermedadMasContagiosa')"
+                    >
+                      <i class="dripicons-arrow-down"> </i>
+                    </button>
+                  </div>
                 </div>
+              </div>
             </div>
+            <div class="col-sm-6">
+              <div class="mt-2 text-center">
+                <h5 class="mb-3 text-truncate">
+                  Enfermedades que no tienen cura
+                </h5>
+              </div>
+              <div class="mt-4 text-center">
+                <div class="">
+                  <div class="">
+                    <button
+                      type="button"
+                      class="btn btn-success btn-sm mb-2 mr-2 btn-rounded"
+                      (click)="descargarPdf('pdfEnfermedadSinCura')"
+                    >
+                      <i class="dripicons-arrow-down"> </i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="product-img position-relative col-sm-6">
+              <div class="mt-2 text-center">
+                <h5 class="mb-3 text-truncate">Enfermedades menos comunes</h5>
+              </div>
+              <div class="mt-4 text-center">
+                <div class="">
+                  <div class="">
+                    <button
+                      type="button"
+                      class="btn btn-success btn-sm mb-2 mr-2 btn-rounded"
+                      (click)="descargarPdf('pdfEnfermedadMenosContagiosa')"
+                    >
+                      <i class="dripicons-arrow-down"> </i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="mt-2 text-center">
+                <h5 class="mb-3">Enfermedades más comunes</h5>
+              </div>
+              <div class="mt-4 text-center">
+                <div class="mt-2 text-center">
+                  <div class="">
+                    <button
+                      type="button"
+                      class="btn btn-success btn-sm mb-2 mr-2 btn-rounded"
+                      (click)="descargarPdf('pdfEnfermedadesComunes')"
+                    >
+                      <i class="dripicons-arrow-down"> </i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6 text-center">
+              <div class="mt-2">
+                <h5 class="mb-3 text-truncate">
+                  Enfermedades de una planta específica
+                </h5>
+              </div>
+              <div class="d-flex align-items-center">
+                <div class="col-sm-6 mx-auto mb-2">
+                  <!-- Agrega la clase mx-auto para centrar el select -->
+                  <div class="d-flex align-items-center">
+                    <select class="form-control" [(ngModel)]="idplanta">
+                      <option
+                        *ngFor="let planta of listPlantas"
+                        [value]="planta.idplanta"
+                      >
+                        {{ planta.nombreplantacomun }}
+                      </option>
+                    </select>
+                    <button
+                      type="button"
+                      class="btn btn-success btn-sm mb-2 mr-2 btn-rounded ml-2"
+                      (click)="
+                        descargarPdfParametro('pdfEnfermedadesDeUnaPlanta')
+                      "
+                    >
+                      <i class="dripicons-arrow-down"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
+</div>
