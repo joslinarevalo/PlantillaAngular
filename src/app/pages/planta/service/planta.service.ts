@@ -11,10 +11,7 @@ import { environment } from 'src/environments/environment.prod';
 export class PlantaService {
 
   urlPlanta:string=environment.URL_API+"planta/";
-  //http://localhost:8080/planta/contarPlantas
-
   constructor(private http:HttpClient) { }
-
   listaDePlanta():Observable<IPlantaMostrar[]>{
     return this.http.get<IPlantaMostrar[]>(this.urlPlanta+"listar");
   }
@@ -30,26 +27,21 @@ export class PlantaService {
       responseType:'blob' as 'json'
      });
   }
-
   guardarPlanta(planta:FormData):Observable<any>{
     return this.http.post<any>(this.urlPlanta+"guardar",planta);
   }
-
   modificarPlanta(planta:FormData):Observable<any>{
     return this.http.put<any>(this.urlPlanta+"modificar",planta);
   }
-
   eliminarPlanta(tratamiento:IPlantaMostrar):Observable<any>{
     return this.http.delete<any>(this.urlPlanta+"eliminar/"+tratamiento.idPlanta);
   }
   obtenerConteoPlantas(): Observable<number> {
     return this.http.get<number>(this.urlPlanta + "contarPlantas");
   }
-
   buscarPlanta(id:String):Observable<any>{
     return this.http.get<IPlanta>(this.urlPlanta+"buscar/"+id);
   }
-
   listaDePlantaPaginacion(pagina:number,tamaño:number):Observable<any>{
     //return this.http.get<any>(this.urlTratamiento+"listaPaginacion?page='"+pagina+"'&size='"+tamaño+"'").pipe(map((resp:any)=>resp.content));
     const params:any={
@@ -58,7 +50,6 @@ export class PlantaService {
     }
     return this.http.get<any>(this.urlPlanta+"listaPaginacion",{params}).pipe(map((resp:any)=>resp.content));;
   }
-
   longitudCampos():Observable<any>{
     return this.http.get<any>(this.urlPlanta+"longitudCampos");
   }

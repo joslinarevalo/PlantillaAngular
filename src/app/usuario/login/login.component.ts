@@ -59,19 +59,12 @@ export class LoginComponent implements OnInit {
       let rol = [admin]
       /*this.autenticacionSevice.tieneRol(rol); */
       let user = this.autenticacionService.usuario;
-      /* Swal.fire('Error Login', 'rol: '+rol, 'error');
-      Swal.fire('Error Login', 'Usuario !'+this.autenticacionSevice.tieneRol(rol), 'error');
- */
-      /* if (this.usuario.roles.includes(roles[i])) {
-        return true; // Si encuentra al menos un rol coincidente, devuelve true
-      } */
+    
       if(this.autenticacionService.tieneRol(rol)){
         this.router.navigate(['/dashboard']);
       }else{
         this.router.navigate(['/paginas-principal/principal']);
       }
-      
-    //  Swal.fire('Inicio de sesión',`Hola ${user.usuario}, Has iniciado sesión con éxito!`,'success');
       Swal.fire({
         title: "Inicio de sesión",
         text: `Hola ${user.usuario}, Has iniciado sesión con éxito!`,
@@ -81,7 +74,6 @@ export class LoginComponent implements OnInit {
       });
  
     }, error => {
-   //   Swal.fire('Error al iniciar sesión', 'Usuario o contraseña son incorrectas!', 'error');
    Swal.fire({
     title: "Error al iniciar sesión",
     text: `Usuario o contraseña son incorrectas!`,
@@ -90,15 +82,6 @@ export class LoginComponent implements OnInit {
     confirmButtonColor: "#146C43",
   });
     }
-      /* (response:any)=>{
-        this.router.navigate(['/dashboard']);
-        console.log(response); 
-        Swal.fire('Login',`hola ${response.Message}, Has iniciado sesión con éxito!`,'success');
-        
-      },(error) =>{
-       //this.router.navigate(['/dashboard']);
-       Swal.fire('Login',`hola ${error},NO Has iniciado sesión con éxito!`,'error');
-      } */
     )
   }
   
