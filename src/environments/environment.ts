@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
- //URL_API:'https://stefanydomain2023.me/fitopatologia/',
-  URL_API:'http://localhost:8086/fitopatologia/',
+  URL_API:'https://uti.fmp.ues.edu.sv/fitopatologia/',
+  //URL_API:'https://desplieguecontinuo2023.me/fitopatologia/',
   defaultauth: 'fackbackend',
   firebaseConfig: {
     apiKey: '',
