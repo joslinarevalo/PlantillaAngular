@@ -18,7 +18,7 @@ export class TablaComponent implements OnInit, OnDestroy {
   breadCrumbItems: Array<{}>;
 
   @ViewChild(DataTableDirective, { static: false} ) dtElement: DataTableDirective;
-  dtOptions: DataTables.Settings = {};
+  dtOptions: any = {};
   dtTrigger: Subject<Itipoplanta> = new Subject<Itipoplanta>();
 
   p: any;
@@ -35,6 +35,7 @@ export class TablaComponent implements OnInit, OnDestroy {
     this.dtOptions={
 
        columnDefs: [
+        { responsivePriority: 1, targets: -1 },
         {width: "5%", targets: [0]},
         {width: "75%", targets: [1]},
         {width: "20%", targets: [2]},
@@ -74,6 +75,6 @@ export class TablaComponent implements OnInit, OnDestroy {
       // Do not forget to unsubscribe the event
       this.dtTrigger.unsubscribe();
     }
-    
+
 
 }
