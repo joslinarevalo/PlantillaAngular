@@ -31,7 +31,7 @@ export class UsuarioComponent implements OnInit {
     this.listaUsuario();
     this.formularioUsuario=this.inicializarFormulario();
     this.usuarioActual=this.autenticacion.usuario.usuario;
-    
+
     console.log("usuario: "+this.usuarioActual);
 
   }
@@ -55,7 +55,7 @@ export class UsuarioComponent implements OnInit {
   }
   EliminarUsuario(objetoEliminar:IUsuarioMostrar){
     console.log(objetoEliminar);
-    
+
     const alert = Swal.mixin({
       customClass: {
         confirmButton: 'btn btn-success',
@@ -75,16 +75,28 @@ export class UsuarioComponent implements OnInit {
       })
       .then((result) => {
         if (result.isConfirmed) {
-         
+
         if(this.usuarioActual==objetoEliminar.usuario){
           alert.fire('Error', 'No se puede Eliminar el Usuario Actual', 'error');
         }else{
-          this.usuarioService.eliminarUsuario(objetoEliminar).subscribe((resp)=>{
-            alert.fire('Eliminado', 'El Usuario ha sido eliminado', 'success'); 
-            this.recargar();
+          this.usuarioService.eliminarUsuario(objetoEliminar).subscribe({
+            next: (resp) => {
+              mensajeExito(" Eliminada con exito "); //+ resp.Mensaje
+              this.recargar();
+            },
+            error: (err) => {
+              console.log("error en el console: "+err.Mensaje);
+              mensajeError("Error al  el tipo Causa: " + err.Mensaje);
+            },
+            complete: () => {
+              this.modalService.dismissAll();
+              this.formularioUsuario.reset;
+              this.recargar();
+            },
+
           });
         }
-         
+
         } else if (result.dismiss === Swal.DismissReason.cancel) {
           alert.fire('Canselado', 'El Usuario no se elimino', 'error');
         }
@@ -94,7 +106,7 @@ export class UsuarioComponent implements OnInit {
     this.usuarioService.listaDeUsuarios().subscribe((resp)=>{
       console.log(resp);
       this.usuarioList=resp;
-      
+
     })
   }
   modificarUsuarioFormulario(objetoModificar:IUsuarioMostrar,content:any){
@@ -114,7 +126,7 @@ export class UsuarioComponent implements OnInit {
         mensajeExito("Usuario modificado con exito");
       },
       error:(err)=>{
-        mensajeError("Error al modificar el Usuario");
+        mensajeError("Error al modificar el Usuario: "+err.Mensaje);
       },
       complete:()=>{
       this.modalService.dismissAll();
@@ -131,7 +143,7 @@ export class UsuarioComponent implements OnInit {
         mensajeExito("Usuario guardado con exito");
       },
       error:(err)=>{
-        mensajeError("Error al guardar el Usuario");
+        mensajeError("Error al guardar el Usuario: "+err.Mensaje);
       },
       complete:()=>{
       this.modalService.dismissAll();
@@ -146,6 +158,6 @@ export class UsuarioComponent implements OnInit {
     this.router.onSameUrlNavigation = "reload";
     this.router.navigate([currentUrl]);
   }
- 
+
 
 }

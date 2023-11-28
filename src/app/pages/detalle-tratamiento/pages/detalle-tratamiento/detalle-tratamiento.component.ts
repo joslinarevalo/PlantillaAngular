@@ -31,7 +31,7 @@ export class DetalleTratamientoComponent implements OnInit {
     this.leyenda="Registrar";
     this.formularioDetalleTratamiento.reset();
     this.modalService.open(content, this.modalOptions);
-    
+
   }
   inicializarFormulario(): FormGroup {
     return this.fb.group({
@@ -40,10 +40,10 @@ export class DetalleTratamientoComponent implements OnInit {
       idDetalleCausa: ['', [Validators.required]]
   });
   }
-  
+
   eliminarTratamiento(objetoEliminar:IDetalleTratamientoDTOMostrar){
     console.log(objetoEliminar);
-    
+
     const alert = Swal.mixin({
       customClass: {
         confirmButton: 'btn btn-success',
@@ -63,12 +63,20 @@ export class DetalleTratamientoComponent implements OnInit {
       })
       .then((result) => {
         if (result.isConfirmed) {
-        
-          this.detalleTratamientoService.eliminarDetalleTratamiento(objetoEliminar).subscribe((resp)=>{
-            alert.fire('Eliminado', 'El registro ha sido eliminado', 'success'); 
+
+          this.detalleTratamientoService.eliminarDetalleTratamiento(objetoEliminar).subscribe({
+            next:(resp)=>{
+              mensajeExito("Tratamiento modificado con exito");
+            },
+            error:(err)=>{
+              mensajeError("Error al modificar el tratamiento"+err.Mensaje);
+            },
+            complete:()=>{
+            this.modalService.dismissAll();
             this.listDetalleTratamiento();
+            }
           });
-         
+
         } else if (result.dismiss === Swal.DismissReason.cancel) {
           alert.fire('Canselado', 'El registro no se elimino', 'error');
         }
@@ -83,7 +91,9 @@ export class DetalleTratamientoComponent implements OnInit {
             mensajeExito("Tratamiento modificado con exito");
           },
           error:(err)=>{
-            mensajeError("Error al modificar el tratamiento");
+            mensajeError("Error al modificar el tratamiento"+err.Mensaje);
+            this.modalService.dismissAll();
+            this.formularioDetalleTratamiento.reset();
           },
           complete:()=>{
           this.modalService.dismissAll();
@@ -91,7 +101,7 @@ export class DetalleTratamientoComponent implements OnInit {
           this.listDetalleTratamiento();
           }
         });
-          
+
   }
   modificarTratamiento(objetoModificar:IDetalleTratamientoDTOMostrar,content:any){
     console.log(objetoModificar);
@@ -100,7 +110,7 @@ export class DetalleTratamientoComponent implements OnInit {
      this.modalService.open(content, this.modalOptions);
   }
   guardarTratamiento(tratamientoGuardar:IDetalleTratamientoDTOValid){
-    
+
     this.detalleTratamientoService
         .guardarDetalleTratamiento(tratamientoGuardar)
         .subscribe({
@@ -108,7 +118,9 @@ export class DetalleTratamientoComponent implements OnInit {
             mensajeExito("Detalle Tratamiento guardado con exito");
           },
           error:(err)=>{
-            mensajeError("Detalle Error al guardar el tratamiento");
+            mensajeError("Detalle Error al guardar el tratamiento: "+err.Mensaje);
+            this.modalService.dismissAll();
+            this.formularioDetalleTratamiento.reset();
           },
           complete:()=>{
           this.modalService.dismissAll();
@@ -116,7 +128,7 @@ export class DetalleTratamientoComponent implements OnInit {
           this.listDetalleTratamiento();
           }
         });
-        
+
   }
   listDetalleTratamiento(){
     this.detalleTratamientoService.listaDetalleTratamiento().subscribe((resp)=>{
