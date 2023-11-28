@@ -95,8 +95,9 @@ export class MostrarCausaComponent implements OnInit {
                 mensajeExito(" Eliminada con exito "); //+ resp.Mensaje
                 this.listatipo();
               },
-              error: (e) => {
-                mensajeError(e.error.Mensaje);
+              error: (err) => {
+                console.log("error en el console: "+err.Mensaje);
+                mensajeError("Error al  el tipo Causa: " + err.Mensaje);
               },
               complete: () => {
                 this.modalService.dismissAll();
@@ -141,8 +142,8 @@ export class MostrarCausaComponent implements OnInit {
         mensajeExito("Tipo de Causa guardado con exito");
       },
       error: (err) => {
-        console.log(err);
-        mensajeError("Error al guardar el tipo Causa: " + err);
+        console.log(err.Mensaje);
+        mensajeError("Error al guardar el tipo Causa: " + err.Mensaje);
       },
       complete: () => {
         this.modalService.dismissAll();

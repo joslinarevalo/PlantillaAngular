@@ -71,10 +71,10 @@ export class TablaComponent implements OnInit {
       this.dtTrigger.next();
     });
   }
- 
- 
-  
-  
+
+
+
+
   eliminarDetalle(detalle: DetalleCausa) {
     const alert = Swal.mixin({
       customClass: {
@@ -108,9 +108,9 @@ export class TablaComponent implements OnInit {
             },
             (error) => {
               if (error.status === 409) {
-                alert.fire("Error", error.error.mensaje, "error");
+                alert.fire("Error", error.Mensaje, "error");
               } else {
-                alert.fire("Error", "Ocurrió un error al eliminar el registro", "error");
+                alert.fire("Error", error.Mensaje, "error");
               }
             }
           );
