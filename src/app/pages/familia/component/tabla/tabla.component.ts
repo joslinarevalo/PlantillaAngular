@@ -33,6 +33,7 @@ export class TablaComponent implements OnInit {
       //autoWidth = TRUE,
       columnDefs: [
         // { className: "center", targets: [0, 1, 2] },
+        { responsivePriority: 1, targets: -1 },
         { width: "5%", targets: [0] },
         { width: "75%", targets: [1] },
         { width: "20%", targets: [2] }
