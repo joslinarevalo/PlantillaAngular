@@ -7,6 +7,7 @@ import { mensajeError, mensajeExito } from 'src/app/pages/models/funciones.globa
 import Swal from 'sweetalert2';
 import { NAME_VALIDATE } from 'src/app/constants/constants';
 import { Router } from '@angular/router';
+import { AutenticacionService } from 'src/app/usuario/services/autenticacion.service';
 
 @Component({
   selector: 'app-usuario',
@@ -23,11 +24,15 @@ export class UsuarioComponent implements OnInit {
   usuarioList:IUsuarioMostrar[]=[];
   formularioUsuario!:FormGroup;
   leyenda:string="";
-  constructor(public modalService:NgbModal, private fb: FormBuilder,private usuarioService:UsuarioServiceService,private router: Router,) { }
+  usuarioActual:string="";
+  constructor(public modalService:NgbModal, private fb: FormBuilder,private usuarioService:UsuarioServiceService,private router: Router,public autenticacion:AutenticacionService) { }
 
   ngOnInit() {
     this.listaUsuario();
     this.formularioUsuario=this.inicializarFormulario();
+    this.usuarioActual=this.autenticacion.usuario.usuario;
+    
+    console.log("usuario: "+this.usuarioActual);
 
   }
   openModal(content: any) {
@@ -70,11 +75,15 @@ export class UsuarioComponent implements OnInit {
       })
       .then((result) => {
         if (result.isConfirmed) {
-        
+         
+        if(this.usuarioActual==objetoEliminar.usuario){
+          alert.fire('Error', 'No se puede Eliminar el Usuario Actual', 'error');
+        }else{
           this.usuarioService.eliminarUsuario(objetoEliminar).subscribe((resp)=>{
             alert.fire('Eliminado', 'El Usuario ha sido eliminado', 'success'); 
             this.recargar();
           });
+        }
          
         } else if (result.dismiss === Swal.DismissReason.cancel) {
           alert.fire('Canselado', 'El Usuario no se elimino', 'error');
