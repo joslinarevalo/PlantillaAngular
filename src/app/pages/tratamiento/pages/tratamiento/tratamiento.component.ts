@@ -135,15 +135,23 @@ export class TratamientoComponent implements OnInit {
       })
       .then((result) => {
         if (result.isConfirmed) {
+
           this.serviceTratamiento
-            .eliminarTratamiento(objetoEliminar)
-            .subscribe((resp) => {
-              alert.fire(
-                "Eliminado",
-                "El registro ha sido eliminado",
-                "success"
-              );
-              this.listaTratamiento();
+            .eliminarTratamiento(objetoEliminar).subscribe({
+
+              next: (resp) => {
+                mensajeExito("El registro ha sido eliminado");//+ resp.Mensaje
+                this.recargar();
+              },
+              error: (e) => {
+                mensajeError(e.error.Mensaje);
+              },
+              complete: () => {
+                this.modalService.dismissAll();
+                this.formularioTratamiento.reset();
+                this.listaTratamiento();
+              }
+
             });
         } else if (result.dismiss === Swal.DismissReason.cancel) {
           alert.fire("Canselado", "El registro no se elimino", "error");
@@ -183,9 +191,9 @@ export class TratamientoComponent implements OnInit {
         console.log(resp);
         mensajeExito("Tratamiento guardado con exito");
       },
-      error: (err) => {
-        console.log(err);
-        mensajeError("Error al guardar el tratamiento: " + err);
+      error: (e) => {
+        console.log("error desde console: "+e.error.Mensaje);
+        mensajeError("Error al guardar el tratamiento: " + e.error.Mensaje);
       },
       complete: () => {
         this.modalService.dismissAll();

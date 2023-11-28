@@ -70,7 +70,7 @@ export class TipoplantaComponent implements OnInit {
             this.recargar();
           },
           error:(err)=>{
-            mensajeError("Error al guardar el Tipo de planta");
+            mensajeError("Error al guardar el Tipo de planta, Ya existe");
           },
           complete:()=>{
           this.modalService.dismissAll();
@@ -102,10 +102,19 @@ eliminarTipoPlanta(objetoEliminar:Itipoplanta){
       .then((result) => {
         if (result.isConfirmed) {
 
-          this.serviceTipoPlanta.eliminarTipoPlanta(objetoEliminar).subscribe((resp)=>{
-            alert.fire('Eliminado', 'El registro ha sido eliminado', 'success');
-            this.listaTipoPlanta();
-            this.recargar();
+          this.serviceTipoPlanta.eliminarTipoPlanta(objetoEliminar).subscribe({
+            next: (resp) => {
+              mensajeExito("El registro ha sido eliminado");//+ resp.Mensaje
+              this.recargar();
+            },
+            error: (e) => {
+              mensajeError(e.error.Mensaje);
+            },
+            complete: () => {
+              this.modalService.dismissAll();
+              this.formularioTipoPlanta.reset();
+              this.listaTipoPlanta();
+            }
           });
 
         } else if (result.dismiss === Swal.DismissReason.cancel) {

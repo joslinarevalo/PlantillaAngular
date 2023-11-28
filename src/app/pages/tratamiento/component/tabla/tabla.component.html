@@ -30,18 +30,30 @@
     </table>
 </div>
 <ng-template #content role="document" let-modal>
+
   <h5 class="cajaModal text-center mt-4 texto-mayusculas">
     TRATAMIENTO
   </h5>
+
   <div class="modal-body">
     <form>
       <div class="row">
+      <div class="col-md-5" >
+        <img class="img-fluid" align="center" [src]="tratamiento.imagen" alt="Imagen del tratamiento">
+    </div>
+    <div class="col-md-7">
         <!-- Elimina el bucle *ngFor aquí -->
         <p><strong>Nombre del tratamiento:</strong> {{ tratamiento.nombrePesticidaTratamiento}}</p>
-        <p><strong>Descripcion del tratamiento:</strong> {{ tratamiento.descripcionTratamiento }}</p>
-        <p><strong>Indicaciones de uso:</strong> {{ tratamiento.indicacionesTratamiento }}</p>
-        <p><strong>Modo de aplicacion:</strong> {{ tratamiento.aplicacionTratamiento }}</p>
         <p><strong>Tipo de tratamiento:</strong> {{ tratamiento.tipoTratamiento }}</p>
+        <div class="col-md-12 mt-4" style="text-align: justify;">
+           <p><strong>Descripcion del tratamiento:</strong> {{ tratamiento.descripcionTratamiento }}</p>
+        </div>
+        <div class="col-md-12 mt-4" style="text-align: justify;">
+        <p><strong>Indicaciones de uso:</strong> {{ tratamiento.indicacionesTratamiento }}</p>
+        </div>
+        <div class="col-md-12 mt-4" style="text-align: justify;">
+        <p><strong>Modo de aplicacion:</strong> {{ tratamiento.aplicacionTratamiento }}</p>
+        </div>
         <!-- Fin del contenido individual -->
         <div class="text-center mb-3 mt-2">
           <span class="mx-2"></span>
@@ -51,6 +63,7 @@
           </button>
         </div>
       </div>
+    </div>
     </form>
-  </div>
+</div>
 </ng-template>

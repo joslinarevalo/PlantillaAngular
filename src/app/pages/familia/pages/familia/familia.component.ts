@@ -65,7 +65,7 @@ export class FamiliaComponent implements OnInit {
             this.recargar();
           },
           error:(err)=>{
-            mensajeError("Error al guardar la familia");
+            mensajeError("Error al guardar la familia, Ya existe");
           },
           complete:()=>{
           this.modalService.dismissAll();
@@ -97,11 +97,20 @@ eliminarFamilia(objetoEliminar:IFamilia){
       .then((result) => {
         if (result.isConfirmed) {
 
-          this.serviceFamilia.eliminarFamilia(objetoEliminar).subscribe((resp)=>{
-            alert.fire('Eliminado', 'El registro ha sido eliminado', 'success');
-            this.listaFamilia();
+          this.serviceFamilia.eliminarFamilia(objetoEliminar).subscribe({
+          next: (resp) => {
+            mensajeExito("El registro ha sido eliminado");//+ resp.Mensaje
             this.recargar();
-          });
+          },
+          error: (e) => {
+            mensajeError(e.error.Mensaje);
+          },
+          complete: () => {
+            this.modalService.dismissAll();
+            this.formularioFamilia.reset();
+            this.listaFamilia();
+          }
+        });
 
         } else if (result.dismiss === Swal.DismissReason.cancel) {
           alert.fire('Cancelado', 'El registro no se elimino', 'error');

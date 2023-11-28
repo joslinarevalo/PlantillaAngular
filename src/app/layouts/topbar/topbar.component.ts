@@ -117,14 +117,9 @@ export class TopbarComponent implements OnInit {
       confirmButtonText: "OK",
       confirmButtonColor: "#146C43",
     });
-    
-  //  Swal.fire('Cerrar sesión',`Hola ${this.autenticacionService.usuario.usuario} has cerrado sesión con éxito`,'success');
+
     this.autenticacionService.logout();
-    /* if (environment.defaultauth === 'firebase') {
-      this.authService.logout();
-    } else {
-      this.authFackservice.logout();
-    } */
+
     this.router.navigate(['/login']);
   }
 

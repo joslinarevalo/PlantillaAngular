@@ -114,5 +114,5 @@ export const MENU: MenuItem[] = [
     icon: "bx bx-file",
     link: "consultaTratamiento/listaTratamiento",
     roles: [admin, estudiante]
-  }
+  },
 ];

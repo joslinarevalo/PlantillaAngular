@@ -90,22 +90,25 @@ export class MostrarCausaComponent implements OnInit {
         if (result.isConfirmed) {
           this.causaenfermedadservice
             .eliminarCausa(ObjetoCausaEliminar)
-            .subscribe((resp) => {
-             
-              alert.fire(
-                
-                "Eliminado",
-                "El registro ha sido eliminado",
-                "success"
-              );
-              this.listatipo();
+            .subscribe({
+              next: (resp) => {
+                mensajeExito(" Eliminada con exito "); //+ resp.Mensaje
+                this.listatipo();
+              },
+              error: (e) => {
+                mensajeError(e.error.Mensaje);
+              },
+              complete: () => {
+                this.modalService.dismissAll();
+                this.formulariocausa.reset();
+                this.listatipo();
+              },
             });
         } else if (result.dismiss === Swal.DismissReason.cancel) {
           alert.fire("Canselado", "El registro no se elimino", "error");
-          
-        }
-      });
-  }
+        }
+      });
+  }
   modificarCausaFormulario(tipocausa: FormData) {
     this.causaenfermedadservice.modificarcausa(tipocausa).subscribe({
       next: (resp) => {

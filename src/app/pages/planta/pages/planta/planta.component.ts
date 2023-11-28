@@ -109,10 +109,21 @@ export class PlantaComponent implements OnInit {
       .then((result) => {
         if (result.isConfirmed) {
 
-          this.servicePlanta.eliminarPlanta(objetoEliminar).subscribe((resp)=>{
-            alert.fire('Eliminado', 'El registro ha sido eliminado', 'success');
-            this.listaPlanta();
-            this.recargar();
+          this.servicePlanta.eliminarPlanta(objetoEliminar).subscribe({
+
+            next: (resp) => {
+              mensajeExito("El registro ha sido eliminado");//+ resp.Mensaje
+              this.recargar();
+            },
+            error: (e) => {
+              mensajeError(e.error.Mensaje);
+            },
+            complete: () => {
+              this.modalService.dismissAll();
+              this.formularioPlanta.reset();
+              this.listaPlanta();
+            }
+
           });
 
         } else if (result.dismiss === Swal.DismissReason.cancel) {
@@ -126,17 +137,17 @@ export class PlantaComponent implements OnInit {
     this.servicePlanta
         .guardarPlanta(planta)
         .subscribe({
-          next:(resp)=>{
-            mensajeExito("Planta guardado con exito");
+          next: (resp) => {
+            mensajeExito("El registro ha sido eliminado");//+ resp.Mensaje
             this.recargar();
           },
-          error:(err)=>{
-            mensajeError("Detalle Error al guardar la planta");
+          error: (e) => {
+            mensajeError(e.error.Mensaje);
           },
-          complete:()=>{
-          this.modalService.dismissAll();
-          this.formularioPlanta.reset();
-          this.listaPlanta();
+          complete: () => {
+            this.modalService.dismissAll();
+            this.formularioPlanta.reset();
+            this.listaPlanta();
           }
         });
 

@@ -134,4 +134,9 @@ export class AutenticacionService {
     sessionStorage.removeItem('token');
     sessionStorage.removeItem('usuario'); */
   }
+
+  buscarUser(Usuario:IUsuarioCorreo):Observable<any>{
+    return this.http.put<any>(this.urlEndPoid2+"/buscarUser",Usuario);
+  }
+
 }

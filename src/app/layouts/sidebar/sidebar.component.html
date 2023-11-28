@@ -66,6 +66,15 @@
           </ul>
         </li>
       </ng-container>
+      <li *ngIf=" autenticacionService.tieneRol(['ROLE_ADMIN'])"><!-- // -->
+        <a
+          class="dropdown-item"
+          href="https://youtube.com/playlist?list=PLkTzJT-TH-Vdxkt437C2i-UCMZAmTLcd5&si=qS5x473a4BZXtT2-"
+          target="_blank"
+          ><i class="bx bx-film font-size-16 align-middle me-1"></i>
+          {{ "Videos" | translate }}</a
+        >
+        </li>
     </ul>
   </div>
 </ng-template>

@@ -1,5 +1,5 @@
 <div class="table-responsive mb-0 mt-2">
-  <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" 
+  <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
   class="table  row-border hover " width="100%" >
     <thead class="tabla">
       <tr>
@@ -16,7 +16,7 @@
         <td >{{data.nombreCientificoEnfermedad}}</td>
         <td >{{data.partesAfectadasEnfermedad}}</td>
         <td><img width="100px" height="100px" class="img-fluid" [src]="data.imagen"></td>
-        
+
         <!--  class="col-sm-6 mx-auto" -->
         <td  class="text-sm-end" >
           <div class="d-flex ">
@@ -53,7 +53,7 @@
           <p class="card-text"><strong>Condición Favorable:</strong> {{ enfermedad.condicionFavorableEnfermedad }}</p>
           <p class="card-text"><strong>Partes Afectadas:</strong> {{ enfermedad.partesAfectadasEnfermedad }}</p>
         </div>
-        <div class="col-md-12 mt-4">
+        <div class="col-md-12 mt-4" style="text-align: justify;">
           <p class="card-text"><strong>Descripción:</strong> {{ enfermedad.descripcionEnfermedad }}</p>
           <p class="card-text"><strong>Síntomas:</strong> {{ enfermedad.sintomasEnfermedad }}</p>
         </div>
