@@ -19,7 +19,10 @@
           id="nombrePesticidaTratamiento"
           formControlName="nombrePesticidaTratamiento"
           [ngClass]="esCampoValido('nombrePesticidaTratamiento')"
+          (input)="contarCaracteres('nombrePesticidaTratamiento')"
+          (input)="formularioTratamiento.get('nombrePesticidaTratamiento').setValue(capitalizeFirstLetter(formularioTratamiento.get('nombreComunPlanta').value))"
         />
+        <div id="contador" >{{ mensaje['nombrePesticidaTratamiento'] }}</div>
         <div class="invalid-feedback">
           <span
             *ngIf="formularioTratamiento.get('nombrePesticidaTratamiento')?.errors?.['required']"
@@ -45,7 +48,10 @@
           id="descripcionTratamiento"
           formControlName="descripcionTratamiento"
           [ngClass]="esCampoValido('descripcionTratamiento')"
+          (input)="contarCaracteres('descripcionTratamiento')"
+          (input)="formularioTratamiento.get('descripcionTratamiento').setValue(capitalizeFirstLetter(formularioTratamiento.get('nombreComunPlanta').value))"
         ></textarea>
+        <div id="contador" >{{ mensaje['descripcionTratamiento'] }}</div>
         <div class="invalid-feedback">
           <span
             *ngIf="formularioTratamiento.get('descripcionTratamiento')?.errors?.['required']"
@@ -71,7 +77,10 @@
           id="aplicacionTratamiento"
           formControlName="aplicacionTratamiento"
           [ngClass]="esCampoValido('aplicacionTratamiento')"
+          (input)="contarCaracteres('aplicacionTratamiento')"
+          (input)="formularioTratamiento.get('aplicacionTratamiento').setValue(capitalizeFirstLetter(formularioTratamiento.get('nombreComunPlanta').value))"
         ></textarea>
+        <div id="contador" >{{ mensaje['aplicacionTratamiento'] }}</div>
         <div class="invalid-feedback">
           <span
             *ngIf="formularioTratamiento.get('aplicacionTratamiento')?.errors?.['required']"
@@ -97,7 +106,10 @@
           id="indicacionesTratamiento"
           formControlName="indicacionesTratamiento"
           [ngClass]="esCampoValido('indicacionesTratamiento')"
+          (input)="contarCaracteres('indicacionesTratamiento')"
+          (input)="formularioTratamiento.get('indicacionesTratamiento').setValue(capitalizeFirstLetter(formularioTratamiento.get('nombreComunPlanta').value))"
         ></textarea>
+        <div id="contador" >{{ mensaje['indicacionesTratamiento'] }}</div>
         <div class="invalid-feedback">
           <span
             *ngIf="formularioTratamiento.get('indicacionesTratamiento')?.errors?.['required']"
@@ -123,7 +135,10 @@
           id="tipoTratamiento"
           formControlName="tipoTratamiento"
           [ngClass]="esCampoValido('tipoTratamiento')"
+          (input)="contarCaracteres('tipoTratamiento')"
+          (input)="formularioTratamiento.get('tipoTratamiento').setValue(capitalizeFirstLetter(formularioTratamiento.get('nombreComunPlanta').value))"
         />
+        <div id="contador" >{{ mensaje['tipoTratamiento'] }}</div>
         <div class="invalid-feedback">
           <span
             *ngIf="formularioTratamiento.get('tipoTratamiento')?.errors?.['required']"

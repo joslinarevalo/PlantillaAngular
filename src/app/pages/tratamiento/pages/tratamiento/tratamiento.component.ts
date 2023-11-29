@@ -167,7 +167,7 @@ export class TratamientoComponent implements OnInit {
           mensajeExito("Tratamiento modificado con exito");
         },
         error: (err) => {
-          mensajeError("Error al modificar el tratamiento");
+          mensajeError("Error al modificar el tratamiento: "+err.error.Mensaje);
         },
         complete: () => {
           this.modalService.dismissAll();

@@ -24,12 +24,18 @@ export class FormularioComponent implements OnInit {
   @Input()leyenda:string;
   @Input() imagen:any;
   @Input() archivo: File;
+  contador: number = 0;
+  porcentajeCompletado: number = 0;
+  longitudesDeCampos: any = {};
+  mensaje: { [key: string]: string } = {};
   constructor( private fb: FormBuilder, private serviceTratamiento:TratamientoService, private dm:DomSanitizer) { }
 
   ngOnInit(): void {
+    this.obtenerLongitudesCampos();
     if(this.leyenda=="Modificar"){
       this.imagenMostrar=this.imagen;
       this.formularioSerealizable.set('imagen',this.archivo);
+      
     }
     else{
       this.convertirImagen();
@@ -145,6 +151,46 @@ export class FormularioComponent implements OnInit {
    console.log('Imagen convertida a File:', archivo);
     this.formularioSerealizable.set('imagen',archivo);
     });
+    }
+    contarCaracteres(idInput:String) {
+      const textarea = document.getElementById(""+idInput) as HTMLTextAreaElement;
+      let limiteCaracteres = 0;
+
+      if (this.longitudesDeCampos.hasOwnProperty(idInput+"")) {
+        limiteCaracteres = this.longitudesDeCampos[idInput+""];
+        console.log("si: " +this.longitudesDeCampos)
+        console.log(`Campo: ${idInput}, Valor: ${limiteCaracteres}`);
+      } else {
+        console.log("no: " +this.longitudesDeCampos)
+        console.log(`Campo "${idInput}" no encontrado en fieldLengths`);
+      }
+
+      this.contador = textarea.value.length;
+      if(this.contador > limiteCaracteres){
+        this.contador = textarea.value.length-1;
+      }
+
+      if (this.contador >= limiteCaracteres) {
+        textarea.value = textarea.value.substring(0, limiteCaracteres);
+        this.mensaje[idInput+""] = `Se ha alcanzado el límite de caracteres permitidos`;
+      }else{
+        this.mensaje[idInput+""] = `${this.contador} caracteres de ${limiteCaracteres} permitidos`;
+      }
+    }
+
+    obtenerLongitudesCampos() {
+      this.serviceTratamiento.longitudCampos().subscribe((lista) => {
+        this.longitudesDeCampos = lista;
+
+        console.log(this.longitudesDeCampos);
+      });
+    }
+    capitalizeFirstLetter(input: string): string {
+      if (input) {
+        return input.charAt(0).toUpperCase() + input.slice(1);
+      } else {
+        return input;
+      }
     }
 
 }

@@ -66,10 +66,10 @@ export class DetalleTratamientoComponent implements OnInit {
 
           this.detalleTratamientoService.eliminarDetalleTratamiento(objetoEliminar).subscribe({
             next:(resp)=>{
-              mensajeExito("Tratamiento modificado con exito");
+              mensajeExito("Detalle de tratamiento eliminado con exito");
             },
             error:(err)=>{
-              mensajeError("Error al modificar el tratamiento"+err.Mensaje);
+              mensajeError("Error al eliminar el detalle de tratamiento"+err.Mensaje);
             },
             complete:()=>{
             this.modalService.dismissAll();
@@ -88,10 +88,10 @@ export class DetalleTratamientoComponent implements OnInit {
         .modificarDetalleTratamiento(tratamientoModificar)
         .subscribe({
           next:(resp)=>{
-            mensajeExito("Tratamiento modificado con exito");
+            mensajeExito("Detalle de tratamiento modificado con exito");
           },
           error:(err)=>{
-            mensajeError("Error al modificar el tratamiento"+err.Mensaje);
+            mensajeError("Error al modificar el detalle de tratamiento"+err.Mensaje);
             this.modalService.dismissAll();
             this.formularioDetalleTratamiento.reset();
           },

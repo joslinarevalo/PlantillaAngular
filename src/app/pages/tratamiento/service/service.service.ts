@@ -73,4 +73,7 @@ export class TratamientoService {
   obtenerConteTramiento(): Observable<number> {
     return this.http.get<number>(this.urlTratamiento + "contarTratamiento");
   }
+  longitudCampos():Observable<any>{
+    return this.http.get<any>(this.urlTratamiento+"longitudCampos");
+  }
 }
