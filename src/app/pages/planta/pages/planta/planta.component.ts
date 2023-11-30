@@ -138,7 +138,7 @@ export class PlantaComponent implements OnInit {
         .guardarPlanta(planta)
         .subscribe({
           next: (resp) => {
-            mensajeExito("El registro ha sido eliminado");//+ resp.Mensaje
+            mensajeExito("El registro se guardo con exito");//+ resp.Mensaje
             this.recargar();
           },
           error: (e) => {
