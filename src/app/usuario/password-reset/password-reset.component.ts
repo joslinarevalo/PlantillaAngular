@@ -98,7 +98,6 @@ export class PasswordResetComponent implements OnInit {
       //validar que el correo ingresado exista en la bd
       this.autenticacionService.buscarUserEmail(this.usuario).subscribe(
         (response) => {
-          //console.log(this.usuario);
 
           this.email = {
             destinatarios: [this.resetForm.controls["correo"].value],
@@ -108,16 +107,12 @@ export class PasswordResetComponent implements OnInit {
 
           this.autenticacionService.resetPassword(this.email).subscribe(
             (response) => {
-              // Lógica para manejar la respuesta del backend (puede ser una confirmación de éxito)
-              //console.log('Solicitud enviada con éxito');
-              //Swal.fire('Recuperación de Contraseña', `¡Código de recuperacion enviado con éxito!`, 'success');
+
 
               //setear el codigo de recuperacion y la fecha de expiracion
               this.autenticacionService.setClaveTemp(this.usuario).subscribe(
                 (resp) => {
                   this.showVerificationForm = true;
-                  //console.log('Solicitud enviada con éxito');
-                  // Swal.fire('Recuperación de Contraseña', `¡Código de recuperacion enviado con éxito!`, 'success');
                   Swal.fire({
                     title: "Recuperación de Contraseña",
                     text: `¡Código de recuperacion enviado con éxito!`,
@@ -186,14 +181,10 @@ export class PasswordResetComponent implements OnInit {
       const enteredCode =
         this.verificationForm.controls.codigoVerificiacion.value;
       const newPassword = this.verificationForm.controls.nuevaClave.value;
-      console.log(this.usuario);
       // Aquí debes comparar 'enteredCode' con el código guardado en la base de datos
       this.autenticacionService.buscarUserEmail(this.usuario).subscribe(
         (response) => {
-          console.log(response.mensaje);
           let obj: IUsuarioCorreo = JSON.parse(response.mensaje);
-          console.log(obj);
-          console.log(obj.claveTemporal);
           if (obj.claveTemporal == enteredCode) {
             // Obtener la hora actual
             const now = new Date();

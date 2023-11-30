@@ -33,14 +33,11 @@ export class CardPlantaComponent implements OnInit {
       this.imagen = this.dm.bypassSecurityTrustUrl(url);
       this.planta.imagen = this.imagen; // Asignar la imagen a this.planta
     });
-    console.log("planta",this.planta.nombreCientifico);
   }
   ObtenerImagen(url: string) {
     this.servicePlanta.getImagen(url).subscribe((resp) => {
-      console.log(resp);
       let url = URL.createObjectURL(resp);
       this.imagen = this.dm.bypassSecurityTrustUrl(url);
-      console.log(this.imagen);
     });
   }
 

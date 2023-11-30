@@ -38,9 +38,7 @@ export class FormularioComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log("esto imprimo antes" + this.longitudesDeCampos);
     this.obtenerLongitudesCampos();
-    console.log("esto imprimo despues" + this.longitudesDeCampos);
 
     if (this.leyenda == "Modificar") {
       this.imagenMostrar = this.imagen;
@@ -59,7 +57,6 @@ export class FormularioComponent implements OnInit {
 
   guardar() {
     if (this.formulario_valido()) {
-      console.log(this.formularioEnfermedad);
       this.enfermedad = {
         nombreComunEnfermedad:
           this.formularioEnfermedad.controls["nombreComunEnfermedad"].value,
@@ -82,8 +79,7 @@ export class FormularioComponent implements OnInit {
         urlEnfermedad:
           this.formularioEnfermedad.controls["urlEnfermedad"].value,
       };
-      //this.presentacion=this.formulario.value;
-      console.log(this.enfermedad); //
+
       this.formularioSerealizable.set(
         "enfermedad",
         JSON.stringify(this.enfermedad)
@@ -126,7 +122,6 @@ export class FormularioComponent implements OnInit {
         urlEnfermedad:
           this.formularioEnfermedad?.controls["urlEnfermedad"].value,
       };
-      //console.log(this.enfermedad);
       this.formularioSerealizable.set(
         "enfermedad",
         JSON.stringify(this.enfermedad)
@@ -159,7 +154,6 @@ export class FormularioComponent implements OnInit {
 
   SeleccionarImagen(event: any) {
     let file: File = event.target.files[0];
-    console.log(file);
     if (file.size > 350000) {
       Swal.fire({
         position: "center",
@@ -202,9 +196,6 @@ export class FormularioComponent implements OnInit {
 
     if (this.longitudesDeCampos.hasOwnProperty(idInput + "")) {
       limiteCaracteres = this.longitudesDeCampos[idInput + ""];
-      console.log(`Campo: ${idInput}, Valor: ${limiteCaracteres}`);
-    } else {
-      console.log(`Campo "${idInput}" no encontrado en fieldLengths`);
     }
 
     this.contador = textarea.value.length;
@@ -227,8 +218,6 @@ export class FormularioComponent implements OnInit {
   obtenerLongitudesCampos() {
     this.serviceEnfermedad.longitudCampos().subscribe((lista) => {
       this.longitudesDeCampos = lista;
-
-      console.log(this.longitudesDeCampos);
     });
   }
 
@@ -254,7 +243,6 @@ export class FormularioComponent implements OnInit {
     .then((blob) => {
     const nombreArchivo = 'No_imagen.jpg';
     const archivo = new File([blob], nombreArchivo, { type: 'image/jpeg' });
-   console.log('Imagen convertida a File:', archivo);
     this.formularioSerealizable.set('imagen',archivo);
     });
     }

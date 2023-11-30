@@ -45,27 +45,22 @@ export class MostrarComponent implements OnInit {
   }
 
   onScroll(){
-    console.log("scroll infinito")
     this.tamaño+=5;
     this.listaPlantaPaginada();
   }
 
   listaPlantaPaginada(){
     this.servicePlanta.listaDePlantaPaginacion(this.pagina,this.tamaño).subscribe((resp)=>{
-      console.log(resp);
       this.allPlanta=resp;
       this.allPlanta.forEach(element => {
         this.servicePlanta.getImagen(element.urlPlanta).subscribe((resp)=>{
-          //console.log(resp);
           let url=URL.createObjectURL(resp);
           this.imagen=this.dm.bypassSecurityTrustUrl(url);
-          //console.log(this.imagen);
           element.imagen=this.imagen;
         });
       });
       this.filtrarPlanta = this.allPlanta;
     });
-    console.log("planta paginada "+this.filtrarPlanta);
   }
 
 

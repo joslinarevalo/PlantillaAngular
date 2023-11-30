@@ -84,14 +84,12 @@ export class TablaCausaComponent implements OnInit, OnDestroy {
   listatipo() {
     this.causaenfermedad.listaDeTipoCausa().subscribe((resp) => {
       this.ListaDeCausa = resp;
-      console.log(resp);
       this.ListaDeCausa.forEach((element) => {
         this.causaenfermedad.getImagen(element.urlTC).subscribe((resp) => {
           let url = URL.createObjectURL(resp);
           this.imagen = this.dm.bypassSecurityTrustUrl(url);
           element.imagen = this.imagen;
           element.archivo = this.convertirArchivo(resp, element.urlTC);
-          console.log(element.archivo);
           this.dtTrigger.next(null);
         });
       });
@@ -100,25 +98,20 @@ export class TablaCausaComponent implements OnInit, OnDestroy {
 
   ObtenerImagen(url: string) {
     this.causaenfermedad.getImagen(url).subscribe((resp) => {
-      console.log(resp);
       let url = URL.createObjectURL(resp);
       this.imagen = this.dm.bypassSecurityTrustUrl(url);
-      console.log(this.imagen);
     });
   }
 
   ObtenerCausaEliminar(causa: ITipoCausa) {
-    console.log(causa);
     this.ObjetoCausaEliminar.emit(causa); //para emitar el evento de objeto a la vista del padre
   }
   ObtenerCausaModificar(causa: ITipoCausa) {
-    console.log(causa);
     this.ObjetoCausaModificar.emit(causa);
   }
   convertirArchivo(blob: Blob | undefined, url: string): File {
     let miArchivo!: File;
     let nombre = url.substring(36);
-    console.log("nombre del archivo a modificar: " + nombre);
     if (blob != undefined) {
       miArchivo = new File([blob], nombre, {
         type: blob.type,
@@ -129,7 +122,6 @@ export class TablaCausaComponent implements OnInit, OnDestroy {
     }
   }
   openModal(content: any, causas: ITipoCausa) {
-    console.log("Abriendo modal de edición para causa: ", causas);
     this.causa = causas;
     this.modalService.open(content, {
       size: "xl",

@@ -65,12 +65,10 @@ export class TablaComponent implements OnInit {
     };
 
     obtenerFamiliaEliminar(familia:IFamilia){
-      console.log("A eliminar "+familia);
       this.ObjetoFamiliaEliminar.emit(familia);//para emitar el evento de objeto a la vista del padre
     }
 
     obtenerFamiliaModificar(familia:IFamilia){
-      console.log("A modificar " + familia);
       this.ObjetoFamiliaModificar.emit(familia);//para emitar el evento de objeto a la vista del padre
     }
 

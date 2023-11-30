@@ -14,11 +14,11 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 export class TablaComponent implements OnInit {
   p: any;
   imagen:any;
-  
+
   @Input()listaEnfermedades:IEnfermedadMostrar[]=[];
   @Output()ObjetoEnfermedadEliminar= new EventEmitter<IEnfermedadMostrar>();
   @Output()ObjetoEnfermedadModificar= new EventEmitter<IEnfermedadMostrar>();
-  @ViewChild(DataTableDirective, { static: false} ) 
+  @ViewChild(DataTableDirective, { static: false} )
   dtElement: DataTableDirective;
   dtOptions: any = {};
   enfermedad?:IEnfermedadMostrar;
@@ -49,17 +49,15 @@ export class TablaComponent implements OnInit {
       pagingType: 'full_numbers',
       responsive: true,
     };
-    
+
     this.lista();
   }
 
   obtenerEnfermedadEliminar(enfermedad:IEnfermedadMostrar){
-    //console.log(enfermedad);
     this.ObjetoEnfermedadEliminar.emit(enfermedad);//para emitar el evento de objeto a la vista del padre
   }
 
   obtenerEnfermedadModificar(enfermedad:IEnfermedadMostrar){
-    //console.log(enfermedad);
     this.ObjetoEnfermedadModificar.emit(enfermedad);
   }
 
@@ -81,7 +79,6 @@ export class TablaComponent implements OnInit {
   convertirArchivo(blob: Blob | undefined, url:string): File {
     let miArchivo!: File;
     let nombre=url.substring(36);
-    console.log("nombre del archivo a modificar: "+nombre);
     if (blob != undefined) {
       miArchivo = new File([blob], nombre, {
         type: blob.type,
@@ -95,17 +92,14 @@ export class TablaComponent implements OnInit {
   openModal(content: any,enfermedad:IEnfermedadMostrar) {
     this.enfermedad=enfermedad;
 
-    console.log(this.enfermedad);
-    console.log(enfermedad);
-    
     if(this.enfermedad != undefined ){
       this.enfService.getImagen(this.enfermedad.urlEnfermedad).subscribe((resp) => {
         let url = URL.createObjectURL(resp);
         this.imagen = this.dm.bypassSecurityTrustUrl(url);
         this.enfermedad.urlEnfermedad = this.imagen;
-      });  
+      });
     }
-    
+
     this.modalService.open(content, {
       size: "xl",
       centered: true,

@@ -103,13 +103,10 @@ export class NuevoComponent implements OnInit {
     }
   }
   guardar() {
-    console.log("Formulario válido:", this.formularioDetalleCausa.valid);
     if (this.formularioDetalleCausa.valid) {
       if (this.detalledto == null) {
-        console.log("Entrando en la función guardar");
         this.registrando();
       } else {
-        console.log("Entrando al else");
         //this.editar();
         this.editando();
       }
@@ -130,14 +127,14 @@ export class NuevoComponent implements OnInit {
       idTipoCausa: this.dtCausa.tipoCausa.idTipoCausa,
       idPlanta: this.dtCausa.planta.idPlanta,
     };
- 
+
 
     this.detallecausaservice.registrarDetalleCausa(detalle).subscribe({
       next: (resp) => {
         mensajeExito("Detalle de Causa guardado con exito");
       },
       error: (e) => {
-        mensajeError(e.error.Mensaje); 
+        mensajeError(e.error.Mensaje);
       },
       complete: () => {
         this.modalService.dismissAll();
@@ -173,7 +170,6 @@ export class NuevoComponent implements OnInit {
       idTipoCausa: idTipoCausa,
       idPlanta: idPlanta,
     };
-    console.log(detalle);
 
     this.detallecausaservice.modificar(detalle).subscribe({
       next: (resp) => {
@@ -192,7 +188,7 @@ export class NuevoComponent implements OnInit {
   }
 
   editar() {
-  
+
     const detalle: DetalleCausa = {
       idDetalleCausa: this.detalledto!.idDetalleCausa,
       tipoCausa: {
@@ -206,7 +202,6 @@ export class NuevoComponent implements OnInit {
       },
       descripcionCausa: this.formularioDetalleCausa.get("descripcionD").value,
     };
-    console.log(this.detalledto);
     const idDetalleCausa = this.detalledto
     ? this.detalledto.idDetalleCausa
     : null;
@@ -238,15 +233,12 @@ export class NuevoComponent implements OnInit {
       },
       descripcionCausa: descripcionCausa,
   };
-  console.log(detalless);
     this.detallecausaservice.update(detalless).subscribe(
       {
       next: (resp) => {
         mensajeExito("Detalle de Causa editado con exito");
       },
       error: (err) => {
-       // mensajeError("Error al guardar el detalle de causa");
-       // this.errores = err.error.errors as string[];
         console.error('Código del error desde el backend: ' + err);
       },
       complete: () => {

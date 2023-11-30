@@ -34,7 +34,6 @@ export class DefaultComponent implements OnInit {
     this.plantService.obtenerConteoPlantas().subscribe(
       (conteo) => {
         this.totalPlantas = conteo;
-        console.log("conteo de plantas: ", this.totalPlantas);
       },
       (error) => {
         console.error("Error al obtener el conteo de plantas: ", error);
@@ -45,7 +44,6 @@ export class DefaultComponent implements OnInit {
     this.enfermeda.obtenerConteoenfermedad().subscribe(
       (conteo) => {
         this.totalEnfermedades = conteo;
-        console.log("conteo de enfermedad: ", this.totalPlantas);
       },
       (error) => {
         console.error("Error al obtener el conteo de enfermedad: ", error);
@@ -56,7 +54,6 @@ export class DefaultComponent implements OnInit {
     this.serviceTratamiento.obtenerConteTramiento().subscribe(
       (conteo) => {
         this.totalTratamientos = conteo;
-        console.log("conteo de tratamiento: ", this.totalPlantas);
       },
       (error) => {
         console.error("Error al obtener el conteo de tratamiento: ", error);
@@ -67,13 +64,12 @@ export class DefaultComponent implements OnInit {
     this.usuarioService.obtenerConteUser().subscribe(
       (conteo) => {
         this.totalUsuarios = conteo;
-        console.log("conteo de Usuario: ", this.totalPlantas);
       },
       (error) => {
         console.error("Error al obtener el conteo de usuarios: ", error);
       }
     );
   }
- 
-  
+
+
 }

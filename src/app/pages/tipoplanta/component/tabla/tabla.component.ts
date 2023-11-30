@@ -62,12 +62,10 @@ export class TablaComponent implements OnInit, OnDestroy {
 
 
     obtenerTipoPlantaEliminar(tipo:Itipoplanta){
-      console.log("A eliminar "+tipo);
       this.ObjetoTipoPlantaEliminar.emit(tipo);//para emitar el evento de objeto a la vista del padre
     }
 
     obtenerTipoPlantaModificar(tipo:Itipoplanta){
-      console.log("A modificar " + tipo);
       this.ObjetoTipoPlantaModificar.emit(tipo);//para emitar el evento de objeto a la vista del padre
     }
 

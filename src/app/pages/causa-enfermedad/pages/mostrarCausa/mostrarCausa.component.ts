@@ -54,7 +54,6 @@ export class MostrarCausaComponent implements OnInit {
   listatipo() {
     this.causaenfermedadservice.listaDeTipoCausa().subscribe((resp) => {
       this.causaList = resp;
-      console.log(resp);
       this.causaList.forEach((element) => {
         this.causaenfermedadservice
           .getImagen(element.urlTC)
@@ -63,7 +62,6 @@ export class MostrarCausaComponent implements OnInit {
             this.imagen = this.dm.bypassSecurityTrustUrl(url);
             element.imagen = this.imagen;
             element.archivo = this.convertirArchivo(resp, element.urlTC);
-            console.log(element.archivo);
           });
       });
     });
@@ -96,7 +94,6 @@ export class MostrarCausaComponent implements OnInit {
                 this.listatipo();
               },
               error: (err) => {
-                console.log("error en el console: "+err.Mensaje);
                 mensajeError("Error al  el tipo Causa: " + err.Mensaje);
               },
               complete: () => {
@@ -113,7 +110,6 @@ export class MostrarCausaComponent implements OnInit {
   modificarCausaFormulario(tipocausa: FormData) {
     this.causaenfermedadservice.modificarcausa(tipocausa).subscribe({
       next: (resp) => {
-        console.log(resp);
         mensajeExito("Tipo de causa modificado con exito");
       },
       error: (err) => {
@@ -138,11 +134,9 @@ export class MostrarCausaComponent implements OnInit {
   guardarCausa(tipoCausa: FormData) {
     this.causaenfermedadservice.guardarcausa(tipoCausa).subscribe({
       next: (resp) => {
-        console.log(resp);
         mensajeExito("Tipo de Causa guardado con exito");
       },
       error: (err) => {
-        console.log(err.Mensaje);
         mensajeError("Error al guardar el tipo Causa: " + err.Mensaje);
       },
       complete: () => {
@@ -155,7 +149,6 @@ export class MostrarCausaComponent implements OnInit {
   convertirArchivo(blob: Blob | undefined, url: string): File {
     let miArchivo!: File;
     let nombre = url.substring(36);
-    console.log("nombre del archivo a modificar: " + nombre);
     if (blob != undefined) {
       miArchivo = new File([blob], nombre, {
         type: blob.type,

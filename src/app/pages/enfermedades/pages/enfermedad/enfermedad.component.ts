@@ -56,16 +56,13 @@ export class EnfermedadComponent implements OnInit {
     this.serviceEnfermedad.listaEnfermedades()
     .subscribe((resp) => {
       this.enfermedadList = resp;
-      console.log(resp);
+
       this.enfermedadList.forEach(element => {
         this.serviceEnfermedad.getImagen(element.urlEnfermedad).subscribe((resp) => {
-          //console.log(resp);
           let url = URL.createObjectURL(resp);
           this.imagen = this.dm.bypassSecurityTrustUrl(url);
-          //console.log(this.imagen);
           element.imagen = this.imagen;
           element.archivo = this.convertirArchivo(resp, element.urlEnfermedad);
-          console.log(element.archivo);
         });
       });
     })
@@ -114,14 +111,13 @@ export class EnfermedadComponent implements OnInit {
   }
 
   modificarEnfermedadFormulario(enfermedadModificar: FormData) {
-    console.log(enfermedadModificar);
     this.serviceEnfermedad.modificar(enfermedadModificar)
       .subscribe({
         next: (resp) => {
           mensajeExito("Enfermedad modificada con exito ");//+ resp.Mensaje
         },
         error: (e) => {
-          mensajeError(e.error.Mensaje); 
+          mensajeError(e.error.Mensaje);
         },
         complete: () => {
           this.recargar();
@@ -150,7 +146,7 @@ export class EnfermedadComponent implements OnInit {
           mensajeExito("Enfermedad guardado con exito ");//+ resp
         },
         error: (e) => {
-          mensajeError(e.error.Mensaje); 
+          mensajeError(e.error.Mensaje);
         },
         complete: () => {
           this.recargar();
@@ -165,7 +161,6 @@ export class EnfermedadComponent implements OnInit {
   convertirArchivo(blob: Blob | undefined, url: string): File {
     let miArchivo!: File;
     let nombre = url.substring(36);
-    //console.log("nombre del archivo a modificar: " + nombre);
     if (blob != undefined) {
       miArchivo = new File([blob], nombre, {
         type: blob.type,
@@ -194,7 +189,7 @@ export class EnfermedadComponent implements OnInit {
     this.router.onSameUrlNavigation = "reload";
     this.router.navigate([currentUrl]);
   }
-  
+
   /* validarImagen(control: any) {
     const archivo = control.value;
     if (!archivo) {

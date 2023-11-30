@@ -38,7 +38,6 @@ export class ReporteComponent implements OnInit {
     });
   }
   descargarPdfParametro(nombre:string){
-    console.log(this.idplanta);
     this.reporteService.generarConsultaEnfermedadesPlantaParamPdf(nombre,this.idplanta).subscribe((data:Blob)=>{
       const blob= new Blob([data],{type:'application/pdf'});
       const link=document.createElement('a');
@@ -50,7 +49,6 @@ export class ReporteComponent implements OnInit {
 listaPlantas(){
   this.reporteService.listaPlantas().subscribe((resp)=>{
     this.listPlantas=resp;
-    console.log(resp);
   });
 }
 
