@@ -38,22 +38,15 @@ export class CardsComponent implements OnInit {
       // Utiliza idTipoCausa para cargar los detalles del elemento específico
       this.buscartratamiento(idtratamiento);
     });
-   
+
   }
   buscartratamiento(idtratamiento: string) {
     // Buscamos el patógeno específico por su id
     this.tratamientoService.buscarTratamiento(idtratamiento).subscribe(
       (data) => {
         this.tratamiento = data;
-        console.log(this.tratamiento);
-        //console.log(this.tratamiento.urltratamiento);
         this.ObtenerImagen(this.tratamiento.urlTratamiento);
-          /* this.tratamientoService.getImagen(this.tratamiento.urltratamiento).subscribe((resp) => {
-            let url = URL.createObjectURL(resp);
-            this.imagen = this.dm.bypassSecurityTrustUrl(url);
-            //this.tratamiento.urltratamiento = this.imagen;
-          }); */
-          this.listaEnfermedades(idtratamiento);
+        this.listaEnfermedades(idtratamiento);
       },
       (error) => {
         console.error("Error al obtener los detalles de la tratamiento:", error);
@@ -62,20 +55,17 @@ export class CardsComponent implements OnInit {
   }
   listaEnfermedades(idTratamiento:string){
     this.tratamientoService.listaDeTratamientoConsulta(idTratamiento).subscribe((resp)=>{
-      console.log(resp);
       this.listEnfermedades=resp;
       this.dtTrigger.next(null);
     })
   }
-  
-  
+
+
   ObtenerImagen(url: string) {
     this.tratamientoService.getImagen(url).subscribe((resp) => {
-      //console.log(resp);
       let url = URL.createObjectURL(resp);
       this.imagen = this.dm.bypassSecurityTrustUrl(url);
       this.tratamiento.urlTratamiento = this.imagen;
-      //console.log(this.imagen);
     });
   }
   ObtenerEnfermedad(idEnfermedad:string){

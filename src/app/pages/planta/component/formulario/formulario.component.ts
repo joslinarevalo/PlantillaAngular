@@ -63,7 +63,6 @@ export class FormularioComponent implements OnInit {
 
   guardar() {
     if (this.formulario_valido()) {
-      console.log(this.formularioPlanta);
       this.planta = {
         idFamilia: this.formularioPlanta.controls['idFamilia'].value,
         idTipoPlanta: this.formularioPlanta.controls['idTipoPlanta'].value,
@@ -73,8 +72,6 @@ export class FormularioComponent implements OnInit {
         historia: this.formularioPlanta.controls['historia'].value,
         urlPlanta: this.formularioPlanta.controls['urlPlanta'].value,
       };
-      //this.presentacion=this.formulario.value;
-      console.log(this.planta);
       this.formularioSerealizable.set("planta",JSON.stringify(this.planta));
       this.ObjetoGuardar.emit(this.formularioSerealizable);
       this.recargar();
@@ -101,7 +98,6 @@ export class FormularioComponent implements OnInit {
         historia: this.formularioPlanta.controls['historia'].value,
         urlPlanta: this.formularioPlanta.controls['urlPlanta'].value,
       };
-      console.log(this.planta);
       this.formularioSerealizable.set("planta",JSON.stringify(this.planta));
       this.ObjetoModificar.emit(this.formularioSerealizable);
       this.recargar();
@@ -133,7 +129,6 @@ export class FormularioComponent implements OnInit {
 
     SeleccionarImagen(event: any) {
       let file: File = event.target.files[0];
-      console.log(file);
       if (file.size > 350000) {
         Swal.fire({
           position: "center",
@@ -165,13 +160,11 @@ export class FormularioComponent implements OnInit {
     listaTipoPlanta(){
       this.serviceTipoPlanta.listarTipoPlanta().subscribe((resp)=>{
         this.listTipoPlanta=resp;
-        console.log(resp);
       });
     }
     listaFamilia(){
       this.serviceFamilia.listarFamilia().subscribe((resp)=>{
         this.listFamilia=resp;
-        console.log(resp);
       })
     }
 
@@ -187,11 +180,6 @@ export class FormularioComponent implements OnInit {
 
       if (this.longitudesDeCampos.hasOwnProperty(idInput+"")) {
         limiteCaracteres = this.longitudesDeCampos[idInput+""];
-        console.log("si: " +this.longitudesDeCampos)
-        console.log(`Campo: ${idInput}, Valor: ${limiteCaracteres}`);
-      } else {
-        console.log("no: " +this.longitudesDeCampos)
-        console.log(`Campo "${idInput}" no encontrado en fieldLengths`);
       }
 
       this.contador = textarea.value.length;
@@ -210,8 +198,6 @@ export class FormularioComponent implements OnInit {
     obtenerLongitudesCampos() {
       this.servicePlanta.longitudCampos().subscribe((lista) => {
         this.longitudesDeCampos = lista;
-
-        console.log(this.longitudesDeCampos);
       });
     }
 
@@ -230,7 +216,6 @@ export class FormularioComponent implements OnInit {
       .then((blob) => {
       const nombreArchivo = 'No_imagen.jpg';
       const archivo = new File([blob], nombreArchivo, { type: 'image/jpeg' });
-     console.log('Imagen convertida a File:', archivo);
       this.formularioSerealizable.set('imagen',archivo);
       });
       }

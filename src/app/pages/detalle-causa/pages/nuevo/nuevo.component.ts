@@ -103,13 +103,10 @@ export class NuevoComponent implements OnInit {
     }
   }
   guardar() {
-    console.log("Formulario válido:", this.formularioDetalleCausa.valid);
     if (this.formularioDetalleCausa.valid) {
       if (this.detalledto == null) {
-        console.log("Entrando en la función guardar");
         this.registrando();
       } else {
-        console.log("Entrando al else");
         //this.editar();
         this.editando();
       }
@@ -130,14 +127,14 @@ export class NuevoComponent implements OnInit {
       idTipoCausa: this.dtCausa.tipoCausa.idTipoCausa,
       idPlanta: this.dtCausa.planta.idPlanta,
     };
- 
+
 
     this.detallecausaservice.registrarDetalleCausa(detalle).subscribe({
       next: (resp) => {
         mensajeExito("Detalle de Causa guardado con exito");
       },
       error: (e) => {
-        mensajeError(e.error.Mensaje); 
+        mensajeError(e.error.Mensaje);
       },
       complete: () => {
         this.modalService.dismissAll();
@@ -175,6 +172,7 @@ export class NuevoComponent implements OnInit {
     };
     //console.log(detalle);
 /*
+
     this.detallecausaservice.modificar(detalle).subscribe({
       next: (resp) => {
         mensajeExito("Detalle de Causa editado con exito");
@@ -193,7 +191,7 @@ export class NuevoComponent implements OnInit {
   }
 
   editar() {
-  
+
     const detalle: DetalleCausa = {
       idDetalleCausa: this.detalledto.idDetalleCausa,
       tipoCausa: {

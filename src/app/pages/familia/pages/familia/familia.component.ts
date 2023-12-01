@@ -45,7 +45,6 @@ export class FamiliaComponent implements OnInit {
   listaFamilia(){
     this.serviceFamilia.listarFamilia().subscribe((resp)=>{
       this.familiaList=resp;
-      console.log(resp);
     })
   }
 
@@ -125,7 +124,6 @@ eliminarFamilia(objetoEliminar:IFamilia){
   }
 
   modificarFamiliaFormulario(familiaModificar:IFamilia){
-    console.log(familiaModificar);
     this.serviceFamilia
         .modificarFamilia(familiaModificar)
         .subscribe({

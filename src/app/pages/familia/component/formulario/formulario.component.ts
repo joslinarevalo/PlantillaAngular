@@ -35,11 +35,9 @@ export class FormularioComponent implements OnInit {
 
   guardar() {
     if (this.formulario_valido()) {
-      console.log(this.formularioFamilia);
       this.familia = {
         nombreFamilia: this.formularioFamilia.controls['nombreFamilia'].value,
       };
-      console.log(this.familia);
       this.ObjetoGuardar.emit(this.familia)
       }else {
         Swal.fire({
@@ -57,7 +55,6 @@ export class FormularioComponent implements OnInit {
           idfamilia:this.formularioFamilia.controls['idfamilia'].value,
           nombreFamilia:this.formularioFamilia.controls['nombreFamilia'].value
         };
-        console.log(this.familia);
         this.ObjetoModificar.emit(this.familia);
       } else {
         Swal.fire({
@@ -98,11 +95,6 @@ export class FormularioComponent implements OnInit {
 
     if (this.longitudesDeCampos.hasOwnProperty(idInput+"")) {
       limiteCaracteres = this.longitudesDeCampos[idInput+""];
-      console.log("si: " +this.longitudesDeCampos)
-      console.log(`Campo: ${idInput}, Valor: ${limiteCaracteres}`);
-    } else {
-      console.log("no: " +this.longitudesDeCampos)
-      console.log(`Campo "${idInput}" no encontrado en fieldLengths`);
     }
 
     this.contador = textarea.value.length;
@@ -121,8 +113,6 @@ export class FormularioComponent implements OnInit {
   obtenerLongitudesCampos() {
     this.serviceFamilia.longitudCampos().subscribe((lista) => {
       this.longitudesDeCampos = lista;
-
-      console.log(this.longitudesDeCampos);
     });
   }
 

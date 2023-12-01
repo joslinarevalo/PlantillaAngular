@@ -37,11 +37,9 @@ export class FormularioComponent implements OnInit {
 
   guardar() {
     if (this.formulario_valido()) {
-      console.log(this.formularioTipoPlanta);
       this.tipoPlanta = {
         tipoPlanta: this.formularioTipoPlanta.controls['tipoPlanta'].value,
       };
-      console.log(this.tipoPlanta);
       this.ObjetoGuardar.emit(this.tipoPlanta)
       }else {
         Swal.fire({
@@ -59,7 +57,6 @@ export class FormularioComponent implements OnInit {
           idTipoPlanta:this.formularioTipoPlanta.controls['idTipoPlanta'].value,
           tipoPlanta:this.formularioTipoPlanta.controls['tipoPlanta'].value
         };
-        console.log(this.tipoPlanta);
         this.ObjetoModificar.emit(this.tipoPlanta);
       } else {
         Swal.fire({
@@ -100,11 +97,6 @@ export class FormularioComponent implements OnInit {
 
     if (this.longitudesDeCampos.hasOwnProperty(idInput+"")) {
       limiteCaracteres = this.longitudesDeCampos[idInput+""];
-      console.log("si: " +this.longitudesDeCampos)
-      console.log(`Campo: ${idInput}, Valor: ${limiteCaracteres}`);
-    } else {
-      console.log("no: " +this.longitudesDeCampos)
-      console.log(`Campo "${idInput}" no encontrado en fieldLengths`);
     }
 
     this.contador = textarea.value.length;
@@ -123,8 +115,6 @@ export class FormularioComponent implements OnInit {
   obtenerLongitudesCampos() {
     this.serviceTipoPlanta.longitudCampos().subscribe((lista) => {
       this.longitudesDeCampos = lista;
-
-      console.log(this.longitudesDeCampos);
     });
   }
 

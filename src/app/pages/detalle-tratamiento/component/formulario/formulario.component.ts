@@ -35,14 +35,11 @@ export class FormularioComponent implements OnInit {
 
   guardar() {
     if (this.formulario_valido()) {
-      console.log(this.formularioDetalleTratamiento);
       this. detalleTratamiento = {
         idDetalleCausa: this.formularioDetalleTratamiento.controls['idDetalleCausa'].value,
         idTratamiento: this.formularioDetalleTratamiento.controls['idTratamiento'].value
 
       };
-      //this.presentacion=this.formulario.value;
-      console.log(this.detalleTratamiento);
       this.ObjetoGuardar.emit(this.detalleTratamiento);
       }else {
         Swal.fire({
@@ -58,13 +55,11 @@ export class FormularioComponent implements OnInit {
   }
   modificar() {
     if (this.formulario_valido()) {
-      //console.log(this.formularioDetalleTratamiento);
       this.detalleTratamiento = {
         idDetalleCausa: this.formularioDetalleTratamiento.controls['idDetalleCausa'].value,
         idTratamiento: this.formularioDetalleTratamiento.controls['idTratamiento'].value,
         idDetalleTratamiento:this.formularioDetalleTratamiento.controls['idDetalleTratamiento'].value
       };
-      console.log(this.detalleTratamiento);
       this.ObjetoModificar.emit(this.detalleTratamiento);
     } else {
       Swal.fire({
@@ -100,13 +95,11 @@ export class FormularioComponent implements OnInit {
   listaDetalleCausa(){
     this.serviceDetalleTratamiento.listaDetalleCausa().subscribe((resp)=>{
       this.listDetalleCausa=resp;
-      console.log(resp);
     });
   }
   listaTratamiento(){
     this.serviceTratamiento.listaDeTratamiento().subscribe((resp)=>{
       this.listTratamiento=resp;
-      console.log(resp);
     })
   }
 

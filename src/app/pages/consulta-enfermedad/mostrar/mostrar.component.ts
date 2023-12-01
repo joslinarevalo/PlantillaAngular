@@ -59,7 +59,6 @@ export class MostrarComponent implements OnInit {
   }
 
   onScroll(){
-    console.log("scroll infinito")
     this.tamaño+=5;
     this.listaEnfermedadPaginada();
   }

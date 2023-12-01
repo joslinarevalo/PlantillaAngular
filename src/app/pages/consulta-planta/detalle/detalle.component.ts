@@ -26,7 +26,6 @@ export class DetalleComponent implements OnInit {
   ngOnInit() {
       this.route.params.subscribe((params) => {
         this.idPlanta = params["idPlanta"];
-        console.log("probanding"+this.idPlanta)
         this.buscarPlanta(this.idPlanta);
         this.obtenerDetallesCausa(this.idPlanta);
       });
@@ -52,26 +51,12 @@ export class DetalleComponent implements OnInit {
     );
   }
 
-  /* buscarPlanta(idPlanta: string) {
-    this.servicePlanta.buscarPlanta(idPlanta).subscribe(
-      (data) => {
-        this.planta = data;
-        console.log(this.planta); // Console log borrar
-        this.ObtenerImagen(this.planta.urlPlanta);
-      },
-      (error) => {
-        console.error("Error al obtener los detalles de la Planta:", error);
-      }
-    );
-  }*/
 
   obtenerDetallesCausa(idPlanta: string) {
     this.serviceDetalleCausa.obtenerDetallesCausaPorPlanta(idPlanta).subscribe(
       (data) => {
         // Aquí puedes almacenar los detalles de la causa relacionados con la planta
         this.detallesCausa = data;
-
-        console.log("detalle por planta", this.detallesCausa);
       },
       (error) => {
         console.error("Error al obtener los detalles de causa:", error);

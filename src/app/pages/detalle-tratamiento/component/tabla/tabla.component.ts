@@ -35,11 +35,9 @@ export class TablaComponent implements OnInit {
     this.listDetalleTratamiento();
   }
   ObtenerDetalleTratamientoEliminar(detalleTratamiento:IDetalleTratamientoDTOMostrar){
-    console.log(detalleTratamiento);
     this.ObjetoTratamientoEliminar.emit(detalleTratamiento);//para emitar el evento de objeto a la vista del padre
   }
   ObtenerDetalleTratamientoModificar(detalleTratamiento:IDetalleTratamientoDTOMostrar){
-    console.log(detalleTratamiento);
     this.ObjetoTratamientoModificar.emit(detalleTratamiento);
   }
   listDetalleTratamiento(){

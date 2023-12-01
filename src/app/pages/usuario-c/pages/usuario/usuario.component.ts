@@ -32,8 +32,6 @@ export class UsuarioComponent implements OnInit {
     this.formularioUsuario=this.inicializarFormulario();
     this.usuarioActual=this.autenticacion.usuario.usuario;
 
-    console.log("usuario: "+this.usuarioActual);
-
   }
   openModal(content: any) {
     this.leyenda="Registrar";
@@ -54,7 +52,6 @@ export class UsuarioComponent implements OnInit {
     });
   }
   EliminarUsuario(objetoEliminar:IUsuarioMostrar){
-    console.log(objetoEliminar);
 
     const alert = Swal.mixin({
       customClass: {
@@ -85,7 +82,6 @@ export class UsuarioComponent implements OnInit {
               this.recargar();
             },
             error: (err) => {
-              console.log("error en el console: "+err.Mensaje);
               mensajeError("Error al  el tipo Causa: " + err.Mensaje);
             },
             complete: () => {
@@ -104,13 +100,11 @@ export class UsuarioComponent implements OnInit {
   }
   listaUsuario(){
     this.usuarioService.listaDeUsuarios().subscribe((resp)=>{
-      console.log(resp);
       this.usuarioList=resp;
 
     })
   }
   modificarUsuarioFormulario(objetoModificar:IUsuarioMostrar,content:any){
-    console.log(objetoModificar);
     this.formularioUsuario.patchValue(objetoModificar);
     this.formularioUsuario.controls['clave'].setValue("");
     this.formularioUsuario.get('clave').setValidators([]);

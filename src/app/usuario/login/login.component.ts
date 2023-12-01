@@ -31,7 +31,6 @@ export class LoginComponent implements OnInit {
 
    ngOnInit(): void {
     if(this.autenticacionService.isAuthenticated()){
-      console.log("No habian datos")
       Swal.fire({
         title: "Login",
         text: `${this.autenticacionService.usuario.usuario} ya estás autenticado!`,
@@ -70,7 +69,6 @@ export class LoginComponent implements OnInit {
 
 
     this.autenticacionService.buscarUser(this.user).subscribe(response => {
-      console.log(response);
       let obj = JSON.parse(response.mensaje);
       if (obj.estado != "ACTIVO") {
         Swal.fire({

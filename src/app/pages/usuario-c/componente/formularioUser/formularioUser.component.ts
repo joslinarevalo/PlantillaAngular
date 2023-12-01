@@ -28,7 +28,6 @@ export class FormularioUserComponent implements OnInit {
   }
   guardar(){
     if (this.formulario_valido()) {
-       console.log(this.formularioUsuario); 
       this.usuarios = {
         nombre: this.formularioUsuario.controls['nombre'].value,
         apellido:this.formularioUsuario.controls['apellido'].value,
@@ -38,8 +37,7 @@ export class FormularioUserComponent implements OnInit {
         clave:this.formularioUsuario.controls['clave'].value,
         idrol: this.formularioUsuario.controls['idrol'].value
       };
-      //this.presentacion=this.formulario.value;
-      console.log(this.usuarios);
+
       this.ObjetoGuardar.emit(this.usuarios);
       }else {
         Swal.fire({
@@ -63,7 +61,6 @@ export class FormularioUserComponent implements OnInit {
         clave:this.formularioUsuario.controls['clave'].value,
         idrol: this.formularioUsuario.controls['idrol'].value
       };
-      console.log(this.usuarios);
       this.ObjetoModificar.emit(this.usuarios);
     } else {
       Swal.fire({
@@ -98,14 +95,13 @@ export class FormularioUserComponent implements OnInit {
   listaRol(){
     this.userService.listaDeRoles().subscribe((resp)=>{
       this.roList=resp;
-      console.log(this.roList);
     })
   }
   mostrarPassword(){
     if(this.tipo=="password") {
       this.tipo="text" ;
       } else{
-      this.tipo="password" 
+      this.tipo="password"
       }
   }
 

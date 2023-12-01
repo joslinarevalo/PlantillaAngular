@@ -27,7 +27,6 @@ export class DetalleTratamientoComponent implements OnInit {
     this.formularioDetalleTratamiento=this.inicializarFormulario();
   }
   openModal(content: any) {
-    console.log("entra");
     this.leyenda="Registrar";
     this.formularioDetalleTratamiento.reset();
     this.modalService.open(content, this.modalOptions);
@@ -42,8 +41,6 @@ export class DetalleTratamientoComponent implements OnInit {
   }
 
   eliminarTratamiento(objetoEliminar:IDetalleTratamientoDTOMostrar){
-    console.log(objetoEliminar);
-
     const alert = Swal.mixin({
       customClass: {
         confirmButton: 'btn btn-success',
@@ -83,7 +80,6 @@ export class DetalleTratamientoComponent implements OnInit {
       });
   }
   modificarTratamientoFormulario(tratamientoModificar:IDetalleTratamientoDTOValid){
-    console.log(tratamientoModificar)
     this.detalleTratamientoService
         .modificarDetalleTratamiento(tratamientoModificar)
         .subscribe({
@@ -104,7 +100,6 @@ export class DetalleTratamientoComponent implements OnInit {
 
   }
   modificarTratamiento(objetoModificar:IDetalleTratamientoDTOMostrar,content:any){
-    console.log(objetoModificar);
     this.formularioDetalleTratamiento.patchValue(objetoModificar);
     this.leyenda="Modificar";
      this.modalService.open(content, this.modalOptions);
@@ -133,7 +128,6 @@ export class DetalleTratamientoComponent implements OnInit {
   listDetalleTratamiento(){
     this.detalleTratamientoService.listaDetalleTratamiento().subscribe((resp)=>{
       this.listaDetalleTratamiento=resp;
-      console.log(resp);
     });
   }
 

@@ -42,17 +42,14 @@ export class NuevoComponent implements OnInit {
 
   guardar() {
     if (this.formulario_valido()) {
-      console.log("formulario", this.formularioCausa);
       this.causa = {
         tipoTC: this.formularioCausa.controls["tipoTC"].value,
         definicionTipoTC:
           this.formularioCausa.controls["definicionTipoTC"].value,
         urlTC: this.formularioCausa.controls["urlTC"].value,
       };
-      console.log("formulario guardar", this.causa);
       this.formularioSerealizable.set("tipoCausa", JSON.stringify(this.causa));
       this.ObjetoGuardar.emit(this.formularioSerealizable);
-      console.log("formulario objeto a guardar ", this.ObjetoGuardar);
     } else {
       Swal.fire({
         position: "center",
@@ -72,7 +69,6 @@ export class NuevoComponent implements OnInit {
   }
   modificar() {
     if (this.formulario_valido()) {
-      console.log("formulario", this.formularioCausa);
       this.causa = {
         idTipoCausa: this.formularioCausa.controls["idTipoCausa"].value,
         tipoTC: this.formularioCausa.controls["tipoTC"].value,
@@ -80,10 +76,8 @@ export class NuevoComponent implements OnInit {
           this.formularioCausa.controls["definicionTipoTC"].value,
         urlTC: this.formularioCausa.controls["urlTC"].value,
       };
-      console.log("formulario en modifificar", this.formularioCausa);
       this.formularioSerealizable.set("tipoCausa", JSON.stringify(this.causa));
       this.ObjetoCausaModificar.emit(this.formularioSerealizable);
-      console.log("formulario en objeto", this.ObjetoCausaModificar);
     } else {
       Swal.fire({
         position: "center",
@@ -124,7 +118,6 @@ export class NuevoComponent implements OnInit {
   }
   SeleccionarImagen(event: any) {
     let file: File = event.target.files[0];
-    console.log(file);
     if (file.size > 350000) {
       Swal.fire({
         position: "center",
@@ -151,7 +144,6 @@ export class NuevoComponent implements OnInit {
       .then((blob) => {
         const nombreArchivo = "No_imagen.jpg";
         const archivo = new File([blob], nombreArchivo, { type: "image/jpeg" });
-        console.log("Imagen convertida a File:", archivo);
         this.formularioSerealizable.set("imagen", archivo);
       });
   }

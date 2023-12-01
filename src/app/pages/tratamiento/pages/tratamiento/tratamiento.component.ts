@@ -96,21 +96,17 @@ export class TratamientoComponent implements OnInit {
   listaTratamiento() {
     this.serviceTratamiento.listaDeTratamiento().subscribe((resp) => {
       this.tratamientoList = resp;
-      console.log(resp);
       this.tratamientoList.forEach((element) => {
         this.serviceTratamiento
           .getImagen(element.urlTratamiento)
           .subscribe((resp) => {
-            //console.log(resp);
             let url = URL.createObjectURL(resp);
             this.imagen = this.dm.bypassSecurityTrustUrl(url);
-            //console.log(this.imagen);
             element.imagen = this.imagen;
             element.archivo = this.convertirArchivo(
               resp,
               element.urlTratamiento
             );
-            console.log(element.archivo);
           });
       });
     });
@@ -163,7 +159,6 @@ export class TratamientoComponent implements OnInit {
       .modificarTratamiento(tratamientoModificar)
       .subscribe({
         next: (resp) => {
-          console.log(resp);
           mensajeExito("Tratamiento modificado con exito");
         },
         error: (err) => {
@@ -188,11 +183,9 @@ export class TratamientoComponent implements OnInit {
   guardarTratamiento(tratamientoGuardar: FormData) {
     this.serviceTratamiento.guardarTratamiento(tratamientoGuardar).subscribe({
       next: (resp) => {
-        console.log(resp);
         mensajeExito("Tratamiento guardado con exito");
       },
       error: (e) => {
-        console.log("error desde console: "+e.error.Mensaje);
         mensajeError("Error al guardar el tratamiento: " + e.error.Mensaje);
       },
       complete: () => {
@@ -205,7 +198,6 @@ export class TratamientoComponent implements OnInit {
   convertirArchivo(blob: Blob | undefined, url: string): File {
     let miArchivo!: File;
     let nombre = url.substring(36);
-    console.log("nombre del archivo a modificar: " + nombre);
     if (blob != undefined) {
       miArchivo = new File([blob], nombre, {
         type: blob.type,

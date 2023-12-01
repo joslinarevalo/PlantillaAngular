@@ -14,7 +14,7 @@ export class DetalleComponent implements OnInit {
   //causa:ITipoCausa
   causa: ITipoCausa | undefined;
   parrafos: string[] = [];
-  
+
   constructor(
     private causaenfermedad: CausaenfermedadService,
     private route: ActivatedRoute,
@@ -29,18 +29,16 @@ export class DetalleComponent implements OnInit {
     });
   }
   listatipo(idTipoCausa: string) {
-    console.log(idTipoCausa);
     // Buscamos el patógeno específico por su id
     this.causaenfermedad.obtenerPatogenoPorId(idTipoCausa).subscribe(
       (data) => {
         this.causa = data;
-        console.log(this.causa.imagen);
          this.parrafos = this.causa.definicionTipoTC.split('\n');
           this.causaenfermedad.getImagen(this.causa.urlTC).subscribe((resp) => {
             let url = URL.createObjectURL(resp);
             this.imagen = this.dm.bypassSecurityTrustUrl(url);
             this.causa.imagen = this.imagen;
-          
+
           });
       },
       (error) => {
@@ -48,14 +46,12 @@ export class DetalleComponent implements OnInit {
       }
     );
   }
-  
-  
+
+
   ObtenerImagen(url: string) {
     this.causaenfermedad.getImagen(url).subscribe((resp) => {
-      console.log(resp);
       let url = URL.createObjectURL(resp);
       this.imagen = this.dm.bypassSecurityTrustUrl(url);
-      console.log(this.imagen);
     });
   }
 }

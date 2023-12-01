@@ -40,16 +40,11 @@ buscar() {
   });
   this.busquedaService.buscarTratamiento(this.textoBusqueda).subscribe((data) => {
     this.resultadosTrata = data;
-    console.log("estos son de tratamiento",this.resultadosTrata);
   });
   this.busquedaService.buscarDetalleTratamiento(this.textoBusqueda).subscribe((data) => {
    this.resultadosTratamientosD = data;
-   console.log(this.resultadosTratamientosD);
-   console.log("estos son de detalle tratamiento",this.resultadosTratamientosD);
-
-   
   });
-  
+
   this.busquedaService.buscarDetalleCausa(this.textoBusqueda).subscribe((data) => {
     this.resultadosCausas = data;
   });
@@ -59,14 +54,14 @@ buscar() {
     this.resultadosTrata = [];
     this.resultadosCausas = [];
   }
-  
+
 }
 
 verDetalle(idTratamiento: string) {
   // Navega a la ruta del componente de detalle, pasando el ID como parámetro
   console.error('ID de tratamiento indefinido o faltante.',idTratamiento);
   this.router.navigate(['consultaTratamiento/detalle', idTratamiento]);
- 
+
 }
 
 verDetalles(planta: IBuscarPlanta) {
@@ -75,7 +70,6 @@ verDetalles(planta: IBuscarPlanta) {
     (data) => {
       // Almacena la vista previa de los detalles de causa en detallePlantaPreview
       this.detallePlantaPreview = data;
-      console.log("Vista previa de detalles de causa:", this.detallePlantaPreview);
     },
     (error) => {
       console.error("Error al obtener detalles de causa:", error);
@@ -85,5 +79,5 @@ verDetalles(planta: IBuscarPlanta) {
 
 
 
-  
+
 }

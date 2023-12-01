@@ -54,26 +54,20 @@ export class TablaComponent implements OnInit {
   }
 
   ObtenerPlantaEliminar(planta:IPlantaMostrar){
-    console.log(planta);
     this.ObjetoPlantaEliminar.emit(planta);//para emitar el evento de objeto a la vista del padre
   }
   ObtenerPlantaModificar(planta:IPlantaMostrar){
-    console.log(planta);
     this.ObjetoPlantaModificar.emit(planta);
   }
   listaPlanta(){
     this.servicePlanta.listaDePlanta().subscribe((resp)=>{
       this.ListaDePlanta=resp;
-      console.log(resp);
       this.ListaDePlanta.forEach(element => {
         this.servicePlanta.getImagen(element.urlPlanta).subscribe((resp)=>{
-          //console.log(resp);
           let url=URL.createObjectURL(resp);
           this.imagen=this.dm.bypassSecurityTrustUrl(url);
-          //console.log(this.imagen);
           element.imagen=this.imagen;
           element.archivo=this.convertirArchivo(resp,element.urlPlanta);
-          console.log(element.archivo);
           this.dtTrigger.next(null);
         });
       });
@@ -83,7 +77,6 @@ export class TablaComponent implements OnInit {
   convertirArchivo(blob: Blob | undefined, url:string): File {
     let miArchivo!: File;
     let nombre=url.substring(36);
-    console.log("nombre del archivo a modificar: "+nombre);
     if (blob != undefined) {
       miArchivo = new File([blob], nombre, {
         type: blob.type,

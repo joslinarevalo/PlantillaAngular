@@ -44,16 +44,12 @@ export class PlantaComponent implements OnInit {
   listaPlanta(){
     this.servicePlanta.listaDePlanta().subscribe((resp)=>{
       this.plantaList=resp;
-      console.log(resp);
       this.plantaList.forEach(element => {
         this.servicePlanta.getImagen(element.urlPlanta).subscribe((resp)=>{
-          //console.log(resp);
           let url=URL.createObjectURL(resp);
           this.imagen=this.dm.bypassSecurityTrustUrl(url);
-          //console.log(this.imagen);
           element.imagen=this.imagen;
           element.archivo=this.convertirArchivo(resp,element.urlPlanta);
-          console.log(element.archivo);
         });
       });
 
@@ -77,7 +73,6 @@ export class PlantaComponent implements OnInit {
   convertirArchivo(blob: Blob | undefined, url:string): File {
     let miArchivo!: File;
     let nombre=url.substring(36);
-    console.log("nombre del archivo a modificar: "+nombre);
     if (blob != undefined) {
       miArchivo = new File([blob], nombre, {
         type: blob.type,

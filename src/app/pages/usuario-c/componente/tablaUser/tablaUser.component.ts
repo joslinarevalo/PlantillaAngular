@@ -16,10 +16,10 @@ export class TablaUserComponent implements OnInit {
   @Input()listUsuario:IUsuarioMostrar[]=[];
   @Output()ObjetoUsuarioEliminar= new EventEmitter<IUsuarioMostrar>();
   @Output()ObjetoUsuarioModificar= new EventEmitter<IUsuarioMostrar>();
-  @ViewChild(DataTableDirective, { static: false} ) 
+  @ViewChild(DataTableDirective, { static: false} )
   dtElement: DataTableDirective;
   dtOptions: DataTables.Settings = {};
-  
+
   dtTrigger: Subject<IUsuarioMostrar> = new Subject<IUsuarioMostrar>();
   constructor(private UsuarioService:UsuarioServiceService) { }
 
@@ -37,13 +37,11 @@ export class TablaUserComponent implements OnInit {
     };
     this.listaUsuario();
   }
- 
+
   ObtenerUsuarioEliminar(Usuario:IUsuarioMostrar){
-    //console.log(Usuario);
     this.ObjetoUsuarioEliminar.emit(Usuario);//para emitar el evento de objeto a la vista del padre
   }
   ObtenerUsuarioModificar(Usuario:IUsuarioMostrar){
-    //console.log(Usuario);
     this.ObjetoUsuarioModificar.emit(Usuario);
   }
   listaUsuario(){

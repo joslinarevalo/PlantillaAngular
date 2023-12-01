@@ -12,7 +12,7 @@ import { DomSanitizer } from "@angular/platform-browser";
 export class MostrarComponent implements OnInit {
   @Input() alltipocausa!: ITipoCausa[];
   searchTerm: string = "";
-  filteredCausas: ITipoCausa[] = []; 
+  filteredCausas: ITipoCausa[] = [];
   imagen: any;
   pagina:number=0;
   tamaño:number=5;
@@ -41,7 +41,6 @@ export class MostrarComponent implements OnInit {
   listatipo() {
     this.causaenfermedad.listaDeTpoCausaPaginacion(this.pagina,this.tamaño).subscribe((resp) => {
       this.alltipocausa = resp;
-      console.log("respuestacon paginacion",resp);
       this.alltipocausa.forEach((element) => {
         this.causaenfermedad.getImagen(element.urlTC).subscribe((resp) => {
           let url = URL.createObjectURL(resp);
@@ -56,10 +55,8 @@ export class MostrarComponent implements OnInit {
 
   ObtenerImagen(url: string) {
     this.causaenfermedad.getImagen(url).subscribe((resp) => {
-      console.log(resp);
       let url = URL.createObjectURL(resp);
       this.imagen = this.dm.bypassSecurityTrustUrl(url);
-      console.log(this.imagen);
     });
   }
 
@@ -68,7 +65,6 @@ export class MostrarComponent implements OnInit {
     this.router.navigate(['patogenos/detalle', idTipoCausa]);
   }
   onScroll(){
-    console.log("scroll infinito")
     this.tamaño+=5;
     this.listatipo();
   }

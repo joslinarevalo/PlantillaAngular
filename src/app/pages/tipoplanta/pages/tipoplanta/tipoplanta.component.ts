@@ -50,7 +50,6 @@ export class TipoplantaComponent implements OnInit {
   listaTipoPlanta(){
     this.serviceTipoPlanta.listarTipoPlanta().subscribe((resp)=>{
       this.tipoPlantaList=resp;
-      console.log(resp);
     })
   }
 
@@ -130,7 +129,6 @@ eliminarTipoPlanta(objetoEliminar:Itipoplanta){
   }
 
   modificarTipoPlantaFormulario(tipoPlantaModificar:Itipoplanta){
-    console.log(tipoPlantaModificar);
     this.serviceTipoPlanta
         .modificarTipoPlanta(tipoPlantaModificar)
         .subscribe({
