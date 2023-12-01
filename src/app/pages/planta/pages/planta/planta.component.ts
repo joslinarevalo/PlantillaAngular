@@ -163,7 +163,7 @@ export class PlantaComponent implements OnInit {
             this.recargar();
           },
           error:(err)=>{
-            //mensajeError("Error al modificar el Planta");
+            mensajeError("Error al modificar el Planta");
             mensajeError(err.error.Mensaje)
           },
           complete:()=>{

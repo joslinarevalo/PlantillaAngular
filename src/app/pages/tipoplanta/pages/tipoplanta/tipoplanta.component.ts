@@ -70,7 +70,7 @@ export class TipoplantaComponent implements OnInit {
             this.recargar();
           },
           error:(err)=>{
-            mensajeError("Error al guardar el Tipo de planta, Ya existe");
+            mensajeError(err.error.Mensaje);
           },
           complete:()=>{
           this.modalService.dismissAll();
@@ -139,7 +139,7 @@ eliminarTipoPlanta(objetoEliminar:Itipoplanta){
             this.recargar();
           },
           error:(err)=>{
-            mensajeError("Error al modificar el tipo de planta ");
+            mensajeError(err.error.Mensaje);
           },
           complete:()=>{
           this.modalService.dismissAll();

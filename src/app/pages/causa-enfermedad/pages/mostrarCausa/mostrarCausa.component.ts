@@ -117,7 +117,7 @@ export class MostrarCausaComponent implements OnInit {
         mensajeExito("Tipo de causa modificado con exito");
       },
       error: (err) => {
-        mensajeError("Error al modificar el tipo de causa");
+        mensajeError("Error al modificar el tipo de causa"+err.Mensaje);
       },
       complete: () => {
         this.modalService.dismissAll();

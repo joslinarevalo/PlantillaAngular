@@ -173,8 +173,8 @@ export class NuevoComponent implements OnInit {
       idTipoCausa: idTipoCausa,
       idPlanta: idPlanta,
     };
-    console.log(detalle);
-
+    //console.log(detalle);
+/*
     this.detallecausaservice.modificar(detalle).subscribe({
       next: (resp) => {
         mensajeExito("Detalle de Causa editado con exito");
@@ -189,12 +189,13 @@ export class NuevoComponent implements OnInit {
         this.recargar();
       },
     });
+    */
   }
 
   editar() {
   
     const detalle: DetalleCausa = {
-      idDetalleCausa: this.detalledto!.idDetalleCausa,
+      idDetalleCausa: this.detalledto.idDetalleCausa,
       tipoCausa: {
         idTipoCausa: this.formularioDetalleCausa.get("tipoCausa").value,
       },
@@ -206,7 +207,7 @@ export class NuevoComponent implements OnInit {
       },
       descripcionCausa: this.formularioDetalleCausa.get("descripcionD").value,
     };
-    console.log(this.detalledto);
+    //console.log(this.detalledto);
     const idDetalleCausa = this.detalledto
     ? this.detalledto.idDetalleCausa
     : null;
@@ -238,16 +239,22 @@ export class NuevoComponent implements OnInit {
       },
       descripcionCausa: descripcionCausa,
   };
-  console.log(detalless);
-    this.detallecausaservice.update(detalless).subscribe(
+  const details: any = {
+    idDetalleCausa: idDetalleCausa,
+    descripcionCausa: descripcionCausa,
+    idEnfermedad: idEnfermedad,
+    idTipoCausa: idTipoCausa,
+    idPlanta: idPlanta,
+  };
+  console.log(details);
+    this.detallecausaservice.modificar(details).subscribe(
       {
       next: (resp) => {
         mensajeExito("Detalle de Causa editado con exito");
       },
       error: (err) => {
-       // mensajeError("Error al guardar el detalle de causa");
-       // this.errores = err.error.errors as string[];
-        console.error('Código del error desde el backend: ' + err);
+       mensajeError("Error al guardar el detalle de causa"+ err.Mensaje);
+        console.error('Código del error desde el backend: ' + err.Mensaje);
       },
       complete: () => {
         this.modalService.dismissAll();

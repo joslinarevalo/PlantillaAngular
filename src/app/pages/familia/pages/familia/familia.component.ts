@@ -65,7 +65,7 @@ export class FamiliaComponent implements OnInit {
             this.recargar();
           },
           error:(err)=>{
-            mensajeError("Error al guardar la familia, Ya existe");
+            mensajeError(err.error.Mensaje);
           },
           complete:()=>{
           this.modalService.dismissAll();
@@ -134,7 +134,7 @@ eliminarFamilia(objetoEliminar:IFamilia){
             this.recargar();
           },
           error:(err)=>{
-            mensajeError("Error al modificar la familia");
+            mensajeError(err.error.Mensaje);
           },
           complete:()=>{
           this.modalService.dismissAll();

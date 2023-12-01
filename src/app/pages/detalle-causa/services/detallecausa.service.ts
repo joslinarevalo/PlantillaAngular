@@ -56,7 +56,8 @@ export class DetallecausaService {
   }
 
   modificar(detalle: DetalleCausa): Observable<any> {
-    return this.http.put<any>(`${urlEndPoint + "/modificar"}`, detalle)}
+    return this.http.put<any>(`${urlEndPoint + "/modificar"}`, detalle)
+  }
 
 
     update(detalle: DetalleCausa): Observable<any> {
