@@ -49,7 +49,7 @@ export const MENU: MenuItem[] = [
     id: 11,
     label: "Detalle Causa",
     icon: "bx bx-border-all",
-    link: "/detallecausa/mostrar",
+    link: "/detallecausa/detalleCausa",
     roles: [admin]
   },
   {

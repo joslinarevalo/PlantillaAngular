@@ -1,0 +1,141 @@
+<h5 class="cajaModal text-center mt-4 texto-mayusculas">
+    {{ leyenda }} Detalle Causa
+  </h5>
+  
+  <div class="modal-body">
+    <label class="control-label">Campos obligatorios a llenar con <span class="required"></span>
+      <!-- Icono de información -->
+      </label>
+    <form [formGroup]="formularioDetalleCausa">
+      <div class="row">
+        <div class="col-md-12">
+          <label class="control-label">Seleccionar Planta <span class="required"></span>
+            <span class="info-icon" data-title="El campo mostrado es el nombre del pesticida o Causa que se desea vincular">?</span> <!-- Icono de información -->
+          </label>
+          <ng-select
+            class="form-control"
+            id="idPlanta"
+            formControlName="idPlanta"
+            [ngClass]="esCampoValido('idPlanta')"
+          >
+            <ng-option
+              *ngFor="let Planta of listPlanta"
+              [value]="Planta.idPlanta"
+              >{{ Planta.nombreComunPlanta}}</ng-option
+            >
+          </ng-select>
+  
+          <div class="invalid-feedback">
+            <span
+              *ngIf="formularioDetalleCausa.get('idPlanta')?.errors?.['required']"
+              >Requiere un Planta</span
+            >
+          </div>
+        </div>
+        <div class="col-md-12">
+          <label class="control-label">Seleccionar Enfermedad <span class="required"></span>
+            <span class="info-icon" data-title="El campo contiene el detalle de causa de la enfermedad asociado a la planta y sus causas puntuales">?</span> <!-- Icono de información -->
+          </label>
+          <ng-select
+            class="form-control"
+            id="idEnfermedad"
+            formControlName="idEnfermedad"
+            [ngClass]="esCampoValido('idEnfermedad')"
+          >
+            <ng-option
+              *ngFor="let enfermedad of listEnfermedad"
+              [value]="enfermedad.idEnfermedad"
+              >{{ enfermedad.nombreComunEnfermedad }}</ng-option
+            >
+          </ng-select>
+  
+          <div class="invalid-feedback">
+            <span
+              *ngIf="formularioDetalleCausa.get('idEnfermedad')?.errors?.['required']"
+              >Requiere una Enfermedad</span
+            >
+          </div>
+        </div>
+        <div class="col-md-12">
+            <label class="control-label">Seleccionar Tipo Causa <span class="required"></span>
+              <span class="info-icon" data-title="El campo contiene el detalle de causa de la enfermedad asociado a la planta y sus causas puntuales">?</span> <!-- Icono de información -->
+            </label>
+            <ng-select
+              class="form-control"
+              id="idTipo"
+              formControlName="idTipo"
+              [ngClass]="esCampoValido('idTipo')"
+            >
+              <ng-option
+                *ngFor="let causa of listCausa"
+                [value]="causa.idTipoCausa"
+                >{{ causa.tipoTC }}</ng-option
+              >
+            </ng-select>
+    
+            <div class="invalid-feedback">
+              <span
+                *ngIf="formularioDetalleCausa.get('idTipo')?.errors?.['required']"
+                >Requiere un Tipo Causa</span
+              >
+            </div>
+          </div>
+      </div>
+      <div class="mt-1 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+        <label class="control-label">Descripción<span class="required"></span>
+          <span class="info-icon" data-title="El campo detalla las indicaciones que posee el Causa, por ejemplo usar en cultivos de tomates">?</span> <!-- Icono de información -->
+        </label>
+        <textarea
+          class="form-control"
+          type="text"
+          id="descripcionCausa"
+          formControlName="descripcionCausa"
+          [ngClass]="esCampoValido('descripcionCausa')"
+        ></textarea>
+        <div class="invalid-feedback">
+          <span
+            *ngIf="formularioDetalleCausa.get('descripcionCausa')?.errors?.['required']"
+            >Requiere de descripcion de Causa</span
+          >
+          <span
+            *ngIf="formularioDetalleCausa.get('descripcionCausa')?.errors?.['minlength']"
+            >tamaño minimo de descripcion de Causa es de 10 caracteres</span
+          >
+          <span
+            *ngIf="formularioDetalleCausa.get('descripcionCausa')?.errors?.['maxlength']"
+            >tamaño maximo de descripcion de Causa es de 250 caracteres</span
+          >
+        </div>
+      </div>
+      <div class="text-center mb-3 mt-2">
+        <!-- Centrar los botones y agregar espacio inferior -->
+        <button
+          type="button"
+          class="btn btnguardarModal"
+          (click)="guardar()"
+          *ngIf="leyenda == 'Registrar'"
+        >
+          <i class="fas fa-check"></i>Guardar
+        </button>
+        <button
+          type="button"
+          class="btn btnguardarModal"
+          *ngIf="leyenda == 'Modificar'"
+          (click)="modificar()"
+        >
+          <i class="fas fa-check"></i>{{ leyenda }}
+        </button>
+        <span class="mx-2"></span>
+        <!-- Agregar un espacio horizontal entre los botones -->
+        <button
+          type="button"
+          class="btn btnCerrar"
+          aria-hidden="true"
+          (click)="cerrarModal()"
+        >
+          <i class="dripicons-cross"></i>cerrar
+        </button>
+      </div>
+    </form>
+  </div>
+  

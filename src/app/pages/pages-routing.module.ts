@@ -21,8 +21,8 @@ const routes: Routes = [
   {
     path: "detallecausa",
     loadChildren: () =>
-      import("./detalle-causa/detalle-causa.module").then(
-        (m) => m.DetalleCausaModule
+      import("./detalle-de-causa/detalle-de-causa.module").then(
+        (m) => m.DetalleDeCausaModule
       ),
       canActivate: [ RolGuard], data:{rol:"ROLE_ADMIN"} 
   },

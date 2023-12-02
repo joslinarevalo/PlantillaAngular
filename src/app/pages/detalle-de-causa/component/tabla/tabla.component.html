@@ -1,0 +1,30 @@
+
+<div class="table-responsive mb-0 mt-2">
+    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"  class="table  row-border hover " style="width:100%">
+    <thead class="tabla" >
+      <tr>
+        <th>Planta</th>
+        <th>Enfermedad</th>
+        <th>Tipo Causa</th>
+        <th>Descripcion</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of listaDetalleCausa">
+        <td>{{data.planta}}</td>
+        <td>{{data.enfermedad}}</td>
+        <td>{{data.tipo}}</td>
+        <td class="truncate-text">{{data.descripcionCausa}}</td>
+        <td class="text-sm-end" >
+          <div class="d-flex">
+            <div class="col-sm-6"><button type="button" class="btn btnModificar btn-sm mb-2 mr-2 btn-rounded" (click)="ObtenerDetalleCausaModificar(data)"> <i class="fas fa-edit"> </i></button> </div>
+            <div class="col-sm-6"><button type="button" class="btn btnEliminar btn-sm mb-2 mr-2 btn-rounded" (click)="ObtenerDetalleCausaEliminar(data)"><i class="fas fa-trash-alt" ></i></button></div>
+          </div>
+
+      </td>
+      </tr>
+    </tbody>
+    </table>
+</div>
+
