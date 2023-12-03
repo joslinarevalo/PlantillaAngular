@@ -16,9 +16,16 @@ export class Planta {
 export class Enfermedad {
   idEnfermedad?: number;
   nombreComunEnfermedad?: string;
-  nombreCientificoEnfermedad?: string;
-  tipoEnfermedad?: string;
-  urlEnfermedad?:string
-  imagen?:any
-  archivo?:File
+  
+}
+export class TipoCausas {
+  idTipoCausa?: string;
+  tipoTC?: string;
+}
+export class DetalleCausaValid {
+  idDetalleCausa?: string;
+  idPlanta?: string;
+  idEnfermedad?: number;
+  idTipoCausa?: string;
+  descripcionCausa: string;
 }

@@ -48,23 +48,25 @@
                 <span class="info-icon" data-title="Seleccione una planta"
                   >?</span
                 >
-                <!-- Icono de información -->
               </label>
               <ng-select
                 [items]="listaPlanta"
                 bindLabel="nombreComunPlanta"
+                id="idPlanta"
                 placeholder="Seleccione"
-                formControlName="planta"
-                [class]="esCampoValido('planta')"
-                [ngModel]="
-                  detalledto != null ? detalledto.planta.nombreComunPlanta : ''
-                "
-                (ngModelChange)="SeleccionadaSelectId($event, 'planta')"
-              ></ng-select>
+                formControlName="idPlanta"
+                [class]="esCampoValido('idPlanta')"
+              >
+                <ng-option
+                  *ngFor="let plan of listaPlanta"
+                  [value]="plan.idPlanta"
+                  >{{ plan.nombreComunPlanta }}</ng-option
+                >
+              </ng-select>
               <div class="invalid-feedback">
                 <!-- aqui la validación-->
                 <span
-                  *ngIf="formularioDetalleCausa.get('planta')?.errors?.['required']"
+                  *ngIf="formularioDetalleCausa.get('idPlanta')?.errors?.['required']"
                 >
                   Debes seleccionar un nombre de Planta válido</span
                 >
@@ -76,25 +78,24 @@
                 <span class="info-icon" data-title="Seleccione una enfermedad"
                   >?</span
                 >
-                <!-- Icono de información -->
               </label>
               <ng-select
                 [items]="listEnfermedad"
                 bindLabel="nombreComunEnfermedad"
+                id="idEnfermedad"
                 placeholder="Seleccione"
-                formControlName="enfermedad"
-                [class]="esCampoValido('enfermedad')"
-                [ngModel]="
-                  detalledto != null
-                    ? detalledto.enfermedad.nombreComunEnfermedad
-                    : ''
-                "
-                (ngModelChange)="SeleccionadaSelectId($event, 'enfermedad')"
-              ></ng-select>
+                formControlName="idEnfermedad"
+                [class]="esCampoValido('idEnfermedad')"
+              >
+                <ng-option
+                  *ngFor="let enfe of listEnfermedad"
+                  [value]="enfe.idEnfermedad"
+                  >{{ enfe.nombreComunEnfermedad }}</ng-option
+                >
+              </ng-select>
               <div class="invalid-feedback">
-                <!-- aqui la validación-->
                 <span
-                  *ngIf="formularioDetalleCausa.get('enfermedad')?.errors?.['required']"
+                  *ngIf="formularioDetalleCausa.get('idEnfermedad')?.errors?.['required']"
                 >
                   Debes seleccionar una enfermedad válido</span
                 >
@@ -112,18 +113,21 @@
               <ng-select
                 [items]="listTipoCausa"
                 bindLabel="tipoTC"
+                id="idTipoCausa"
                 placeholder="Seleccione"
-                formControlName="tipoCausa"
-                [class]="esCampoValido('tipoCausa')"
-                [ngModel]="
-                  detalledto != null ? detalledto.tipoCausa.tipoTC : ''
-                "
-                (ngModelChange)="SeleccionadaSelectId($event, 'tipoCausa')"
-              ></ng-select>
+                formControlName="idTipoCausa"
+                [class]="esCampoValido('idTipoCausa')"
+              >
+                <ng-option
+                  *ngFor="let causa of listTipoCausa"
+                  [value]="causa.idTipoCausa"
+                  >{{ causa.tipoTC }}</ng-option
+                >
+              </ng-select>
               <div class="invalid-feedback">
                 <!-- aqui la validación-->
                 <span
-                  *ngIf="formularioDetalleCausa.get('tipoCausa')?.errors?.['required']"
+                  *ngIf="formularioDetalleCausa.get('idTipoCausa')?.errors?.['required']"
                 >
                   Debes seleccionar un tipo de causa válido.</span
                 >
@@ -147,9 +151,6 @@
                 rows="8.8"
                 name="descripcionD"
                 formControlName="descripcionD"
-                [ngModel]="
-                  detalledto != null ? detalledto.descripcionCausa : ''
-                "
                 [class]="esCampoValido('descripcionD')"
               ></textarea>
               <div class="invalid-feedback">
