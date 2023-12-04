@@ -11,7 +11,7 @@
       <div class="mt-1 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
         <label class="control-label"
           >Nombre<span class="required"></span>
-          <!-- Icono de información -->
+          <span class="info-icon" data-title="Agregue los nombres del nuevo usuario.">?</span><!-- Icono de información -->
         </label>
         <input
           type="text"
@@ -35,7 +35,7 @@
       <div class="mt-1 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
         <label class="control-label"
           >Apellido <span class="required"></span>
-          >
+          <span class="info-icon" data-title="Agregue los apellidos del nuevo usuario.">?</span>
         </label>
         <input
           type="text"
@@ -58,7 +58,7 @@
       <div class="mt-1 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
         <label class="control-label"
           >Correo<span class="required"></span>
-          >
+          <span class="info-icon" data-title="Agregue un correo valido para el usuario.">?</span>
           <!-- Icono de información -->
         </label>
         <input
@@ -69,6 +69,7 @@
           placeholder="Correo"
           [ngClass]="esCampoValido('correo')"
           autocomplete="off"
+          (input)="autoCompletarUsuario($event.target.value)"
         />
         <div class="invalid-feedback">
           <div *ngIf="formularioUsuario.get('correo')?.errors?.['required']">
@@ -83,7 +84,7 @@
       <div class="mt-1 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
         <label class="control-label"
           >Estado<span class="required"></span>
-          >
+          <span class="info-icon" data-title="Seleccione el estado que poseerá el usuario.">?</span>
           <!-- Icono de información -->
         </label>
         <ng-select
@@ -104,6 +105,7 @@
       <div class="mt-1 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
         <label class="control-label"
           >Usuario<span class="required"></span>
+          <span class="info-icon" data-title="Agregue el alias con el cual podra acceder al sistema.">?</span>
         </label>
         <input
           type="text"
@@ -124,6 +126,7 @@
       <div class="mt-1 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
         <label class="control-label"
           >Contraseña <span class="required"></span>
+          <span class="info-icon" data-title="Agregue una contraseña confiable para acceder al sistema.">?</span>
         </label>
         <div class="mb-3 input-group">
           <!-- Repetimos el mismo proceso para el segundo input -->
@@ -156,7 +159,9 @@
       </div>
 
       <div class="mt-1 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
-        <label class="control-label">Rol<span class="required"></span> </label>
+        <label class="control-label">Rol<span class="required"></span>
+          <span class="info-icon" data-title="Asigne el rol que desempeñara dentro del sistema.">?</span>
+        </label>
 
         <ng-select
           class="form-control"

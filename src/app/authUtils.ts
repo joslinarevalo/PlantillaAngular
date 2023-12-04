@@ -38,7 +38,6 @@ class FirebaseAuthBackend {
     loginUser = (email, password) => {
         return new Promise((resolve, reject) => {
             firebase.auth().signInWithEmailAndPassword(email, password).then((user: any) => {
-                // eslint-disable-next-line no-redeclare
                 var user: any = firebase.auth().currentUser;
                 resolve(user);
             }, (error) => {
@@ -52,7 +51,6 @@ class FirebaseAuthBackend {
      */
     forgetPassword = (email) => {
         return new Promise((resolve, reject) => {
-            // tslint:disable-next-line: max-line-length
             firebase.auth().sendPasswordResetEmail(email, { url: window.location.protocol + '//' + window.location.host + '/login' }).then(() => {
                 resolve(true);
             }).catch((error) => {
@@ -93,13 +91,11 @@ class FirebaseAuthBackend {
      * @param {*} error
      */
     _handleError(error) {
-        // tslint:disable-next-line: prefer-const
         var errorMessage = error.message;
         return errorMessage;
     }
 }
 
-// tslint:disable-next-line: variable-name
 let _fireBaseBackend = null;
 
 /**

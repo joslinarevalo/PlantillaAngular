@@ -3,7 +3,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { LayoutComponent } from './layouts/layout.component';
 import { Page404Component } from './extrapages/page404/page404.component';
 import { AutenticacionGuard } from './usuario/guards/autenticacion.guard';
-import { RolGuard } from './usuario/guards/rol.guard';
 
 const routes: Routes = [
   { path: 'usuario', loadChildren: () => import('./usuario/usuario.module').then(m => m.UsuarioModule) },

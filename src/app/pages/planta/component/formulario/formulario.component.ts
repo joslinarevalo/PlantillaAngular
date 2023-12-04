@@ -57,7 +57,6 @@ export class FormularioComponent implements OnInit {
 
   cerrarModal(){
     this.ModalService.dismissAll();
-    this.formularioPlanta.reset();
     this.limpiarFormData();
   }
 

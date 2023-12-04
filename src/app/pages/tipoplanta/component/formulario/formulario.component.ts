@@ -33,6 +33,7 @@ export class FormularioComponent implements OnInit {
 
   cerrarModal(){
     this.ModalService.dismissAll();
+    this.formularioTipoPlanta.reset();
   }
 
   guardar() {

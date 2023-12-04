@@ -3,6 +3,7 @@ import { IDetalleCausaDTOMostrar } from '../../interface/detalleCausa.interface'
 import { DataTableDirective } from 'angular-datatables';
 import { Subject } from 'rxjs';
 import { DetalleCausaService } from '../../services/detalle-causa.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-tabla',
@@ -16,7 +17,8 @@ export class TablaComponent implements OnInit {
   @ViewChild(DataTableDirective, { static: false} ) dtElement: DataTableDirective;
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<IDetalleCausaDTOMostrar> = new Subject<IDetalleCausaDTOMostrar>();
-  constructor(private detalleCausaService:DetalleCausaService) { }
+  detalleCausa?:IDetalleCausaDTOMostrar;
+  constructor(private detalleCausaService:DetalleCausaService,public modalService:NgbModal) { }
 
   ngOnInit(): void {
     this.dtOptions={
@@ -45,5 +47,14 @@ export class TablaComponent implements OnInit {
     });
   }
 
+  openModal(content: any,detalleCausa:IDetalleCausaDTOMostrar) {
+    this.detalleCausa=detalleCausa;
+    this.modalService.open(content, {
+      size: "xl",
+      centered: true,
+      backdrop: "static",
+      keyboard: false,
+    });
 
+  }
 }

@@ -4,6 +4,9 @@ export interface IDetalleCausaDTOMostrar {
   idTipo: string;
   idPlanta: string;
   descripcionCausa: string;
+  enfermedad:string;
+  tipo:string;
+  planta:string;
 }
 export interface IDetalleCausaDTOValid {
   idDetalleCausa?: string;

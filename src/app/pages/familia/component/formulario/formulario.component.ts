@@ -31,6 +31,7 @@ export class FormularioComponent implements OnInit {
 
   cerrarModal(){
     this.ModalService.dismissAll();
+    this.formularioFamilia.reset();
   }
 
   guardar() {

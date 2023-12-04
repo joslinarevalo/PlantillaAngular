@@ -105,4 +105,11 @@ export class FormularioUserComponent implements OnInit {
       }
   }
 
+  autoCompletarUsuario(email: String){
+    const user = email.split('@');
+    if(user.length>1){
+      this.formularioUsuario.get('usuario')?.setValue(user[0]);
+    }
+  }
+
 }

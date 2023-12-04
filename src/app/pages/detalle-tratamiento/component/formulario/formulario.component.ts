@@ -94,7 +94,9 @@ export class FormularioComponent implements OnInit {
   }
   listaDetalleCausa(){
     this.serviceDetalleTratamiento.listaDetalleCausa().subscribe((resp)=>{
+      console.log(resp);
       this.listDetalleCausa=resp;
+
     });
   }
   listaTratamiento(){

@@ -1,7 +1,7 @@
 <h5 class="cajaModal text-center mt-4 texto-mayusculas">
     {{ leyenda }} Detalle Causa
   </h5>
-  
+
   <div class="modal-body">
     <label class="control-label">Campos obligatorios a llenar con <span class="required"></span>
       <!-- Icono de información -->
@@ -10,7 +10,7 @@
       <div class="row">
         <div class="col-md-12">
           <label class="control-label">Seleccionar Planta <span class="required"></span>
-            <span class="info-icon" data-title="El campo mostrado es el nombre del pesticida o Causa que se desea vincular">?</span> <!-- Icono de información -->
+            <span class="info-icon" data-title="Seleccione una planta asociada a la causa de la enfermedad">?</span> <!-- Icono de información -->
           </label>
           <ng-select
             class="form-control"
@@ -24,7 +24,7 @@
               >{{ Planta.nombreComunPlanta}}</ng-option
             >
           </ng-select>
-  
+
           <div class="invalid-feedback">
             <span
               *ngIf="formularioDetalleCausa.get('idPlanta')?.errors?.['required']"
@@ -34,7 +34,7 @@
         </div>
         <div class="col-md-12">
           <label class="control-label">Seleccionar Enfermedad <span class="required"></span>
-            <span class="info-icon" data-title="El campo contiene el detalle de causa de la enfermedad asociado a la planta y sus causas puntuales">?</span> <!-- Icono de información -->
+            <span class="info-icon" data-title="Seleccione una enfermedad asociado a este detalle casua">?</span> <!-- Icono de información -->
           </label>
           <ng-select
             class="form-control"
@@ -48,7 +48,7 @@
               >{{ enfermedad.nombreComunEnfermedad }}</ng-option
             >
           </ng-select>
-  
+
           <div class="invalid-feedback">
             <span
               *ngIf="formularioDetalleCausa.get('idEnfermedad')?.errors?.['required']"
@@ -58,7 +58,7 @@
         </div>
         <div class="col-md-12">
             <label class="control-label">Seleccionar Tipo Causa <span class="required"></span>
-              <span class="info-icon" data-title="El campo contiene el detalle de causa de la enfermedad asociado a la planta y sus causas puntuales">?</span> <!-- Icono de información -->
+              <span class="info-icon" data-title="Seleccione un tipo de causa que pudo ocacionar la enfermedad">?</span> <!-- Icono de información -->
             </label>
             <ng-select
               class="form-control"
@@ -72,7 +72,7 @@
                 >{{ causa.tipoTC }}</ng-option
               >
             </ng-select>
-    
+
             <div class="invalid-feedback">
               <span
                 *ngIf="formularioDetalleCausa.get('idTipo')?.errors?.['required']"
@@ -83,7 +83,7 @@
       </div>
       <div class="mt-1 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
         <label class="control-label">Descripción<span class="required"></span>
-          <span class="info-icon" data-title="El campo detalla las indicaciones que posee el Causa, por ejemplo usar en cultivos de tomates">?</span> <!-- Icono de información -->
+          <span class="info-icon" data-title="Describa el detalle de causa en base a los datos seleccionados">?</span> <!-- Icono de información -->
         </label>
         <textarea
           class="form-control"
@@ -138,4 +138,5 @@
       </div>
     </form>
   </div>
-  
+
+ 
